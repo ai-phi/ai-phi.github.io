@@ -9,17 +9,17 @@ import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 
 export interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"blog"> | CollectionEntry<"glossary">;
 }
 
 const { post } = Astro.props;
 
 const {
-  title,
   author,
+  title,
   description,
-  ogImage,
   canonicalURL,
+  ogImage,
   pubDatetime,
   modDatetime,
   tags,

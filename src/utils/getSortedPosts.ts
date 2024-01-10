@@ -20,7 +20,7 @@ export const getSortedGlossaryTerms = (
   entries
     .filter(({ data }) => !data.draft)
     .sort(({ data: dataA }, { data: dataB }) => {
-      return;
+      return dataA.title < dataB.title ? -1 : 1;
     });
 
 export default getSortedPosts;

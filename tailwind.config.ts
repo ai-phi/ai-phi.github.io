@@ -4,7 +4,7 @@ import type { PluginUtils, ThemeConfig } from "tailwindcss/types/config";
 // FIXME(@theis, 2024/01/06):remove usage of `any` type here
 function withOpacity(variableName: string): any {
   // FIXME(@theis, 2024/01/06): check typing here, this is weird
-  return ({ opacityValue }: PluginUtils) => {
+  return ({ opacityValue }: { opacityValue?: number }) => {
     if (opacityValue !== undefined) {
       return `rgba(var(${variableName}), ${opacityValue})`;
     }

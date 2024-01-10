@@ -1,14 +1,25 @@
 import { slugifyStr } from "@utils/slugify";
 import Datetime from "./Datetime";
-import type { CollectionEntry } from "astro:content";
+import type { Frontmatter } from "@content/config";
+import clsx from "clsx";
+import type { PropsWithChildren } from "react";
 
 export interface Props {
+  className?: string;
+  frontmatter: Frontmatter;
+  hideDatetime?: boolean;
   href?: string;
-  frontmatter: CollectionEntry<"blog">["data"];
   secHeading?: boolean;
 }
 
-export default function Card({ href, frontmatter, secHeading = true }: Props) {
+export default function Card({
+  className,
+  children,
+  href,
+  hideDatetime,
+  frontmatter,
+  secHeading = true,
+}: PropsWithChildren<Props>) {
   const { title, pubDatetime, modDatetime, description } = frontmatter;
 
   const headerProps = {
@@ -17,19 +28,33 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
   };
 
   return (
-    <li className="my-6">
-      <a
-        href={href}
-        className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
-      >
-        {secHeading ? (
-          <h2 {...headerProps}>{title}</h2>
-        ) : (
-          <h3 {...headerProps}>{title}</h3>
-        )}
+    <li>
+      <a href={href}>
+        <div
+          className={clsx(
+            "my-6",
+            !secHeading && "flex-row",
+            className,
+            "outline-2 outline-skin-fill/80 focus-within:outline-dashed",
+            "rounded-sm bg-skin-card/10 px-4 py-4"
+          )}
+        >
+          <span className="text-lg font-black text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0">
+            {secHeading ? (
+              <h2 {...headerProps}>{title}</h2>
+            ) : (
+              <h3 {...headerProps}>{title}</h3>
+            )}
+          </span>
+
+          {!hideDatetime && (
+            <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+          )}
+
+          {description != null && <p className="font-normal">{description}</p>}
+          {children}
+        </div>
       </a>
-      <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
-      <p>{description}</p>
     </li>
   );
 }

@@ -1,0 +1,21 @@
+---
+import Posts from "@layouts/Posts.astro";
+import { getSortedGlossaryTerms } from "@utils/getSortedPosts";
+import getPageNumbers from "@utils/getPageNumbers";
+
+import { getCollection } from "astro:content";
+import getPagination from "@utils/getPagination";
+import GlossaryTerms from "@layouts/GlossaryTerms.astro";
+
+const entries = await getCollection("glossary");
+
+const sortedEntries = getSortedGlossaryTerms(entries);
+
+const pagination = getPagination({
+  posts: sortedEntries,
+  page: 1,
+  isIndex: true,
+});
+---
+
+<GlossaryTerms {...pagination} />

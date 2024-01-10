@@ -14,4 +14,13 @@ const getSortedPosts = (posts: CollectionEntry<"blog">[]) => {
     );
 };
 
+export const getSortedGlossaryTerms = (
+  entries: CollectionEntry<"glossary">[]
+) =>
+  entries
+    .filter(({ data }) => !data.draft)
+    .sort(({ data: dataA }, { data: dataB }) => {
+      return;
+    });
+
 export default getSortedPosts;

@@ -23,12 +23,12 @@ const getPagination = <T>({
 
   const lastPost = isIndex ? SITE.postPerPage : currentPage * SITE.postPerPage;
   const startPost = isIndex ? 0 : lastPost - SITE.postPerPage;
-  const paginatedPosts = posts.slice(startPost, lastPost);
+  const paginatedEntries = posts.slice(startPost, lastPost);
 
   return {
     totalPages,
     currentPage,
-    paginatedPosts,
+    paginatedEntries,
   };
 };
 

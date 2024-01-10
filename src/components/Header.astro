@@ -2,9 +2,10 @@
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import StyledTitle from "@components/StyledTitle";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "about" | "search";
+  activeNav?: "posts" | "tags" | "glossary" | "about" | "agenda" | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -14,20 +15,20 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href="/" class="logo whitespace-nowrap">
-        {
-          LOGO_IMAGE.enable ? (
+      {
+        LOGO_IMAGE.enable ? (
+          <a href="/" class="logo whitespace-nowrap">
             <img
               src={`/assets/${LOGO_IMAGE.svg ? "logo.svg" : "logo.png"}`}
               alt={SITE.title}
               width={LOGO_IMAGE.width}
               height={LOGO_IMAGE.height}
             />
-          ) : (
-            SITE.title
-          )
-        }
-      </a>
+          </a>
+        ) : (
+          <StyledTitle className="text-2xl" href="/" />
+        )
+      }
       <nav id="nav-menu">
         <button
           class="hamburger-menu focus-outline"
@@ -56,13 +57,21 @@ const { activeNav } = Astro.props;
         </button>
         <ul id="menu-items" class="display-none sm:flex">
           <li>
+            <a href="/agenda" class={activeNav === "agenda" ? "active" : ""}>
+              Agenda
+            </a>
+          </li>
+          <li>
             <a href="/posts" class={activeNav === "posts" ? "active" : ""}>
               Posts
             </a>
           </li>
           <li>
-            <a href="/tags" class={activeNav === "tags" ? "active" : ""}>
-              Tags
+            <a
+              href="/glossary"
+              class={activeNav === "glossary" ? "active" : ""}
+            >
+              Glossary
             </a>
           </li>
           <li>

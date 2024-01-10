@@ -1,0 +1,41 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import GlossaryTerms from "@layouts/GlossaryTerms.astro";
+import PostDetails from "@layouts/PostDetails.astro";
+import { getSortedGlossaryTerms } from "@utils/getSortedPosts";
+import getPageNumbers from "@utils/getPageNumbers";
+import getPagination from "@utils/getPagination";
+
+export interface Props {
+  glossaryTerm: CollectionEntry<"glossary">;
+}
+
+export async function getStaticPaths() {
+  const glossaryTerms = await getCollection("glossary", ({ data }) => !data.draft);
+
+  const postResult = glossaryTerms.map(glossaryTerm => ({
+    params: { slug: glossaryTerm.slug },
+    props: { glossaryTerm: glossaryTerm },
+  }));
+
+  const pagePaths = getPageNumbers(glossaryTerms.length).map(pageNum => ({
+    params: { slug: String(pageNum) },
+  }));
+
+  return [...postResult, ...pagePaths];
+}
+
+const { slug } = Astro.params;
+const { glossaryTerm } = Astro.props;
+
+const glossaryTerms = await getCollection("glossary");
+
+const sortedGlossaryTerms = getSortedGlossaryTerms(glossaryTerms);
+
+const pagination = getPagination({
+  posts: sortedGlossaryTerms,
+  page: slug,
+});
+---
+
+{glossaryTerm ? <PostDetails post={glossaryTerm} /> : <GlossaryTerms {...pagination} />}

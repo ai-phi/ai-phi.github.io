@@ -1,5 +1,10 @@
-function withOpacity(variableName) {
-  return ({ opacityValue }) => {
+import type { Config } from "tailwindcss";
+import type { PluginUtils, ThemeConfig } from "tailwindcss/types/config";
+
+// FIXME(@theis, 2024/01/06):remove usage of `any` type here
+function withOpacity(variableName: string): any {
+  // FIXME(@theis, 2024/01/06): check typing here, this is weird
+  return ({ opacityValue }: PluginUtils) => {
     if (opacityValue !== undefined) {
       return `rgba(var(${variableName}), ${opacityValue})`;
     }
@@ -8,20 +13,30 @@ function withOpacity(variableName) {
 }
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     // Remove the following screen breakpoint or add other breakpoints
     // if one breakpoint is not enough for you
-    screens: {
-      sm: "640px",
-    },
 
     extend: {
+      container: {
+        screens: {
+          xs: "320px",
+          sm: "640px",
+        },
+      },
+
+      screens: {
+        sm: "640px",
+      },
+
       textColor: {
         skin: {
           base: withOpacity("--color-text-base"),
           accent: withOpacity("--color-accent"),
+          brand: withOpacity("--color-brand"),
+          "secondary-brand": withOpacity("--color-secondary-brand"),
           inverted: withOpacity("--color-fill"),
         },
       },
@@ -53,8 +68,10 @@ module.exports = {
         },
         transparent: "transparent",
       },
+
       fontFamily: {
         mono: ["IBM Plex Mono", "monospace"],
+        serif: ["Literata Variable"],
       },
 
       typography: {
@@ -71,5 +88,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
-};
+
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
+  ],
+} satisfies Config;

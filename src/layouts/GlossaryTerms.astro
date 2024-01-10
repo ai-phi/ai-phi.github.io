@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Pagination from "@components/Pagination.astro";
+import Card from "@components/Card";
+import { SITE } from "@config";
+import uniq from "lodash/uniq";
+import groupBy from "lodash/groupBy";
+
+export interface Props {
+  currentPage: number;
+  totalPages: number;
+  paginatedEntries: CollectionEntry<"glossary">[];
+}
+
+const { currentPage, totalPages, paginatedEntries } = Astro.props;
+
+const entriesByFirstLetter = Object.entries(
+  groupBy(paginatedEntries, entry => entry.data.title[0])
+);
+---
+
+<Layout title={`Glossary | ${SITE.title}`}>
+  <Header activeNav="glossary" />
+  <Main pageTitle="Glossary" pageDesc="All terms for our in-house glossary.">
+    {
+      entriesByFirstLetter.map(([firstLetter, entries]) => (
+        <ul>
+          <span class="text-4xl px-2 rounded-md text-skin-inverted font-black bg-skin-inverted/80">
+            {firstLetter}
+          </span>
+          {entries.map(({ data, slug }) => (
+            <Card frontmatter={data} href={`/glossary/${slug}`} />
+          ))}
+        </ul>
+      ))
+    }
+  </Main>
+
+  <Pagination
+    {currentPage}
+    {totalPages}
+    prevUrl={`/glossary${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}`}
+    nextUrl={`/glossary/${currentPage + 1}`}
+  />
+
+  <Footer noMarginTop={totalPages > 1} />
+</Layout>

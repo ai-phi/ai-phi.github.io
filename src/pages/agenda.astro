@@ -1,0 +1,24 @@
+---
+import { SITE } from "@config";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import LinkButton from "@components/LinkButton.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+---
+
+<Layout title={`404 Not Found | ${SITE.title}`}>
+  <Header activeNav="agenda" />
+  <Breadcrumbs />
+  <main id="main-content">
+    <section id="agenda" class="prose mb-28 max-w-3xl prose-img:border-0">
+      <h1 class="text-2xl tracking-wider sm:text-3xl">Agenda</h1>
+
+      <p class="italic opacity-50">TODO(@theis): add the agenda here!</p>
+      <!-- <slot /> -->
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<!-- <style></style> -->

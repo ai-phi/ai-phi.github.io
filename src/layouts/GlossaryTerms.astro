@@ -33,7 +33,11 @@ const entriesByFirstLetter = Object.entries(
             {firstLetter}
           </span>
           {entries.map(({ data, slug }) => (
-            <Card frontmatter={data} href={`/glossary/${slug}`} />
+            <Card
+              className="max-w-[400px]"
+              frontmatter={data}
+              href={`/glossary/${slug}`}
+            />
           ))}
         </ul>
       ))

@@ -5,9 +5,13 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
+
+const blogPosts = await Astro.glob("../content/blog/*.md");
+const sessionPosts = blogPosts.filter(post => post.frontmatter.session);
+
 ---
 
-<Layout title={`404 Not Found | ${SITE.title}`}>
+<Layout title={`Agenda | ${SITE.title}`}>
   <Header activeNav="agenda" />
   <Breadcrumbs />
   <main id="main-content">
@@ -15,6 +19,16 @@ import Breadcrumbs from "@components/Breadcrumbs.astro";
       <h1 class="text-2xl tracking-wider sm:text-3xl">Agenda</h1>
 
       <p class="italic opacity-50">TODO(@theis): add the agenda here!</p>
+
+      <ul>
+        {sessionPosts.map((post) => (
+          <li>
+            <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
+            <p>{post.frontmatter.description}</p>
+          </li>
+        ))}
+      </ul>
+
       <!-- <slot /> -->
     </section>
   </main>

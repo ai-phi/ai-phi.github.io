@@ -24,32 +24,34 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <Layout>
   <Header />
   <main class="font-serif" id="main-content">
-    <section id="hero" class="max-w-[700px]">
+    <section id="hero" >
       <h1 class="mr-2">
-        The <StyledTitle
+        Welcome to
+        <StyledTitle
           insertExpansions
           phiTranslateAmount="-translate-x-[12px] -mr-[12px]"
-        /> reading group
+        />
       </h1>
       <RSSIcon />
 
       <p>
-        Welcome to the official website of the AI-PHI reading group co-animated
-        by Aïda E. (ENS Ulm) and Michael A. & Stefan L. (Sony CSL Paris).
+        We're a small and active community of researchers and professionals based in Paris, united by our passion of topics at the intersection of Philosophy and AI. AI-PHI creates a space for us to meet and share our knowledge and ideas.💡
+      </p>
+      <p> 
+        No remote attendance - because we believe in the power of human connection, and the freedom of unrecorded debates.
       </p>
       <p>
         Check the <a
           class="font-bold text-skin-accent hover:underline decoration-dashed underline-offset-4"
           href="/agenda">Agenda</a
-        > tab for the upcoming meetings of the reading group.
+        > tab to get a better view at our activities.
       </p>
       <p>
-        We sure love to nitpick about wording and definitions, check the
-        ever-evolving
+        Robust analysis starts with solid definitions. Furthermore, with our interdisciplinary background, we borrow from several terminologies and jargons. One of our on-going effort is to build a common language and understanding of the concepts involved in our discussions. The
         <a
           class="font-bold text-skin-accent hover:underline decoration-dashed underline-offset-4"
           href="/glossary">Glossary</a
-        > for our most up-to-date takes on terms such as:
+        > section provides some grounding definitions:
         <RandomGlossaryWords client:load />...
       </p>
       {

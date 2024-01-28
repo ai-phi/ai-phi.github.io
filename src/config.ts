@@ -6,7 +6,7 @@ export const SITE: Site = {
   desc: "Official page of the AI-PHI research group in Paris.",
   title: "AI-PHI",
   ogImage: "astropaper-og.jpg",
-  lightAndDarkMode: false,
+  lightAndDarkMode: true,
   postPerPage: 3,
 };
 

@@ -7,8 +7,4 @@ After years of friendly discussions about AI and philosophy during afterwork hou
 
 The AI-PHI community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
 
-## Founders
-
-## Distinguished Members
-
 ## Members

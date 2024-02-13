@@ -8,3 +8,14 @@ After years of friendly discussions about AI and philosophy during afterwork hou
 The AI-PHI community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
 
 ## Members
+
+Aïda Elamrani (co-founder)  
+Michael Anslow (co-founder)  
+Stefan Lattner (co-founder)
+
+Gaspard Fougea (Session 10)
+Gustave Cortal (Session 9)
+Grégoire Sergeant  
+Sylvy Anscombe  
+Théis Bazin (webmaster)
+Thomas Souverain (Session X)

@@ -15,7 +15,8 @@ Stefan Lattner (co-founder)
 
 Gaspard Fougea (Session 10)  
 Gustave Cortal (Session 9)  
-Grégoire Sergeant  
+Grégoire Sergeant
+Luibov Tupikina
 Sylvy Anscombe  
 Théis Bazin (webmaster)  
-Thomas Souverain (Session X)
+Thomas Souverain (Session 6)

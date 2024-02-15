@@ -2,22 +2,17 @@
 author: AI-PHI
 pubDatetime: 2023-9-28T18:00:00Z
 // modDatetime:
-title: Session 2 - Philosophy of AI - Discussion
-slug: session-2-phil-of-ai-discussion
+title: Session 1 - Philosophy of AI
+slug: session-1-phil-of-ai
 draft: false
 tags:
   - Session
   - Philosophy of AI
   - Discussion
-  - Glossary
 description: Session on Introduction to Philosophy
 session: true
 ---
 
-## About the 2nd session:
+## About the Inaugural Session:
 
-Due to popular demand, in our next session we will take all the time we need to stop and discuss the numerous topics that were mentioned during the “Introduction to Philosophy of AI” session by Aïda Elamrani.
-
-Some seed topics are:
-To what extent does it matter that AI systems are black boxes?
-Is the EU AI act adequate? How might uneven access and competition across countries affect the growth of AI?
+Introduction to Philosophy of AI by Aïda Elamrani (Institut Jean Nicod, ENS).

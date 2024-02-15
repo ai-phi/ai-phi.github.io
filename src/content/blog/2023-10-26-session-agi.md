@@ -9,7 +9,7 @@ tags:
   - Session
   - AGI
   - Intro to AI
-description: Session on Artificial General Intelligence
+description: Session on Artificial General Intelligence by Michael Anslow
 session: true
 ---
 

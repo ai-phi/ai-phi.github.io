@@ -9,10 +9,10 @@ tags:
   - Session
   - Xmas
   - Understanding
-description: X-mas Session
+description: X-mas Session and NeurIPS report by Stefan Lattner
 session: true
 ---
 
 ## About the 7th session (12-21-2023):
 
-Fortn[AI]ghtly news + NeurIPS updates by our special reporter, Stefan Lattner.
+In this sessionwe had our regular Fortn[AI]ghtly news and NeurIPS updates by our special reporter, Stefan Lattner.

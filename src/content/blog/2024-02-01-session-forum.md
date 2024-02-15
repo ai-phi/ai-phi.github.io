@@ -10,7 +10,7 @@ tags:
   - Session
   - AI-Forum
   - Discussion
-description: AI-Forum Session
+description: AI-Forum Session Discussion
 session: true
 ---
 

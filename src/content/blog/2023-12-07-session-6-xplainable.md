@@ -9,13 +9,13 @@ tags:
   - Session
   - Explainability
   - Fairness
-description: Session on Explainabilty and Fairness
+description: Session on Explainabilty and Fairness by Thomas Souverain
 session: true
 ---
 
 ## About the 6th session:
 
-Thomas is a Philosophy PhD Student in AI Ethics, ENS Ulm - Institut Jean Nicod.
+Thomas Souverain is a Philosophy PhD Student in AI Ethics, ENS Ulm - Institut Jean Nicod.
 
 After having introduced key principles of AI Ethics, Thomas presented the two main principles which are at the core of his PhD research: Explainability and Fairness.
 

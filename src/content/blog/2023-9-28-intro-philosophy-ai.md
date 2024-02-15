@@ -9,7 +9,7 @@ tags:
   - Session
   - Philosophy of AI
   - Discussion
-description: Session on Introduction to Philosophy
+description: Session on Introduction to Philosophy by Aïda Elamrani
 session: true
 ---
 

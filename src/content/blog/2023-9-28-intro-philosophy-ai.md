@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2023-10-12T18:00:00Z
+pubDatetime: 2023-9-28T18:00:00Z
 // modDatetime:
 title: Session 2 - Philosophy of AI - Discussion
 slug: session-2-phil-of-ai-discussion

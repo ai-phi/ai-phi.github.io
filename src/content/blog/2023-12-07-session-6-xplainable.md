@@ -9,7 +9,7 @@ tags:
   - Session
   - Explainability
   - Fairness
-description: Session
+description: Session on Explainabilty and Fairness
 session: true
 ---
 

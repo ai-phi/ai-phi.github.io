@@ -9,7 +9,7 @@ tags:
   - Session
   - Emotions
   - Understanding
-description: Session
+description: Session on AEmotional Understanding
 session: true
 ---
 

@@ -9,7 +9,7 @@ tags:
   - Session
   - Xmas
   - Understanding
-description: Session
+description: X-mas Session
 session: true
 ---
 

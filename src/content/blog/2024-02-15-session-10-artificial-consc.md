@@ -5,10 +5,11 @@ pubDatetime: 2024-02-05T18:00:00Z
 title: Session 10 - The Possibility of Artificial Consciousness
 slug: session-10-artificial-consc
 draft: false
+featured: true
 tags:
   - Session
   - Artificial Consciousness
-description: Session
+description: Artificial Consciousness by Gaspard Fougea (ENS Saclay)
 session: true
 ---
 

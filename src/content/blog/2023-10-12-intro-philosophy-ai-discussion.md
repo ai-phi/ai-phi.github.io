@@ -9,7 +9,7 @@ tags:
   - Session
   - Philosophy of AI
   - Discussion
-description: Session
+description: Session on Introduction to Philosophy Part II
 session: true
 ---
 

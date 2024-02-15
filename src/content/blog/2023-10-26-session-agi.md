@@ -9,10 +9,10 @@ tags:
   - Session
   - AGI
   - Intro to AI
-description: Session
+description: Session on Artificial General Intelligence Part II
 session: true
 ---
 
 ## About the 3rd session:
 
-Artificial General Intelligence by Michael Anslow.
+In this session Michael Anslow will give an ambitious, whirlwind tour of Artificial Intelligence before exploring the field of Artificial General Intelligence (AGI).

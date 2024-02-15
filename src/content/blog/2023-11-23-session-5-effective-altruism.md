@@ -9,7 +9,7 @@ tags:
   - Session
   - Effective Altruism
   - AI Safety
-description: Session
+description: Session on Effective Altruism
 session: true
 ---
 

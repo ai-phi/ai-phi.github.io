@@ -5,11 +5,9 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
-import getSortedPosts from "@utils/getSortedPosts";
 
 const blogPosts = await Astro.glob("../content/blog/*.md");
 const sessionPosts = blogPosts.filter(post => post.frontmatter.session);
-const sortedPosts = getSortedPosts(sessionPosts);
 
 ---
 
@@ -22,7 +20,7 @@ const sortedPosts = getSortedPosts(sessionPosts);
 
 
       <ul>
-        {sortedPosts.map((post) => (
+        {sessionPosts.map((post) => (
           <li>
             <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
             <p>{post.frontmatter.description}</p>

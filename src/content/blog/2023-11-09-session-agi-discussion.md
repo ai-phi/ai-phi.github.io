@@ -10,7 +10,7 @@ tags:
   - AGI
   - Intro to AI
   - Discussion
-description: Session on Artificial General Intelligence Part II
+description: Session on Artificial General Intelligence Discussion
 session: true
 ---
 

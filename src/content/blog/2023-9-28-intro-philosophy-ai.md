@@ -10,7 +10,7 @@ tags:
   - Philosophy of AI
   - Discussion
   - Glossary
-description: Session
+description: Session on Introduction to Philosophy
 session: true
 ---
 

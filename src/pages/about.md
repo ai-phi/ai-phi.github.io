@@ -13,10 +13,13 @@ Aïda Elamrani (co-founder)
 Michael Anslow (co-founder)  
 Stefan Lattner (co-founder)
 
+Peter Hannape (Distinguished Member)  
+Thierry Poibeau (Distinguished Member)
+
 Gaspard Fougea (Session 10)  
 Gustave Cortal (Session 9)  
-Grégoire Sergeant
-Luibov Tupikina
+Grégoire Sergeant  
+Luibov Tupikina  
 Sylvy Anscombe  
 Théis Bazin (webmaster)  
 Thomas Souverain (Session 6)

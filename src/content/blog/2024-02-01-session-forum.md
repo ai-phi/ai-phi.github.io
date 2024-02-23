@@ -4,7 +4,7 @@ pubDatetime: 2024-02-01T18:00:00Z
 // modDatetime:
 title: Session 9 - AI-Forum
 slug: session-9-ai-forum
-featured: true
+featured: false
 draft: false
 tags:
   - Session

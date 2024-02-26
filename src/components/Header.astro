@@ -26,7 +26,7 @@ const { activeNav } = Astro.props;
             />
           </a>
         ) : (
-          <StyledTitle className="text-2xl" href="/" />
+          <StyledTitle className="absolute text-2xl" href="/" />
         )
       }
       <nav id="nav-menu">
@@ -66,7 +66,7 @@ const { activeNav } = Astro.props;
               Posts
             </a>
           </li>
-         <!-- <li>
+          <!-- <li>
             <a
               href="/glossary"
               class={activeNav === "glossary" ? "active" : ""}

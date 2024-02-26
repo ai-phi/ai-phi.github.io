@@ -11,6 +11,9 @@
     --color-card: 160, 160, 160;
     --color-card-muted: 205, 205, 205;
     --color-border: 236, 233, 233;
+
+    --color-brand: 0, 126, 167; /* Cerulean blue */
+    --color-secondary-brand: 204, 118, 161; /* Thulian pink */
   }
   html[data-theme="dark"] {
     --color-fill: 38, 25, 12;

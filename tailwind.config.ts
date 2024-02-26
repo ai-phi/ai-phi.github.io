@@ -65,6 +65,7 @@ export default {
         skin: {
           base: withOpacity("--color-text-base"),
           accent: withOpacity("--color-accent"),
+          inverted: withOpacity("--color-fill"),
         },
         transparent: "transparent",
       },

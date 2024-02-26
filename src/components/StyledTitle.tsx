@@ -13,7 +13,7 @@ export default function StyledTitle({
   phiTranslateAmount?: string;
 }): ReactElement {
   return (
-    <a className={clsx("whitespace-nowrap", className)} href={href}>
+    <a className={clsx("select-none whitespace-nowrap", className)} href={href}>
       <span className="inline-flex flex-col place-items-center text-skin-brand">
         <span className="font-mono font-black">AI</span>
         {insertExpansions && (

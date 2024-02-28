@@ -2,18 +2,16 @@
 author: AI-PHI
 pubDatetime: 2023-12-07T18:00:00Z
 // modDatetime:
-title: Session 6 - Explainabilty and Fairness
+title: Session 6 - Explainability and Fairness
 slug: session-6-xplainable
 draft: false
 tags:
   - Session
   - Explainability
   - Fairness
-description: Session on Explainabilty and Fairness by Thomas Souverain
+description: Session on Explainability and Fairness by Thomas Souverain
 session: true
 ---
-
-## About the 6th session:
 
 Thomas Souverain is a Philosophy PhD Student in AI Ethics, ENS Ulm - Institut Jean Nicod.
 

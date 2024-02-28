@@ -13,6 +13,12 @@ description: Session on AEmotional Understanding by Constant Bonard and Gustave 
 session: true
 ---
 
-## About the 8th session (18-01-2024):
-
 In this session, Constant Bonard (IJN, ENS) and Gustave Cortal (ENS Saclay) discussed the nature of emotions according to contemporary affective sciences, present the state of the art in sentiment analysis and its limitations, what cognitive capacities allow humans to understand others' emotions, and whether AI can achieve this emotional understanding.
+
+Slides from Constant Bonard are accessible [here](https://docs.google.com/presentation/d/1sU8hqIVsh8vG6QCuTxgIlHF-qi7W8WE4XI8i2GL5-rI/edit?usp=sharing).
+
+## Details
+
+**Date and Time:** Thursday, 18th of January 2024 - 7pm  
+**Location:** Salle de réunion, Rez-de-chaussée, Pavillon Jardin 001, Institut Jean Nicod, Department of Cognitive Studies, Ecole Normale Supérieure, 29 rue d’Ulm, 75005.  
+**How to get there:** The public entrance is located in the Physics department, at 24 rue Lhomond. Once you’re at the gate, press the middle button to call the guardian of the frontdesk. When you’re in, ask the guardian for directions on how to get to Pavillon Jardin.

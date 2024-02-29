@@ -4,7 +4,7 @@ pubDatetime: 2024-02-01T8:00:00Z
 // modDatetime:
 title: Official Launch of the Website!
 slug: website-official-launch
-featured: true
+featured: false
 draft: false
 tags:
   - website

@@ -15,7 +15,7 @@ session: true
 
 In this session, Constant Bonard (IJN, ENS) and Gustave Cortal (ENS Saclay) discussed the nature of emotions according to contemporary affective sciences, present the state of the art in sentiment analysis and its limitations, what cognitive capacities allow humans to understand others' emotions, and whether AI can achieve this emotional understanding.
 
-Slides from Constant Bonard are accessible [here](https://docs.google.com/presentation/d/1sU8hqIVsh8vG6QCuTxgIlHF-qi7W8WE4XI8i2GL5-rI/edit?usp=sharing).
+Slides from their joint talk are accessible [here](https://drive.google.com/file/d/1UORYA-Ge4b79Wg3dWlDsUkPmGWkyXNSH/view?usp=sharing).
 
 ## Details
 

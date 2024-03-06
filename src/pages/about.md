@@ -16,6 +16,7 @@ Stefan Lattner (co-founder)
 Peter Hannape (Distinguished Member)  
 Thierry Poibeau (Distinguished Member)
 
+Constant Bonard (Session 9)
 Gaspard Fougea (Session 10)  
 Gustave Cortal (Session 9)  
 Grégoire Sergeant  

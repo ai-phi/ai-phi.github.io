@@ -29,6 +29,8 @@ Agency in the cyber-agro-ecosystem. We will present some theories about minimal 
 
 [slides](https://drive.google.com/file/d/1qZIuhoTTk3ivp9D42QtgcYGUidh0Z0R0/view?usp=sharing) [main references](https://www.dropbox.com/scl/fo/fv06ck2u7hcs6mkczqtwk/h?rlkey=ot39cvrzf3taeuno7qhir1la0&dl=0)
 
+David Colliaux is a researcher in Sony CSL working on computational Agroecology.
+
 ## Details
 
 **Date and Time:** Thursday, 29th of February 2024 - 7pm  

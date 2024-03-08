@@ -20,6 +20,7 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 **Constant Bonard**, University of Bern, [website](https://ens.academia.edu/ConstantBonard), [twitter](https://twitter.com/constant_bonard)  
 **Daniele Cavalli**, ENS-PSL, Republique des Savoirs, LIP6
 [website](https://republique-des-savoirs.fr/membres/daniele-cavalli/)  
+**Frédéric Keryer** Head of Sales France, Funartech [website](https://www.funartech.com)  
 **Gaspard Fougea**, LMF, ENS Saclay, [website](https://lmf.cnrs.fr/Perso/GaspardFougea)  
 **Giulio Prevedello**, Sony Computer Science Laboratories - Paris, [linkedin](https://www.linkedin.com/in/giulio-prevedello-8a2b5098/)  
 **Gustave Cortal**, ENS Saclay, [website](https://lmf.cnrs.fr/Perso/GustaveCortal)  

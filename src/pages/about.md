@@ -20,13 +20,13 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 **Constant Bonard**, University of Bern, [website](https://ens.academia.edu/ConstantBonard), [twitter](https://twitter.com/constant_bonard)  
 **Daniele Cavalli**, ENS-PSL, Republique des Savoirs, LIP6
 [website](https://republique-des-savoirs.fr/membres/daniele-cavalli/)  
-**Gaspard Fougea**, LMF, École Normale Supérieure Paris Saclay, [website](https://lmf.cnrs.fr/Perso/GaspardFougea)  
+**Gaspard Fougea**, LMF, ENS Saclay, [website](https://lmf.cnrs.fr/Perso/GaspardFougea)  
 **Giulio Prevedello**, Sony Computer Science Laboratories - Paris, [linkedin](https://www.linkedin.com/in/giulio-prevedello-8a2b5098/)  
-**Gustave Cortal**, Ecole Normale Supérieure Paris-Saclay, [website](https://lmf.cnrs.fr/Perso/GustaveCortal)  
+**Gustave Cortal**, ENS Saclay, [website](https://lmf.cnrs.fr/Perso/GustaveCortal)  
 **Sergeant-Perthuis Grégoire**, Sorbonne Université, [website](http://www.gregoiresergeant-perthuis.com/index.html) , [twitter](https://twitter.com/Math_Gregoire)  
 **Luibov Tupikina**, Bell Labs, Learning Planet Institute, [website](https://sites.google.com/view/liubovkmatematike/papers?authuser=0)  
 **Milja Franck**, Meaningful Innovation, [linkedin](https://www.linkedin.com/in/milja-franck-75125416/)  
 **Olga Kokshagina**, EDHEC business school, LPI France  
 **Sylvy Anscombe**, Université Paris Cité, IMJ-PRG, [website](https://sylvyanscombe.com/)  
 **Théis Bazin** (webmaster)  
-**Thomas Souverain**, Institut Jean Nicod, Ecole Normale Supérieure de Paris & France Travail AI Department, [website](https://www.mfo.ac.uk/people/thomas-souverain)
+**Thomas Souverain**, Institut Jean Nicod, ENS-PSL, France Travail AI Department, [website](https://www.mfo.ac.uk/people/thomas-souverain)

@@ -13,7 +13,7 @@ description: Introduction to Deep Learning
 session: true
 ---
 
-Stefan will deliver both a historic and technical build-up towards the state of the art of Deep Learning. This will be an accessible presentation that is suitable for a non-technical audience and informative for the technical audience.
+Stefan Lattner (Sony CSL) will deliver both a historic and technical build-up towards the state of the art of Deep Learning. This will be an accessible presentation that is suitable for a non-technical audience and informative for the technical audience.
 
 ## Details
 

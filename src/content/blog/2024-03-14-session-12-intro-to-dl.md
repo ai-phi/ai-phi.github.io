@@ -9,7 +9,7 @@ featured: true
 tags:
   - Session
   - Deep Learning
-description: Introduction to Deep Learning
+description: Introduction to Deep Learning by Stefan Lattner (Sony CSL)
 session: true
 ---
 

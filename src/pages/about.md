@@ -24,7 +24,7 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 **Giulio Prevedello**, Sony Computer Science Laboratories - Paris, [linkedin](https://www.linkedin.com/in/giulio-prevedello-8a2b5098/)  
 **Gustave Cortal**, Ecole Normale Supérieure Paris-Saclay, [website](https://lmf.cnrs.fr/Perso/GustaveCortal)  
 **Sergeant-Perthuis Grégoire**, Sorbonne Université, [website](http://www.gregoiresergeant-perthuis.com/index.html) , [twitter](https://twitter.com/Math_Gregoire)  
-**Luibov Tupikina**  
+**Luibov Tupikina**, Bell Labs, Learning Planet Institute, [website](https://sites.google.com/view/liubovkmatematike/papers?authuser=0)  
 **Milja Franck**, Meaningful Innovation, [linkedin](https://www.linkedin.com/in/milja-franck-75125416/)  
 **Olga Kokshagina**, EDHEC business school, LPI France  
 **Sylvy Anscombe**, Université Paris Cité, IMJ-PRG, [website](https://sylvyanscombe.com/)  

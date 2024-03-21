@@ -16,7 +16,9 @@ description: Generative AI, Sequence Models and Training Paradigms by Stefan Lat
 session: true
 ---
 
-This is the second part of Stefan Lattner's (Sony CSL) historic and technical build-up towards the state of the art of Deep Learning. This is an accessible presentation that is suitable for a non-technical audience.
+This is the second part of Stefan Lattner's (Sony CSL) historic and technical build-up towards the state of the art of Deep Learning. This is an accessible presentation, that is suitable for a non-technical audience, while also providing original insights to a technical audience.
+
+If you missed the previous session, you're warmly invited to check the slides from [session 12](session-12-intro-dl).
 
 ## Details
 

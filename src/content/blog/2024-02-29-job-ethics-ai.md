@@ -5,7 +5,7 @@ pubDatetime: 2024-02-29T18:00:00Z
 title: Job Offer! Research Assistant in AI Ethics at ENS
 slug: job-ai-ethics-ens
 draft: false
-featured: true
+featured: false
 tags:
   - Announcement
   - Job

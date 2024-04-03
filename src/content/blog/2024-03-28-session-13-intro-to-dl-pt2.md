@@ -5,7 +5,7 @@ pubDatetime: 2024-03-28T18:00:00Z
 title: Session 13 - Generative AI, Sequence Models and Training Paradigms
 slug: session-13-intro-dl-pt2
 draft: false
-featured: true
+featured: false
 tags:
   - Session
   - Deep Learning

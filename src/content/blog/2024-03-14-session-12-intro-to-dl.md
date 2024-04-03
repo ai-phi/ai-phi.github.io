@@ -5,7 +5,7 @@ pubDatetime: 2024-03-14T18:00:00Z
 title: Session 12 - Introduction to Deep Learning
 slug: session-12-intro-dl
 draft: false
-featured: true
+featured: false
 tags:
   - Session
   - Deep Learning

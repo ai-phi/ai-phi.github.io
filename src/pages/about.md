@@ -31,6 +31,7 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 **Morgan Moyer**, Sorbonne / Institute Jean Nicod [website](http://morganmoyer.net/)  
 **Olga Kokshagina**, EDHEC business school, LPI France  
 **Olha Sobetska**, CLEA | VUB - Brussels, Belgium  
+**Merel Semeijn**, Institut Jean Nicod, [website](https://merelsemeijn.wordpress.com/)  
 **Sylvy Anscombe**, Université Paris Cité, IMJ-PRG [website](https://sylvyanscombe.com/)  
 **Théis Bazin** (webmaster)  
 **Thomas Souverain**, Institut Jean Nicod, ENS-PSL, France Travail AI Department [website](https://www.mfo.ac.uk/people/thomas-souverain)

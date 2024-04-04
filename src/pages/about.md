@@ -27,8 +27,8 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 - [**Frédéric Keryer**](https://www.funartech.com)\* Head of Sales France, Funartech
 - [**Gaspard Fougea**](https://lmf.cnrs.fr/Perso/GaspardFougea), LMF, ENS Saclay
 - [**Giulio Prevedello**](https://www.linkedin.com/in/giulio-prevedello-8a2b5098/), Sony Computer Science Laboratories - Paris
-- [**Gustave Cortal**](https://lmf.cnrs.fr/Perso/GustaveCortal), ENS Saclay
 - [**Grégoire Sergeant-Perthuis**](http://www.gregoiresergeant-perthuis.com/index.html), Sorbonne Université [twitter](https://twitter.com/Math_Gregoire)
+- [**Gustave Cortal**](https://lmf.cnrs.fr/Perso/GustaveCortal), ENS Saclay
 - [**Luibov Tupikina**](https://sites.google.com/view/liubovkmatematike/papers?authuser=0), Bell Labs, Learning Planet Institute
 - [**Merel Semeijn**](https://merelsemeijn.wordpress.com/), Institut Jean Nicod
 - [**Milja Franck**](https://www.linkedin.com/in/milja-franck-75125416/), Meaningful Innovation

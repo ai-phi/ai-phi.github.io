@@ -23,3 +23,6 @@ In this session, we will honor the memory of Daniel Kahneman, who passed away on
 **Date and Time:** Thursday, 11th of April 2024 - 7pm  
 **Location:** Salle de réunion, Rez-de-chaussée, Pavillon Jardin 001, Institut Jean Nicod, Department of Cognitive Studies, Ecole Normale Supérieure, 29 rue d’Ulm, 75005.  
 **How to get there:** The public entrance is located in the Physics department, at 24 rue Lhomond. Once you’re at the gate, press the middle button to call the guardian of the frontdesk. When you’re in, ask the guardian for directions on how to get to Pavillon Jardin.
+
+**Registration:** Due to security measures, registration is mandatory for those who are not currently affiliated with ENS PSL. If you wish to attend, kindly send an email with your full name and institutional affiliation, no later than 2 hours before the event, to the following address:  
+ai [dot] phi [dot] club [at] gmail [dot] com

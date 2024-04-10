@@ -16,7 +16,7 @@ description: Interactive discussion around Kahneman's interview with Lex Fridman
 session: true
 ---
 
-In this session, we will honor the memory of Daniel Kahneman, who passed away on March 27, 2024. We will watch an interview with Kahneman conducted four years ago by Lex Fridman, the renowned AI podcaster. We will explore a new format, inspired by suggestions from the AI-PHI Forum, desgined to foster interactive discussions. We will regularly pause the video to engage in topics of interest.
+In this session, we will honor the memory of Daniel Kahneman, who passed away on March 27, 2024. We will watch an interview with Kahneman conducted four years ago by Lex Fridman, the renowned AI podcaster. We will explore a new format, inspired by suggestions from the AI-PHI Forum, designed to foster interactive discussions. We will regularly pause the video to engage in topics of interest.
 
 ## Details
 

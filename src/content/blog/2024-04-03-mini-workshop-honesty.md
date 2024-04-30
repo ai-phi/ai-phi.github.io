@@ -5,7 +5,7 @@ pubDatetime: 2024-04-04T18:00:00Z
 title: Mini-Workshop on Honesty in LLMs
 slug: mini-workshop-honesty
 draft: false
-featured: true
+featured: false
 tags:
   - Workshop
   - Honesty

@@ -9,8 +9,7 @@ featured: true
 tags:
   - Session
   - Tribute
-  - Daniel Kahneman
-  - Lex Fridman
+  - Daniel Dennett
   - Discussion
 description: Interactive discussion around an interview with Dennett (CANCELLED)
 session: true

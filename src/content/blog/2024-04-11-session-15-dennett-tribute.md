@@ -12,7 +12,7 @@ tags:
   - Daniel Kahneman
   - Lex Fridman
   - Discussion
-description: Interactive discussion around Kahneman's interview with Lex Fridman
+description: Interactive discussion around an interview with Dennett (CANCELLED)
 session: true
 ---
 

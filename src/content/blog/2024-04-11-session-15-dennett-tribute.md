@@ -2,7 +2,7 @@
 author: AI-PHI
 pubDatetime: 2024-05-2T18:00:00Z
 // modDatetime:
-title: Session 15 - Tribute to Daniel Dennett
+title: Session 15 - Tribute to Daniel Dennett (CANCELLED)
 slug: session-15-dennett-tribute
 draft: false
 featured: true

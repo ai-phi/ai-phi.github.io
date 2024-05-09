@@ -5,7 +5,7 @@ pubDatetime: 2024-04-11T18:00:00Z
 title: Session 14 - Tribute to Daniel Kahneman
 slug: session-14-kahneman-tribute
 draft: false
-featured: true
+featured: false
 tags:
   - Session
   - Tribute

@@ -2,24 +2,27 @@
 author: AI-PHI
 pubDatetime: 2024-05-2T18:00:00Z
 // modDatetime:
-title: Session 15 - Tribute to Daniel Dennett
-slug: session-15-dennett-tribute
+title: Session 16 - AIssertions
+slug: session-16-AIssertions
 draft: false
 featured: true
 tags:
   - Session
-  - Tribute
-  - Daniel Dennett
-  - Discussion
-description: Screening of Daniel Dennett's interview about consciousness.
+  - AI
+  - Assertion
+  - Delusion
+  - Pretense
+  - Bullshit
+  - Fiction
+description: Interactive discussion around Kahneman's interview with Lex Fridman
 session: true
 ---
 
-After Daniel Kahneman, another great thinker - Daniel Dennett - left us. Therefore, in the upcoming AI-PHI session, we will continue with our particular format: We will watch an interview with Daniel Dennett about his ideas about consciousness, qualia, and the hard problem, which was conducted around four years ago. These sessions are meant to foster interactive discussions, and we can pause from time to time, to engage in topics of interest.
+Merel Semeijn will explore the debate on AI assertion (i.e., can AI systems make assertions?), focusing in particular on notions such as proxy-assertion, delusion, pretense, bullshit and fictional discourse.
 
 ## Details
 
-**Date and Time:** Thursday, 2nd of May 2024 - 7pm  
+**Date and Time:** Thursday, 16th of May 2024 - 7pm  
 **Location:** Salle de réunion, Rez-de-chaussée, Pavillon Jardin 001, Institut Jean Nicod, Department of Cognitive Studies, Ecole Normale Supérieure, 29 rue d’Ulm, 75005.  
 **How to get there:** The public entrance is located in the Physics department, at 24 rue Lhomond. Once you’re at the gate, press the middle button to call the guardian of the frontdesk. When you’re in, ask the guardian for directions on how to get to Pavillon Jardin.
 

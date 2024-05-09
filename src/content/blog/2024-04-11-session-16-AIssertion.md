@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-05-2T18:00:00Z
+pubDatetime: 2024-05-9T18:00:00Z
 // modDatetime:
 title: Session 16 - AIssertions
 slug: session-16-AIssertions
@@ -14,7 +14,7 @@ tags:
   - Pretense
   - Bullshit
   - Fiction
-description: Interactive discussion around Kahneman's interview with Lex Fridman
+description: AI assertions by Merel Semeijn
 session: true
 ---
 

@@ -29,6 +29,10 @@ This talk is concerned with the possibility of artificial phenomenology—the ap
 
 ## About the Speaker:
 
+<div>
+  <img src="/assets/Johannes-Portait.jpg" class="sm:w-1/2 mx-auto" alt="Johannes Kleiner's Portrait">
+</div>
+
 Johannes Kleiner is a physicist and mathematician who works on mathematical topics in consciousness science. In 2017, he completed a PhD in mathematics at the University of Regensburg, awarded summa cum laude, subsequent to which he was a postdoc at the Institute for Theoretical Physics of Leibniz University of Hanover. In 2020, he decided to pursue a second PhD at the LMU Munich Center for Mathematical Philosophy and the LMU Graduate School of Systemic Neurosciences, devoted to what is now called Mathematical Consciousness Science. Since 2023, he is also a postdoc at the Institute for Psychology of the University of Bamberg. In the past half year he was a visiting scholar at New York University’s Center for Mind, Brain, and Consciousness, and in the year before that an academic visitor at the Mathematical Institute of Oxford University. Other research visits comprise the Harvard Center of Mathematical Sciences and Applications, the Department of Computer Science of Oxford University and the Centre de Physique Théorique of Aix-Marseille Université. He currently serves on the board of the Association for Mathematical Consciousness Science.
 
 ## About the Organisation:

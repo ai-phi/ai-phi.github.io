@@ -21,6 +21,7 @@ session: false
 **Location:** Amphi Jaurès, Département d’études cognitives, ENS, 29 rue d’Ulm, 75005 Paris  
 **Local Committee:** Aïda Elamrani (organiser), Quentin Coudray (facilitator)  
 **Lunch Provided:** Please register in advance: https://forms.gle/hxX86xWYr4i5Qcy37  
+[Link to event](http://www.institutnicod.org/seminaires-colloques/colloques-et-conferences/conferences/article/johannes-kleiner-towards-artificial-phenomenology)  
 No remote attendance.
 
 ## About the Talk:

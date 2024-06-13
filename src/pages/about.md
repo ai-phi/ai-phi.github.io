@@ -7,13 +7,13 @@ After years of friendly discussions about AI and philosophy during afterwork hou
 
 The AI-PHI community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
 
-### Founding members
+### Founding members (in alphabetical order)
 
-- **Aïda Elamrani**, Institut Jean Nicod, ENS-PSL
 - **Michael Anslow**, Sony CSL
+- **Aïda Elamrani**, Institut Jean Nicod, ENS-PSL
 - **Stefan Lattner**, Sony CSL
 
-### Distinguished members
+### Distinguished members (in alphabetical order)
 
 - **Peter Hannape**, Sony CSL
 - **Thierry Poibeau**, CNRS, ENS-PSL, PRAIRIE

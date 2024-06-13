@@ -1,28 +1,28 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-05-9T18:00:00Z
+pubDatetime: 2024-06-13T18:00:00Z
 // modDatetime:
-title: Session 16 - AIssertions
-slug: session-16-AIssertions
+title: Session 17 - Closing Session
+slug: session-17-closing
 draft: false
 featured: true
 tags:
   - Session
-  - AI
-  - Assertion
-  - Delusion
-  - Pretense
-  - Bullshit
-  - Fiction
-description: AI assertions by Merel Semeijn
+  - Closing
+  - AI-PHI
+  - Discussion
+description: 1st AI-PHI year Closing Session
 session: true
 ---
 
-Merel Semeijn will explore the debate on AI assertion (i.e., can AI systems make assertions?), focusing in particular on notions such as proxy-assertion, delusion, pretense, bullshit and fictional discourse.
+We’re happy to announce the closing session of the first year of AI-PHI, this Thursday, the 13th of June.
+This session will be dedicated to a retrospective on this past year, and discussions about the future of our community (if weather allows, in the garden!).
+
+Thank you again for your participation and insights throughout this adventure!
 
 ## Details
 
-**Date and Time:** Thursday, 16th of May 2024 - 7pm  
+**Date and Time:** Thursday, 13th of May 2024 - 7pm  
 **Location:** Salle de réunion, Rez-de-chaussée, Pavillon Jardin 001, Institut Jean Nicod, Department of Cognitive Studies, Ecole Normale Supérieure, 29 rue d’Ulm, 75005.  
 **How to get there:** The public entrance is located in the Physics department, at 24 rue Lhomond. Once you’re at the gate, press the middle button to call the guardian of the frontdesk. When you’re in, ask the guardian for directions on how to get to Pavillon Jardin.
 

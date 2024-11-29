@@ -18,8 +18,8 @@ export default function StyledTitle({
         <span className="font-mono font-black">AI</span>
         {insertExpansions && (
           <>
-            <span className="text-xs font-extralight">Artificial</span>
-            <span className="text-xs font-extralight">Intelligence</span>
+            <span data-nosnippet className="text-xs font-extralight">Artificial</span>
+            <span data-nosnippet className="text-xs font-extralight">Intelligence</span>
           </>
         )}
       </span>
@@ -31,7 +31,7 @@ export default function StyledTitle({
         )}
       >
         {insertExpansions && (
-          <span className="absolute translate-y-[-2ex] text-xs font-extralight">
+          <span data-nosnippet className="absolute translate-y-[-2ex] text-xs font-extralight">
             Philosophy
           </span>
         )}

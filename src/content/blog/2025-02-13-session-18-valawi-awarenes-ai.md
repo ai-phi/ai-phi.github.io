@@ -20,7 +20,7 @@ What does it mean for artificial intelligence systems to be aware of moral value
 
 In this talk, I will introduce the EU project VALAWAI, where we explore the theoretical foundations and practical applications of value-aware AI, particularly in the context of social media. I will discuss how integrating moral values into AI can help mitigate online polarisation and foster more constructive digital interactions. The talk will conclude with an open discussion on the concept of "awareness" in both natural and artificial systems, inviting reflections –and suggestions– on its implications for AI development.
 
-## Bio of Giulio Prevedello:
+## Bio
 
 I studied Mathematics (BSc) at the University of Padua and specialised in Probability Theory (MSc) at Pierre et Marie Curie University in Paris. Recognizing the potential of mathematical methods, I pursued a PhD in Applied Mathematics at the Hamilton Institute, Ireland, under Prof. Ken Duffy, collaborating with immunologists to analyse T-cell division data and develop probabilistic models of cell proliferation. Afterward, I conducted postdoctoral research at Institut Curie, using transcriptomics to study DNA damage response.
 

@@ -15,6 +15,6 @@ description: In this informal session, we will cover some of the main innovation
 session: true
 ---
 
-In AI-PHI 1.0 we had regular fortn[ai]ghtly news updates covering the lastest AI news. In AI-PHI 2.0 we are keeping this tradition in our informal sessions.
+In AI-PHI 1.0 we had regular fortn[ai]ghtly news updates covering the latest AI news. In AI-PHI 2.0 we are keeping this tradition in our informal sessions.
 
-In this session, we will cover the main innovations in LLMs since AI-PHI 1.0, mainly looking into the test-time compute paradigm that came with the advent of o1 as well as other interesting LLM variations. 
+In this session, Michael Anslow will cover the main innovations in LLMs since AI-PHI 1.0, mainly looking into the test-time compute paradigm that came with the advent of OpenAI o1, along with other interesting LLM variations. 

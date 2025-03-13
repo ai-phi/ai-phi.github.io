@@ -5,7 +5,7 @@ pubDatetime: 2024-05-9T18:00:00Z
 title: Towards Artificial Phenomenology
 slug: artificial-phenomenology-kleiner
 draft: false
-featured: true
+featured: false
 tags:
   - Invited Talk
   - Artificial Phenomenology

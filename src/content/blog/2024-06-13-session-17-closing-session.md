@@ -5,7 +5,7 @@ pubDatetime: 2024-06-13T18:00:00Z
 title: Session 17 - Closing Session
 slug: session-17-closing
 draft: false
-featured: true
+featured: false
 tags:
   - Session
   - Closing

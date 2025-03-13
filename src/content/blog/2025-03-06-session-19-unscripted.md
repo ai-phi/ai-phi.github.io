@@ -5,7 +5,7 @@ pubDatetime: 2025-03-05T18:00:00Z
 title: Session 19 - Unscripted
 slug: session-19-unscripted
 draft: false
-featured: true
+featured: false
 tags:
   - Session
   - AI News

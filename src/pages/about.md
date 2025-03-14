@@ -11,7 +11,7 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 
 - **Michael Anslow**, Sony CSL
 - **David David Colliaux**, Sony CSL
-- **Aïda Elamrani**
+- **Aïda Elamrani**, [Conscienc.AI](https://conscienc.ai/)
 - **Stefan Lattner**, Sony CSL
 
 ### Distinguished members (in alphabetical order)

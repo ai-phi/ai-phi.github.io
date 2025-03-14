@@ -3,14 +3,14 @@ author: AI-PHI
 pubDatetime: 2025-03-13T18:00:00Z
 // modDatetime:
 title: Session 21 - Mehdi Khamassi - Ensuring Alignment With Human Values
-slug: session-21-Khamassi-alignment-human-values
+slug: session-21-khamassi-alignment-human-values
 draft: false
 featured: true
 tags:
   - Formal Session
   - Alignment
   - Human Values
-description: Short presentation(s) followed by collective discussions on 
+description: How can we ensure AI systems' alignment with human values?
 session: true
 ---
 # How can we ensure AI systems' alignment with human values?

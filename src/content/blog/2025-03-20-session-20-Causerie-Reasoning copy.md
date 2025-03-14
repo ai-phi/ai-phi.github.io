@@ -10,7 +10,7 @@ tags:
   - Session
   - Causerie
   - Reasoning
-description: Short presentation(s) followed by collective discussions on 
+description: Short presentation(s) followed by collective discussions on reasoning in AI systems. 
 session: true
 ---
 
@@ -20,7 +20,7 @@ But beyond this new impulsion, the notion of reasoning has deep roots in both AI
 
 During this session, short presentations will review majors developments in our understanding of artificial reasoning to ground a discussion on their implications.
 
-Everyone is welcome to share reading material with the group on our usual channels or prepare a few slides to add to the discussion.
+*Everyone is welcome to share reading material with the group on our usual channels or prepare a few slides to add to the discussion.*
 
 
 ## Details

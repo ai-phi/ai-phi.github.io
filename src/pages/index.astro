@@ -17,6 +17,7 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const nextSessionPost = sortedPosts.filter(({ data }) => data.nextSession);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -34,6 +35,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       </h1>
       <RSSIcon />
 
+
       <p>
         💡We're a small and active community of international researchers and professionals based in Paris, united by our passion of topics at the intersection of Philosophy and AI. AI-PHI creates a space for us to meet and share our knowledge and ideas.
       </p>
@@ -43,6 +45,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <p>
         📧 To be added to our mailing list, join the community or more info, feel free to contact us : ai dot phi dot club at gmail dot com
       </p>
+
   <!--   <p>
         📅 Check the <a
           class="font-bold text-skin-accent hover:underline decoration-dashed underline-offset-4"
@@ -74,6 +77,27 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     <Hr />
 
     {
+      nextSessionPost.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>⭐ Upcoming Session </h2>
+            <ul>
+              {nextSessionPost.map(({ data, slug }) => (
+                <Card
+                  href={`/posts/${slug}`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+          <Hr />
+        </>
+      )
+    }
+
+    <!-- Featured Posts 
+      {
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
@@ -92,13 +116,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </>
       )
     }
- 
+    -->
+
     <section id="recent-posts">
-      <h2>Recent Posts</h2>
+      <h2>📝 Latest Posts</h2>
       <ul>
         {
           sortedPosts
-            .filter(({ data }) => !data.featured)
+            //.filter(({ data }) => !data.featured)
+            //.filter(({ data }) => !data.nextSession)
             .map(
               ({ data, slug }, index) =>
                 index < 4 && (

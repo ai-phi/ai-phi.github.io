@@ -3,15 +3,15 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-After years of friendly discussions about AI and philosophy during after-work hours, Aïda Elamrani (ENS), Michael Anslow and Stefan Lattner (both from Sony CSL) decided it was time to turn this energy into something more substantial. AI-PHI was born in the Quartier Latin from their friendship and shared passion.
+After years of friendly discussions about AI and philosophy during after-work hours, Aïda Elamrani (then at ENS), Michael Anslow and Stefan Lattner (both at Sony CSL) decided it was time to turn this energy into something more substantial. AI-PHI was born in the Quartier Latin from their friendship and shared passion. David Colliaux soon cheerfully joined the initiative.
 
 The AI-PHI community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
 
 ### Founding members (in alphabetical order)
 
 - **Michael Anslow**, Sony CSL
-- **David David Colliaux**, Sony CSL
-- **Aïda Elamrani**, [Conscienc.AI](https://conscienc.ai/)
+- **David Colliaux**, Sony CSL
+- **Aïda Elamrani**, [Conscienc.AI 🦄](https://conscienc.ai/)
 - **Stefan Lattner**, Sony CSL
 
 ### Distinguished members (in alphabetical order)

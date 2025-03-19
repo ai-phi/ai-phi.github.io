@@ -36,6 +36,6 @@ We will celebrate this 20th session with a cake 🥳
 ## Details
 
 **Date and Time:** Thursday, 20th of February 2025 - 7pm  
-**Location:** Check our usual communication channels.
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris
 
 _Feel free to bring some drinks or snacks to share_ ✨

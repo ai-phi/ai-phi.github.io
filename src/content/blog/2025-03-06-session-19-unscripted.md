@@ -22,6 +22,6 @@ In this session, Michael Anslow will cover the main innovations in LLMs since AI
 ## Details
 
 **Date and Time:** Thursday, 6th of March 2025 - 7pm  
-**Location:** Check our usual communication channels.
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris
 
 _Feel free to bring some drinks or snacks to share_ ✨

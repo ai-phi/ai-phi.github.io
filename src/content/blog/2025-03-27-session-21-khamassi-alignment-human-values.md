@@ -30,4 +30,5 @@ In a second part, I'll present a novel extension of the RL framework that we pro
 ## Details
 
 **Date and Time:** Thursday, 27th of February 2025 - 7pm  
-**Location:** Check our usual communication channels.
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris
+**Registration:** https://lu.ma/nrvllvbk

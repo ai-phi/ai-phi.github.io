@@ -34,5 +34,5 @@ I then joined Sony CSL in Paris, transitioning to computational social science, 
 ## Details
 
 **Date and Time:** Thursday, 13th of February 2025 - 7pm  
-**Location:** Sony CSL, 6 rue Amyot, 75005 Paris
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
 **Registration:** https://lu.ma/cyftv94d

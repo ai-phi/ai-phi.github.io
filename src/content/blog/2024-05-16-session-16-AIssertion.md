@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-05-16T18:00:00Z
+pubDatetime: 2024-05-16T19:00:00Z
 // modDatetime:
 title: Session 16 - AIssertions
 slug: session-16-AIssertions

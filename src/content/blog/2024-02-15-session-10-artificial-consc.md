@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-02-05T18:00:00Z
+pubDatetime: 2024-02-05T19:00:00Z
 // modDatetime:
 title: Session 10 - The Possibility of Artificial Consciousness
 slug: session-10-artificial-consc

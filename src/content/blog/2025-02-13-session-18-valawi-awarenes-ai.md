@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-02-13T18:00:00Z
+pubDatetime: 2025-02-13T19:00:00Z
 // modDatetime:
 title: Session 18 - VALAWAI Value-Aware Artificial Intelligence
 slug: session-18-valawi-awarenes-ai

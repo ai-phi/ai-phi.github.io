@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-05-2T18:00:00Z
+pubDatetime: 2024-05-2T19:00:00Z
 // modDatetime:
 title: Session 15 - Tribute to Daniel Dennett
 slug: session-15-dennett-tribute

@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-03-28T18:00:00Z
+pubDatetime: 2024-03-28T19:00:00Z
 // modDatetime:
 title: Session 13 - Generative AI, Sequence Models and Training Paradigms
 slug: session-13-intro-dl-pt2

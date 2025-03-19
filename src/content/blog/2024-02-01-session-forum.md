@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-02-01T18:00:00Z
+pubDatetime: 2024-02-01T19:00:00Z
 // modDatetime:
 title: Session 9 - AI-Forum
 slug: session-9-ai-forum

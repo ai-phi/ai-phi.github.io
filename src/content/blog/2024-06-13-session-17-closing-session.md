@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-06-13T18:00:00Z
+pubDatetime: 2024-06-13T19:00:00Z
 // modDatetime:
 title: Session 17 - Closing Session
 slug: session-17-closing

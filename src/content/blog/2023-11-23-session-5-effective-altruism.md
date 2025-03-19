@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2023-11-23T18:00:00Z
+pubDatetime: 2023-11-23T19:00:00Z
 // modDatetime:
 title: Session 5 - Effective Altruism
 slug: session-5-effective-altruism

@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-02-29T18:00:00Z
+pubDatetime: 2024-02-29T19:00:00Z
 // modDatetime:
 title: Session 11 - Agency in Humans and in Machines
 slug: session-11-agency

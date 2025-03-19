@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2024-01-11T18:00:00Z
+pubDatetime: 2024-01-11T19:00:00Z
 // modDatetime:
 title: Session  8 - AEmotional Understanding
 slug: session-8-aemotional-understanding

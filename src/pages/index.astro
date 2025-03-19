@@ -18,6 +18,7 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const nextSessionPost = sortedPosts.filter(({ data }) => data.nextSession);
+const nextFormal = sortedPosts.filter(({ data }) => data.nextFormal);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -96,6 +97,26 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       )
     }
 
+{
+  nextFormal.length > 0 && (
+    <>
+      <section id="featured">
+        <h2>🎓 Upcoming Formal Session </h2>
+        <ul>
+          {nextFormal.map(({ data, slug }) => (
+            <Card
+              href={`/posts/${slug}`}
+              frontmatter={data}
+              secHeading={false}
+            />
+          ))}
+        </ul>
+      </section>
+      <Hr />
+    </>
+  )
+}
+
     <!-- Featured Posts 
       {
       featuredPosts.length > 0 && (
@@ -119,12 +140,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     -->
 
     <section id="recent-posts">
-      <h2>📝 Latest Posts</h2>
+      <h2>📝 Recent Posts</h2>
       <ul>
         {
           sortedPosts
             //.filter(({ data }) => !data.featured)
-            //.filter(({ data }) => !data.nextSession)
+            .filter(({ data }) => !data.nextSession)
+            .filter(({ data }) => !data.nextFormal)
             .map(
               ({ data, slug }, index) =>
                 index < 4 && (

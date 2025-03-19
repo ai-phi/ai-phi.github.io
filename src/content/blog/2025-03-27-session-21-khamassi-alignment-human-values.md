@@ -12,7 +12,10 @@ tags:
   - Human Values
 description: How can we ensure AI systems' alignment with human values?
 session: true
+
+ogImage: assets/ai-phi-session-21.png
 ---
+
 # How can we ensure AI systems' alignment with human values?
 
 Minimizing negative impacts of Artificial Intelligent (AI) systems on human societies without human supervision requires them to be able to align with human values. This is the object of a number of current researches. However, most current work only addresses this issue from a technical point of view, e.g., improving current methods relying on reinforcement learning (RL) from human feedback, neglecting what it philosophically and ethically means and is required for alignment to occur. Moreover, most current RL research use fixed reward functions, often determined in advance, while open-ended learning AI agents might be progressively exposed to an increasing number of rules, conventions, norms and human/societal values.
@@ -21,8 +24,9 @@ In this presentation, I'll present two recent pieces of work. The first one prop
 
 In a second part, I'll present a novel extension of the RL framework that we proposed, and which we called the 'Purpose' framework. It is based on a three-level motivational system (operational level, motivational level, purpose level) for open-ended learning agents. Extending the motivational reinforcement learning formalism, it is intended to relate the purpose level (rules/conventions/norms at the societal level, but also missions required by humans from artificial agents), to the motivational level (so as to modulate the agents' homeostatic, epistemic, social and mission drives), which in turn determine the multidimensional reward function that will be used by the RL agents at the operational level. I will finish the presentation by discussing the perspectives that this new framework opens, to not only increase the learning possibilities of open-ended learning agents while ensuring high-level norms and values are respected, but also to help formalize constraints on the level of autonomy of these artificial agents that humans collectively wish to see imposed.
 
+<img src="/assets/Mehdi-Khamassi-small.JPG" alt="A portrait of Mehdi Khamassi." />
 
 ## Details
 
 **Date and Time:** Thursday, 27th of February 2025 - 7pm  
-**Location:** Check our usual communication channels.  
+**Location:** Check our usual communication channels.

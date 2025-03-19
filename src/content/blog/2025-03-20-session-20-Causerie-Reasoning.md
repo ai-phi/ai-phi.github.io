@@ -14,7 +14,7 @@ tags:
 description: Short presentation(s) followed by collective discussions on reasoning in AI systems. We will celebrate this 20th session with a cake 🥳
 session: true
 
-ogImage: assets/ai-phi-session-20.png
+ogImage: assets/ai-phi-session-20.webp
 ---
 
 The concept of reasoning has deep roots in both AI and philosophy. This has recently re-entered the limelight, sparked by a new paradigm of so-called ‘reasoning’ models such as o1 and DeepSeek.

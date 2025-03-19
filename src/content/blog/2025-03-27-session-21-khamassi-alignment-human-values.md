@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-03-27T18:00:00Z
+pubDatetime: 2025-03-27T19:00:00Z
 // modDatetime:
 title: Session 21 - Mehdi Khamassi - Ensuring Alignment With Human Values
 slug: session-21-khamassi-alignment-human-values

@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-03-20T18:00:00Z
+pubDatetime: 2025-03-20T19:00:00Z
 // modDatetime:
 title: Session 20 🎂 - First Causerie Session - Reasoning
 slug: session-20-Causerie-Reasoning

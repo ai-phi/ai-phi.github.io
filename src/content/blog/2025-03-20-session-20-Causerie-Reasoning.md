@@ -6,7 +6,7 @@ title: Session 20 🎂 - First Causerie Session - Reasoning
 slug: session-20-Causerie-Reasoning
 draft: false
 featured: false
-nextSession: true
+nextSession: false
 tags:
   - Session
   - Causerie

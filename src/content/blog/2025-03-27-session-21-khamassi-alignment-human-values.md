@@ -37,6 +37,6 @@ Mehdi Khamassi is a CNRS research director at the Institute of Intelligent Syste
 
 ## Details
 
-**Date and Time:** Thursday, 27th of February 2025 - 7pm  
+**Date and Time:** Thursday, 27th of March 2025 - 7pm  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
 **Registration:** https://lu.ma/nrvllvbk

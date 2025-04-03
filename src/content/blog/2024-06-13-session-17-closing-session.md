@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-06-13T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 17 - Closing Session
 slug: session-17-closing
 draft: false

@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-05-16T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 16 - AIssertions
 slug: session-16-AIssertions
 draft: false

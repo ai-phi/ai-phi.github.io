@@ -1,14 +1,14 @@
 ---
 author: AI-PHI
 pubDatetime: 2025-03-27T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 21 - Mehdi Khamassi - Ensuring Alignment With Human Values
 slug: session-21-khamassi-alignment-human-values
 draft: false
-featured: true
-nextFormal: true
+featured: false
+nextFormal: false
 tags:
-  - Formal Session
+  - Seminar Series
   - Alignment
   - Human Values
 description: How can we ensure AI systems' alignment with human values?
@@ -30,7 +30,7 @@ In a second part, I'll present a novel extension of the RL framework that we pro
 <img src="/assets/Mehdi-Khamassi-small.JPG" alt="A portrait of Mehdi Khamassi." />
 Mehdi Khamassi is a CNRS research director at the Institute of Intelligent Systems and Robotics, located on the Sorbonne University campus in Paris, France. He is also the co-director of the new master's program in cognitive sciences at Sorbonne University and Université Paris Cité. His main research topics include decision-making mechanisms and reinforcement learning in the biological brain and robots, the role of different types of rewards (social, non-social, informational) in learning, and the ethical issues raised by autonomous machine decision-making.
 
-[🔗 website](https://pages2.isir.upmc.fr/mkhamassi/)  
+[🔗 Website](https://pages2.isir.upmc.fr/mkhamassi/)  
 [💼 LinkedIn](https://www.linkedin.com/in/khamassi/)  
 [🦋Bluesky](https://bsky.app/profile/khamascience.bsky.social)  
 [🐘 Mastodon / 🐥 Piaille](https://piaille.fr/@mehdikhamassi)

@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-03-14T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 12 - Introduction to Deep Learning
 slug: session-12-intro-dl
 draft: false

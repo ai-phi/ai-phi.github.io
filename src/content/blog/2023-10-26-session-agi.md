@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2023-10-26T19:00:00Z
-// modDatetime:
+
 title: Session 3 - AGI Part 1
 slug: session-3-agi-1
 draft: false

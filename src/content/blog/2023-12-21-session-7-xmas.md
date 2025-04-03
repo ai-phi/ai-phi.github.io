@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2023-12-21T19:00:00Z
-// modDatetime:
+
 title: Session  7 - Christmas Session + NeurIPS report
 slug: session-7-xmas
 draft: false

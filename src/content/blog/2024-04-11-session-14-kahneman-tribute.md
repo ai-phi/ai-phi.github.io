@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-04-11T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 14 - Tribute to Daniel Kahneman
 slug: session-14-kahneman-tribute
 draft: false

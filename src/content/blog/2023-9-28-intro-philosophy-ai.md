@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2023-9-28T19:00:00Z
-// modDatetime:
+
 title: Session 1 - Philosophy of AI
 slug: session-1-phil-of-ai
 draft: false

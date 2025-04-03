@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-02-01T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 9 - AI-Forum
 slug: session-9-ai-forum
 featured: false

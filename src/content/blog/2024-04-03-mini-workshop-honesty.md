@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2024-04-04T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Mini-Workshop on Honesty in LLMs
 slug: mini-workshop-honesty
 draft: false

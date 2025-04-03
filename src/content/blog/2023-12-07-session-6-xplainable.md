@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2023-12-07T19:00:00Z
-// modDatetime:
+
 title: Session 6 - Explainability and Fairness
 slug: session-6-xplainable
 draft: false

@@ -1,7 +1,7 @@
 ---
 author: AI-PHI
 pubDatetime: 2025-03-20T19:00:00Z
-// modDatetime:
+# modDatetime:
 title: Session 20 🎂 - First Causerie Session - Reasoning
 slug: session-20-Causerie-Reasoning
 draft: false

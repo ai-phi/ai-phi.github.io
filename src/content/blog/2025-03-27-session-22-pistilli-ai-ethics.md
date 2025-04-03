@@ -39,4 +39,4 @@ Giada Pistilli is a philosopher specialized in AI ethics, focusing on conversati
 
 **Date and Time:** Thursday, 17th of April 2025 - <u>**11 AM**</u>  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** link upcoming! <!--https://lu.ma/nrvllvbk-->
+**Registration:** [here](https://lu.ma/fe8avre2)

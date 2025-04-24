@@ -5,8 +5,8 @@ pubDatetime: 2025-04-17T9:00:00Z
 title: Session 22 - Giada Pistilli - Beyond Consent, The Limits of Data Agency in Generative AI Systems
 slug: session-22-pistilli-ai-ethics
 draft: false
-featured: true
-nextFormal: true
+featured: false
+nextFormal: false
 tags:
   - Seminar Series
 description: Can traditional notions of consent meaningfully apply to AI-generated content? What happens when our data creates representations of ourselves beyond our control?

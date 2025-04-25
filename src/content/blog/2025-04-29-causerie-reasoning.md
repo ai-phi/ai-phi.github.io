@@ -123,13 +123,7 @@ Now, when it comes to today’s most popular AI architecture — Transformers �
 
 ### Aïda Elamrani
 
-@aidaelamrani.bsky.social
-
-@AidaElamrani@mastodon.social
-
-X : @AidaElam 
-
-www.linkedin.com/in/aida-elamrani 
+@aidaelamrani.bsky.social; @AidaElamrani@mastodon.social; X : @AidaElam; www.linkedin.com/in/aida-elamrani 
 
 While collectively *reasoning about reasoning* during the causerie session, a linguistic confusion was raised a few times. Reasoning carries a variety of nuances, but two of them consistently stood out in our AI-Phi conversation:
 

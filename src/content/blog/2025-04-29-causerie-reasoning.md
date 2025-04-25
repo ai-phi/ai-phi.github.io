@@ -58,14 +58,13 @@ Perhaps what constitutes reasoning lies along a continuum, starting from vague i
 
 *This was just one viewpoint on the intense and varied discussion of our first causerie. It is emblematic of an attempt to grasp at a deeper understanding rather than a definitive statement on reasoning itself. What follows are more perspectives from the AI-Phi community.*
 
-*Michael Anslow*  
-https://www.linkedin.com/in/michael-anslow-22268420/
+*Michael Anslow*  [💼 LinkedIn](https://www.linkedin.com/in/michael-anslow-22268420/)
 
 ## Member Contributions
 
 ### Clément Bénesse
 
-https://www.linkedin.com/in/cl%C3%A9ment-b%C3%A9nesse-a49171174/
+[💼 LinkedIn](https://www.linkedin.com/in/cl%C3%A9ment-b%C3%A9nesse-a49171174/)
 
 When it comes to reasoning and AI, I feel there are multiple points of interest. Let me start by saying that, while there is much to say when talking about emergent behaviors due to the multiplicity of – AI but not only – agents, I’ll stay in the mono-agent framework. Moreover, the tone and scope of this contribution is clearly grounded and skewed in the mathematical background that I have. That being said, one of the very first idea or assumptions that I’d like to put out there is that reasoning is akin to a trajectory or walk on some kind of logical graph with nodes “valid assertions” and edges the use of theorems or logical steps (or even heuristics when working with fuzzy logic or limited compute as we usually do).
 
@@ -79,8 +78,7 @@ Do not get me wrong, the evolution and current capacities of models are very imp
 
 
 ### Olha Sobetska 
-
-http://www.linkedin.com/in/olha-sobetska-b5b9041ba
+[💼 LinkedIn](https://www.linkedin.com/in/olha-sobetska-b5b9041ba)
 
 Reasoning is a property of the brain, which itself is a non-linear system. Thus, defining reasoning from the perspective of chaotic properties does not seem nonsensical. Reasoning may come (emerge) when a particular goal (attractor) is set. Further, some adaptive and self-organized processes may occur, for example, organizing arguments into one chain to achieve this goal (e.g., a solution / decision). 
 
@@ -90,8 +88,8 @@ This makes reasoning, thus, a cognitive tool for achieving goals or decisions wh
 
 ---
 
-### Alexandre (Sacha) Mateescu
-http://www.linkedin.com/in/alexandru-mateescu-1148b1
+### Alexandre (Sacha) Mateescu 
+[💼 LinkedIn](https://www.linkedin.com/in/alexandru-mateescu-1148b1)
 
 I am familiar with two aspects of reasoning in AI: one philosophical, as I am writing a PhD dissertation on mitigating the risks of recommendation algorithms; the other practical, as I use LLM-based reasoning to assist in this work. I am not involved in the development of AI reasoning in commercial, marketing, or engineering contexts. Paradoxically, the very systems I interrogate as a philosopher for the risks they entail belong to the same broad class as those I turn to as a user—eager, even hungry, for the opportunities they promise. So the only legitimate way to speak about the subject is to start from where I personally stand.
 
@@ -102,9 +100,9 @@ Thus the keywords related to reasoning in AI are: “very active tra
 
 ---
 
-### Constant Bonard
+### Constant Bonard 
 
-https://bsky.app/profile/cbonard.bsky.social 
+[🦋Bluesky](https://bsky.app/profile/cbonard.bsky.social)
 
 #### Reasoning as Mental Actions
 
@@ -126,7 +124,10 @@ Now, when it comes to today’s most popular AI architecture — Transformers �
 
 ### Aïda Elamrani
 
-@aidaelamrani.bsky.social; @AidaElamrani@mastodon.social; X : @AidaElam; www.linkedin.com/in/aida-elamrani 
+[🦋Bluesky](https://bsky.app/profile/aidaelamrani.bsky.social);
+[🐘 Mastodon](https://mastodon.social/@AidaElamrani); 
+[🐧 Twitter](https://x.com/AidaElam/);
+[💼 LinkedIn](www.linkedin.com/in/aida-elamrani);
 
 While collectively *reasoning about reasoning* during the causerie session, a linguistic confusion was raised a few times. Reasoning carries a variety of nuances, but two of them consistently stood out in our AI-Phi conversation:
 

@@ -14,8 +14,6 @@ description: Our causerie on reasoning
 session: false
 ---
 
-# Our Causerie on Reasoning
-
 ## What is AI-Phi?
 
 AI-Phi is a research community in Paris that operates at the intersection of AI and philosophy. Its purpose is to set the stage for social and intellectual gatherings that nurture connections, discussion and debate among diverse individuals.

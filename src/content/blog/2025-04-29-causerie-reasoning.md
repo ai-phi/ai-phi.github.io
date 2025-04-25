@@ -14,7 +14,7 @@ description: Our causerie on reasoning
 session: false
 ---
 
-# AI-Phi - A Causerie on Reasoning
+# Our Causerie on Reasoning
 
 ## What is AI-Phi?
 

@@ -61,28 +61,6 @@ https://www.linkedin.com/in/michael-anslow-22268420/
 
 ## Member Contributions
 
-### Alexandre (Sacha) Mateescu
-http://www.linkedin.com/in/alexandru-mateescu-1148b1
-
-I am familiar with two aspects of reasoning in AI: one philosophical, as I am writing a PhD dissertation on mitigating the risks of recommendation algorithms; the other practical, as I use LLM-based reasoning to assist in this work. I am not involved in the development of AI reasoning in commercial, marketing, or engineering contexts. Paradoxically, the very systems I interrogate as a philosopher for the risks they entail belong to the same broad class as those I turn to as a user—eager, even hungry, for the opportunities they promise. So the only legitimate way to speak about the subject is to start from where I personally stand.
-
-**a. Risks**. The challenge is that the world is discovering the risks empirically, one by one, as they arise—making it impossible, for now, to establish a stable and comprehensive typology. That is precisely why I have proposed one, closely tied to the framework of my dissertation. An abstract outlining this typology has been accepted for presentation at the 5th International Conference on Philosophy of Mind in May (https://ifilosofia.up.pt/activities/5-international-conference-philosophy-mind)
-
-**b. Opportunities**. LLMs excel at concealing their lack of genuine reasoning—at least when the chunks of text they process remain small enough. What fascinates me now is the possibility of tracking the evolution of their reasoning abilities month by month, as new versions are released continuously. But I don’t yet know how to approach this systematically. If anyone else shares this curiosity, I’d be glad to team up.
-Thus the keywords related to reasoning in AI are: “very active tra
-
----
-
-### Olha Sobetska 
-
-http://www.linkedin.com/in/olha-sobetska-b5b9041ba
-
-Reasoning is a property of the brain, which itself is a non-linear system. Thus, defining reasoning from the perspective of chaotic properties does not seem nonsensical. Reasoning may come (emerge) when a particular goal (attractor) is set. Further, some adaptive and self-organized processes may occur, for example, organizing arguments into one chain to achieve this goal (e.g., a solution / decision). 
-
-The complexity of reasoning may be driven from the interplay between emotional, social, physiological, etc. components and is therefore not always easily predictable. Through this complexity, new solutions may arise, some of which can be seen as creative. On the opposite end, reasoning with applied logic can be more predictable, since the chain of such reasoning is largely predetermined by the laws of a particular logic. 
-
-This makes reasoning, thus, a cognitive tool for achieving goals or decisions whose architecture and predictability can vary depending on the context and the set of parameters (knowledge, emotions, sources, experience, etc.) required to accomplish a goal.
-
 ### Clément Bénesse
 
 https://www.linkedin.com/in/cl%C3%A9ment-b%C3%A9nesse-a49171174/
@@ -94,6 +72,33 @@ In that regard, the approaches can be different for human-based reasoning and ma
 While this dichotomy appears artificial – but then again, when it comes to AI models, what doesn’t? – , I believe two elements complement it. The first one, on the human side, is the concept of beauty in reasoning. This is usually experienced when the total distance needed to go from a starting point to end point appears at first large ; but using some shortcuts, peculiarly clever insights or mental representations, one exhibits that the trajectory is in fact much shorter than expected. This is not very different from yet another principle of least action, albeit in the logical world – and I would not be surprised if this approach has already been explored extensively… And perhaps – and we come to the second addition – this is precisely what appears counterintuitive and almost magical when working with LLMs capable of reasoning. The shortest path is found, the course is set and one obtains the answer they seek at a lesser mental cost. But make no mistake here, the main driver here is not computation (even if it helps) but memorization. Let’s address the Occam’s razor here: modern LLMs are trained on virtually every piece of knowledge found on the Internet, use architectures specialized in memorization of elements and their interactions, and yet have a quadratic algorithmic complexity that makes them computationally unable by themselves to solve classical problems. What is the most probable, that LLMs are able to find complex logic on the fly, or the fact that they memorize the proximity between logical assertions and the related invoked argument? 
 
 Do not get me wrong, the evolution and current capacities of models are very impressive but if, to quote A. Clarke,  “any sufficiently advanced technology is indistinguishable from magic”, then maybe “any sufficiently advanced memorization is indistinguishable from reasoning”...
+
+---
+
+
+### Olha Sobetska 
+
+http://www.linkedin.com/in/olha-sobetska-b5b9041ba
+
+Reasoning is a property of the brain, which itself is a non-linear system. Thus, defining reasoning from the perspective of chaotic properties does not seem nonsensical. Reasoning may come (emerge) when a particular goal (attractor) is set. Further, some adaptive and self-organized processes may occur, for example, organizing arguments into one chain to achieve this goal (e.g., a solution / decision). 
+
+The complexity of reasoning may be driven from the interplay between emotional, social, physiological, etc. components and is therefore not always easily predictable. Through this complexity, new solutions may arise, some of which can be seen as creative. On the opposite end, reasoning with applied logic can be more predictable, since the chain of such reasoning is largely predetermined by the laws of a particular logic. 
+
+This makes reasoning, thus, a cognitive tool for achieving goals or decisions whose architecture and predictability can vary depending on the context and the set of parameters (knowledge, emotions, sources, experience, etc.) required to accomplish a goal.
+
+---
+
+### Alexandre (Sacha) Mateescu
+http://www.linkedin.com/in/alexandru-mateescu-1148b1
+
+I am familiar with two aspects of reasoning in AI: one philosophical, as I am writing a PhD dissertation on mitigating the risks of recommendation algorithms; the other practical, as I use LLM-based reasoning to assist in this work. I am not involved in the development of AI reasoning in commercial, marketing, or engineering contexts. Paradoxically, the very systems I interrogate as a philosopher for the risks they entail belong to the same broad class as those I turn to as a user—eager, even hungry, for the opportunities they promise. So the only legitimate way to speak about the subject is to start from where I personally stand.
+
+**a. Risks**. The challenge is that the world is discovering the risks empirically, one by one, as they arise—making it impossible, for now, to establish a stable and comprehensive typology. That is precisely why I have proposed one, closely tied to the framework of my dissertation. An abstract outlining this typology has been accepted for presentation at the 5th International Conference on Philosophy of Mind in May (https://ifilosofia.up.pt/activities/5-international-conference-philosophy-mind)
+
+**b. Opportunities**. LLMs excel at concealing their lack of genuine reasoning—at least when the chunks of text they process remain small enough. What fascinates me now is the possibility of tracking the evolution of their reasoning abilities month by month, as new versions are released continuously. But I don’t yet know how to approach this systematically. If anyone else shares this curiosity, I’d be glad to team up.
+Thus the keywords related to reasoning in AI are: “very active tra
+
+---
 
 ### Constant Bonard
 
@@ -114,6 +119,8 @@ When we reflect on the reasoning capacities of AI models, I find it helpful to c
 Furthermore, most executions can be divided into sub-actions. Making coffee, for instance, involves taking beans from the cupboard, grinding them, pouring water, heating it up. And each of those sub-actions can itself be broken down further, until we reach basic actions that can no longer be subdivided. Now, this same structure applies to mental actions. Reasoning, then, appears to be composed of a variety of mental actions, each directed toward a goal, carried out through a plan, and executed step by step, through sub-actions that each have their own goals, plans, and executions. From this angle, when we ask whether an AI model can reason, we might just as well ask whether it can perform specific mental actions: can it calculate, weigh pros and cons, imagine, plan? And to answer these questions, we should not only look at the result but investigate the presence of relevant goals, plans, executions, and sub-actions.
 
 Now, when it comes to today’s most popular AI architecture — Transformers — we may wonder whether they can implement this structure. First, do they have the relevant goals? From a functionalist perspective, their primary goal, in a sense, is to predict the next text token, based on statistical patterns learned during training. That may not resemble the kinds of goals we have when we reason. However, we might still wonder whether, during their training phase, they can develop internal structures that function analogously to intermediary goals comparable to those that shape our own mental actions. To me, that’s a crucial question in deciding whether or not to attribute reasoning to a Transformer-based AI. In this respect, reinforcement learning architectures may have a better shot at resembling human reasoning, since they are explicitly built around goals and the execution of those goals. That said, since deep learning models are essentially black boxes (despite ongoing advances in explainability and mechanistic interpretability), it’s not impossible that Transformer-based models or other deep learning models besides reinforcement learning could develop internal structures that resemble human goals closely enough. But to find out, we cannot simply analyze their algorithms; we must examine the behavior these models are capable of, in order to infer their artificial "mental life" — including whether they possess goals, plans, and executive abilities that are sufficiently similar to ours to be called genuine reasoning. For those interested in that kind of mental-behavioral methodology, here is a piece I’ve written on the subject: https://philpapers.org/rec/BONCAA-3
+
+---
 
 ### Aïda Elamrani
 

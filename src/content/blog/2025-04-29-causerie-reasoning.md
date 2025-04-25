@@ -10,7 +10,10 @@ nextFormal: false
 tags:
   - causerie
   - reasoning
-description: Our causerie on reasoning
+  - llm
+  - ai
+  - philosophy
+description: The output from our first causerie on the topic of reasoning.
 session: false
 ogImage: assets/AI-Phi-Causerie-Reasoning.png
 ---

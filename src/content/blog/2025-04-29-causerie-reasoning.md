@@ -4,14 +4,14 @@ pubDatetime: 2025-04-29T19:00:00Z
 # modDatetime:
 title: Our Causerie on Reasoning
 slug: causerie-reasoning
-draft: true
+draft: false
 featured: true
 nextFormal: false
 tags:
   - causerie
   - reasoning
 description: Our causerie on reasoning
-session: true
+session: false
 ---
 
 # AI-Phi - A Causerie on Reasoning
@@ -23,6 +23,8 @@ AI-Phi is a research community in Paris that operates at the intersection of AI 
 ## What is a Causerie?
 
 A traditional seminar typically showcases a single expert’s perspective, often leaving the audience in the background, in a passive role. In contrast, we wanted to create a space where individuals could actively contribute, bringing their unique research contexts and personalities into an open-form, relaxed discussion. To achieve this, we took inspiration from the French concept of a *causerie*—a term originating from the Parisian salons, where intellectuals engaged in informal yet thought-provoking discussion.
+
+<img src="/assets/AI-Phi-Causerie-Reasoning.png" alt="Cyberpunk illustration of french salons." />
 
 ## Our Approach
 

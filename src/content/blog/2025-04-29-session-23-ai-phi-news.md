@@ -7,12 +7,12 @@ slug: session-23-ai-phi-news
 draft: false
 featured: true
 nextFormal: false
+nextSession: true
 tags:
   - AI News
   - Informal Session
 description: News and community updates session
 session: true
-
 # ogImage: assets/ai-phi-session-22.png
 ---
 
@@ -25,5 +25,4 @@ Feel free to bring drinks or snacks to share!
 ## Details
 
 **Date and Time:** Tuesday, 29th of April 2025 - <u>**7 PM**</u>  
-**Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris

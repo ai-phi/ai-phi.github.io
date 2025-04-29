@@ -10,7 +10,7 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 ### Founding members (in alphabetical order)
 
 - **Michael Anslow**, Sony CSL
-- **David Colliaux**, Sony CSL
+- **David Colliaux**, Sony CSL, (also organiser of [Sony CSL's étincelle seminar](https://csl.sony.fr/seminars/))
 - **Aïda Elamrani**, UGent, [Conscienc.AI 🦄](https://conscienc.ai/)
 - **Stefan Lattner**, Sony CSL
 

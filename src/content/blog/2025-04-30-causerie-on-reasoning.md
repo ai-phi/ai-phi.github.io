@@ -3,7 +3,7 @@ author: AI-PHI
 pubDatetime: 2025-04-30T19:00:00Z
 # modDatetime:
 title: Our Causerie on Reasoning
-slug: causerie-reasoning
+slug: causerie-on-reasoning
 draft: false
 featured: true
 nextFormal: false

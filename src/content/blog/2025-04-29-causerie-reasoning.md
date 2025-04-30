@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-04-29T19:00:00Z
+pubDatetime: 2025-04-30T19:00:00Z
 # modDatetime:
 title: Our Causerie on Reasoning
 slug: causerie-reasoning
@@ -60,7 +60,9 @@ Perhaps what constitutes reasoning lies along a continuum. We start from vague i
 
 _This was just one viewpoint on the intense and varied discussion of our first causerie. It is emblematic of an attempt to grasp at a deeper understanding rather than a definitive statement on reasoning itself. What follows are more perspectives from the AI-Phi community._
 
-_Michael Anslow_ [💼 LinkedIn](https://www.linkedin.com/in/michael-anslow-22268420/)
+_Michael Anslow_ 
+
+[💼 LinkedIn](https://www.linkedin.com/in/michael-anslow-22268420/)
 
 ## Member Contributions
 
@@ -111,11 +113,11 @@ Thus the keywords related to reasoning in AI are: “very active tra
 
 When we reflect on the reasoning capacities of AI models, I find it helpful to consider human reasoning as a set of relatively diverse mental actions. These include, for example: planning how to solve a problem, doing calculations, weighing pros and cons, formulating arguments, anticipating objections, imagining creative solutions, recalling what we’ve learned, or finding the right words. Each of these is an action, and every action consists of three parts:
 
-– a goal to be reached,
+— a goal to be reached,
 
-– a plan to achieve this goal,
+— a plan to achieve this goal,
 
-– and an execution of that plan
+— and an execution of that plan
 
 — whether this execution is mental or motor.
 

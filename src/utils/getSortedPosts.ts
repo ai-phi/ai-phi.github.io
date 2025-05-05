@@ -24,3 +24,13 @@ export const getSortedGlossaryTerms = (
     });
 
 export default getSortedPosts;
+
+export const getSortedByDateAsc = (posts: CollectionEntry<"blog">[]) => {
+  return posts
+    .filter(({ data }) => !data.draft)
+    .sort(
+      (a, b) =>
+        new Date(a.data.pubDatetime).getTime() -
+        new Date(b.data.pubDatetime).getTime()
+    );
+};

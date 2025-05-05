@@ -1,13 +1,13 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-04-29T19:00:00Z
+pubDatetime: 2025-04-29T17:00:00Z
 # modDatetime:
 title: Session 23 - AI-Phi News
 slug: session-23-ai-phi-news
 draft: false
 featured: true
 nextFormal: false
-nextSession: true
+nextSession: false
 tags:
   - AI News
   - Informal Session

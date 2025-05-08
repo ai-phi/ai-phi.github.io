@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-05-14T17:00:00Z
+pubDatetime: 2025-05-14T19:00:00Z
 # modDatetime:
 title: "Session 24 - Ryota Kanai (Araya Inc.) - Qualia and Symmetry: A Mathematical Framework For Understanding the Qualitative Nature of Consciousness"
 slug: session-24-ryota-kanai

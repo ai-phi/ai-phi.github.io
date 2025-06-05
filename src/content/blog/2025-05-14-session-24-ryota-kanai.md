@@ -6,7 +6,7 @@ title: "Session 24 - Ryota Kanai (Araya Inc.) - Qualia and Symmetry: A Mathemati
 slug: session-24-ryota-kanai
 draft: false
 featured: false
-nextFormal: true
+nextFormal: false
 tags:
   - Seminar Series
   - Qualia

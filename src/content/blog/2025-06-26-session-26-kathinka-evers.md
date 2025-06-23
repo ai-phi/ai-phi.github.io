@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-06-26T9:00:00Z
+pubDatetime: 2025-06-26T11:00:00Z
 # modDatetime:
 title: >-
   Session 25- Kathinka Evers (Uppsala University) - Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
@@ -15,7 +15,7 @@ tags:
   - Neuroethics
 description: TBA
 session: true
-# ogImage: assets/ai-phi-session-22.png
+ogImage: assets/ai-phi-session-25.png
 ---
 
 ## Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
@@ -31,4 +31,4 @@ Kathinka Evers is Professor of philosophy, senior researcher at the Centre for R
 
 **Date and Time:** Wednesday, 26th of June 2025 - <u>**11 AM**</u>  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** upcoming
+**Registration:** [upcoming](https://lu.ma/v0eezp2a)

@@ -20,7 +20,15 @@ ogImage: assets/ai-phi-session-25.png
 
 ## Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
 
-Abstract TBA
+The question whether a machine – a computer or a robot or any other form of artificial system – could be sentient is certainly entertaining, no end of science fiction deals with the question and sometimes very engagingly. But why is the question of artificial sentience (or “awareness”, or “consciousness”) raised in science receiving considerable public funding despite the lack of empirical evidence?
+
+I shall address this question from distinct perspectives: scientific, psychological and social. I suggest that the human urge to develop conscious artificial systems is partly driven by hype but also by narcissism and naivety; unrealistic hopes for benefits are coupled with ignorance of possible risks. A dangerous combination, as history amply illustrates.
+
+There is a tendency to underestimate the potential relevance of the change of substrate: from carbon to silicon, from living to non-living matter, when ascribing consciousness to artificial systems, and to consider subjective experience to be independent from the biological, living body. For example, in the functionalist perspective assuming that a system is conscious if it performs the right functions, whatever kind of matter it is made of. There are numerous problems with this theoretical approach, scientific as well as social and ethical.
+The epistemic and psychological challenges introduced by the gaming problem are central. When artificial systems use human-generated training data to mimic human behaviours, they may, if successful, psychologically persuade human users of their sentience, as a form of anthropomorphism; yet logically, mimicking human behaviours in artificial systems has no evidential value whatsoever. This poses a formidable obstacle to detecting phenomenal consciousness in artificial systems trained with human-generated data and deeply influences our risk-benefit assessments in this domain. To avoid the gaming problem, we should arguably focus less exclusively on similarities and pay more attention to differences, for AI is not only materially but also functionally very different from a human brain. But here a different problem arises: the question of commensurability and how to justify the application of the same concept to such distinct phenomena.
+Several interesting approaches have been articulated to identify benchmarks for artificial forms of phenomenal consciousness. However, in view of the mentioned logical and psychological challenges involved, the study of sentience in artificial systems might well in the end tell us more about humans than about the systems studied.
+
+In view of how human nature has expressed itself throughout history, conscious AI created by humans would likely be monumentally dangerous. It could also be very different from human consciousness and thus (a) undetectable, (b) incomprehensible, and (c) incommunicable. This could increase the risks and cut both ways if the conscious AI has valenced experience.
 
 ## About Kathinka Evers
 
@@ -31,4 +39,4 @@ Kathinka Evers is Professor of philosophy, senior researcher at the Centre for R
 
 **Date and Time:** Wednesday, 26th of June 2025 - <u>**11 AM**</u>  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** [upcoming](https://lu.ma/v0eezp2a)
+**Registration:** [here](https://lu.ma/v0eezp2a)

@@ -1,0 +1,185 @@
+---
+import { SITE } from "@config";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import PDFViewer from '../components/PDFViewer.astro';
+import Pagination from '../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "Resources";
+const pageDescription = "AI-PHI Resources and Documents";
+
+// Pagination parameters
+const POSTS_PER_PAGE = 4;
+const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.searchParams.get('page')!) : 1;
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+
+// Filter posts that contain PDF viewers (have iframe with /pdfs/ in content)
+const postsWithPDFs = allPosts.filter(post => {
+  // Check if the post content contains PDF iframe
+  return post.body.includes('/pdfs/') && post.body.includes('iframe');
+});
+
+// Extract presentation data from posts
+const presentations = postsWithPDFs.flatMap(post => {
+  // Extract ALL PDF paths from iframe src attributes
+  const pdfMatches = [...post.body.matchAll(/src="([^"]*\/pdfs\/[^"]*)"/g)];
+  
+  // If no PDFs found, return empty array
+  if (pdfMatches.length === 0) return [];
+  
+  // Create a presentation entry for each PDF found
+  return pdfMatches.map((pdfMatch, index) => {
+    const pdfPath = pdfMatch[1];
+    
+    // Extract PDF title from h2 tag or iframe title
+    const titleMatch = post.body.match(/<h2[^>]*>([^<]*)<\/h2>/);
+    const pdfTitle = titleMatch ? titleMatch[1] : post.data.title;
+    
+    return {
+      title: pdfTitle,
+      pdfPath: pdfPath,
+      postTitle: post.data.title,
+      postSlug: post.slug,
+      pubDatetime: post.data.pubDatetime,
+      description: post.data.description
+    };
+  });
+}).filter(presentation => presentation.pdfPath); // Only include if we found a PDF path
+
+// Sort presentations by date (newest first)
+presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
+
+// Pagination logic
+const totalPages = Math.ceil(presentations.length / POSTS_PER_PAGE);
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+const paginatedPresentations = presentations.slice(startIndex, endIndex);
+---
+
+<Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
+  <Header activeNav="resources" />
+  <Breadcrumbs />
+  <main id="main-content">
+    <section class="prose mb-28 max-w-4xl">
+      <h1 class="text-2xl tracking-wider sm:text-3xl mb-8">{pageTitle}</h1>
+      <p class="text-lg text-skin-base opacity-70 mb-8">{pageDescription}</p>
+
+      <div class="resources-content">
+      <section class="mb-12">
+        <h2 class="section-title">Presentations</h2>
+        <p class="section-description">
+          Slides and presentation materials from our sessions.
+        </p>
+        
+        {paginatedPresentations.length > 0 ? (
+          <div class="presentations-list">
+            {paginatedPresentations.map((presentation) => (
+              <div class="presentation-card">
+                <PDFViewer 
+                  src={presentation.pdfPath} 
+                  height="400px"
+                />
+                <div class="presentation-footer">
+                  <div class="presentation-info">
+                    <div class="presentation-date">{presentation.pubDatetime.toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}</div>
+                    <div class="presentation-source">
+                      <a href={`/posts/${presentation.postSlug}`} class="text-skin-accent hover:underline">
+                        From: {presentation.postTitle}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="presentation-download">
+                    <a href={presentation.pdfPath} download class="download-btn">
+                      📄 Download PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="pdf-placeholder">
+            <p class="text-skin-base opacity-70">
+              📄 No presentations found. Presentations will appear here when PDFs are attached to blog posts.
+            </p>
+          </div>
+        )}
+        
+        {totalPages > 1 && (
+          <div class="pagination-wrapper">
+            <Pagination 
+              currentPage={currentPage} 
+              totalPages={totalPages} 
+              baseUrl="/resources"
+            />
+          </div>
+        )}
+      </section>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .resources-content {
+    @apply space-y-8;
+  }
+  
+  .section-title {
+    @apply text-2xl font-semibold text-skin-accent mb-3;
+  }
+  
+  .section-description {
+    @apply text-skin-base opacity-70 mb-6;
+  }
+  
+  .pdf-placeholder {
+    @apply p-8 border-2 border-dashed border-skin-line rounded-lg text-center;
+  }
+  
+  .presentations-list {
+    @apply space-y-6;
+  }
+  
+  .presentation-card {
+    @apply bg-skin-card rounded-lg shadow-md;
+  }
+  
+  .presentation-footer {
+    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+  }
+  
+  .presentation-info {
+    @apply flex flex-col;
+  }
+  
+  .presentation-date {
+    @apply font-medium mb-1;
+  }
+  
+  .presentation-source {
+    @apply text-xs;
+  }
+  
+  .presentation-download {
+    @apply flex-shrink-0;
+  }
+  
+  .download-btn {
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md hover:bg-skin-accent hover:text-skin-inverted transition-colors text-sm no-underline;
+  }
+  
+  .pagination-wrapper {
+    @apply mt-8 flex justify-center;
+  }
+</style>

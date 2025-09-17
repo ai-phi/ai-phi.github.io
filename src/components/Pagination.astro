@@ -28,7 +28,9 @@ const next = currentPage < totalPages ? "" : "disabled";
         </svg>
         Prev
       </LinkButton>
-      {currentPage} / {totalPages}
+      <div class="pagination-numbers">
+        {currentPage} / {totalPages}
+      </div>
       <LinkButton
         disabled={next === "disabled"}
         href={nextUrl}
@@ -47,5 +49,13 @@ const next = currentPage < totalPages ? "" : "disabled";
 <style>
   .disabled-svg {
     @apply group-hover:!fill-skin-base;
+  }
+  
+  nav {
+    @apply text-lg;
+  }
+  
+  .pagination-numbers {
+    @apply text-lg font-medium;
   }
 </style>

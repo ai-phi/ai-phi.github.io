@@ -18,4 +18,4 @@ session: true
 
 Last time we had an ambitious, whirlwind tour of Artificial Intelligence and we began to explore the field of Artificial General Intelligence (AGI).
 
-In our 4th session, we will complete the presentation on “Artificial General Intelligence (AGI)” by Michael Anslow and take the necessary breathing room for a long, open discussion on the topic.
+In our 4th session, we will complete the presentation on "Artificial General Intelligence (AGI)" by Michael Anslow and take the necessary breathing room for a long, open discussion on the topic.

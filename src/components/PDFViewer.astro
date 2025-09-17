@@ -1,0 +1,62 @@
+---
+export interface Props {
+  src: string;
+  title?: string;
+  width?: string;
+  height?: string;
+  showDownload?: boolean;
+}
+
+const { 
+  src, 
+  title = "PDF Document", 
+  width = "100%", 
+  height = "600px",
+  showDownload = true 
+} = Astro.props;
+---
+
+<div class="pdf-viewer-container">
+  <div class="pdf-viewer">
+    <iframe 
+      src={`${src}#toolbar=0&navpanes=0`}
+      width={width}
+      height={height}
+      class="pdf-iframe"
+      title={title}
+    >
+      <div class="pdf-fallback">
+        <p>Your browser doesn't support PDF viewing.</p>
+        {showDownload && (
+          <a href={src} download class="pdf-download-btn">
+            📄 Download PDF
+          </a>
+        )}
+      </div>
+    </iframe>
+  </div>
+  
+</div>
+
+<style>
+  .pdf-viewer-container {
+    @apply p-2.5 relative;
+  }
+  
+  .pdf-title {
+    @apply text-xl font-semibold mb-4 text-skin-accent;
+  }
+  
+  .pdf-viewer {
+    @apply border border-skin-line rounded-lg overflow-hidden shadow-lg;
+  }
+  
+  .pdf-iframe {
+    @apply border-0;
+  }
+  
+  .pdf-fallback {
+    @apply p-8 text-center bg-skin-fill;
+  }
+  
+</style>

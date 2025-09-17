@@ -34,64 +34,109 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
-  <Header />
+  <Header activeNav="home" />
   <main class="font-serif" id="main-content">
-    <section id="hero" >
-      <h1 class="mr-2">
-        Welcome to
-        <StyledTitle
-          insertExpansions
-          phiTranslateAmount="-translate-x-[12px] -mr-[12px]"
-        />
-      </h1>
-      <RSSIcon />
-
-
-      <p>
-        💡We're a small and active community of international researchers and professionals based in Paris, united by our passion of topics at the intersection of Philosophy and AI. AI-PHI creates a space for us to meet and share our knowledge and ideas.
-      </p>
-      <p> 
-        🫶 In-person meetings only (no remote attendance): we believe in the power of human connection, and the freedom of unrecorded debates. Besides, one of the purposes of AI-PHI is to facilitate local networking.
-      </p>
-      <p>
-        📧 To be added to our mailing list, join the community or more info, feel free to contact us : ai dot phi dot club at gmail dot com
-      </p>
-
-  <!--   <p>
-        📅 Check the <a
-          class="font-bold text-skin-accent hover:underline decoration-dashed underline-offset-4"
-          href="/agenda">Agenda</a
-        > tab to get a better view at our activities.
-      </p> 
-      <p>
-        🔍 Robust analysis starts with solid definitions. Furthermore, with our interdisciplinary background, we borrow from several terminologies and jargons. One of our on-going effort is to build a common language and understanding of the concepts involved in our discussions. The
-        <a
-          class="font-bold text-skin-accent hover:underline decoration-dashed underline-offset-4"
-          href="/glossary">Glossary</a
-        > section provides some grounding definitions:
-        <RandomGlossaryWords client:load />...
-      </p>
-      <p>
-      🗞️ We keep up to date with the latest AI news in our Fortn[AI]ghtly news section.
-      </p>-->  
-
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <Socials />
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          AI & Philosophy<br>
+          Discussion Group
+        </h1>
+        
+        <!-- Logo positioned to float and allow text wrapping -->
+        <div class="logo-container">
+          <!-- Ring logos for background rotation -->
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring"
+          />
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring"
+          />
+          
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_Black_Variante.png"
+            alt="AI-PHI Logo"
+            class="hero-logo light-logo"
+          />
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_White_Variante.png"
+            alt="AI-PHI Logo"
+            class="hero-logo dark-logo"
+          />
+        </div>
+        
+        <div class="hero-subtitle">
+          <!-- General aspects of AI-PHI -->
+          <div class="subtitle-section general-aspects">
+            <div class="glitch-container" data-text="Paris">
+              <span>Paris</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Community">
+              <span>Community</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Research">
+              <span>Research</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="AI">
+              <span>AI</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="News">
+              <span>News</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Debates">
+              <span>Debate</span>
+            </div>
           </div>
-        )
-      }
+          
+          <!-- Topics we discuss -->
+          <div class="subtitle-section discussion-topics">
+            <div class="glitch-container" data-text="Consciousness">
+              <span>Consciousness</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Regulation">
+              <span>Regulation</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Emotions">
+              <span>Emotions</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Reasoning">
+              <span>Reasoning</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="LLM">
+              <span>LLM</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Learning">
+              <span>Learning</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="System I & II">
+              <span>System I & II</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <Hr />
 
 {
   nextFormal.length > 0 && (
     <>
       <section id="featured">
-        <h2>🎓 Upcoming Seminar Series </h2>
+        <h2>Upcoming Seminar Series </h2>
+        <div class="section-header-line"></div>
         <ul>
           {nextFormal.map(({ data, slug }) => (
             <Card
@@ -102,12 +147,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           ))}
         </ul>
       </section>
-      <Hr />
     </>
   )
 }
 
-{
+<!-- {
   nextSessionPost.length > 0 && (
     <>
       <section id="featured">
@@ -125,7 +169,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <Hr />
     </>
   )
-} 
+}  -->
 
     <!-- Featured Posts 
       {
@@ -148,7 +192,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       )
     }
     -->
-
+<!-- 
     <section id="recent-posts">
       <h2>📝 Recent Activity</h2>
       <ul>
@@ -168,10 +212,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
                 )
             )
         }
-      </ul>
+      </ul> -->
+      
+      <section id="all-posts" class="hero-section">
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts">
-          All Posts
+          All Our Posts
           <svg xmlns="http://www.w3.org/2000/svg"
             ><path
               d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
@@ -182,56 +228,438 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     </section>
   </main>
 
-  <Footer />
+  <Footer showIcons={false} />
 </Layout>
 
 <style>
   /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
+  .hero-section {
+    @apply pb-0 pt-0;
+    max-width: 58rem;
   }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+  
+  .hero-content {
+    @apply relative;
+    max-width: 58rem;
   }
-  #hero p {
-    @apply my-2;
+  
+  .hero-content::after {
+    content: "";
+    display: table;
+    clear: both;
   }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+  
+  .hero-subtitle {
+    @apply text-lg;
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    text-align: right;
+    margin-top: 5rem;
+    margin-left: 65px;
+    line-height: 1.50rem;   
   }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  
+  .subtitle-section {
+    @apply block;
+  }
+  
+  .subtitle-section.general-aspects {
+    color: #a9a9a9; /* Slightly greyish text */
+    margin-top: -1.5rem;
+  }
+  
+  .subtitle-section.discussion-topics {
+    color: #666666; /* Darker text for discussion topics */
+    margin-top: 4rem;
+  }
+  
+  .hero-title {
+    @apply mb-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  
+  .hero-subtitle span {
+    @apply whitespace-nowrap;
+  }
+/* 
+  # cursor got inspiration from https://muffinman.io/blog/css-image-glitch/
+  # thank you muffinman! */
+
+  .glitch-container {
+    @apply relative inline-block;
+    /* overflow: hidden; */
   }
 
-  #ai,
-  #phi {
-    display: inline-flex;
-    flex-direction: column;
-    place-content: center;
-    place-items: center;
-    &::before,
-    &::after {
-      font-size: x-small;
-      font-style: italic;
+    .glitch-container.glitch-active {
+      /* animation: glitch-container 2s steps(1, end); */
+      color: transparent;
+    }
+
+    .glitch-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeSpeed;
+      font-smooth: never;
+      outline: none;
+      border: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+  @keyframes glitch-container {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    75% {
+      transform: translate(var(--glitch-container-x-1), var(--glitch-container-y-1));
+    }
+    90% {
+      transform: translate(var(--glitch-container-x-2), var(--glitch-container-y-2));
     }
   }
-  #ai &::after {
-    content: "Artificial Intelligence";
+
+  /* Generate multiple glitch animations with stronger chromatic aberration */
+  @keyframes glitch-1 {
+    0% {
+      transform: none;
+      filter: hue-rotate(0);
+      color: var(--glitch-text-color);
+    }
+    30% {
+      color: transparent;
+    }
+    40% {
+      color: var(--glitch-text-color);
+    }
+    90% {
+      color: transparent;
+    }
   }
-  #phi &::after {
-    content: "Philosophy";
+  
+  @keyframes glitch-2 {
+    0%,  40%, 100% {
+      transform: none;
+      filter: hue-rotate(0);
+      color: transparent;
+    }
+    25% {
+      transform: translateX(var(--glitch-x-1));
+      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.257), -1px -2px 0 rgba(21, 0, 255, 0.233);
+      color: transparent;
+    }
+    70% {
+      transform: translateX(var(--glitch-x-2));
+      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.228), 2px -1px 0 rgba(0, 34, 255, 0.224);
+      color: transparent;
+    }
+  }
+  
+  @keyframes glitch-3 {
+    0%,    40%, 90% {
+      transform: none;
+      filter: hue-rotate(0);
+      color: transparent;
+    }
+    20% {
+      transform: translateX(var(--glitch-x-1));
+      text-shadow: 3px 1px 0 rgba(13, 0, 255, 0.354), -3px -1px 0 rgba(0, 195, 255, 0.5);
+      color: transparent;
+    }
+    70%, {
+      transform: translateX(var(--glitch-x-2));
+      text-shadow: -1px 3px 0 rgba(0, 60, 255, 0.365), 1px -3px 0 rgba(0, 204, 255, 0.365);
+      color: transparent;
+    }
+  }
+  
+  .dot {
+    @apply text-skin-accent font-bold;
+    font-size: 2em; /* Make dots twice as large */
+    vertical-align: middle;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-graphic {
+    @apply flex justify-center lg:flex-shrink-0;
+  }
+  
+  .logo-container {
+    @apply relative;
+    float: right;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    margin-top: -2rem;
+    /* defines circular wrap around the logo which is also circular */
+    shape-outside: circle(55%);
+    clip-path: circle(50%);
+  }
+  
+  /* Hero ring logo styling */
+  .hero-ring-logo {
+    @apply absolute w-auto transition-opacity duration-200;
+    height: 25rem;
+    opacity: 0.3;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    animation: slowRotate 100s linear infinite;
+  }
+  
+  .hero-ring-logo.light-ring {
+    display: block;
+  }
+  
+  .hero-ring-logo.dark-ring {
+    display: none;
+  }
+  
+  html[data-theme="dark"] .hero-ring-logo.light-ring {
+    display: none;
+  }
+  
+  html[data-theme="dark"] .hero-ring-logo.dark-ring {
+    display: block;
+  }
+  
+  @keyframes slowRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .hero-logo {
+    @apply h-32 w-auto transition-opacity duration-200 sm:h-40 lg:h-48;
+    height: 25rem;
+  }
+  
+  .light-logo {
+    @apply block;
+  }
+  
+  .dark-logo {
+    @apply hidden;
+  }
+  
+  /* Dark mode logo switching */
+  html[data-theme="dark"] .light-logo {
+    @apply hidden;
+  }
+  
+  html[data-theme="dark"] .dark-logo {
+    @apply block;
   }
 
   /* ===== Featured & Recent Posts Sections ===== */
   #featured,
   #recent-posts {
-    @apply pb-6 pt-12;
+    @apply pb-0;
+    max-width: 58rem;
+    margin-top: -40px;
   }
+
   #featured h2,
   #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
+    @apply text-4xl font-semibold tracking-wide;
   }
   .all-posts-btn-wrapper {
     @apply my-8 text-center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    max-width: 58rem;
+    
+  }
+
+  /* Section header line */
+  .section-header-line {
+    @apply h-px bg-skin-inverted;
+    width: 65%;
+    float: left;
+    height: 3px;
+    margin: 10px auto 20px auto;
   }
 </style>
+
+<script>
+  // CSS-only glitch effect implementation based on muffinman.io
+  function random(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function generateGlitchStrips(container) {
+    const text = container.getAttribute('data-text');
+    const textElement = container.querySelector('span');
+    
+    // Get computed styles to determine height
+    const computedStyle = window.getComputedStyle(textElement);
+    const fontSize = parseFloat(computedStyle.fontSize);
+    const lineHeight = parseFloat(computedStyle.lineHeight) || fontSize * 1.2;
+    const textColor = computedStyle.color;
+    // Create strips
+    const strips = [];
+    let currentTop = 0;
+    
+    while (currentTop < lineHeight) {
+      // const stripHeight = random(1, 3);
+      const stripHeight = random(1, 5);
+      const actualHeight = Math.min(stripHeight, lineHeight - currentTop);
+      
+       // Get theme background color for initial strip color
+       const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+       const backgroundColor = isDarkMode ? '#0f0f0f' : '#ffffff';
+       
+       const strip = document.createElement('div');
+       strip.className = 'glitch-strip';
+
+       var glitch_name = `glitch-${Math.floor(random(1, 4))};`
+      //  glitch_name = 'glitch-1';
+        
+       var glitch_x_1 = random(-10, 10);
+       var glitch_x_2 = random(-10, 10);
+       var timing_function = 'linear';
+
+       if (glitch_name == 'glitch-1') {
+        glitch_x_1 = 0;
+        glitch_x_2 = 0;
+       }
+       timing_function = 'steps(1, end)';
+       strip.style.cssText = `
+         position: absolute;
+         top: ${currentTop}px;
+         left: 0;
+         right: 0;
+         height: ${actualHeight}px;
+         background: inherit;
+         color: inherit;
+         font-size: inherit;
+         font-family: inherit;
+         font-weight: inherit;
+         overflow: hidden;
+         outline: none;
+         border: none;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
+         text-rendering: optimizeSpeed;
+         --glitch-x-1: ${glitch_x_1}px;
+         --glitch-x-2: ${glitch_x_2}px;
+         --glitch-text-color: ${textColor};
+         --glitch-hue-1: ${random(10, 20)}deg;
+         //  animation-name: glitch-${Math.floor(random(1, 4))};
+         animation-name: ${glitch_name};
+         animation-duration: ${random(2000, 8000)}ms;
+         animation-delay: ${random(0, 1000)}ms;
+         animation-iteration-count: infinite;
+         animation-play-state: paused;
+          animation-timing-function: ${timing_function};
+       `;
+      
+      // Create a span with the text and position it to show only the relevant slice
+      const textSpan = document.createElement('span');
+      textSpan.textContent = text;
+      textSpan.style.cssText = `
+        position: absolute;
+        top: -${currentTop}px;
+        left: 0;
+        line-height: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        word-spacing: inherit;
+        text-transform: inherit;
+        -webkit-font-smoothing: inherit;
+        -moz-osx-font-smoothing: inherit;
+        text-rendering: inherit;
+      `;
+      strip.appendChild(textSpan);
+      strips.push(strip);
+      currentTop += actualHeight;
+    }
+    
+    return strips;
+  }
+
+  function triggerGlitchEffect() {
+    const containers = document.querySelectorAll('.glitch-container');
+    
+    if (containers.length > 0) {
+      // Randomly select one container
+      const randomIndex = Math.floor(Math.random() * containers.length);
+      const container = containers[randomIndex];
+      
+      // Clear existing strips
+      container.querySelectorAll('.glitch-strip').forEach(strip => strip.remove());
+      
+      // Generate new strips
+      const strips = generateGlitchStrips(container);
+      
+      // Add strips to container
+      strips.forEach(strip => {
+        container.appendChild(strip);
+      });
+      
+      // Set container movement variable
+      const containerMovementx1 = random(-20, 30);
+      const containerMovementx2 = random(-50, -20);
+      const containerMovementy1 = random(-2, 2);
+      const containerMovementy2 = random(-2, 2);
+      container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
+      container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
+      container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
+      container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
+      
+      // Trigger glitch animation
+      container.classList.add('glitch-active');
+      
+      // Start strip animations
+      strips.forEach(strip => {
+        strip.style.animationPlayState = 'running';
+      });
+      
+      // Clean up after animation
+      setTimeout(() => {
+        container.classList.remove('glitch-active');
+        strips.forEach(strip => {
+          strip.style.animationPlayState = 'paused';
+          strip.remove();
+        });
+      }, 2000);
+    }
+  }
+
+  function scheduleGlitchEffect() {
+    // Random delay between 8-15 seconds
+    const minDelay = 5000;
+    const maxDelay = 20000;
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    
+    setTimeout(() => {
+      triggerGlitchEffect();
+      scheduleGlitchEffect();
+    }, delay);
+  }
+
+  // Initialize glitch effect
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(scheduleGlitchEffect, 8000);
+  });
+
+  // Re-setup on view transitions
+  document.addEventListener('astro:after-swap', () => {
+    scheduleGlitchEffect();
+  });
+</script>

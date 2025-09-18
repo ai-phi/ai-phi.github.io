@@ -9,11 +9,19 @@ import Pagination from '../components/Pagination.astro';
 import { getCollection } from 'astro:content';
 
 const pageTitle = "Resources";
-const pageDescription = "AI-PHI Resources and Documents";
+const pageDescription = "AI-Phi resources and documents.";
 
 // Pagination parameters
-const POSTS_PER_PAGE = 4;
-const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.searchParams.get('page')!) : 1;
+const POSTS_PER_PAGE = 3;
+const pageParam = Astro.url.searchParams.get('page');
+const currentPage = pageParam ? parseInt(pageParam) : 1;
+
+// Debug the page parameter parsing
+console.log('Page param debug:', {
+  pageParam,
+  currentPage,
+  searchParams: Object.fromEntries(Astro.url.searchParams.entries())
+});
 
 // Get all blog posts
 const allPosts = await getCollection('blog');
@@ -59,21 +67,37 @@ const totalPages = Math.ceil(presentations.length / POSTS_PER_PAGE);
 const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
 const endIndex = startIndex + POSTS_PER_PAGE;
 const paginatedPresentations = presentations.slice(startIndex, endIndex);
+
+// Debug logging
+console.log('Debug pagination:', {
+  presentationsLength: presentations.length,
+  currentPage,
+  totalPages,
+  startIndex,
+  endIndex,
+  paginatedLength: paginatedPresentations.length
+});
 ---
 
 <Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
   <Header activeNav="resources" />
   <Breadcrumbs />
-  <main id="main-content">
-    <section class="prose mb-28 max-w-4xl">
-      <h1 class="text-2xl tracking-wider sm:text-3xl mb-8">{pageTitle}</h1>
-      <p class="text-lg text-skin-base opacity-70 mb-8">{pageDescription}</p>
-
-      <div class="resources-content">
+  <main id="main-content" class="@container">
+    <h1>{pageTitle}</h1>
+    <p>{pageDescription}</p>
+    
+    <div class="resources-content">
+      <!-- Debug info (temporary) -->
+      <div class="debug-info" style="background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px;">
+        <strong>Debug:</strong> Total PDFs: {presentations.length}, Current Page: {currentPage}, Total Pages: {totalPages}, Showing: {paginatedPresentations.length}<br/>
+        <strong>URLs:</strong> Prev: {currentPage > 1 ? `/resources?page=${currentPage - 1}` : '/resources'}, Next: {currentPage < totalPages ? `/resources?page=${currentPage + 1}` : '/resources'}<br/>
+        <strong>Current URL:</strong> {Astro.url.href}
+      </div>
+      
       <section class="mb-12">
         <h2 class="section-title">Presentations</h2>
         <p class="section-description">
-          Slides and presentation materials from our sessions.
+          Slides and presentation materials from our sessions. Some presentations were preceded by a preamble containing news and updates which are also included.
         </p>
         
         {paginatedPresentations.length > 0 ? (
@@ -119,20 +143,33 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
             <Pagination 
               currentPage={currentPage} 
               totalPages={totalPages} 
-              baseUrl="/resources"
+              prevUrl={currentPage > 1 ? `/resources?page=${currentPage - 1}` : '/resources'}
+              nextUrl={currentPage < totalPages ? `/resources?page=${currentPage + 1}` : '/resources'}
             />
           </div>
-        )}
-      </section>
-      </div>
-    </section>
-  </main>
+         )}
+       </section>
+     </div>
+   </main>
   <Footer />
 </Layout>
 
 <style>
+  #main-content {
+    @apply mx-auto w-full max-w-3xl px-4 pb-4;
+  }
+  
+  #main-content h1 {
+    @apply text-2xl font-semibold sm:text-3xl;
+  }
+  
+  #main-content p {
+    @apply mb-6 mt-2 italic;
+  }
+  
   .resources-content {
     @apply space-y-8;
+    padding: 20px;
   }
   
   .section-title {
@@ -148,11 +185,11 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
   }
   
   .presentations-list {
-    @apply space-y-6;
+    @apply space-y-0;
   }
   
   .presentation-card {
-    @apply bg-skin-card rounded-lg shadow-md;
+    @apply bg-skin-card rounded-lg shadow-md my-6;
   }
   
   .presentation-footer {
@@ -176,7 +213,21 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
   }
   
   .download-btn {
-    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md hover:bg-skin-accent hover:text-skin-inverted transition-colors text-sm no-underline;
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+  }
+  
+  .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  /* Override prose hover styles for download button */
+  .prose .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
   }
   
   .pagination-wrapper {

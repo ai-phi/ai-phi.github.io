@@ -41,5 +41,5 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 
 ### Special Thanks
 
-- **Sébastien Marino**, Creative Director
-- **Théis Bazin**, Web Developer
+- **Sébastien Marino**, Creative Director for AI-Phi 3.0 Style
+- **Théis Bazin**, Setting up Initial Website and Infrastructure

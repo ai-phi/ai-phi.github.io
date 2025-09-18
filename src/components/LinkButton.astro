@@ -26,6 +26,7 @@ const { href, className, ariaLabel, title, disabled = false } = Astro.props;
       class={`group inline-block hover:text-skin-accent ${className}`}
       aria-label={ariaLabel}
       title={title}
+      data-astro-reload
     >
       <slot />
     </a>

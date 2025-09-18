@@ -236,43 +236,43 @@ const { activeNav } = Astro.props;
   @keyframes subtleGhost {
 
     0% {
-      transform: translate(3px, -2px) rotate(0.5deg) scale(1.012);
+      transform: translate(4px, -3px) rotate(0.5deg) scale(1.012);
       opacity: 0.6;
     }
     10% {
-      transform: translate(2px, -2px) rotate(0.3deg) scale(1.03);
+      transform: translate(3px, -4px) rotate(0.3deg) scale(1.03);
       opacity: 0.4;
     }
     20% {
-      transform: translate(-2px, 2px) rotate(-0.4deg) scale(0.95);
+      transform: translate(-3px, 4px) rotate(-0.4deg) scale(0.95);
       opacity: 0.5;
     }
     30% {
-      transform: translate(-2px, 2px) rotate(-0.1deg) scale(0.92);
+      transform: translate(-4px, 3px) rotate(-0.1deg) scale(0.92);
       opacity: 0.6;
     }
     40% {
-      transform: translate(2px, -2px) rotate(0.2deg) scale(1.);
+      transform: translate(3px, -4px) rotate(0.2deg) scale(1.);
       opacity: 0.4;
     }
     50% {
-      transform: translate(0px, 2px) rotate(-0.3deg) scale(0.9);
+      transform: translate(0px, 4px) rotate(-0.3deg) scale(0.9);
       opacity: 0.3;
     }
     60% {
-      transform: translate(2px, -2px) rotate(0.2deg) scale(1.02);
+      transform: translate(4px, -3px) rotate(0.2deg) scale(1.02);
       opacity: 0.2;
     }
     70% {
-      transform: translate(-2px, 0px) rotate(-0.5deg) scale(0.94);
+      transform: translate(-4px, 0px) rotate(-0.5deg) scale(0.94);
       opacity: 0.1;
     }
     90% {
-      transform: translate(2px, -2px) rotate(0.5deg) scale(1.02);
+      transform: translate(3px, -4px) rotate(0.5deg) scale(1.02);
       opacity: 0.2;
     }
     100% {
-      transform: translate(-1px, 1px) rotate(-0.4deg) scale(0.98);
+      transform: translate(-2px, 3px) rotate(-0.4deg) scale(0.98);
       opacity: 0.1;
     }
     
@@ -280,43 +280,43 @@ const { activeNav } = Astro.props;
 
   @keyframes subtleGhost2 {
     0% {
-      transform: translate(1px, -3px) rotate(-0.3deg) scale(1.008);
+      transform: translate(3px, -4px) rotate(-0.3deg) scale(1.008);
       opacity: 0.5;
     }
     15% {
-      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.025);
+      transform: translate(3px, -3px) rotate(-0.2deg) scale(1.025);
       opacity: 0.6;
     }
     25% {
-      transform: translate(2px, -2px) rotate(0.4deg) scale(0.96);
+      transform: translate(4px, -4px) rotate(0.4deg) scale(0.96);
       opacity: 0.4;
     }
     35% {
-      transform: translate(2px, -2px) rotate(0.1deg) scale(0.93);
+      transform: translate(3px, -4px) rotate(0.1deg) scale(0.93);
       opacity: 0.5;
     }
     45% {
-      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.01);
+      transform: translate(4px, -3px) rotate(-0.2deg) scale(1.01);
       opacity: 0.3;
     }
     55% {
-      transform: translate(2px, -1px) rotate(0.3deg) scale(0.91);
+      transform: translate(4px, -2px) rotate(0.3deg) scale(0.91);
       opacity: 0.4;
     }
     65% {
-      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.015);
+      transform: translate(3px, -4px) rotate(-0.2deg) scale(1.015);
       opacity: 0.2;
     }
     75% {
-      transform: translate(2px, -2px) rotate(0.4deg) scale(0.95);
+      transform: translate(4px, -3px) rotate(0.4deg) scale(0.95);
       opacity: 0.1;
     }
     85% {
-      transform: translate(2px, -2px) rotate(-0.3deg) scale(1.018);
+      transform: translate(4px, -4px) rotate(-0.3deg) scale(1.018);
       opacity: 0.2;
     }
     100% {
-      transform: translate(2px, -2px) rotate(0.2deg) scale(0.99);
+      transform: translate(3px, -3px) rotate(0.2deg) scale(0.99);
       opacity: 0.1;
     }
   }
@@ -336,6 +336,7 @@ const { activeNav } = Astro.props;
   /* Main navigation items */
   #main-nav-items {
     @apply mt-4 flex flex-wrap justify-evenly gap-x-6 gap-y-2 sm:mt-0 sm:flex-1 sm:justify-evenly;
+    margin-right: 25px;
   }
   
   #main-nav-items li {

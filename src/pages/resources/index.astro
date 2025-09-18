@@ -168,11 +168,15 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
   }
   
   .presentation-card {
-    @apply bg-skin-card rounded-lg shadow-md;
+    @apply bg-skin-card;
+    border-radius: 0.9rem;
+    border: 2px solid rgb(0 0 0 / 20%);
     margin-top: 0rem;
     margin-bottom: 1rem !important;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  }
+  
+  html[data-theme="dark"] .presentation-card {
+    border: 2px solid rgb(255 255 255 / 20%);
   }
   
   .presentation-card:last-child {

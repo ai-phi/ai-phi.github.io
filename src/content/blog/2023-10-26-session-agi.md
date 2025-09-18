@@ -22,14 +22,14 @@ Artificial General Intelligence by Goertzel, Ben.
 
 <div class="pdf-viewer my-8">
   <iframe
-    src="/pdfs/What is Artificial General Intelligence_.pdf#toolbar=0&navpanes=0"
+    src="/pdfs/AI-PHI-3-Artificial General Intelligence.pdf#toolbar=0&navpanes=0"
     width="100%"
     height="350px"
     class="border rounded-lg shadow-lg w-full"
   >
     <p class="text-skin-base">
       Your browser doesn't support PDFs. You can{" "}
-      <a href="/pdfs/What is Artificial General Intelligence_.pdf" download class="text-skin-accent hover:underline">
+      <a href="/pdfs/AI-PHI-3-Artificial General Intelligence.pdf" download class="text-skin-accent hover:underline">
         download the PDF
       </a>{" "}
       instead.

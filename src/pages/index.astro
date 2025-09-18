@@ -359,12 +359,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     15% {
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.257), -1px -2px 0 rgba(21, 0, 255, 0.233);
+      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.387), -1px -2px 0 rgba(21, 0, 255, 0.389);
       color: transparent;
     }
     65% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.228), 2px -1px 0 rgba(0, 34, 255, 0.224);
+      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.464), 2px -1px 0 rgba(0, 34, 255, 0.423);
       color: transparent;
     }
   }
@@ -441,13 +441,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* Hero ring logo styling */
   .hero-ring-logo {
     @apply absolute w-auto transition-opacity duration-200;
-    height: 25rem;
+    height: 28rem;
     opacity: 0.3;
     pointer-events: none;
     top: 0;
     left: 0;
     z-index: -1;
-    animation: slowRotate 100s linear infinite;
+    animation: slowRotate 150s linear infinite;
   }
   
   .hero-ring-logo.light-ring {

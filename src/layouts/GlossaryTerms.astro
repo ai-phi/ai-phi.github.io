@@ -49,6 +49,8 @@ const entriesByFirstLetter = Object.entries(
     {totalPages}
     prevUrl={`/glossary${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}`}
     nextUrl={`/glossary/${currentPage + 1}`}
+    firstUrl={totalPages > 4 ? '/glossary' : undefined}
+    lastUrl={totalPages > 4 ? `/glossary/${totalPages}` : undefined}
   />
 
   <Footer noMarginTop={totalPages > 1} />

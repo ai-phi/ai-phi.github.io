@@ -6,9 +6,11 @@ export interface Props {
   totalPages: number;
   prevUrl: string;
   nextUrl: string;
+  firstUrl?: string;
+  lastUrl?: string;
 }
 
-const { currentPage, totalPages, prevUrl, nextUrl } = Astro.props;
+const { currentPage, totalPages, prevUrl, nextUrl, firstUrl, lastUrl } = Astro.props;
 
 const prev = currentPage > 1 ? "" : "disabled";
 const next = currentPage < totalPages ? "" : "disabled";
@@ -16,40 +18,87 @@ const next = currentPage < totalPages ? "" : "disabled";
 
 {
   totalPages > 1 && (
-    <nav class="mb-8 mt-auto flex justify-center" aria-label="Pagination">
+    <nav class="mb-8 mt-auto flex justify-center items-center" aria-label="Pagination">
+      {/* First button - only show when more than 4 pages */}
+      {totalPages > 4 ? (
+        currentPage > 1 && firstUrl ? (
+          <a href={firstUrl} class="group inline-flex items-center hover:text-skin-accent mr-3 select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg">
+              <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+              <path d="M6.707 17.293 2.414 13H12v-2H2.414l4.293-4.293-1.414-1.414L-1.414 12l6.707 6.707z" />
+            </svg>
+            <span class="ml-1">First</span>
+          </a>
+        ) : (
+          <span class="group inline-flex items-center mr-3 select-none opacity-50" aria-disabled="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
+              <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+              <path d="M6.707 17.293 2.414 13H12v-2H2.414l4.293-4.293-1.414-1.414L-1.414 12l6.707 6.707z" />
+            </svg>
+            <span class="ml-1">First</span>
+          </span>
+        )
+      ) : null}
+      
+      {/* Previous button */}
       {prev === "disabled" ? (
-        <span class="group inline-block mr-4 select-none opacity-50" aria-disabled="true">
+        <span class="group inline-flex items-center mr-3 select-none opacity-50" aria-disabled="true">
           <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
             <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
           </svg>
-          Prev
+          <span class="ml-1">Prev</span>
         </span>
       ) : (
-        <a href={prevUrl} class="group inline-block hover:text-skin-accent mr-4 select-none">
+        <a href={prevUrl} class="group inline-flex items-center hover:text-skin-accent mr-3 select-none">
           <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
             <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
           </svg>
-          Prev
+          <span class="ml-1">Prev</span>
         </a>
       )}
-      <div class="pagination-numbers">
+      
+      {/* Page numbers */}
+      <div class="pagination-numbers mx-4">
         {currentPage} / {totalPages}
       </div>
+      
+      {/* Next button */}
       {next === "disabled" ? (
-        <span class="group inline-block ml-4 select-none opacity-50" aria-disabled="true">
-          Next
+        <span class="group inline-flex items-center ml-3 select-none opacity-50" aria-disabled="true">
+          <span class="mr-1">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
             <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
           </svg>
         </span>
       ) : (
-        <a href={nextUrl} class="group inline-block hover:text-skin-accent ml-4 select-none">
-          Next
+        <a href={nextUrl} class="group inline-flex items-center hover:text-skin-accent ml-3 select-none">
+          <span class="mr-1">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
             <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
           </svg>
         </a>
       )}
+      
+      {/* Last button - only show when more than 4 pages */}
+      {totalPages > 4 ? (
+        currentPage < totalPages && lastUrl ? (
+          <a href={lastUrl} class="group inline-flex items-center hover:text-skin-accent ml-3 select-none">
+            <span class="mr-1">Last</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg">
+              <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
+              <path d="m17.293 17.293 1.414 1.414L25.414 12l-6.707-6.707-1.414 1.414L21.586 11H12v2h9.586z" />
+            </svg>
+          </a>
+        ) : (
+          <span class="group inline-flex items-center ml-3 select-none opacity-50" aria-disabled="true">
+            <span class="mr-1">Last</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
+              <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
+              <path d="m17.293 17.293 1.414 1.414L25.414 12l-6.707-6.707-1.414 1.414L21.586 11H12v2h9.586z" />
+            </svg>
+          </span>
+        )
+      ) : null}
     </nav>
   )
 }
@@ -57,6 +106,10 @@ const next = currentPage < totalPages ? "" : "disabled";
 <style>
   .disabled-svg {
     @apply group-hover:!fill-skin-base;
+  }
+  
+  .pagination-svg {
+    @apply inline-block fill-current;
   }
   
   nav {

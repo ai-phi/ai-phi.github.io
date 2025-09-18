@@ -122,6 +122,8 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
               totalPages={totalPages} 
               prevUrl={currentPage > 1 ? (currentPage - 1 === 1 ? '/resources' : `/resources/${currentPage - 1}`) : '/resources'}
               nextUrl={currentPage < totalPages ? `/resources/${currentPage + 1}` : '/resources'}
+              firstUrl={totalPages > 4 ? '/resources' : undefined}
+              lastUrl={totalPages > 4 ? `/resources/${totalPages}` : undefined}
             />
           </div>
          )}

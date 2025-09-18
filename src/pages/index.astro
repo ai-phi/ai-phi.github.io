@@ -84,8 +84,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               <span>Research</span>
             </div>
             <span class="dot">·</span>
-            <div class="glitch-container" data-text="AI">
-              <span>AI</span>
+            <div class="glitch-container" data-text="Interdisciplinary">
+              <span>Interdisciplinary</span>
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="News">
@@ -94,6 +94,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Debates">
               <span>Debate</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Outputs">
+              <span>Outputs</span>
             </div>
           </div>
           
@@ -105,6 +109,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Regulation">
               <span>Regulation</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Ethics">
+              <span>Ethics</span>
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Emotions">
@@ -119,8 +127,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               <span>LLM</span>
             </div>
             <span class="dot">·</span>
-            <div class="glitch-container" data-text="Learning">
-              <span>Learning</span>
+            <div class="glitch-container" data-text="Values">
+              <span>Values</span>
+            </div>
+            <span class="dot">·</span>
+            <div class="glitch-container" data-text="Agency">
+              <span>Agency</span>
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="System I & II">
@@ -255,7 +267,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-size: 30px;
     font-style: italic;
     text-align: right;
-    margin-top: 5rem;
     margin-left: 65px;
     line-height: 1.50rem;   
   }
@@ -266,17 +277,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   
   .subtitle-section.general-aspects {
     color: #a9a9a9; /* Slightly greyish text */
-    margin-top: -1.5rem;
+    margin-top: 2.5rem;
   }
   
   .subtitle-section.discussion-topics {
     color: #666666; /* Darker text for discussion topics */
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
   
   .hero-title {
-    @apply mb-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl;
+    @apply mb-6 text-4xl font-bold leading-tight sm:text-5xl ;
     font-family: 'Nunito', sans-serif;
+    font-size: 3rem;
   }
   
   
@@ -314,54 +326,49 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       box-sizing: border-box;
     }
 
-  @keyframes glitch-container {
-    0%, 100% {
-      transform: translate(0, 0);
-    }
-    75% {
-      transform: translate(var(--glitch-container-x-1), var(--glitch-container-y-1));
-    }
-    90% {
-      transform: translate(var(--glitch-container-x-2), var(--glitch-container-y-2));
-    }
-  }
 
   /* Generate multiple glitch animations with stronger chromatic aberration */
-  @keyframes glitch-1 {
+  @keyframes glitch-text-strip {
     0% {
       transform: none;
       filter: hue-rotate(0);
       color: var(--glitch-text-color);
     }
-    30% {
+    15% {
       color: transparent;
     }
-    40% {
+    35% {
       color: var(--glitch-text-color);
     }
-    90% {
+    55% {
+      color: transparent;
+    }
+    85% {
+      color: var(--glitch-text-color);
+    }
+    95% {
       color: transparent;
     }
   }
   
-  @keyframes glitch-2 {
-    0%,  40%, 100% {
+  @keyframes glitch-red-blue {
+    0%,  100% {
       transform: none;
       filter: hue-rotate(0);
       color: transparent;
     }
-    25% {
+    15% {
       transform: translateX(var(--glitch-x-1));
       text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.257), -1px -2px 0 rgba(21, 0, 255, 0.233);
       color: transparent;
     }
-    70% {
+    65% {
       transform: translateX(var(--glitch-x-2));
       text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.228), 2px -1px 0 rgba(0, 34, 255, 0.224);
       color: transparent;
     }
   }
-  
+/*   
   @keyframes glitch-3 {
     0%,    40%, 90% {
       transform: none;
@@ -378,8 +385,34 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       text-shadow: -1px 3px 0 rgba(0, 60, 255, 0.365), 1px -3px 0 rgba(0, 204, 255, 0.365);
       color: transparent;
     }
+  } */
+
+  @keyframes glitch-pink-yellow {
+    0%,     95% {
+      transform: none;
+      filter: hue-rotate(0);
+      color: transparent;
+    }
+    35%, 90% {
+      transform: translateX(var(--glitch-x-1));
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.354), -3px -1px 0 rgba(200, 255, 0, 0.5);
+      color: transparent;
+    }
   }
-  
+
+  @keyframes glitch-text-hole {
+    0%,     95% {
+      transform: none;
+      filter: hue-rotate(0);
+      color: transparent;
+    }
+    25%, 90% {
+      transform: translateX(var(--glitch-x-1));
+      text-shadow: 3px 1px 0 rgba(12, 12, 12, 0.354), -3px -1px 0 rgba(0, 0, 0, 0.5);
+      color: transparent;
+    }
+  }
+
   .dot {
     @apply text-skin-accent font-bold;
     font-size: 2em; /* Make dots twice as large */
@@ -484,6 +517,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     
   }
 
+  #all-posts {
+
+    padding-bottom: 20px;
+    margin-top: -20px;
+  }
+
   /* Section header line */
   .section-header-line {
     @apply h-px bg-skin-inverted;
@@ -501,6 +540,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   function generateGlitchStrips(container) {
+
+
+    var glitch_names = [
+      'glitch-text-strip',
+      'glitch-red-blue',
+      'glitch-pink-yellow',
+      'glitch-text-hole',
+    ];
+
     const text = container.getAttribute('data-text');
     const textElement = container.querySelector('span');
     
@@ -514,9 +562,19 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     let currentTop = 0;
     
     while (currentTop < lineHeight) {
-      // const stripHeight = random(1, 3);
-      const stripHeight = random(1, 5);
-      const actualHeight = Math.min(stripHeight, lineHeight - currentTop);
+      // Calculate remaining height
+      const remainingHeight = lineHeight - currentTop;
+      
+      let actualHeight;
+      // For the last strip, use all remaining height
+      if (remainingHeight <= lineHeight * 0.1) { // If less than 10% remaining
+        actualHeight = remainingHeight;
+      } else {
+        // Calculate strip height as percentage of remaining height (10% to 40% of remaining)
+        const stripHeightPercent = random(20, 40); // Percentage of remaining height
+        const stripHeight = (remainingHeight * stripHeightPercent) / 100;
+        actualHeight = stripHeight;
+      }
       
        // Get theme background color for initial strip color
        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -525,16 +583,23 @@ const socialCount = SOCIALS.filter(social => social.active).length;
        const strip = document.createElement('div');
        strip.className = 'glitch-strip';
 
-       var glitch_name = `glitch-${Math.floor(random(1, 4))};`
-      //  glitch_name = 'glitch-1';
-        
+       var glitch_name = glitch_names[Math.floor(Math.random() * glitch_names.length)];
+      
+      //  glitch_name = 'glitch-pink-yellow';
+
        var glitch_x_1 = random(-10, 10);
-       var glitch_x_2 = random(-10, 10);
+       var glitch_x_2 = random(10, 20);
        var timing_function = 'linear';
 
-       if (glitch_name == 'glitch-1') {
+       if (glitch_name == 'glitch-text-strip' || glitch_name == 'glitch-text-hole') {
         glitch_x_1 = 0;
         glitch_x_2 = 0;
+       }else if (glitch_name == 'glitch-red-blue') {
+        var glitch_x_1 = random(-10, 0);
+        var glitch_x_2 = random(-5, 5);
+       }else if (glitch_name == 'glitch-pink-yellow') {
+        var glitch_x_1 = random(0, 10);
+        var glitch_x_2 = random(10, 20);
        }
        timing_function = 'steps(1, end)';
        strip.style.cssText = `
@@ -558,10 +623,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
          --glitch-x-2: ${glitch_x_2}px;
          --glitch-text-color: ${textColor};
          --glitch-hue-1: ${random(10, 20)}deg;
-         //  animation-name: glitch-${Math.floor(random(1, 4))};
          animation-name: ${glitch_name};
-         animation-duration: ${random(2000, 8000)}ms;
-         animation-delay: ${random(0, 1000)}ms;
+         animation-duration: ${random(1000, 3000)}ms;
+        //  animation-delay: ${random(0, 2000)}ms;
          animation-iteration-count: infinite;
          animation-play-state: paused;
           animation-timing-function: ${timing_function};
@@ -642,9 +706,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   function scheduleGlitchEffect() {
-    // Random delay between 8-15 seconds
-    const minDelay = 5000;
-    const maxDelay = 20000;
+  
+    const minDelay = 4000;
+    const maxDelay = 10000;
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     
     setTimeout(() => {
@@ -655,7 +719,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   // Initialize glitch effect
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(scheduleGlitchEffect, 8000);
+    setTimeout(scheduleGlitchEffect, 0);
   });
 
   // Re-setup on view transitions

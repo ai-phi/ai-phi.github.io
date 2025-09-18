@@ -210,7 +210,11 @@ const { activeNav } = Astro.props;
   }
   
   .nav-ghost-logo.ghost-effect {
-    animation: subtleGhost 5s ease-in-out;
+    animation: subtleGhost 3s ease-in-out;
+  }
+  
+  .nav-ghost-logo.ghost-effect-2 {
+    animation: subtleGhost2 3s ease-in-out;
   }
   
   .nav-light-ghost {
@@ -230,88 +234,89 @@ const { activeNav } = Astro.props;
   }
   
   @keyframes subtleGhost {
+
     0% {
-      transform: translate(0, 0) rotate(0deg) scale(1);
-      opacity: 0;
-    }
-    5% {
-      transform: translate(3px, -3px) rotate(0.8deg) scale(1.05);
+      transform: translate(3px, -2px) rotate(0.5deg) scale(1.012);
       opacity: 0.6;
     }
     10% {
-      transform: translate(4px, -4px) rotate(1.2deg) scale(1.08);
+      transform: translate(2px, -2px) rotate(0.3deg) scale(1.03);
       opacity: 0.4;
-    }
-    15% {
-      transform: translate(-3px, 2px) rotate(-0.5deg) scale(0.95);
-      opacity: 0.5;
     }
     20% {
-      transform: translate(-4px, 3px) rotate(-1.2deg) scale(0.92);
-      opacity: 0.6;
-    }
-    25% {
-      transform: translate(3px, -3px) rotate(2deg) scale(1.);
-      opacity: 0.4;
+      transform: translate(-2px, 2px) rotate(-0.4deg) scale(0.95);
+      opacity: 0.5;
     }
     30% {
-      transform: translate(0px, 4px) rotate(-1.5deg) scale(0.9);
-      opacity: 0.3;
-    }
-    35% {
-      transform: translate(4px, -3px) rotate(2deg) scale(1.06);
-      opacity: 0.4;
+      transform: translate(-2px, 2px) rotate(-0.1deg) scale(0.92);
+      opacity: 0.6;
     }
     40% {
-      transform: translate(-3px, 3px) rotate(-2deg) scale(0.94);
-      opacity: 0.1;
-    }
-    45% {
-      transform: translate(3px, -3px) rotate(2deg) scale(1.02);
+      transform: translate(2px, -2px) rotate(0.2deg) scale(1.);
       opacity: 0.4;
     }
     50% {
-      transform: translate(-3px, 3px) rotate(-2deg) scale(0.98);
+      transform: translate(0px, 2px) rotate(-0.3deg) scale(0.9);
       opacity: 0.3;
-    }
-    55% {
-      transform: translate(3px, -3px) rotate(2deg) scale(1.03);
-      opacity: 0.35;
     }
     60% {
-      transform: translate(-3px, 3px) rotate(-1.5deg) scale(0.96);
+      transform: translate(2px, -2px) rotate(0.2deg) scale(1.02);
       opacity: 0.2;
     }
-    65% {
-      transform: translate(2px, -2px) rotate(0.8deg) scale(1.01);
-      opacity: 0.3;
-    }
     70% {
-      transform: translate(-2px, 2px) rotate(-1deg) scale(0.99);
-      opacity: 0.1;
-    }
-    75% {
-      transform: translate(2px, -2px) rotate(1deg) scale(1.02);
-      opacity: 0.1;
-    }
-    80% {
-      transform: translate(-2px, 2px) rotate(-0.8deg) scale(0.995);
-      opacity: 0.4;
-    }
-    85% {
-      transform: translate(1px, -1px) rotate(0.4deg) scale(1.002);
+      transform: translate(-2px, 0px) rotate(-0.5deg) scale(0.94);
       opacity: 0.1;
     }
     90% {
-      transform: translate(-1px, 1px) rotate(-0.4deg) scale(0.998);
-      opacity: 0.1;
-    }
-    95% {
-      transform: translate(0.5px, -0.5px) rotate(0.15deg) scale(1.001);
-      opacity: 0.1;
+      transform: translate(2px, -2px) rotate(0.5deg) scale(1.02);
+      opacity: 0.2;
     }
     100% {
-      transform: translate(0, 0) rotate(0deg) scale(1);
+      transform: translate(-1px, 1px) rotate(-0.4deg) scale(0.98);
+      opacity: 0.1;
+    }
+    
+  }
+
+  @keyframes subtleGhost2 {
+    0% {
+      transform: translate(1px, -3px) rotate(-0.3deg) scale(1.008);
+      opacity: 0.5;
+    }
+    15% {
+      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.025);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translate(2px, -2px) rotate(0.4deg) scale(0.96);
+      opacity: 0.4;
+    }
+    35% {
+      transform: translate(2px, -2px) rotate(0.1deg) scale(0.93);
+      opacity: 0.5;
+    }
+    45% {
+      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.01);
+      opacity: 0.3;
+    }
+    55% {
+      transform: translate(2px, -1px) rotate(0.3deg) scale(0.91);
+      opacity: 0.4;
+    }
+    65% {
+      transform: translate(2px, -2px) rotate(-0.2deg) scale(1.015);
+      opacity: 0.2;
+    }
+    75% {
+      transform: translate(2px, -2px) rotate(0.4deg) scale(0.95);
+      opacity: 0.1;
+    }
+    85% {
+      transform: translate(2px, -2px) rotate(-0.3deg) scale(1.018);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(2px, -2px) rotate(0.2deg) scale(0.99);
       opacity: 0.1;
     }
   }
@@ -402,7 +407,7 @@ const { activeNav } = Astro.props;
   }
 
   .menu-icon line {
-    @apply transition-opacity duration-75 ease-in-out;
+    @apply transition-opacity duration-75 ease-out;
   }
 
   .menu-icon .close {
@@ -492,46 +497,75 @@ const { activeNav } = Astro.props;
     'invert(94%) sepia(83%) saturate(1543%) hue-rotate(20deg) brightness(52%) contrast(101%)', //RED
   ];
 
-  // Subtle ghost effect with random colors
+  // Subtle ghost effect with random colors and dual animations
   function triggerGhostEffect() {
     const lightGhost = document.querySelector('.nav-light-ghost');
     const darkGhost = document.querySelector('.nav-dark-ghost');
     
     if (lightGhost && darkGhost) {
-
-      //Related to https://codepen.io/sosuke/pen/Pjoqqp
-      //Images expected to be black.
+      // Choose two different random colors
+      let color1 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      let color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
       
-
-      const randomFilter = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      // Ensure colors are different
+      while (color1 === color2) {
+        color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      }
       
-      // Apply colored glow/shadow to opaque parts only
-      // lightGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
-      // darkGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
-
-      lightGhost.style.filter = randomFilter
-      darkGhost.style.filter = 'brightness(0) saturate(100%)' + randomFilter // turns white image black first
-
-      lightGhost.style.backgroundColor = 'transparent';
-      darkGhost.style.backgroundColor = 'transparent';
+      // Create first ghost object (clone)
+      const ghost1Light = lightGhost.cloneNode(true);
+      const ghost1Dark = darkGhost.cloneNode(true);
       
-      // Make sure the ghost logo is visible during animation
-      // lightGhost.style.opacity = '0.6';
-      // darkGhost.style.opacity = '0.6';
+      // Create second ghost object (clone)
+      const ghost2Light = lightGhost.cloneNode(true);
+      const ghost2Dark = darkGhost.cloneNode(true);
       
-      // Add ghost-effect class to trigger animation
-      lightGhost.classList.add('ghost-effect');
-      darkGhost.classList.add('ghost-effect');
+      // Position the ghost objects
+      ghost1Light.style.position = 'absolute';
+      ghost1Light.style.top = '0';
+      ghost1Light.style.left = '0';
+      ghost1Light.style.zIndex = '-2';
       
-      // Remove ghost-effect class and reset styles after animation completes
+      ghost1Dark.style.position = 'absolute';
+      ghost1Dark.style.top = '0';
+      ghost1Dark.style.left = '0';
+      ghost1Dark.style.zIndex = '-2';
+      
+      ghost2Light.style.position = 'absolute';
+      ghost2Light.style.top = '0';
+      ghost2Light.style.left = '0';
+      ghost2Light.style.zIndex = '-3';
+      
+      ghost2Dark.style.position = 'absolute';
+      ghost2Dark.style.top = '0';
+      ghost2Dark.style.left = '0';
+      ghost2Dark.style.zIndex = '-3';
+      
+      // Apply colors
+      ghost1Light.style.filter = color1;
+      ghost1Dark.style.filter = 'brightness(0) saturate(100%) ' + color1;
+      ghost2Light.style.filter = color2;
+      ghost2Dark.style.filter = 'brightness(0) saturate(100%) ' + color2;
+      
+      // Add to DOM
+      lightGhost.parentNode.appendChild(ghost1Light);
+      lightGhost.parentNode.appendChild(ghost1Dark);
+      lightGhost.parentNode.appendChild(ghost2Light);
+      lightGhost.parentNode.appendChild(ghost2Dark);
+      
+      // Apply animations
+      ghost1Light.classList.add('ghost-effect');
+      ghost1Dark.classList.add('ghost-effect');
+      ghost2Light.classList.add('ghost-effect-2');
+      ghost2Dark.classList.add('ghost-effect-2');
+      
+      // Remove ghost objects after animation completes
       setTimeout(() => {
-        lightGhost.classList.remove('ghost-effect');
-        darkGhost.classList.remove('ghost-effect');
-        lightGhost.style.filter = '';
-        darkGhost.style.filter = '';
-        lightGhost.style.opacity = '';
-        darkGhost.style.opacity = '';
-      }, 3000); // Animation duration is 5 seconds
+        ghost1Light.remove();
+        ghost1Dark.remove();
+        ghost2Light.remove();
+        ghost2Dark.remove();
+      }, 3000); // Animation duration is 3 seconds
     }
   }
   

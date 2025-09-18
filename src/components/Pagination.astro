@@ -17,31 +17,39 @@ const next = currentPage < totalPages ? "" : "disabled";
 {
   totalPages > 1 && (
     <nav class="mb-8 mt-auto flex justify-center" aria-label="Pagination">
-      <LinkButton
-        disabled={prev === "disabled"}
-        href={prevUrl}
-        className={`mr-4 select-none`}
-        ariaLabel="Previous"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
-          <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
-        </svg>
-        Prev
-      </LinkButton>
+      {prev === "disabled" ? (
+        <span class="group inline-block mr-4 select-none opacity-50" aria-disabled="true">
+          <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
+            <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+          </svg>
+          Prev
+        </span>
+      ) : (
+        <a href={prevUrl} class="group inline-block hover:text-skin-accent mr-4 select-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
+            <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+          </svg>
+          Prev
+        </a>
+      )}
       <div class="pagination-numbers">
         {currentPage} / {totalPages}
       </div>
-      <LinkButton
-        disabled={next === "disabled"}
-        href={nextUrl}
-        className={`ml-4 select-none`}
-        ariaLabel="Next"
-      >
-        Next
-        <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
-          <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
-        </svg>
-      </LinkButton>
+      {next === "disabled" ? (
+        <span class="group inline-block ml-4 select-none opacity-50" aria-disabled="true">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
+            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
+          </svg>
+        </span>
+      ) : (
+        <a href={nextUrl} class="group inline-block hover:text-skin-accent ml-4 select-none">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
+            <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
+          </svg>
+        </a>
+      )}
     </nav>
   )
 }

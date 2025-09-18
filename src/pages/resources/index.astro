@@ -3,25 +3,17 @@ import { SITE } from "@config";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
-import Layout from "../layouts/Layout.astro";
-import PDFViewer from '../components/PDFViewer.astro';
-import Pagination from '../components/Pagination.astro';
+import Layout from "../../layouts/Layout.astro";
+import PDFViewer from '../../components/PDFViewer.astro';
+import Pagination from '../../components/Pagination.astro';
 import { getCollection } from 'astro:content';
 
 const pageTitle = "Resources";
-const pageDescription = "AI-Phi resources and documents.";
+const pageDescription = "AI-Phi resources. These includes presentations and any other documentation.";
 
 // Pagination parameters
 const POSTS_PER_PAGE = 3;
-const pageParam = Astro.url.searchParams.get('page');
-const currentPage = pageParam ? parseInt(pageParam) : 1;
-
-// Debug the page parameter parsing
-console.log('Page param debug:', {
-  pageParam,
-  currentPage,
-  searchParams: Object.fromEntries(Astro.url.searchParams.entries())
-});
+const currentPage = 1;
 
 // Get all blog posts
 const allPosts = await getCollection('blog');
@@ -67,16 +59,6 @@ const totalPages = Math.ceil(presentations.length / POSTS_PER_PAGE);
 const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
 const endIndex = startIndex + POSTS_PER_PAGE;
 const paginatedPresentations = presentations.slice(startIndex, endIndex);
-
-// Debug logging
-console.log('Debug pagination:', {
-  presentationsLength: presentations.length,
-  currentPage,
-  totalPages,
-  startIndex,
-  endIndex,
-  paginatedLength: paginatedPresentations.length
-});
 ---
 
 <Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
@@ -87,12 +69,6 @@ console.log('Debug pagination:', {
     <p>{pageDescription}</p>
     
     <div class="resources-content">
-      <!-- Debug info (temporary) -->
-      <div class="debug-info" style="background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px;">
-        <strong>Debug:</strong> Total PDFs: {presentations.length}, Current Page: {currentPage}, Total Pages: {totalPages}, Showing: {paginatedPresentations.length}<br/>
-        <strong>URLs:</strong> Prev: {currentPage > 1 ? `/resources?page=${currentPage - 1}` : '/resources'}, Next: {currentPage < totalPages ? `/resources?page=${currentPage + 1}` : '/resources'}<br/>
-        <strong>Current URL:</strong> {Astro.url.href}
-      </div>
       
       <section class="mb-12">
         <h2 class="section-title">Presentations</h2>
@@ -140,11 +116,12 @@ console.log('Debug pagination:', {
         
         {totalPages > 1 && (
           <div class="pagination-wrapper">
+            
             <Pagination 
               currentPage={currentPage} 
               totalPages={totalPages} 
-              prevUrl={currentPage > 1 ? `/resources?page=${currentPage - 1}` : '/resources'}
-              nextUrl={currentPage < totalPages ? `/resources?page=${currentPage + 1}` : '/resources'}
+              prevUrl={currentPage > 1 ? (currentPage - 1 === 1 ? '/resources' : `/resources/${currentPage - 1}`) : '/resources'}
+              nextUrl={currentPage < totalPages ? `/resources/${currentPage + 1}` : '/resources'}
             />
           </div>
          )}
@@ -189,7 +166,15 @@ console.log('Debug pagination:', {
   }
   
   .presentation-card {
-    @apply bg-skin-card rounded-lg shadow-md my-6;
+    @apply bg-skin-card rounded-lg shadow-md;
+    margin-top: 0rem;
+    margin-bottom: 1rem !important;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .presentation-card:last-child {
+    margin-bottom: 0rem !important;
   }
   
   .presentation-footer {

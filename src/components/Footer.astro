@@ -22,11 +22,11 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     <div class="footer-icons">
       <!-- First icon - two versions -->
       <img id="footer-icon-1" class="footer-icon footer-icon-main" alt="Footer Icon" />
-      <img id="footer-icon-1-translucent" class="footer-icon footer-icon-translucent" alt="Footer Icon" />
+      <img id="footer-icon-1-backing" class="footer-icon footer-icon-backing" alt="Footer Icon" />
       
       <!-- Second icon - two versions -->
       <img id="footer-icon-2" class="footer-icon footer-icon-main" alt="Footer Icon" />
-      <img id="footer-icon-2-translucent" class="footer-icon footer-icon-translucent" alt="Footer Icon" />
+      <img id="footer-icon-2-backing" class="footer-icon footer-icon-backing" alt="Footer Icon" />
     </div>
   )}
 </footer>
@@ -60,6 +60,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     @apply absolute w-24 h-24 object-contain;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    transform: rotate(var(--initial-rotation, 0deg));
   }
   
   .footer-icon-main {
@@ -67,14 +68,14 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     z-index: 2;
   }
   
-  .footer-icon-translucent {
+  .footer-icon-backing {
     opacity: 0.4;
     z-index: 1;
   }
   
   /* Hover animations */
   .footer-icon:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(calc(var(--initial-rotation, 0deg) + 5deg));
     opacity: 1;
   }
   
@@ -82,7 +83,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     z-index: 3;
   }
   
-  .footer-icon-translucent:hover {
+  .footer-icon-backing:hover {
     opacity: 0.9;
     transform: scale(1.15) rotate(-5deg);
   }
@@ -95,7 +96,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     bottom: 20px;/* Half icon (64px) above footer, half below */
   }
 
-  #footer-icon-1-translucent{
+  #footer-icon-1-backing{
     filter: brightness(1) invert(1);
     right: 250px;
     bottom: 20px;/* Half icon (64px) above footer, half below */
@@ -109,7 +110,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     bottom: 20px; /* Half icon (64px) above footer, half below */
   }
     /* Second icon pair - black */
-  #footer-icon-2-translucent {
+  #footer-icon-2-backing {
     right: 50px;
     /* Pure black filter */
     filter: brightness(0) invert(0);
@@ -121,12 +122,12 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
   // Randomly select two different icons from the icons library
   function setupFooterIcons() {
     const icon1 = document.getElementById('footer-icon-1');
-    const icon1Translucent = document.getElementById('footer-icon-1-translucent');
+    const icon1Backing = document.getElementById('footer-icon-1-backing');
     const icon2 = document.getElementById('footer-icon-2');
-    const icon2Translucent = document.getElementById('footer-icon-2-translucent');
+    const icon2Backing = document.getElementById('footer-icon-2-backing');
     
     // Only setup icons if they exist (i.e., showIcons is true)
-    if (icon1 && icon1Translucent && icon2 && icon2Translucent) {
+    if (icon1 && icon1Backing && icon2 && icon2Backing) {
       // Available icons (I_1.png through I_16.png)
       const availableIcons = [
         'I_1.png', 'I_2.png', 'I_3.png', 'I_4.png', 'I_5.png', 'I_6.png', 'I_7.png', 'I_8.png',
@@ -146,14 +147,14 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
         randomIndex2 = Math.floor(Math.random() * availableIcons.length);
       } while (randomIndex2 === randomIndex1);
       
-      // Set the icon sources for both main and translucent versions
+      // Set the icon sources for both main and backing versions
       const icon1Src = `/src/assets/images/icons-library/${availableIcons[randomIndex1]}`;
       const icon2Src = `/src/assets/images/icons-library/${availableIcons[randomIndex2]}`;
       
       icon1.src = icon1Src;
-      icon1Translucent.src = icon1Src;
+      icon1Backing.src = icon1Src;
       icon2.src = icon2Src;
-      icon2Translucent.src = icon2Src;
+      icon2Backing.src = icon2Src;
 
       const randomFilter1 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
       const randomFilter2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
@@ -162,8 +163,14 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
       // lightGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
       // darkGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
 
-      icon1Translucent.style.filter = randomFilter1
-      icon2Translucent.style.filter = 'brightness(0) saturate(100%)' + randomFilter2 // turns white image black first
+      icon1Backing.style.filter = randomFilter1
+      icon2Backing.style.filter = 'brightness(0) saturate(100%)' + randomFilter2 // turns white image black first
+
+      // Add random slight tilt to both icons - only the main versions
+      const randomTilt1 = (Math.random() - 0.5) * 60; // Random tilt between -3 and +3 degrees
+      const randomTilt2 = (Math.random() - 0.5) * 60; // Random tilt between -3 and +3 degrees
+      icon1.style.setProperty('--initial-rotation', `${randomTilt1}deg`);
+      icon2.style.setProperty('--initial-rotation', `${randomTilt2}deg`);
 
     }
   }

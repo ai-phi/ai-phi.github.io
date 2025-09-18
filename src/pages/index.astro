@@ -562,6 +562,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     const fontSize = parseFloat(computedStyle.fontSize);
     const lineHeight = parseFloat(computedStyle.lineHeight) || fontSize * 1.2;
     const textColor = computedStyle.color;
+    // Generate movement values once per glitch type (shared across all strips of same type)
+    const glitchTypeValues = {};
+    glitch_names.forEach(glitchType => {
+      if (glitchType == 'glitch-text-strip' || glitchType == 'glitch-text-hole') {
+        glitchTypeValues[glitchType] = { x1: 0, x2: 0 };
+      } else if (glitchType == 'glitch-red-blue') {
+        glitchTypeValues[glitchType] = { x1: random(-10, 0), x2: random(-5, 5) };
+      } else if (glitchType == 'glitch-pink-yellow') {
+        glitchTypeValues[glitchType] = { x1: random(0, 10), x2: random(10, 20) };
+      }
+    });
+    
     // Create strips
     const strips = [];
     let currentTop = 0;
@@ -588,25 +600,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
        const strip = document.createElement('div');
        strip.className = 'glitch-strip';
 
+       // Choose random glitch type for this strip
        var glitch_name = glitch_names[Math.floor(Math.random() * glitch_names.length)];
-      
-      //  glitch_name = 'glitch-pink-yellow';
-
-       var glitch_x_1 = random(-10, 10);
-       var glitch_x_2 = random(10, 20);
-       var timing_function = 'linear';
-
-       if (glitch_name == 'glitch-text-strip' || glitch_name == 'glitch-text-hole') {
-        glitch_x_1 = 0;
-        glitch_x_2 = 0;
-       }else if (glitch_name == 'glitch-red-blue') {
-        var glitch_x_1 = random(-10, 0);
-        var glitch_x_2 = random(-5, 5);
-       }else if (glitch_name == 'glitch-pink-yellow') {
-        var glitch_x_1 = random(0, 10);
-        var glitch_x_2 = random(10, 20);
-       }
-       timing_function = 'steps(1, end)';
+       
+       // Use pre-generated values for this glitch type
+       var glitch_x_1 = glitchTypeValues[glitch_name].x1;
+       var glitch_x_2 = glitchTypeValues[glitch_name].x2;
+       var timing_function = 'steps(1, end)';
        strip.style.cssText = `
          position: absolute;
          top: ${currentTop}px;

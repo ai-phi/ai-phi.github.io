@@ -228,7 +228,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       
       <section id="all-posts" class="hero-section">
       <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
+        <LinkButton href="/posts" className="all-posts-button">
           All Our Posts
           <svg xmlns="http://www.w3.org/2000/svg"
             ><path
@@ -305,7 +305,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
     .glitch-container.glitch-active {
-      /* animation: glitch-container 2s steps(1, end); */
+      animation: glitch-container 2s steps(1, end);
       color: transparent;
     }
 
@@ -517,6 +517,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     
   }
 
+  .all-posts-button {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
   #all-posts {
 
     padding-bottom: 20px;
@@ -661,57 +666,78 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     const containers = document.querySelectorAll('.glitch-container');
     
     if (containers.length > 0) {
-      // Randomly select one container
-      const randomIndex = Math.floor(Math.random() * containers.length);
-      const container = containers[randomIndex];
+      // Randomly select 1-3 containers
+      const numContainers = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
+      const selectedContainers = [];
       
-      // Clear existing strips
-      container.querySelectorAll('.glitch-strip').forEach(strip => strip.remove());
+      // Create a copy of containers array and shuffle it
+      const availableContainers = Array.from(containers);
+      for (let i = availableContainers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [availableContainers[i], availableContainers[j]] = [availableContainers[j], availableContainers[i]];
+      }
       
-      // Generate new strips
-      const strips = generateGlitchStrips(container);
+      // Select the first numContainers
+      for (let i = 0; i < numContainers && i < availableContainers.length; i++) {
+        selectedContainers.push(availableContainers[i]);
+      }
       
-      // Add strips to container
-      strips.forEach(strip => {
-        container.appendChild(strip);
-      });
-      
-      // Set container movement variable
-      const containerMovementx1 = random(-20, 30);
-      const containerMovementx2 = random(-50, -20);
-      const containerMovementy1 = random(-2, 2);
-      const containerMovementy2 = random(-2, 2);
-      container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
-      container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
-      container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
-      container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
-      
-      // Trigger glitch animation
-      container.classList.add('glitch-active');
-      
-      // Start strip animations
-      strips.forEach(strip => {
-        strip.style.animationPlayState = 'running';
-      });
-      
-      // Clean up after animation
-      setTimeout(() => {
-        container.classList.remove('glitch-active');
+      // Apply glitch effect to each selected container
+      selectedContainers.forEach(container => {
+        // Clear existing strips
+        container.querySelectorAll('.glitch-strip').forEach(strip => strip.remove());
+        
+        // Generate new strips
+        const strips = generateGlitchStrips(container);
+        
+        // Add strips to container
         strips.forEach(strip => {
-          strip.style.animationPlayState = 'paused';
-          strip.remove();
+          container.appendChild(strip);
         });
-      }, 2000);
+        
+        // Set container movement variable
+        const containerMovementx1 = random(-20, 30);
+        const containerMovementx2 = random(-50, -20);
+        const containerMovementy1 = random(-2, 2);
+        const containerMovementy2 = random(-2, 2);
+        container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
+        container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
+        container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
+        container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
+        
+        // Trigger glitch animation
+        container.classList.add('glitch-active');
+        
+        // Start strip animations
+        strips.forEach(strip => {
+          strip.style.animationPlayState = 'running';
+        });
+        
+        // Clean up after animation
+        setTimeout(() => {
+          container.classList.remove('glitch-active');
+          strips.forEach(strip => {
+            strip.style.animationPlayState = 'paused';
+            strip.remove();
+          });
+        }, 2000);
+      });
     }
   }
 
+  let glitchTimeout = null;
+
   function scheduleGlitchEffect() {
+    // Clear any existing timeout to prevent multiple loops
+    if (glitchTimeout) {
+      clearTimeout(glitchTimeout);
+    }
   
     const minDelay = 4000;
     const maxDelay = 10000;
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     
-    setTimeout(() => {
+    glitchTimeout = setTimeout(() => {
       triggerGlitchEffect();
       scheduleGlitchEffect();
     }, delay);

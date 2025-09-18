@@ -61,6 +61,16 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     transform: rotate(var(--initial-rotation, 0deg));
+    animation: rotateToInitial 0.5s linear forwards;
+  }
+  
+  @keyframes rotateToInitial {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(var(--initial-rotation, 0deg));
+    }
   }
   
   .footer-icon-main {
@@ -167,8 +177,8 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
       icon2Backing.style.filter = 'brightness(0) saturate(100%)' + randomFilter2 // turns white image black first
 
       // Add random slight tilt to both icons - only the main versions
-      const randomTilt1 = (Math.random() - 0.5) * 60; // Random tilt between -3 and +3 degrees
-      const randomTilt2 = (Math.random() - 0.5) * 60; // Random tilt between -3 and +3 degrees
+      const randomTilt1 = (Math.random() - 0.5) * 30 + (Math.random() > 0.5 ? 5 : -5); // Random tilt between -25 and +25 degrees, but always at least ±5 degrees
+      const randomTilt2 = (Math.random() - 0.5) * 30 + (Math.random() > 0.5 ? 5 : -5); // Random tilt between -25 and +25 degrees, but always at least ±5 degrees
       icon1.style.setProperty('--initial-rotation', `${randomTilt1}deg`);
       icon2.style.setProperty('--initial-rotation', `${randomTilt2}deg`);
 

@@ -17,37 +17,11 @@ In this session, Constant Bonard (IJN, ENS) and Gustave Cortal (ENS Saclay) disc
 
 Slides from their joint talk:
 
-<div class="pdf-viewer my-8">
-  <iframe
-    src="/pdfs/AI-Phi-8-AEmotional Understanding 🤖❤️_🔥.pdf#toolbar=0&navpanes=0"
-    width="100%"
-    height="350px"
-    class="border rounded-lg shadow-lg w-full">
-  </iframe>
-
-  <div class="mt-4 text-right">
-    <a href="/pdfs/AI-Phi-8-AEmotional Understanding 🤖❤️_🔥.pdf" download class="download-btn">
-      📄 Download PDF
-    </a>
-  </div>
-</div>
+<!-- PDF: AI-Phi-8-AEmotional Understanding 🤖❤️_🔥.pdf | title: AEmotional understanding presentation by Constant Bonard & Gustave Cortal  | type: presentation -->
 
 Preamble slides and Fortnaightly News:
 
-<div class="pdf-viewer my-8">
-  <iframe
-    src="/pdfs/AI-PHI-8-Preamble.pdf#toolbar=0&navpanes=0"
-    width="100%"
-    height="350px"
-    class="border rounded-lg shadow-lg w-full">
-  </iframe>
-
-  <div class="mt-4 text-right">
-    <a href="/pdfs/AI-PHI-8-Preamble.pdf" download class="download-btn">
-      📄 Download PDF
-    </a>
-  </div>
-</div>
+<!-- PDF: AI-PHI-8-Preamble.pdf | title: Preamble before the AEmotional Understanding presentation | type: preamble -->
 
 ## Details
 

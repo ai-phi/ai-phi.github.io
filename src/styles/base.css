@@ -155,4 +155,64 @@
   .focus-outline {
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
+
+  /* Blog PDF Card Styles - matching resources page styling */
+  .blog-pdf-card {
+    @apply bg-skin-card my-8;
+    border-radius: 0.9rem;
+    border: 2px solid rgb(0 0 0 / 20%);
+  }
+  
+  html[data-theme="dark"] .blog-pdf-card {
+    border: 2px solid rgb(255 255 255 / 20%);
+  }
+  
+  .blog-pdf-card .pdf-viewer-container {
+    @apply p-2.5 relative;
+  }
+  
+  .blog-pdf-card .pdf-viewer {
+    @apply border border-skin-line rounded-lg overflow-hidden shadow-lg;
+  }
+  
+  .blog-pdf-card .pdf-iframe {
+    @apply border-0;
+  }
+  
+  .blog-pdf-card .pdf-fallback {
+    @apply p-8 text-center bg-skin-fill;
+  }
+  
+  .blog-pdf-footer {
+    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+  }
+  
+  .blog-pdf-info {
+    @apply flex flex-col;
+  }
+  
+  .blog-pdf-title {
+    @apply font-medium mb-1;
+  }
+  
+  .blog-pdf-download {
+    @apply flex-shrink-0;
+  }
+  
+  .blog-pdf-card .download-btn {
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+  }
+  
+  .blog-pdf-card .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  /* Override prose hover styles for download button in blog posts */
+  .prose .blog-pdf-card .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
 }

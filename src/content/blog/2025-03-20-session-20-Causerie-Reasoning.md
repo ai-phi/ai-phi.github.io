@@ -33,29 +33,7 @@ We will celebrate this 20th session with a cake 🥳
 
 <img src="/assets/ai-phi-session-20.webp" alt="A pixel-art, cyberpunk illustration of french salons including a tall birthday cake." />
 
-These are the slides that were used at the Causerie. They were created to fuel the discussion and provide entry points for various participants to contribute to the conversation.
-
-<div class="pdf-viewer my-8">
-  <iframe
-    src="/pdfs/AI-PHI-20-Causerie-reasoning.pdf#toolbar=0&navpanes=0"
-    width="100%"
-    height="350px"
-    class="border rounded-lg shadow-lg w-full"
-  >
-    <p class="text-skin-base">
-      Your browser doesn't support PDFs. You can{" "}
-      <a href="/pdfs/AI-PHI-20-Causerie-reasoning.pdf" download class="text-skin-accent hover:underline">
-        download the PDF
-      </a>{" "}
-      instead.
-    </p>
-  </iframe>
-  <div class="mt-4 text-right">
-    <a href="/pdfs/AI-PHI-20-Causerie-reasoning.pdf" download class="download-btn">
-      📄 Download PDF
-    </a>
-  </div>
-</div>
+<!-- PDF: AI-PHI-20-Causerie-reasoning.pdf | title: Slides supporting the causerie on reasoning. | type: presentation -->
 
 ## Details
 

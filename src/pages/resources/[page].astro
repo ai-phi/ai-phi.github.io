@@ -12,21 +12,24 @@ export async function getStaticPaths() {
   // Get all blog posts
   const allPosts = await getCollection('blog');
   
-  // Filter posts that contain PDF viewers (have iframe with /pdfs/ in content)
+  // Filter posts that contain PDF comments
   const postsWithPDFs = allPosts.filter(post => {
-    return post.body.includes('/pdfs/') && post.body.includes('iframe');
+    return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
   });
   
   // Extract presentation data from posts
   const presentations = postsWithPDFs.flatMap(post => {
-    const pdfMatches = [...post.body.matchAll(/src="([^"]*\/pdfs\/[^"]*)"/g)];
+    const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+    const pdfMatches = [...post.body.matchAll(pdfRegex)];
     
     if (pdfMatches.length === 0) return [];
     
     return pdfMatches.map((pdfMatch, index) => {
-      const pdfPath = pdfMatch[1];
-      const titleMatch = post.body.match(/<h2[^>]*>([^<]*)<\/h2>/);
-      const pdfTitle = titleMatch ? titleMatch[1] : post.data.title;
+      const filename = pdfMatch[1].trim();
+      const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+      const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
+      const pdfPath = `/pdfs/${filename}`;
+      const pdfTitle = title || post.data.title;
       
       return {
         title: pdfTitle,
@@ -34,7 +37,8 @@ export async function getStaticPaths() {
         postTitle: post.data.title,
         postSlug: post.slug,
         pubDatetime: post.data.pubDatetime,
-        description: post.data.description
+        description: post.data.description,
+        type: type
       };
     });
   }).filter(presentation => presentation.pdfPath);
@@ -70,27 +74,30 @@ const currentPage = page && !isNaN(Number(page)) ? Number(page) : 1;
 // Get all blog posts
 const allPosts = await getCollection('blog');
 
-// Filter posts that contain PDF viewers (have iframe with /pdfs/ in content)
+// Filter posts that contain PDF comments
 const postsWithPDFs = allPosts.filter(post => {
-  // Check if the post content contains PDF iframe
-  return post.body.includes('/pdfs/') && post.body.includes('iframe');
+  // Check if the post content contains PDF comments
+  return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
 });
 
 // Extract presentation data from posts
 const presentations = postsWithPDFs.flatMap(post => {
-  // Extract ALL PDF paths from iframe src attributes
-  const pdfMatches = [...post.body.matchAll(/src="([^"]*\/pdfs\/[^"]*)"/g)];
+  // Extract ALL PDF comments using the new format
+  const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+  const pdfMatches = [...post.body.matchAll(pdfRegex)];
   
   // If no PDFs found, return empty array
   if (pdfMatches.length === 0) return [];
   
   // Create a presentation entry for each PDF found
   return pdfMatches.map((pdfMatch, index) => {
-    const pdfPath = pdfMatch[1];
+    const filename = pdfMatch[1].trim();
+    const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+    const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
+    const pdfPath = `/pdfs/${filename}`;
     
-    // Extract PDF title from h2 tag or iframe title
-    const titleMatch = post.body.match(/<h2[^>]*>([^<]*)<\/h2>/);
-    const pdfTitle = titleMatch ? titleMatch[1] : post.data.title;
+    // Use the title from the comment or fallback to post title
+    const pdfTitle = title || post.data.title;
     
     return {
       title: pdfTitle,
@@ -98,7 +105,8 @@ const presentations = postsWithPDFs.flatMap(post => {
       postTitle: post.data.title,
       postSlug: post.slug,
       pubDatetime: post.data.pubDatetime,
-      description: post.data.description
+      description: post.data.description,
+      type: type
     };
   });
 }).filter(presentation => presentation.pdfPath); // Only include if we found a PDF path
@@ -132,9 +140,12 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
           <div class="presentations-list">
             {paginatedPresentations.map((presentation) => (
               <div class="presentation-card">
+                <div class="presentation-title">
+                  <h3>{presentation.title}</h3>
+                </div>
                 <PDFViewer 
                   src={presentation.pdfPath} 
-                  height="400px"
+                  height="380px"
                 />
                 <div class="presentation-footer">
                   <div class="presentation-info">
@@ -220,16 +231,25 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
   }
   
   .presentation-card {
-    @apply bg-skin-card;
+    background-color: rgb(20 20 20 / 79%);
     border-radius: 0.9rem;
-    border: 2px solid rgb(0 0 0 / 20%);
     margin-top: 0rem;
     margin-bottom: 1rem !important;
   }
-  
-  html[data-theme="dark"] .presentation-card {
-    border: 2px solid rgb(255 255 255 / 20%);
+
+  .presentation-title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.4rem;
   }
+
+  .presentation-title h3 {
+    @apply text-skin-base mb-0;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 16px;
+  }
+  
   
   .presentation-card:last-child {
     margin-bottom: 0rem !important;

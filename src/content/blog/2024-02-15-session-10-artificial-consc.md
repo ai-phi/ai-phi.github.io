@@ -15,6 +15,8 @@ session: true
 
 In this session, Gaspard Fougea (ENS Saclay) will discuss current scientific models of consciousness and their implication for the possibility of artificial consciousness.
 
+<!-- PDF: AI-PHI-10-Preamble.pdf | title: Preamble before the The Possibility of Artificial Consciousness presentation | type: preamble -->
+
 ## Details
 
 **Date and Time:** Thursday, 15th of February 2024 - 7pm  

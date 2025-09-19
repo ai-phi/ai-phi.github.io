@@ -15,7 +15,9 @@ session: true
 
 Stefan Lattner (Sony CSL) will deliver both a historic and technical build-up towards the state of the art of Deep Learning. This is an accessible presentation, that is suitable for a non-technical audience, while also providing original insights to a technical audience.
 
-[slides](https://drive.google.com/file/d/1TGvtzgfZSEpkoqFvO0fJZbc1HdIOPgAE/view?usp=sharing=)
+<!-- PDF: AI-PHI-12-Introduction_to_Deep_Learning.pdf | title: A comprehensive introduction to Deep Learning by Stefan Lattner | type: presentationr -->
+
+<!-- PDF: AI-PHI-12-Preamble.pdf | title: Preamble for the Introduction to Deep Learning Presentation | type: preamble -->
 
 ## Details
 

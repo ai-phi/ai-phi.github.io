@@ -10,7 +10,7 @@ tags:
   - Philosophy of AI
   - Discussion
   - Glossary
-description: Session on Introduction to Philosophy Discussion
+description: Aïda Elamrani presented an Introduction to Philosophy Discussion
 session: true
 ---
 
@@ -20,4 +20,5 @@ Due to popular demand, in our next session we will take all the time we need to 
 
 Some seed topics are:
 To what extent does it matter that AI systems are black boxes?
+
 Is the EU AI act adequate? How might uneven access and competition across countries affect the growth of AI?

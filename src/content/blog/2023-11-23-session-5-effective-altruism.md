@@ -18,3 +18,5 @@ session: true
 Effective Altruism by Jonathan Claybrough
 
 Jonathan Claybrough is part of the AI & Safety pole of Effiscience, an ENS-led association which aims at promoting research with high impact on the most pressing challenges of our times.
+
+<!-- PDF: AI-PHI-5-Effective Altruism, AI Safety.pdf | title: Presentation on Effective Altruism by Jonathan Claybrough | type: presentation -->

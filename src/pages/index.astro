@@ -38,11 +38,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <main class="font-serif" id="main-content">
     <section id="hero" class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">
-          AI & Philosophy<br>
-          Discussion Group
-        </h1>
-        
         <!-- Logo positioned to float and allow text wrapping -->
         <div class="logo-container">
           <!-- Ring logos for background rotation -->
@@ -70,6 +65,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </div>
         
         <div class="hero-text">
+          <h1 class="hero-title">
+            AI & Philosophy<br>
+            Discussion Group
+          </h1>
           <!-- General aspects of AI-PHI -->
           <div class="subtitle-section general-aspects">
             <div class="glitch-container" data-text="Paris">
@@ -242,6 +241,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-content {
     @apply relative;
     max-width: 58rem;
+    margin-right: 35px;
   }
   
   .hero-content::after {
@@ -256,7 +256,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-size: 25px;
 
     text-align: right;
-    margin-left: 65px;
     line-height: 1.50rem;   
   }
   
@@ -502,6 +501,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-0;
     max-width: 58rem;
     margin-top: -40px;
+    
   }
 
   #featured h2,
@@ -513,6 +513,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin-top: 0px;
     margin-bottom: 0px;
     max-width: 58rem;
+    font-size: 1.5rem;
     
   }
 
@@ -530,7 +531,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* Section header line */
   .section-header-line {
     @apply h-px bg-skin-inverted;
-    width: 65%;
+    width: 52%;
     float: left;
     height: 3px;
     margin: 10px auto 20px auto;

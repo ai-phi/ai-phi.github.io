@@ -19,6 +19,8 @@ After having introduced key principles of AI Ethics, Thomas presented the two ma
 
 He also highlighted some limitations of purely technical solutions to explainability and fairness when applied to the settings of loan lending and job offering. These are the cases he is currently focused on with data science teams.
 
+<!-- PDF: AI-PHI-6-Applied AI Ethics (AI Phi).pdf | title: Presentation on Explainability and Fairness by Thomas Souverain | type: presentation -->
+
 Here are the preamble slides:
 
 <!-- PDF: AI-PHI-6-Preamble.pdf | title: Preamble slides before the Explainability and Fairness presentation  | type: preamble -->

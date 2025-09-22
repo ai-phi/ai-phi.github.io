@@ -18,35 +18,56 @@ const {
 
 <div class="pdf-viewer-container">
   <div class="pdf-viewer">
-    <!-- Mobile-friendly PDF viewer -->
-    <div class="mobile-pdf-notice">
-      <p>📱 On mobile? <a href={src} target="_blank" rel="noopener noreferrer" class="mobile-pdf-link">Open PDF in new tab</a> for better viewing</p>
+    <!-- Mobile fallback - show preview image and link instead of iframe -->
+    <div class="mobile-pdf-fallback">
+      <div class="pdf-preview">
+        <div class="pdf-icon">📄</div>
+        <h4 class="pdf-title-mobile">{title}</h4>
+        <p class="pdf-description">PDF Document</p>
+        <div class="mobile-pdf-actions">
+          <a href={src} target="_blank" rel="noopener noreferrer" class="mobile-pdf-btn view-btn">
+            👁️ View PDF
+          </a>
+          {showDownload && (
+            <a href={src} download class="mobile-pdf-btn download-btn">
+              ⬇️ Download
+            </a>
+          )}
+        </div>
+      </div>
     </div>
     
-    <iframe 
-      src={`${src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-      width={width}
-      height={height}
-      class="pdf-iframe"
-      title={title}
-      loading="lazy"
-    >
-      <div class="pdf-fallback">
-        <p>Your browser doesn't support PDF viewing.</p>
-        {showDownload && (
-          <a href={src} download class="pdf-download-btn">
-            📄 Download PDF
-          </a>
-        )}
-        <p><a href={src} target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
-      </div>
-    </iframe>
+    <!-- Desktop PDF viewer -->
+    <div class="desktop-pdf-viewer">
+      <iframe 
+        src={`${src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+        width={width}
+        height={height}
+        class="pdf-iframe"
+        title={title}
+        loading="lazy"
+        frameborder="0"
+        allowfullscreen
+      >
+        <div class="pdf-fallback">
+          <p>Your browser doesn't support PDF viewing.</p>
+          {showDownload && (
+            <a href={src} download class="pdf-download-btn">
+              📄 Download PDF
+            </a>
+          )}
+          <p><a href={src} target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
+        </div>
+      </iframe>
+    </div>
   </div>
 </div>
 
 <style>
   .pdf-viewer-container {
     @apply p-2.5 relative;
+    /* Debug: Add visible border to check container */
+    /* border: 2px solid red; */
   }
   
   .pdf-title {
@@ -90,22 +111,90 @@ const {
     }
   }
   
+  /* Device toolbar/emulation mode fixes */
+  @media screen and (max-device-width: 768px) {
+    .pdf-iframe {
+      /* Ensure iframe loads properly in device emulation */
+      max-width: 100%;
+      height: auto;
+      min-height: 400px;
+    }
+  }
+  
   .pdf-fallback {
     @apply p-8 text-center bg-skin-fill;
   }
   
-  .mobile-pdf-notice {
+  /* Mobile PDF fallback styling */
+  .mobile-pdf-fallback {
     @apply hidden;
   }
   
-  .mobile-pdf-link {
-    @apply text-skin-accent hover:underline font-medium;
+  .pdf-preview {
+    @apply bg-skin-card border border-skin-line rounded-lg p-6 text-center;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Temporary debug border */
+    border: 3px solid #ff0000 !important;
   }
   
-  /* Show mobile notice only on mobile devices */
+  .pdf-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  
+  .pdf-title-mobile {
+    @apply text-lg font-semibold mb-2 text-skin-base;
+  }
+  
+  .pdf-description {
+    @apply text-sm text-skin-base opacity-70 mb-4;
+  }
+  
+  .mobile-pdf-actions {
+    @apply flex gap-3 justify-center flex-wrap;
+  }
+  
+  .mobile-pdf-btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors text-sm;
+  }
+  
+  .view-btn {
+    @apply bg-skin-accent text-skin-inverted hover:bg-opacity-80;
+  }
+  
+  .download-btn {
+    @apply border border-skin-accent text-skin-accent hover:bg-skin-accent hover:text-skin-inverted;
+  }
+  
+  /* Desktop PDF viewer - show by default */
+  .desktop-pdf-viewer {
+    @apply block;
+  }
+  
+  /* Mobile devices - show fallback instead of iframe */
   @media (max-width: 768px) {
-    .mobile-pdf-notice {
-      @apply block p-3 mb-2 bg-skin-card border border-skin-line rounded-lg text-center text-sm;
+    .mobile-pdf-fallback {
+      @apply block !important;
+    }
+    
+    .desktop-pdf-viewer {
+      @apply hidden !important;
+    }
+  }
+  
+  /* Also target device toolbar specifically */
+  @media screen and (max-device-width: 768px) {
+    .mobile-pdf-fallback {
+      @apply block !important;
+    }
+    
+    .desktop-pdf-viewer {
+      @apply hidden !important;
     }
   }
   

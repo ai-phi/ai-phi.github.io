@@ -133,7 +133,7 @@ const allPresentations = presentations;
         
         <!-- Dynamic pagination (controlled by JavaScript) -->
         <div class="pagination-wrapper" id="pagination-container">
-          <nav class="mb-8 mt-auto flex justify-center items-center gap-2" aria-label="Pagination">
+          <nav class="mb-8 mt-auto flex justify-center items-center gap-2 pagination-nav" aria-label="Pagination">
             <!-- Previous/First buttons -->
             <button id="first-btn" class="pagination-btn" style="display: none;">
               <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
@@ -289,6 +289,23 @@ const allPresentations = presentations;
   
   .pagination-wrapper {
     @apply mt-8 flex justify-center;
+    
+    /* Reduce margin on mobile */
+    @media (max-width: 640px) {
+      @apply mt-4;
+    }
+  }
+  
+  .pagination-nav {
+    /* Smaller gap on mobile */
+    @media (max-width: 640px) {
+      gap: 0.25rem;
+    }
+    
+    /* Even smaller gap on very small screens */
+    @media (max-width: 480px) {
+      gap: 0.125rem;
+    }
   }
 
   /* Filter buttons */
@@ -322,6 +339,11 @@ const allPresentations = presentations;
     @apply inline-flex items-center px-3 py-2 text-skin-base hover:text-skin-accent transition-colors cursor-pointer bg-transparent border-none;
     outline: none;
     min-width: fit-content;
+    
+    /* Responsive sizing */
+    @media (max-width: 640px) {
+      @apply px-2 py-1;
+    }
   }
 
   .pagination-btn:disabled {
@@ -330,14 +352,34 @@ const allPresentations = presentations;
 
   .pagination-svg {
     @apply w-5 h-5 fill-current flex-shrink-0;
+    
+    /* Smaller icons on mobile */
+    @media (max-width: 640px) {
+      @apply w-4 h-4;
+    }
   }
 
   .pagination-numbers {
     @apply text-lg font-semibold;
+    
+    /* Smaller text on mobile */
+    @media (max-width: 640px) {
+      @apply text-base;
+    }
   }
 
   .pagination-text {
     @apply text-base font-light;
+    
+    /* Smaller text on mobile */
+    @media (max-width: 640px) {
+      @apply text-sm;
+    }
+    
+    /* Hide text labels on very small screens */
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   /* PDF viewer styles (for dynamically loaded PDFs) */

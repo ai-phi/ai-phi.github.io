@@ -18,7 +18,7 @@ const next = currentPage < totalPages ? "" : "disabled";
 
 {
   totalPages > 1 && (
-    <nav class="mb-8 mt-auto flex justify-center items-center" aria-label="Pagination">
+    <nav class="pagination-nav" aria-label="Pagination">
       {/* First button - only show when more than 4 pages */}
       {totalPages > 4 ? (
         currentPage > 1 && firstUrl ? (
@@ -104,12 +104,26 @@ const next = currentPage < totalPages ? "" : "disabled";
 }
 
        <style>
+         .pagination-nav {
+           @apply mb-8 mt-auto flex justify-center items-center gap-2;
+           
+           /* Smaller gap on mobile */
+           @media (max-width: 640px) {
+             gap: 0.25rem;
+           }
+           
+           /* Even smaller gap on very small screens */
+           @media (max-width: 480px) {
+             gap: 0.125rem;
+           }
+         }
+         
          .disabled-svg {
-           @apply group-hover:!fill-skin-base;
+           @apply group-hover:!fill-skin-base fill-current flex-shrink-0;
          }
          
          .pagination-svg {
-           @apply inline-block fill-current;
+           @apply inline-block fill-current flex-shrink-0;
          }
          
          nav {
@@ -120,11 +134,34 @@ const next = currentPage < totalPages ? "" : "disabled";
            font-size: 1.5rem;
            line-height: 1.75rem;
            font-weight: 600;
+           
+           /* Smaller text on mobile */
+           @media (max-width: 640px) {
+             font-size: 1.25rem;
+           }
          }
          
          .pagination-text {
            font-size: 1.3rem;
            line-height: 1.75rem;
            font-weight: 300;
+           
+           /* Smaller text on mobile */
+           @media (max-width: 640px) {
+             font-size: 1rem;
+           }
+           
+           /* Hide text labels on very small screens */
+           @media (max-width: 480px) {
+             display: none;
+           }
+         }
+         
+         /* Responsive link/button styling */
+         nav a, nav span {
+           /* Smaller padding on mobile */
+           @media (max-width: 640px) {
+             @apply px-2 py-1;
+           }
          }
        </style>

@@ -133,7 +133,7 @@ const allPresentations = presentations;
         
         <!-- Dynamic pagination (controlled by JavaScript) -->
         <div class="pagination-wrapper" id="pagination-container">
-          <nav class="mb-8 mt-auto flex justify-center items-center gap-2 pagination-nav" aria-label="Pagination">
+          <nav class="pagination-nav" aria-label="Pagination">
             <!-- Previous/First buttons -->
             <button id="first-btn" class="pagination-btn" style="display: none;">
               <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
@@ -297,9 +297,12 @@ const allPresentations = presentations;
   }
   
   .pagination-nav {
+    @apply mb-8 mt-auto flex justify-center items-center gap-2;
+    
     /* Smaller gap on mobile */
     @media (max-width: 640px) {
-      gap: 0.25rem;
+      gap: 0.0rem;
+      margin-right: 0.0rem;
     }
     
     /* Even smaller gap on very small screens */
@@ -307,6 +310,8 @@ const allPresentations = presentations;
       gap: 0.125rem;
     }
   }
+
+
 
   /* Filter buttons */
   .filter-container {
@@ -351,29 +356,28 @@ const allPresentations = presentations;
   }
 
   .pagination-svg {
-    @apply w-5 h-5 fill-current flex-shrink-0;
-    
-    /* Smaller icons on mobile */
-    @media (max-width: 640px) {
-      @apply w-4 h-4;
-    }
+    @apply fill-current flex-shrink-0;
   }
 
   .pagination-numbers {
-    @apply text-lg font-semibold;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-weight: 600;
     
     /* Smaller text on mobile */
     @media (max-width: 640px) {
-      @apply text-base;
+      font-size: 1.25rem;
     }
   }
 
   .pagination-text {
-    @apply text-base font-light;
+    font-size: 1.3rem;
+    line-height: 1.75rem;
+    font-weight: 300;
     
     /* Smaller text on mobile */
     @media (max-width: 640px) {
-      @apply text-sm;
+      font-size: 1rem;
     }
     
     /* Hide text labels on very small screens */
@@ -382,6 +386,19 @@ const allPresentations = presentations;
     }
   }
 
+  /* Match posts pagination nav styling */
+  nav {
+    @apply text-lg;
+  }
+
+  /* Responsive link/button styling to match posts */
+  nav a, nav span {
+    /* Smaller padding on mobile */
+    @media (max-width: 640px) {
+      @apply px-2 py-1;
+    }
+  }
+  
   /* PDF viewer styles (for dynamically loaded PDFs) */
   .pdf-viewer-container {
     position: relative;
@@ -409,7 +426,9 @@ const allPresentations = presentations;
 </style>
 
 <script>
+  console.log('Resources script loaded');
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded fired');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const presentationCards = document.querySelectorAll('.presentation-card');
     const pageNumbers = document.getElementById('page-numbers');
@@ -422,17 +441,20 @@ const allPresentations = presentations;
     const POSTS_PER_PAGE = 3;
     let currentFilter = 'all';
     let currentPage = 1;
-    let filteredCards: Element[] = [];
+    let filteredCards = [];
 
     // Initialize the filtering system
     function init() {
+      console.log('Initializing resources page...');
+      console.log('Found presentation cards:', presentationCards.length);
       currentFilter = 'all';
       currentPage = 1;
       applyFilter(currentFilter);
     }
 
     // Filter presentations based on type
-    function applyFilter(filterType: string) {
+    function applyFilter(filterType) {
+      console.log('Applying filter:', filterType);
       currentFilter = filterType;
       currentPage = 1; // Reset to first page when filtering
 
@@ -456,6 +478,8 @@ const allPresentations = presentations;
         }
       });
 
+      console.log('Filtered cards:', filteredCards.length);
+      
       // Update pagination and display
       updatePagination();
       updateDisplay();
@@ -499,7 +523,7 @@ const allPresentations = presentations;
     function updateDisplay() {
       // Hide all cards first
       presentationCards.forEach(card => {
-        (card as HTMLElement).style.display = 'none';
+        card.style.display = 'none';
       });
 
       // Calculate which cards to show for current page
@@ -508,14 +532,14 @@ const allPresentations = presentations;
       
       // Show the appropriate filtered cards
       for (let i = startIndex; i < endIndex && i < filteredCards.length; i++) {
-        const card = filteredCards[i] as HTMLElement;
+        const card = filteredCards[i];
         card.style.display = 'block';
       }
     }
 
 
     // Pagination navigation functions
-    function goToPage(page: number) {
+    function goToPage(page) {
       const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
       if (page >= 1 && page <= totalPages) {
         currentPage = page;

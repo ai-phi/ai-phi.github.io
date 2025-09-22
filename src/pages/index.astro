@@ -42,23 +42,23 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         <div class="logo-container">
           <!-- Ring logos for background rotation -->
           <img
-            src="/src/assets/images/site-images/AiPhi_Logo_Black_Variante_Ring.png"
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
             alt=""
             class="hero-ring-logo light-ring"
           />
           <img
-            src="/src/assets/images/site-images/AiPhi_Logo_White_Variante_Ring.png"
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
             alt=""
             class="hero-ring-logo dark-ring"
           />
           
           <img
-            src="/src/assets/images/site-images/AiPhi_Logo_Black_Variante.png"
+            src="/images/AiPhi_Logo_Black_Variante.png"
             alt="AI-PHI Logo"
             class="hero-logo light-logo"
           />
           <img
-            src="/src/assets/images/site-images/AiPhi_Logo_White_Variante.png"
+            src="/images/AiPhi_Logo_White_Variante.png"
             alt="AI-PHI Logo"
             class="hero-logo dark-logo"
           />
@@ -242,9 +242,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   .hero-content {
-    @apply relative;
-    max-width: 58rem;
-    margin-right: 35px;
+    @apply relative px-4;
+    max-width: 100%;
+    margin: 0;
+    
+    @media (min-width: 768px) {
+      max-width: 58rem;
+      margin-right: 35px;
+      @apply px-0;
+    }
   }
   
   .hero-content::after {
@@ -257,13 +263,24 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply text-lg;
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
-
-    text-align: right;
+    text-align: center;
+    
+    @media (min-width: 768px) {
+      text-align: right;
+    }
     line-height: 1.50rem;   
   }
   
   .subtitle-section {
     @apply block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+    }
     font-size: x-large;
   }
   
@@ -278,9 +295,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   .hero-title {
-    @apply mb-6 text-4xl font-bold leading-tight sm:text-5xl ;
+    @apply mb-6 font-bold leading-tight;
     font-family: 'Nunito', sans-serif;
-    font-size: 3rem;
+    font-size: 2rem; /* 32px on mobile */
+    line-height: 1.2;
+    
+    @media (min-width: 640px) {
+      font-size: 2.5rem; /* 40px on tablet */
+    }
+    
+    @media (min-width: 768px) {
+      font-size: 3rem; /* 48px on desktop */
+    }
   }
 
   .hero-tagline {
@@ -375,6 +401,16 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .glitch-container {
     @apply relative inline-block;
     /* overflow: hidden; */
+    /* Touch-friendly sizing */
+    min-height: 44px; /* iOS recommended minimum */
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    
+    @media (min-width: 640px) {
+      font-size: 1rem;
+    }
   }
 
     .glitch-container.glitch-active {
@@ -507,10 +543,19 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   
   .logo-container {
     @apply relative;
-    float: right;
-    margin-left: 4rem;
-    margin-bottom: 1rem;
-    margin-top: -2rem;
+    /* Mobile-first: center the logo */
+    float: none;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+    
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      float: right;
+      margin-left: 4rem;
+      margin-bottom: 1rem;
+      margin-top: -2rem;
+      text-align: left;
+    }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
     clip-path: circle(50%);
@@ -519,13 +564,27 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* Hero ring logo styling */
   .hero-ring-logo {
     @apply absolute w-auto transition-opacity duration-200;
-    height: 28rem;
     opacity: 0.3;
     pointer-events: none;
     top: 0;
     left: 0;
     z-index: -1;
     animation: slowRotate 150s linear infinite;
+    
+    /* Responsive sizing for ring logos */
+    height: 14rem; /* Mobile */
+    
+    @media (min-width: 640px) {
+      height: 18rem; /* Tablet */
+    }
+    
+    @media (min-width: 768px) {
+      height: 22rem; /* Desktop */
+    }
+    
+    @media (min-width: 1024px) {
+      height: 28rem; /* Large desktop */
+    }
   }
   
   .hero-ring-logo.light-ring {
@@ -563,8 +622,20 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   
   .hero-logo {
-    @apply h-32 w-auto transition-opacity duration-200 sm:h-40 lg:h-48;
-    height: 25rem;
+    @apply w-auto transition-opacity duration-200;
+    height: 12rem; /* 192px on mobile */
+    
+    @media (min-width: 640px) {
+      height: 16rem; /* 256px on tablet */
+    }
+    
+    @media (min-width: 768px) {
+      height: 20rem; /* 320px on desktop */
+    }
+    
+    @media (min-width: 1024px) {
+      height: 25rem; /* 400px on large desktop */
+    }
   }
   
   .light-logo {
@@ -609,6 +680,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .all-posts-button {
     text-decoration: underline;
     text-underline-offset: 0.3em;
+    /* Touch-friendly button sizing */
+    @apply px-6 py-3;
+    min-height: 44px;
+    
+    @media (min-width: 768px) {
+      @apply px-8 py-4;
+    }
   }
 
   #all-posts {

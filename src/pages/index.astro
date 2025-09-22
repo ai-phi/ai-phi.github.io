@@ -237,8 +237,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <style>
   /* ===== Hero Section ===== */
   .hero-section {
-    @apply pb-0 pt-0;
+    @apply pb-8 pt-8; /* Add padding on mobile */
     max-width: 58rem;
+    min-height: 80vh; /* Ensure minimum height on mobile */
+    
+    @media (min-width: 768px) {
+      @apply pb-0 pt-0; /* Remove padding on desktop */
+      min-height: auto; /* Auto height on desktop */
+    }
   }
   
   .hero-content {
@@ -264,9 +270,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
     text-align: center;
+    clear: both; /* Ensure text clears floated logo on mobile */
     
     @media (min-width: 768px) {
       text-align: right;
+      clear: none; /* Allow text to flow around logo on desktop */
     }
     line-height: 1.50rem;   
   }
@@ -276,17 +284,21 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-    line-height: 1.4; /* Tighter line height */
+    gap: 0.25rem; /* Reduced gap from 0.5rem to 0.25rem */
+    line-height: 1.2; /* Even tighter line height */
     font-size: 1.1rem; /* More controlled sizing */
+    clear: both; /* Ensure subtitles clear the logo on mobile */
     
     @media (min-width: 640px) {
       font-size: 1.25rem; /* Slightly larger on tablet */
+      gap: 0.375rem; /* Slightly larger gap on tablet */
     }
     
     @media (min-width: 768px) {
       justify-content: flex-end;
       font-size: 1.5rem; /* x-large equivalent on desktop */
+      gap: 0.5rem; /* Original gap on desktop */
+      clear: none; /* Allow text to flow around logo on desktop */
     }
   }
   
@@ -305,14 +317,26 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-title {
     @apply mb-6 font-bold leading-tight;
     font-family: 'Nunito', sans-serif;
-    font-size: 2rem; /* 32px on mobile */
+    font-size: 1.5rem; /* 24px on very small mobile */
     line-height: 1.2;
     
+    @media (min-width: 375px) {
+      font-size: 1.75rem; /* 28px on small mobile */
+    }
+    
+    @media (min-width: 480px) {
+      font-size: 2rem; /* 32px on larger mobile */
+    }
+    
     @media (min-width: 640px) {
-      font-size: 2.5rem; /* 40px on tablet */
+      font-size: 2.25rem; /* 36px on small tablet */
     }
     
     @media (min-width: 768px) {
+      font-size: 2.75rem; /* 44px on tablet */
+    }
+    
+    @media (min-width: 1024px) {
       font-size: 3rem; /* 48px on desktop */
     }
   }
@@ -407,14 +431,20 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   # thank you muffinman! */
 
   .glitch-container {
-    @apply relative inline-block;
+    @apply relative inline-flex items-center justify-center;
     /* overflow: hidden; */
-    /* Touch-friendly sizing */
-    min-height: 44px; /* iOS recommended minimum */
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.5rem;
+    /* Minimal padding for tight text wrapping */
+    padding: 0.125rem 0.25rem; /* Much smaller padding */
     font-size: 0.9rem;
+    line-height: 1; /* Even tighter line height */
+    vertical-align: middle; /* Align with dots */
+    margin: 0; /* Remove any default margins */
+    
+    /* Touch-friendly on mobile with slightly larger touch area */
+    @media (max-width: 767px) {
+      padding: 0.25rem 0.375rem; /* Slightly more padding on mobile for touch */
+      min-height: 28px; /* Even smaller min-height */
+    }
     
     @media (min-width: 640px) {
       font-size: 1rem;
@@ -537,12 +567,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .dot {
     @apply text-skin-accent font-bold;
-    font-size: 2em; /* Make dots twice as large */
+    font-size: 1.2em; /* Much smaller than 2em */
     vertical-align: middle;
-    margin-bottom: 10px;
+    line-height: 1; /* Tight line height */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+    height: 1em; /* Match the line height for perfect alignment */
   }
   
   .hero-graphic {
@@ -555,6 +588,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     float: none;
     margin: 0 auto 2rem auto;
     text-align: center;
+    width: fit-content; /* Ensure container fits logo */
     
     /* Desktop layout */
     @media (min-width: 768px) {
@@ -563,6 +597,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       margin-bottom: 1rem;
       margin-top: -2rem;
       text-align: left;
+      margin-right: 0; /* Remove auto margin on desktop */
     }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
@@ -621,11 +656,16 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   #hero{
-    margin-top: 70px;
-    margin-bottom: 70px;
+    margin-top: 2rem; /* Smaller top margin on mobile */
+    margin-bottom: 3rem; /* Ensure bottom spacing on mobile */
     max-height: 100vw;
     margin-left: auto;
     margin-right: auto;
+    
+    @media (min-width: 768px) {
+      margin-top: 70px; /* Original margins on desktop */
+      margin-bottom: 70px;
+    }
   }
 
   
@@ -668,8 +708,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   #recent-posts {
     @apply pb-0;
     max-width: 58rem;
-    margin-top: -40px;
+    margin-top: 2rem; /* Positive margin on mobile */
     
+    @media (min-width: 768px) {
+      margin-top: -40px; /* Negative margin only on desktop */
+    }
   }
 
   #featured h2,
@@ -677,12 +720,17 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply text-4xl font-semibold tracking-wide;
   }
   .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    @apply text-center;
+    margin-top: 2rem; /* Better top margin on mobile */
+    margin-bottom: 2rem; /* Better bottom margin on mobile */
     max-width: 58rem;
     font-size: 1.5rem;
     
+    @media (min-width: 768px) {
+      @apply my-8; /* Original margins on desktop */
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
   }
 
   .all-posts-button {
@@ -698,9 +746,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   #all-posts {
-
-    padding-bottom: 20px;
-    margin-top: -20px;
+    padding-bottom: 2rem; /* Better padding on mobile */
+    margin-top: 2rem; /* Positive margin on mobile */
+    
+    @media (min-width: 768px) {
+      padding-bottom: 20px; /* Original padding on desktop */
+      margin-top: -20px; /* Original negative margin on desktop */
+    }
   }
 
   /* Section header line */

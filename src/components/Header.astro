@@ -425,11 +425,28 @@ const { activeNav } = Astro.props;
   
   .header-line {
     @apply h-px bg-skin-inverted;
-    width: 58rem;
+    width: 100%; /* Full width on mobile */
     height: 5px;
     position: absolute;
     justify-content: right;
     margin-top: 48px;
+    
+    /* Responsive width scaling */
+    @media (min-width: 480px) {
+      width: 90%; /* Slightly narrower on small screens */
+    }
+    
+    @media (min-width: 640px) {
+      width: 100%; /* Medium width on tablets */
+    }
+    
+    @media (min-width: 768px) {
+      width: 100%; /* Narrower on larger tablets */
+    }
+    
+    @media (min-width: 1024px) {
+      width: 100%; /* Original fixed width on desktop */
+    }
   }
 
 </style>

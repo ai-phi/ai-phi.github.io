@@ -97,11 +97,10 @@ const allPresentations = presentations;
                 <div class="presentation-title">
                   <h3>{presentation.title}</h3>
                 </div>
-                <div class="pdf-placeholder-container" data-pdf-src={presentation.pdfPath}>
-                  <div class="pdf-loading">
-                    <p>Loading PDF...</p>
-                  </div>
-                </div>
+                <PDFViewer 
+                  src={presentation.pdfPath} 
+                  height="380px"
+                />
                 <div class="presentation-footer">
                   <div class="presentation-info">
                     <div class="presentation-date">{presentation.pubDatetime.toLocaleDateString('en-US', { 
@@ -341,23 +340,6 @@ const allPresentations = presentations;
     @apply text-base font-light;
   }
 
-  /* PDF lazy loading */
-  .pdf-placeholder-container {
-    height: 380px;
-    border-radius: 0.5rem;
-    border: 1px solid rgb(var(--color-border));
-    overflow: hidden;
-    position: relative;
-  }
-
-  .pdf-loading {
-    @apply flex items-center justify-center h-full bg-skin-fill text-skin-base opacity-70;
-  }
-
-  .pdf-loaded {
-    height: 380px;
-  }
-
   /* PDF viewer styles (for dynamically loaded PDFs) */
   .pdf-viewer-container {
     position: relative;
@@ -482,46 +464,13 @@ const allPresentations = presentations;
       const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
       const endIndex = startIndex + POSTS_PER_PAGE;
       
-      // Show the appropriate filtered cards and load their PDFs
+      // Show the appropriate filtered cards
       for (let i = startIndex; i < endIndex && i < filteredCards.length; i++) {
         const card = filteredCards[i] as HTMLElement;
         card.style.display = 'block';
-        loadPDF(card);
       }
     }
 
-    // Lazy load PDF when card becomes visible
-    function loadPDF(card: HTMLElement) {
-      const pdfContainer = card.querySelector('.pdf-placeholder-container');
-      if (!pdfContainer || pdfContainer.classList.contains('pdf-loaded')) {
-        return; // Already loaded
-      }
-
-      const pdfSrc = pdfContainer.getAttribute('data-pdf-src');
-      if (!pdfSrc) return;
-
-      // Create PDF viewer HTML
-      const pdfHTML = `
-        <div class="pdf-viewer-container">
-          <div class="pdf-viewer">
-            <iframe src="${pdfSrc}#toolbar=0&navpanes=0" 
-                    width="100%" 
-                    height="380px" 
-                    class="pdf-iframe" 
-                    title="PDF Document">
-              <div class="pdf-fallback">
-                <p>Your browser doesn't support PDF viewing.</p>
-                <a href="${pdfSrc}" target="_blank">Open PDF in new tab</a>
-              </div>
-            </iframe>
-          </div>
-        </div>
-      `;
-
-      // Replace placeholder with actual PDF viewer
-      pdfContainer.innerHTML = pdfHTML;
-      pdfContainer.classList.add('pdf-loaded');
-    }
 
     // Pagination navigation functions
     function goToPage(page: number) {

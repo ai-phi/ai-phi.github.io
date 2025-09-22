@@ -237,14 +237,26 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 <style>
   /* ===== Hero Section ===== */
   .hero-section {
-    @apply pb-0 pt-0;
+    @apply pb-8 pt-8; /* Add padding on mobile */
     max-width: 58rem;
+    min-height: 80vh; /* Ensure minimum height on mobile */
+    
+    @media (min-width: 768px) {
+      @apply pb-0 pt-0; /* Remove padding on desktop */
+      min-height: auto; /* Auto height on desktop */
+    }
   }
   
   .hero-content {
-    @apply relative;
-    max-width: 58rem;
-    margin-right: 35px;
+    @apply relative px-4;
+    max-width: 100%;
+    margin: 0;
+    
+    @media (min-width: 768px) {
+      max-width: 58rem;
+      margin-right: 35px;
+      @apply px-0;
+    }
   }
   
   .hero-content::after {
@@ -257,30 +269,76 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply text-lg;
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
-
-    text-align: right;
+    text-align: center;
+    clear: both; /* Ensure text clears floated logo on mobile */
+    
+    @media (min-width: 768px) {
+      text-align: right;
+      clear: none; /* Allow text to flow around logo on desktop */
+    }
     line-height: 1.50rem;   
   }
   
   .subtitle-section {
     @apply block;
-    font-size: x-large;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem; /* Reduced gap from 0.5rem to 0.25rem */
+    line-height: 1.2; /* Even tighter line height */
+    font-size: 1.1rem; /* More controlled sizing */
+    clear: both; /* Ensure subtitles clear the logo on mobile */
+    
+    @media (min-width: 640px) {
+      font-size: 1.25rem; /* Slightly larger on tablet */
+      gap: 0.375rem; /* Slightly larger gap on tablet */
+    }
+    
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+      font-size: 1.5rem; /* x-large equivalent on desktop */
+      gap: 0.5rem; /* Original gap on desktop */
+      clear: none; /* Allow text to flow around logo on desktop */
+    }
   }
   
   .subtitle-section.general-aspects {
     color: rgb(164 162 162); /* Slightly greyish text */
-    margin-top: 2.5rem;
+    margin-top: 1.5rem; /* Reduced from 2.5rem */
+    margin-bottom: 0.75rem;
   }
   
   .subtitle-section.discussion-topics {
     color: rgb(115, 115, 115); /* Darker text for discussion topics */
-    margin-top: 2rem;
+    margin-top: 1rem; /* Reduced from 2rem */
+    margin-bottom: 0.75rem;
   }
   
   .hero-title {
-    @apply mb-6 text-4xl font-bold leading-tight sm:text-5xl ;
+    @apply mb-6 font-bold leading-tight;
     font-family: 'Nunito', sans-serif;
-    font-size: 3rem;
+    font-size: 1.5rem; /* 24px on very small mobile */
+    line-height: 1.2;
+    
+    @media (min-width: 375px) {
+      font-size: 1.75rem; /* 28px on small mobile */
+    }
+    
+    @media (min-width: 480px) {
+      font-size: 2rem; /* 32px on larger mobile */
+    }
+    
+    @media (min-width: 640px) {
+      font-size: 2.25rem; /* 36px on small tablet */
+    }
+    
+    @media (min-width: 768px) {
+      font-size: 2.75rem; /* 44px on tablet */
+    }
+    
+    @media (min-width: 1024px) {
+      font-size: 3rem; /* 48px on desktop */
+    }
   }
 
   .hero-tagline {
@@ -373,8 +431,24 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   # thank you muffinman! */
 
   .glitch-container {
-    @apply relative inline-block;
+    @apply relative inline-flex items-center justify-center;
     /* overflow: hidden; */
+    /* Minimal padding for tight text wrapping */
+    padding: 0.125rem 0.25rem; /* Much smaller padding */
+    font-size: 0.9rem;
+    line-height: 1; /* Even tighter line height */
+    vertical-align: middle; /* Align with dots */
+    margin: 0; /* Remove any default margins */
+    
+    /* Touch-friendly on mobile with slightly larger touch area */
+    @media (max-width: 767px) {
+      padding: 0.25rem 0.375rem; /* Slightly more padding on mobile for touch */
+      min-height: 28px; /* Even smaller min-height */
+    }
+    
+    @media (min-width: 640px) {
+      font-size: 1rem;
+    }
   }
 
     .glitch-container.glitch-active {
@@ -493,12 +567,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .dot {
     @apply text-skin-accent font-bold;
-    font-size: 2em; /* Make dots twice as large */
+    font-size: 1.2em; /* Much smaller than 2em */
     vertical-align: middle;
-    margin-bottom: 10px;
+    line-height: 1; /* Tight line height */
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+    height: 1em; /* Match the line height for perfect alignment */
   }
   
   .hero-graphic {
@@ -507,10 +584,21 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   
   .logo-container {
     @apply relative;
-    float: right;
-    margin-left: 4rem;
-    margin-bottom: 1rem;
-    margin-top: -2rem;
+    /* Mobile-first: center the logo */
+    float: none;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+    width: fit-content; /* Ensure container fits logo */
+    
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      float: right;
+      margin-left: 4rem;
+      margin-bottom: 1rem;
+      margin-top: -2rem;
+      text-align: left;
+      margin-right: 0; /* Remove auto margin on desktop */
+    }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
     clip-path: circle(50%);
@@ -519,13 +607,27 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* Hero ring logo styling */
   .hero-ring-logo {
     @apply absolute w-auto transition-opacity duration-200;
-    height: 28rem;
     opacity: 0.3;
     pointer-events: none;
     top: 0;
     left: 0;
     z-index: -1;
     animation: slowRotate 150s linear infinite;
+    
+    /* Responsive sizing for ring logos */
+    height: 14rem; /* Mobile */
+    
+    @media (min-width: 640px) {
+      height: 18rem; /* Tablet */
+    }
+    
+    @media (min-width: 768px) {
+      height: 22rem; /* Desktop */
+    }
+    
+    @media (min-width: 1024px) {
+      height: 28rem; /* Large desktop */
+    }
   }
   
   .hero-ring-logo.light-ring {
@@ -554,17 +656,34 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   #hero{
-    margin-top: 70px;
-    margin-bottom: 70px;
+    margin-top: 2rem; /* Smaller top margin on mobile */
+    margin-bottom: 3rem; /* Ensure bottom spacing on mobile */
     max-height: 100vw;
     margin-left: auto;
     margin-right: auto;
+    
+    @media (min-width: 768px) {
+      margin-top: 70px; /* Original margins on desktop */
+      margin-bottom: 70px;
+    }
   }
 
   
   .hero-logo {
-    @apply h-32 w-auto transition-opacity duration-200 sm:h-40 lg:h-48;
-    height: 25rem;
+    @apply w-auto transition-opacity duration-200;
+    height: 12rem; /* 192px on mobile */
+    
+    @media (min-width: 640px) {
+      height: 16rem; /* 256px on tablet */
+    }
+    
+    @media (min-width: 768px) {
+      height: 20rem; /* 320px on desktop */
+    }
+    
+    @media (min-width: 1024px) {
+      height: 25rem; /* 400px on large desktop */
+    }
   }
   
   .light-logo {
@@ -589,8 +708,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   #recent-posts {
     @apply pb-0;
     max-width: 58rem;
-    margin-top: -40px;
+    margin-top: 2rem; /* Positive margin on mobile */
     
+    @media (min-width: 768px) {
+      margin-top: -40px; /* Negative margin only on desktop */
+    }
   }
 
   #featured h2,
@@ -598,23 +720,39 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply text-4xl font-semibold tracking-wide;
   }
   .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    @apply text-center;
+    margin-top: 2rem; /* Better top margin on mobile */
+    margin-bottom: 2rem; /* Better bottom margin on mobile */
     max-width: 58rem;
     font-size: 1.5rem;
     
+    @media (min-width: 768px) {
+      @apply my-8; /* Original margins on desktop */
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
   }
 
   .all-posts-button {
     text-decoration: underline;
     text-underline-offset: 0.3em;
+    /* Touch-friendly button sizing */
+    @apply px-6 py-3;
+    min-height: 44px;
+    
+    @media (min-width: 768px) {
+      @apply px-8 py-4;
+    }
   }
 
   #all-posts {
-
-    padding-bottom: 20px;
-    margin-top: -20px;
+    padding-bottom: 2rem; /* Better padding on mobile */
+    margin-top: 2rem; /* Positive margin on mobile */
+    
+    @media (min-width: 768px) {
+      padding-bottom: 20px; /* Original padding on desktop */
+      margin-top: -20px; /* Original negative margin on desktop */
+    }
   }
 
   /* Section header line */

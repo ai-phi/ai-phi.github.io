@@ -52,7 +52,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
   
   .footer-icons {
     @apply absolute bottom-0 right-0;
-    width: 200px;
+    width: 25%;
     height: 64px;
   }
   
@@ -102,29 +102,65 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
   #footer-icon-1{
     /* Pure white filter */
     filter: brightness(0) invert(1);
-    right: 250px;
+    right: 50%; /* Responsive positioning */
     bottom: 20px;/* Half icon (64px) above footer, half below */
+    
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      right: 50%; /* Move closer to center on mobile */
+    }
+    
+    @media (min-width: 1024px) {
+      right: 50%; /* Slightly adjust on large screens */
+    }
   }
 
   #footer-icon-1-backing{
     filter: brightness(1) invert(1);
-    right: 250px;
+    right: 50%; /* Responsive positioning */
     bottom: 20px;/* Half icon (64px) above footer, half below */
+    
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      right: 50%; /* Move closer to center on mobile */
+    }
+    
+    @media (min-width: 1024px) {
+      right: 50%; /* Slightly adjust on large screens */
+    }
   }
   
   /* Second icon pair - black */
   #footer-icon-2{
-    right: 50px;
+    right: 8%; /* Responsive positioning */
     /* Pure black filter */
     filter: brightness(0);
     bottom: 20px; /* Half icon (64px) above footer, half below */
+    
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      right: 8%; /* Move slightly away from edge on mobile */
+    }
+    
+    @media (min-width: 1024px) {
+      right: 8%; /* Slightly adjust on large screens */
+    }
   }
     /* Second icon pair - black */
   #footer-icon-2-backing {
-    right: 50px;
+    right: 8%; /* Responsive positioning */
     /* Pure black filter */
     filter: brightness(0) invert(0);
     bottom: 20px; /* Half icon (64px) above footer, half below */
+    
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      right: 8%; /* Move slightly away from edge on mobile */
+    }
+    
+    @media (min-width: 1024px) {
+      right: 8%; /* Slightly adjust on large screens */
+    }
   }
 </style>
 

@@ -18,12 +18,18 @@ const {
 
 <div class="pdf-viewer-container">
   <div class="pdf-viewer">
+    <!-- Mobile-friendly PDF viewer -->
+    <div class="mobile-pdf-notice">
+      <p>📱 On mobile? <a href={src} target="_blank" rel="noopener noreferrer" class="mobile-pdf-link">Open PDF in new tab</a> for better viewing</p>
+    </div>
+    
     <iframe 
-      src={`${src}#toolbar=0&navpanes=0`}
+      src={`${src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
       width={width}
       height={height}
       class="pdf-iframe"
       title={title}
+      loading="lazy"
     >
       <div class="pdf-fallback">
         <p>Your browser doesn't support PDF viewing.</p>
@@ -32,6 +38,7 @@ const {
             📄 Download PDF
           </a>
         )}
+        <p><a href={src} target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
       </div>
     </iframe>
   </div>
@@ -52,10 +59,54 @@ const {
   
   .pdf-iframe {
     @apply border-0;
+    /* Enable smooth scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+  }
+  
+  /* Mobile-specific PDF handling */
+  @media (max-width: 768px) {
+    .pdf-viewer {
+      /* Allow touch scrolling */
+      overflow: visible;
+      position: relative;
+    }
+    
+    .pdf-iframe {
+      /* Improve mobile scrolling */
+      -webkit-overflow-scrolling: touch;
+      overflow: auto;
+      touch-action: pan-x pan-y;
+      /* Ensure proper sizing on mobile */
+      width: 100% !important;
+      min-height: 400px;
+    }
+  }
+  
+  /* Very small screens - make PDFs more accessible */
+  @media (max-width: 480px) {
+    .pdf-iframe {
+      min-height: 350px;
+    }
   }
   
   .pdf-fallback {
     @apply p-8 text-center bg-skin-fill;
+  }
+  
+  .mobile-pdf-notice {
+    @apply hidden;
+  }
+  
+  .mobile-pdf-link {
+    @apply text-skin-accent hover:underline font-medium;
+  }
+  
+  /* Show mobile notice only on mobile devices */
+  @media (max-width: 768px) {
+    .mobile-pdf-notice {
+      @apply block p-3 mb-2 bg-skin-card border border-skin-line rounded-lg text-center text-sm;
+    }
   }
   
 </style>

@@ -277,21 +277,29 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
+    line-height: 1.4; /* Tighter line height */
+    font-size: 1.1rem; /* More controlled sizing */
+    
+    @media (min-width: 640px) {
+      font-size: 1.25rem; /* Slightly larger on tablet */
+    }
     
     @media (min-width: 768px) {
       justify-content: flex-end;
+      font-size: 1.5rem; /* x-large equivalent on desktop */
     }
-    font-size: x-large;
   }
   
   .subtitle-section.general-aspects {
     color: rgb(164 162 162); /* Slightly greyish text */
-    margin-top: 2.5rem;
+    margin-top: 1.5rem; /* Reduced from 2.5rem */
+    margin-bottom: 0.75rem;
   }
   
   .subtitle-section.discussion-topics {
     color: rgb(115, 115, 115); /* Darker text for discussion topics */
-    margin-top: 2rem;
+    margin-top: 1rem; /* Reduced from 2rem */
+    margin-bottom: 0.75rem;
   }
   
   .hero-title {

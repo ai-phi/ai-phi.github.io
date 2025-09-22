@@ -9,7 +9,7 @@ import Pagination from '../../components/Pagination.astro';
 import { getCollection } from 'astro:content';
 
 const pageTitle = "Resources";
-const pageDescription = "AI-Phi resources. These includes presentations and any other documentation.";
+const pageDescription = "These serve as a record of our sessions and a way to share outputs.";
 
 // Pagination parameters
 const POSTS_PER_PAGE = 3;
@@ -77,7 +77,7 @@ const paginatedPresentations = presentations.slice(startIndex, endIndex);
       <section class="mb-12">
         <h2 class="section-title">Presentations</h2>
         <p class="section-description">
-          Slides and presentation materials from our sessions. AI-Phi has experimented with various formats over the years. Various presentations were preceeded by a preamble which is included here incuding news and updates sections of varying length.
+          Presentation materials from our sessions. Various presentations were preceeded by a 'preamble' which included news and updates.
         </p>
         
         {paginatedPresentations.length > 0 ? (

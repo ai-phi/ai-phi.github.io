@@ -427,8 +427,12 @@ const allPresentations = presentations;
 
 <script>
   console.log('Resources script loaded');
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOMContentLoaded fired');
+  
+  let initAttempts = 0;
+  const maxInitAttempts = 20; // Max 2 seconds of retries
+  
+  function initializeWhenReady() {
+    initAttempts++;
     const filterButtons = document.querySelectorAll('.filter-btn');
     const presentationCards = document.querySelectorAll('.presentation-card');
     const pageNumbers = document.getElementById('page-numbers');
@@ -437,6 +441,32 @@ const allPresentations = presentations;
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const lastBtn = document.getElementById('last-btn');
+    
+    // Check if all elements are loaded - we expect at least a few presentation cards
+    const expectedMinCards = 3; // Adjust based on your content
+    const isNavigatedPage = document.readyState === 'complete' && initAttempts === 1;
+    
+    if ((presentationCards.length < expectedMinCards || !pageNumbers || !paginationContainer) && initAttempts < maxInitAttempts) {
+      console.log('Resources not fully loaded yet, retrying...', {
+        attempt: initAttempts,
+        maxAttempts: maxInitAttempts,
+        cards: presentationCards.length,
+        expectedMin: expectedMinCards,
+        pageNumbers: !!pageNumbers,
+        paginationContainer: !!paginationContainer,
+        isNavigated: isNavigatedPage,
+        readyState: document.readyState
+      });
+      
+      // Use longer delay for navigation scenarios
+      const retryDelay = isNavigatedPage ? 200 : 100;
+      setTimeout(initializeWhenReady, retryDelay);
+      return;
+    }
+    
+    if (initAttempts >= maxInitAttempts) {
+      console.warn('Max initialization attempts reached, proceeding with available elements');
+    }
 
     const POSTS_PER_PAGE = 3;
     let currentFilter = 'all';
@@ -586,6 +616,23 @@ const allPresentations = presentations;
 
     // Initialize on page load
     init();
-  });
+  }
+  
+  // Start initialization when DOM is ready, with retries if needed
+  function startInitialization() {
+    console.log('Starting initialization...');
+    initAttempts = 0; // Reset attempts counter
+    setTimeout(initializeWhenReady, 50);
+  }
+  
+  // Handle both initial page load and navigation
+  if (document.readyState === 'loading') {
+    // Page is still loading
+    document.addEventListener('DOMContentLoaded', startInitialization);
+  } else {
+    // Page already loaded (navigation case)
+    console.log('Page already loaded, starting initialization');
+    startInitialization();
+  }
 </script>
 

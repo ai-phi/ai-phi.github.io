@@ -1,0 +1,355 @@
+---
+import { SITE } from "@config";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import PDFViewer from '../../components/PDFViewer.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  // Get all blog posts
+  const allPosts = await getCollection('blog');
+  
+  // Filter posts that contain PDF comments
+  const postsWithPDFs = allPosts.filter(post => {
+    return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
+  });
+  
+  // Extract presentation data from posts
+  const presentations = postsWithPDFs.flatMap(post => {
+    const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+    const pdfMatches = [...post.body.matchAll(pdfRegex)];
+    
+    if (pdfMatches.length === 0) return [];
+    
+    return pdfMatches.map((pdfMatch, index) => {
+      const filename = pdfMatch[1].trim();
+      const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+      const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
+      const pdfPath = `/pdfs/${filename}`;
+      const pdfTitle = title || post.data.title;
+      
+      return {
+        title: pdfTitle,
+        pdfPath: pdfPath,
+        postTitle: post.data.title,
+        postSlug: post.slug,
+        pubDatetime: post.data.pubDatetime,
+        description: post.data.description,
+        type: type
+      };
+    });
+  }).filter(presentation => presentation.pdfPath);
+  
+  // Sort presentations by date (newest first)
+  presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
+  
+  const POSTS_PER_PAGE = 3;
+  
+  // Generate paths for unfiltered pagination (pages 2, 3, etc.)
+  const totalPages = Math.ceil(presentations.length / POSTS_PER_PAGE);
+  const paths = [];
+  
+  for (let i = 2; i <= totalPages; i++) {
+    paths.push({
+      params: { page: String(i) },
+      props: { page: i }
+    });
+  }
+  
+  return paths;
+}
+
+const pageTitle = "Resources";
+const pageDescription = "These serve as a record of our sessions and a way to share outputs.";
+
+// Get filter type from URL parameters
+const url = Astro.url;
+const filterType = url.searchParams.get('type') || 'all';
+
+// Pagination parameters
+const POSTS_PER_PAGE = 3;
+
+// Get page from URL params
+const { page } = Astro.params;
+const currentPage = page && !isNaN(Number(page)) ? Number(page) : 1;
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+
+// Filter posts that contain PDF comments
+const postsWithPDFs = allPosts.filter(post => {
+  return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
+});
+
+// Extract presentation data from posts
+const presentations = postsWithPDFs.flatMap(post => {
+  const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+  const pdfMatches = [...post.body.matchAll(pdfRegex)];
+  
+  if (pdfMatches.length === 0) return [];
+  
+  return pdfMatches.map((pdfMatch, index) => {
+    const filename = pdfMatch[1].trim();
+    const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+    const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
+    const pdfPath = `/pdfs/${filename}`;
+    const pdfTitle = title || post.data.title;
+    
+    return {
+      title: pdfTitle,
+      pdfPath: pdfPath,
+      postTitle: post.data.title,
+      postSlug: post.slug,
+      pubDatetime: post.data.pubDatetime,
+      description: post.data.description,
+      type: type
+    };
+  });
+}).filter(presentation => presentation.pdfPath);
+
+// Sort presentations by date (newest first)
+presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
+
+// Apply filtering based on type
+let filteredPresentations = presentations;
+if (filterType !== 'all') {
+  if (filterType === 'preamble') {
+    // Include both preamble and news types
+    filteredPresentations = presentations.filter(p => p.type === 'preamble' || p.type === 'news');
+  } else {
+    filteredPresentations = presentations.filter(p => p.type === filterType);
+  }
+}
+
+// Calculate pagination based on filtered results
+const totalPresentations = filteredPresentations.length;
+const totalPages = Math.ceil(totalPresentations / POSTS_PER_PAGE);
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex);
+---
+
+<Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
+  <Header activeNav="resources" />
+  <Breadcrumbs />
+  <main id="main-content" class="@container">
+    <h1>{pageTitle}</h1>
+    <p>{pageDescription}</p>
+    
+    <div class="resources-content">
+      
+      <section class="mb-12">
+        <h2 class="section-title">Slides</h2>
+        <p class="section-description">
+          Slides from our sessions. Various sessions were preceeded by a 'preamble' which often included news and updates.
+        </p>
+        
+        <!-- Filter buttons -->
+        <div class="filter-container">
+          <a href="/resources" class={`filter-btn ${filterType === 'all' ? 'active' : ''}`}>All</a>
+          <a href="/resources?type=presentation" class={`filter-btn ${filterType === 'presentation' ? 'active' : ''}`}>Presentations</a>
+          <a href="/resources?type=preamble" class={`filter-btn ${filterType === 'preamble' ? 'active' : ''}`}>Preambles & News</a>
+        </div>
+        
+        {presentations.length > 0 ? (
+          <div class="presentations-list">
+            {paginatedPresentations.map((presentation, index) => (
+              <div class="presentation-card">
+                <div class="presentation-title">
+                  <h3>{presentation.title}</h3>
+                </div>
+                <PDFViewer 
+                  src={presentation.pdfPath} 
+                  height="380px"
+                />
+                <div class="presentation-footer">
+                  <div class="presentation-info">
+                    <div class="presentation-date">{presentation.pubDatetime.toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}</div>
+                    <div class="presentation-source">
+                      <a href={`/posts/${presentation.postSlug}`} class="text-skin-accent hover:underline">
+                        From: {presentation.postTitle}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="presentation-download">
+                    <a href={presentation.pdfPath} download class="download-btn">
+                      📄 Download PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="pdf-placeholder">
+            <p class="text-skin-base opacity-70">
+              📄 No presentations found. Presentations will appear here when PDFs are attached to blog posts.
+            </p>
+          </div>
+        )}
+        
+        {totalPages > 1 && (
+          <div class="pagination-wrapper">
+            
+            <Pagination 
+              currentPage={currentPage} 
+              totalPages={totalPages} 
+              prevUrl={currentPage > 1 ? (currentPage - 1 === 1 ? `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}` : `/resources/${currentPage - 1}${filterType !== 'all' ? `?type=${filterType}` : ''}`) : `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}`}
+              nextUrl={currentPage < totalPages ? `/resources/${currentPage + 1}${filterType !== 'all' ? `?type=${filterType}` : ''}` : `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}`}
+              firstUrl={totalPages > 4 ? `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}` : undefined}
+              lastUrl={totalPages > 4 ? `/resources/${totalPages}${filterType !== 'all' ? `?type=${filterType}` : ''}` : undefined}
+            />
+          </div>
+         )}
+       </section>
+     </div>
+   </main>
+  <Footer />
+</Layout>
+
+<style>
+  #main-content {
+    @apply mx-auto w-full max-w-3xl px-4 pb-4;
+  }
+  
+  #main-content h1 {
+    @apply text-2xl font-semibold sm:text-3xl;
+  }
+  
+  #main-content p {
+    @apply mb-6 mt-2 italic;
+  }
+  
+  .resources-content {
+    @apply space-y-8;
+    padding: 20px;
+  }
+  
+  .section-title {
+    @apply text-2xl font-semibold text-skin-accent mb-3;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.5rem;
+  }
+
+  html[data-theme="dark"] .section-title {
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .section-description {
+    @apply text-skin-base opacity-70 mb-6;
+  }
+  
+  .pdf-placeholder {
+    @apply p-8 border-2 border-dashed border-skin-line rounded-lg text-center;
+  }
+  
+  .presentations-list {
+    @apply space-y-0;
+  }
+  
+  .presentation-card {
+    @apply bg-skin-card;
+    border-radius: 0.9rem;
+    border: 2px solid rgb(0 0 0 / 20%);
+    margin-top: 0rem;
+    margin-bottom: 1rem !important;
+  }
+
+  html[data-theme="dark"] .presentation-card {
+    border: 2px solid rgb(255 255 255 / 20%);
+  }
+
+  .presentation-title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.4rem;
+  }
+
+  .presentation-title h3 {
+    @apply text-skin-base mb-0;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 16px;
+  }
+  
+  
+  .presentation-card:last-child {
+    margin-bottom: 0rem !important;
+  }
+  
+  .presentation-footer {
+    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+  }
+  
+  .presentation-info {
+    @apply flex flex-col;
+  }
+  
+  .presentation-date {
+    @apply font-medium mb-1;
+  }
+  
+  .presentation-source {
+    @apply text-xs;
+  }
+  
+  .presentation-download {
+    @apply flex-shrink-0;
+  }
+  
+  .download-btn {
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+  }
+  
+  .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  /* Override prose hover styles for download button */
+  .prose .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
+  
+  .pagination-wrapper {
+    @apply mt-8 flex justify-center;
+  }
+
+  /* Filter buttons */
+  .filter-container {
+    @apply flex flex-wrap gap-2 mb-6 justify-center;
+  }
+
+  .filter-btn {
+    @apply px-4 py-1 rounded-md border border-skin-line bg-skin-fill text-skin-base transition-all duration-200 cursor-pointer;
+    outline: none;
+    border-width: 3px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    display: inline-block;
+  }
+
+  .filter-btn:focus {
+    outline: none;
+  }
+
+  .filter-btn:hover {
+    @apply bg-skin-card;
+  }
+
+  .filter-btn.active {
+    @apply bg-skin-accent text-white border-skin-accent;
+  }
+</style>
+

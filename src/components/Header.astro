@@ -5,7 +5,7 @@ import LinkButton from "./LinkButton.astro";
 import StyledTitle from "@components/StyledTitle";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "glossary" | "about" | "agenda" | "search";
+  activeNav?: "home" | "posts" | "tags" | "glossary" | "about" | "agenda" | "search" | "resources";
 }
 
 const { activeNav } = Astro.props;
@@ -15,20 +15,36 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      {
-        LOGO_IMAGE.enable ? (
-          <a href="/" class="logo whitespace-nowrap">
-            <img
-              src={`/assets/${LOGO_IMAGE.svg ? "logo.svg" : "logo.png"}`}
-              alt={SITE.title}
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
-          </a>
-        ) : (
-          <StyledTitle className="absolute text-2xl" href="/" />
-        )
-      }
+      <a href="/" class="nav-logo whitespace-nowrap">
+        <div class="logo-container">
+          <!-- Ghost logo for subtle effect -->
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_Black_2lines.png"
+            alt=""
+            class="nav-ghost-logo nav-light-ghost"
+            z-index: 1;
+          />
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_White_2lines.png"
+            alt=""
+            class="nav-ghost-logo nav-dark-ghost"
+            z-index: 1;
+          />
+
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_Black_2lines.png"
+            alt={SITE.title}
+            class="nav-logo-image nav-light-logo"
+            z-index: auto;
+          />
+          <img
+            src="/src/assets/images/site-images/AiPhi_Logo_White_2lines.png"
+            alt={SITE.title}
+            class="nav-logo-image nav-dark-logo"
+            z-index: auto;
+          />
+        </div>
+      </a>
       <nav id="nav-menu">
         <button
           class="hamburger-menu focus-outline"
@@ -55,30 +71,36 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        <ul id="menu-items" class="display-none sm:flex">
-          <!--<li>-->
-          <!--  <a href="/agenda" class={activeNav === "agenda" ? "active" : ""}>-->
-          <!--    Agenda-->
-          <!--  </a>-->
-          <!--</li>-->
+        
+        <!-- Main navigation items -->
+        <ul id="main-nav-items" class="display-none sm:flex">
           <li>
-            <a href="/posts" class={activeNav === "posts" ? "active" : ""}>
+            <a href="/" class={activeNav === "home" ? "active" : ""} data-text="Home">
+              Home
+            </a>
+          </li>
+          <li class="nav-separator"></li>
+          <li>
+            <a href="/posts" class={activeNav === "posts" ? "active" : ""} data-text="Posts">
               Posts
             </a>
           </li>
-          <!-- <li>
-            <a
-              href="/glossary"
-              class={activeNav === "glossary" ? "active" : ""}
-            >
-              Glossary
-            </a>
-          </li>-->
+          <li class="nav-separator"></li>
           <li>
-            <a href="/about" class={activeNav === "about" ? "active" : ""}>
+            <a href="/resources" class={activeNav === "resources" ? "active" : ""} data-text="Resources">
+              Resources
+            </a>
+          </li>
+          <li class="nav-separator"></li>
+          <li>
+            <a href="/about" class={activeNav === "about" ? "active" : ""} data-text="About">
               About
             </a>
           </li>
+        </ul>
+        
+        <!-- Search and theme toggle -->
+        <ul id="nav-actions" class="display-none sm:flex">
           <li>
             <LinkButton
               href="/search"
@@ -120,24 +142,186 @@ const { activeNav } = Astro.props;
           </li>
         </ul>
       </nav>
+      <div class="header-line"></div>
     </div>
   </div>
-  <Hr />
+
 </header>
 
 <style>
   #skip-to-content {
     @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
   }
+  
   .nav-container {
     @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
+    max-width: 58rem;
   }
+
   .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
+    @apply relative flex w-full items-start justify-between  sm:items-center sm:pb-8;
+    padding-bottom: 1rem;
   }
-  .logo {
+
+  .nav-logo {
     @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+    margin-left: -200px;
+    margin-bottom: -40px;
   }
+  
+  .logo-container {
+    @apply relative;
+  }
+  
+  .nav-logo-image {
+    @apply h-12 w-auto transition-opacity duration-200;
+    height: 7rem;
+    padding-top: 15px;
+  }
+  
+  .nav-light-logo {
+    @apply block;
+  }
+  
+  .nav-dark-logo {
+    @apply hidden;
+  }
+  
+  /* Dark mode logo switching */
+  html[data-theme="dark"] .nav-light-logo {
+    @apply hidden;
+  }
+  
+  html[data-theme="dark"] .nav-dark-logo {
+    @apply block;
+  }
+  
+
+  /* Ghost logo styling */
+  .nav-ghost-logo {
+    @apply absolute w-auto transition-opacity duration-200;
+    height: 7rem;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    padding-top: 15px;
+    z-index: -1;
+  }
+  
+  .nav-ghost-logo.ghost-effect {
+    animation: subtleGhost 3s ease-in-out;
+  }
+  
+  .nav-ghost-logo.ghost-effect-2 {
+    animation: subtleGhost2 3s ease-in-out;
+  }
+  
+  .nav-light-ghost {
+    display: block;
+  }
+  
+  .nav-dark-ghost {
+    display: none;
+  }
+  
+  html[data-theme="dark"] .nav-light-ghost {
+    display: none;
+  }
+  
+  html[data-theme="dark"] .nav-dark-ghost {
+    display: block;
+  }
+  
+  @keyframes subtleGhost {
+
+    0% {
+      transform: translate(4px, -3px) rotate(0.5deg) scale(1.012);
+      opacity: 0.6;
+    }
+    10% {
+      transform: translate(3px, -4px) rotate(0.3deg) scale(1.03);
+      opacity: 0.4;
+    }
+    20% {
+      transform: translate(-3px, 4px) rotate(-0.4deg) scale(0.95);
+      opacity: 0.5;
+    }
+    30% {
+      transform: translate(-4px, 3px) rotate(-0.1deg) scale(0.92);
+      opacity: 0.6;
+    }
+    40% {
+      transform: translate(3px, -4px) rotate(0.2deg) scale(1.);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translate(0px, 4px) rotate(-0.3deg) scale(0.9);
+      opacity: 0.3;
+    }
+    60% {
+      transform: translate(4px, -3px) rotate(0.2deg) scale(1.02);
+      opacity: 0.2;
+    }
+    70% {
+      transform: translate(-4px, 0px) rotate(-0.5deg) scale(0.94);
+      opacity: 0.1;
+    }
+    90% {
+      transform: translate(3px, -4px) rotate(0.5deg) scale(1.02);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(-2px, 3px) rotate(-0.4deg) scale(0.98);
+      opacity: 0.1;
+    }
+    
+  }
+
+  @keyframes subtleGhost2 {
+    0% {
+      transform: translate(3px, -4px) rotate(-0.3deg) scale(1.008);
+      opacity: 0.5;
+    }
+    15% {
+      transform: translate(3px, -3px) rotate(-0.2deg) scale(1.025);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translate(4px, -4px) rotate(0.4deg) scale(0.96);
+      opacity: 0.4;
+    }
+    35% {
+      transform: translate(3px, -4px) rotate(0.1deg) scale(0.93);
+      opacity: 0.5;
+    }
+    45% {
+      transform: translate(4px, -3px) rotate(-0.2deg) scale(1.01);
+      opacity: 0.3;
+    }
+    55% {
+      transform: translate(4px, -2px) rotate(0.3deg) scale(0.91);
+      opacity: 0.4;
+    }
+    65% {
+      transform: translate(3px, -4px) rotate(-0.2deg) scale(1.015);
+      opacity: 0.2;
+    }
+    75% {
+      transform: translate(4px, -3px) rotate(0.4deg) scale(0.95);
+      opacity: 0.1;
+    }
+    85% {
+      transform: translate(4px, -4px) rotate(-0.3deg) scale(1.018);
+      opacity: 0.2;
+    }
+    100% {
+      transform: translate(3px, -3px) rotate(0.2deg) scale(0.99);
+      opacity: 0.1;
+    }
+  }
+  
+  
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
   }
@@ -146,30 +330,58 @@ const { activeNav } = Astro.props;
   }
 
   nav {
-    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0;
+    @apply flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-between sm:py-0;
   }
-  nav ul {
-    @apply mt-4 grid w-44 grid-cols-2 grid-rows-4 gap-x-2 gap-y-2 sm:ml-0 sm:mt-0 sm:w-auto sm:gap-x-5 sm:gap-y-0;
+  
+  /* Main navigation items */
+  #main-nav-items {
+    @apply mt-4 flex flex-wrap justify-evenly gap-x-6 gap-y-2 sm:mt-0 sm:flex-1 sm:justify-evenly;
+    margin-right: 25px;
   }
-  nav ul li {
-    @apply col-span-2 flex items-center justify-center;
+  
+  #main-nav-items li {
+    @apply relative;
   }
-  nav ul li a {
-    @apply w-full px-4 py-3 text-center font-medium hover:text-skin-accent sm:my-0 sm:px-2 sm:py-1;
+  
+  #main-nav-items li a {
+    @apply px-2 py-1 text-center font-medium hover:text-skin-accent relative z-10;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8em;
+    padding: 0px;
   }
-  nav ul li:nth-last-child(2) a {
-    @apply w-auto;
+  
+  /* Active nav styling */
+  #main-nav-items li a.active {
+    color: rgb(var(--color-accent));
   }
-  nav ul li:nth-last-child(1),
-  nav ul li:nth-last-child(2) {
-    @apply col-span-1;
+  
+  #main-nav-items li.nav-separator {
+    @apply text-skin-base;
+    font-family: 'Nunito', sans-serif;
+    border-right: 4px solid currentColor;
+    border-radius: 10%;
   }
-  nav a.active {
-    @apply underline decoration-wavy decoration-2 underline-offset-4;
+  
+  /* Search and theme toggle */
+  #nav-actions {
+    @apply mt-4 flex items-center gap-4 sm:mt-0 sm:flex-shrink-0;
+    margin-right: -130px;
+  }
+  
+  #nav-actions li {
+    @apply flex items-center;
+  }
+  
+  #nav-actions li a {
+    @apply w-auto px-2 py-1;
+  }
+  
+  /* nav a.active {
+    @apply underline;
   }
   nav a.active svg {
     @apply fill-skin-accent;
-  }
+  } */
 
   nav button {
     @apply p-1;
@@ -183,19 +395,43 @@ const { activeNav } = Astro.props;
   #theme-btn svg {
     @apply scale-125 hover:rotate-12 sm:scale-100;
   }
+  
+  /* Theme icon switching */
+  #sun-svg,
+  html[data-theme="dark"] #moon-svg {
+    display: none;
+  }
+  
+  #moon-svg,
+  html[data-theme="dark"] #sun-svg {
+    display: block;
+  }
 
   .menu-icon line {
-    @apply transition-opacity duration-75 ease-in-out;
+    @apply transition-opacity duration-75 ease-out;
   }
+
   .menu-icon .close {
     opacity: 0;
   }
+
   .menu-icon.is-active .line {
     @apply opacity-0;
   }
+
   .menu-icon.is-active .close {
     @apply opacity-100;
   }
+  
+  .header-line {
+    @apply h-px bg-skin-inverted;
+    width: 58rem;
+    height: 5px;
+    position: absolute;
+    justify-content: right;
+    margin-top: 48px;
+  }
+
 </style>
 
 <script>
@@ -203,7 +439,8 @@ const { activeNav } = Astro.props;
     // Toggle menu
     const menuBtn = document.querySelector(".hamburger-menu");
     const menuIcon = document.querySelector(".menu-icon");
-    const menuItems = document.querySelector("#menu-items");
+    const mainNavItems = document.querySelector("#main-nav-items");
+    const navActions = document.querySelector("#nav-actions");
 
     menuBtn?.addEventListener("click", () => {
       const menuExpanded = menuBtn.getAttribute("aria-expanded") === "true";
@@ -213,7 +450,8 @@ const { activeNav } = Astro.props;
         "aria-label",
         menuExpanded ? "Open Menu" : "Close Menu"
       );
-      menuItems?.classList.toggle("display-none");
+      mainNavItems?.classList.toggle("display-none");
+      navActions?.classList.toggle("display-none");
     });
   }
 
@@ -221,4 +459,164 @@ const { activeNav } = Astro.props;
 
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", toggleNav);
+
+  function toggleTheme() {
+    const themeBtn = document.querySelector("#theme-btn");
+    
+    themeBtn?.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      
+      // Update aria-label
+      themeBtn.setAttribute("aria-label", `Switch to ${currentTheme} mode`);
+    });
+  }
+
+  function initializeTheme() {
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }
+
+  // Initialize theme on page load
+  initializeTheme();
+  toggleTheme();
+
+  // Runs on view transitions navigation
+  document.addEventListener("astro:after-swap", () => {
+    initializeTheme();
+    toggleTheme();
+  });
+
+   
+  const colors_hue_rotate = [
+    'invert(27%) sepia(82%) saturate(5724%) hue-rotate(4deg) brightness(103%) contrast(104%)', //YELLOW
+    'invert(8%) sepia(100%) saturate(7103%) hue-rotate(201deg) brightness(105%) contrast(139%)', //BLUE
+    'invert(94%) sepia(83%) saturate(1543%) hue-rotate(20deg) brightness(52%) contrast(101%)', //RED
+  ];
+
+  // Subtle ghost effect with random colors and dual animations
+  function triggerGhostEffect() {
+    const lightGhost = document.querySelector('.nav-light-ghost');
+    const darkGhost = document.querySelector('.nav-dark-ghost');
+    
+    if (lightGhost && darkGhost) {
+      // Choose two different random colors
+      let color1 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      let color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      
+      // Ensure colors are different
+      while (color1 === color2) {
+        color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      }
+      
+      // Create first ghost object (clone)
+      const ghost1Light = lightGhost.cloneNode(true);
+      const ghost1Dark = darkGhost.cloneNode(true);
+      
+      // Create second ghost object (clone)
+      const ghost2Light = lightGhost.cloneNode(true);
+      const ghost2Dark = darkGhost.cloneNode(true);
+      
+      // Position the ghost objects
+      ghost1Light.style.position = 'absolute';
+      ghost1Light.style.top = '0';
+      ghost1Light.style.left = '0';
+      ghost1Light.style.zIndex = '-2';
+      
+      ghost1Dark.style.position = 'absolute';
+      ghost1Dark.style.top = '0';
+      ghost1Dark.style.left = '0';
+      ghost1Dark.style.zIndex = '-2';
+      
+      ghost2Light.style.position = 'absolute';
+      ghost2Light.style.top = '0';
+      ghost2Light.style.left = '0';
+      ghost2Light.style.zIndex = '-3';
+      
+      ghost2Dark.style.position = 'absolute';
+      ghost2Dark.style.top = '0';
+      ghost2Dark.style.left = '0';
+      ghost2Dark.style.zIndex = '-3';
+      
+      // Apply colors
+      ghost1Light.style.filter = color1;
+      ghost1Dark.style.filter = 'brightness(0) saturate(100%) ' + color1;
+      ghost2Light.style.filter = color2;
+      ghost2Dark.style.filter = 'brightness(0) saturate(100%) ' + color2;
+      
+      // Add to DOM
+      lightGhost.parentNode.appendChild(ghost1Light);
+      lightGhost.parentNode.appendChild(ghost1Dark);
+      lightGhost.parentNode.appendChild(ghost2Light);
+      lightGhost.parentNode.appendChild(ghost2Dark);
+      
+      // Apply animations
+      ghost1Light.classList.add('ghost-effect');
+      ghost1Dark.classList.add('ghost-effect');
+      ghost2Light.classList.add('ghost-effect-2');
+      ghost2Dark.classList.add('ghost-effect-2');
+      
+      // Remove ghost objects after animation completes
+      setTimeout(() => {
+        ghost1Light.remove();
+        ghost1Dark.remove();
+        ghost2Light.remove();
+        ghost2Dark.remove();
+      }, 3000); // Animation duration is 3 seconds
+    }
+  }
+  
+  function scheduleGhostEffect() {
+    // Random delay around 60 seconds (once per minute)
+    const minDelay = 55000; // 55 seconds
+    const maxDelay = 65000; // 65 seconds
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    
+    setTimeout(() => {
+      triggerGhostEffect();
+      scheduleGhostEffect(); // Schedule the next one
+    }, delay);
+  }
+  
+  // Start the ghost effect cycle
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initial delay before first ghost effect
+    setTimeout(scheduleGhostEffect, 60000); // Start after 60 seconds
+    
+    // Add click event listener to logo container
+    const logoContainer = document.querySelector('.logo-container');
+    const logoLink = document.querySelector('.nav-logo');
+    
+    if (logoContainer && logoLink) {
+      logoLink.addEventListener('click', (e) => {
+        // Prevent default link behavior
+        e.preventDefault();
+        // Trigger ghost effect
+        triggerGhostEffect();
+      });
+    }
+  });
+  
+  // Re-setup on view transitions
+  document.addEventListener('astro:after-swap', () => {
+    scheduleGhostEffect();
+    
+    // Re-add click event listener after view transitions
+    const logoContainer = document.querySelector('.logo-container');
+    const logoLink = document.querySelector('.nav-logo');
+    
+    if (logoContainer && logoLink) {
+      logoLink.addEventListener('click', (e) => {
+        // Prevent default link behavior
+        e.preventDefault();
+        // Trigger ghost effect
+        triggerGhostEffect();
+      });
+    }
+  });
 </script>
+

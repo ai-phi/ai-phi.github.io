@@ -71,6 +71,7 @@ export default {
       },
 
       fontFamily: {
+        sans: ["Nunito", "sans-serif"],
         mono: ["IBM Plex Mono", "monospace"],
         serif: ["Literata Variable"],
       },

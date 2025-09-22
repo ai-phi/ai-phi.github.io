@@ -33,6 +33,8 @@ We will celebrate this 20th session with a cake 🥳
 
 <img src="/assets/ai-phi-session-20.webp" alt="A pixel-art, cyberpunk illustration of french salons including a tall birthday cake." />
 
+<!-- PDF: AI-PHI-20-Causerie-reasoning.pdf | title: Slides supporting the causerie on reasoning. | type: presentation -->
+
 ## Details
 
 **Date and Time:** Thursday, 20th of March 2025 - 7pm  

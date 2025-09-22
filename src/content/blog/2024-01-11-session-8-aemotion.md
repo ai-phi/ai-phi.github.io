@@ -15,7 +15,13 @@ session: true
 
 In this session, Constant Bonard (IJN, ENS) and Gustave Cortal (ENS Saclay) discussed the nature of emotions according to contemporary affective sciences, present the state of the art in sentiment analysis and its limitations, what cognitive capacities allow humans to understand others' emotions, and whether AI can achieve this emotional understanding.
 
-Slides from their joint talk are accessible [here](https://drive.google.com/file/d/1UORYA-Ge4b79Wg3dWlDsUkPmGWkyXNSH/view?usp=sharing).
+Slides from their joint talk:
+
+<!-- PDF: AI-Phi-8-AEmotional Understanding 🤖❤️_🔥.pdf | title: AEmotional understanding presentation by Constant Bonard & Gustave Cortal  | type: presentation -->
+
+Preamble slides and Fortnaightly News:
+
+<!-- PDF: AI-PHI-8-Preamble.pdf | title: Preamble before the AEmotional Understanding presentation | type: preamble -->
 
 ## Details
 

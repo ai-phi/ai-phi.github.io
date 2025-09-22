@@ -9,10 +9,13 @@ tags:
   - Session
   - AGI
   - Intro to AI
-description: Session on Artificial General Intelligence by Michael Anslow
+description: Session on Artificial General Intelligence by Michael Anslow. This first session starts with a whirlwind introduction to Artificial Intelligence, focusing on search, knowledge representation and reasoning and machine learning.
 session: true
 ---
 
 ## About the 3rd session:
 
-In this session Michael Anslow will give an ambitious, whirlwind tour of Artificial Intelligence before exploring the field of Artificial General Intelligence (AGI).
+In this session Michael Anslow will give an ambitious, whirlwind introduction to Artificial Intelligence before exploring the area of Artificial General Intelligence (AGI). AGI here is framed based on the article "Artificial General Intelligence: Concept, State of the Art, and Future Prospects" in the Journal of
+Artificial General Intelligence by Goertzel, Ben.
+
+<!-- PDF: AI-PHI-3-Artificial General Intelligence.pdf | title: An introduction to AI and exploration of AGI by Michael Anslow | type: presentation -->

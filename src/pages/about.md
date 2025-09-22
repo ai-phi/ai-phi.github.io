@@ -37,5 +37,9 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 - **Olga Kokshagina**, EDHEC business school, LPI France
 - **Olha Sobetska**, CLEA | VUB - Brussels, Belgium
 - [**Sylvy Anscombe**](https://sylvyanscombe.com/), Université Paris Cité, IMJ-PRG
-- **Théis Bazin**, ML Tech Lead, MWM (AI-PHI web developer)
 - [**Thomas Souverain**](https://www.mfo.ac.uk/people/thomas-souverain), Institut Jean Nicod, ENS-PSL, France Travail AI Department
+
+### Special Thanks
+
+- **Sébastien Marino**, Creative Director for AI-Phi 3.0 Style
+- **Théis Bazin**, Setting up Initial Website and Infrastructure

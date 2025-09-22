@@ -13,7 +13,7 @@ tags:
   - llm
   - ai
   - philosophy
-description: The output from our first causerie on the topic of reasoning.
+description: An article written by Michael Anslow outlining the AI-Phi community discussion during our causerie on 'reasoning'. It also contains opinions from various AI-Phi members.
 session: false
 ogImage: assets/AI-Phi-Causerie-Reasoning.png
 ---
@@ -52,7 +52,7 @@ The transformer architecture enabled the first truly powerful language models. T
 
 As with any good philosophical discussion, our causerie began with an attempt at a definition. ‘Reasoning’ - what the heck is it? The goal was to take a step back from the current hype surrounding large language models to re-evaluate this elusive property of intelligence. We initially approached this question by turning it on its head by asking “what is being unreasonable”? Surely, what we consider to be unreasonable would provide good counter examples as a point of contrast? Some of these examples included: Acting based on emotions, making statements without justification, being incoherent and inconsistent, resisting belief revision, lacking process/methodology and overlying relying on intuitions. One of the lines of inquiry that emerged from this discussion was the idea that intuition and emotion might actually be a fundamental part of human reasoning. In particular, the work of Antonio Damasio showed that when parts of the brain associated with emotion are damaged, decision making is impaired. While it's true that being overly emotional and relying on intuitions alone might lead to unreasonable decision making, they might actually be a feature of reasoning rather than a bug.
 
-Emotions and intuitions form a constant backdrop to our conscious embodied experience of the world. Intuition, perhaps, allows us to integrate the vague, often poorly specified streams of sensory input into partially structured information that can feed into higher-level cognitive processes. Emotions, on the other hand, might serve as a kind of qualitative value function. In that case, they would be instrumental in governing our exploration and exploitation of our environment, serving as an important latent variable in our construction of world models. The ontological extent of human knowledge - that which can be known and that we care to know about -  might be limited by not only perception and intellect, but also carved out through the actions we choose to take. That is, how we act influences the slice of existence humanity choses to fixate upon, making up our fundamental personal and social realities. Emotions might be deeply involved in this process. Coming from a computational background, reflecting on these ideas opened a real can of worms for me.
+Emotions and intuitions form a constant backdrop to our conscious embodied experience of the world. Intuition, perhaps, allows us to integrate the vague, often poorly specified streams of sensory input into partially structured information that can feed into higher-level cognitive processes. Emotions, on the other hand, might serve as a kind of qualitative value function. In that case, they would be instrumental in governing our exploration and exploitation of our environment, serving as an important latent variable in our construction of world models. The ontological extent of human knowledge - that which can be known and that we care to know about - might be limited by not only perception and intellect, but also carved out through the actions we choose to take. That is, how we act influences the slice of existence humanity choses to fixate upon, making up our fundamental personal and social realities. Emotions might be deeply involved in this process. Coming from a computational background, reflecting on these ideas opened a real can of worms for me.
 
 Later in our discussion there was also the question of whether reasoning really had to be directed in some goal-oriented way. I personally wasn’t _really_ sure that was a necessary part of the definition of reasoning. This was quickly taken to task. Even if goals aren’t explicit, our minds are organising themselves towards particular ends. In particular, the default mode network of the brain is active when we are idle, as opposed to our central executive network which is more task oriented. The default mode network is where meandering thoughts emerge, day dreams about past and future events. While ‘reasoning’ in AI might be something we ask systems to do at a high level of abstraction, our embodied intellect is always trying to make sense of the world, consciously or unconsciously. This directedness isn’t just a high-level cognitive task but might be driven by much more fundamental aspects of embodied experience than I had previously considered.
 
@@ -60,7 +60,7 @@ Perhaps what constitutes reasoning lies along a continuum. We start from vague i
 
 _This was just one viewpoint on the intense and varied discussion of our first causerie. It is emblematic of an attempt to grasp at a deeper understanding rather than a definitive statement on reasoning itself. What follows are more perspectives from the AI-Phi community._
 
-_Michael Anslow_ 
+_Michael Anslow_
 
 [💼 LinkedIn](https://www.linkedin.com/in/michael-anslow-22268420/)
 

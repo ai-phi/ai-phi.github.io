@@ -34,6 +34,8 @@ const { currentPage, totalPages, paginatedEntries } = Astro.props;
     {totalPages}
     prevUrl={`/posts${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}`}
     nextUrl={`/posts/${currentPage + 1}`}
+    firstUrl={totalPages > 4 ? '/posts' : undefined}
+    lastUrl={totalPages > 4 ? `/posts/${totalPages}` : undefined}
   />
 
   <Footer noMarginTop={totalPages > 1} />

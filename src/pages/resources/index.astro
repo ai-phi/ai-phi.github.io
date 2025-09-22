@@ -1,0 +1,576 @@
+---
+import { SITE } from "@config";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import PDFViewer from '../../components/PDFViewer.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = "Resources";
+const pageDescription = "These serve as a record of our sessions and a way to share outputs.";
+
+// Pagination parameters
+const POSTS_PER_PAGE = 3;
+const currentPage = 1;
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+
+// Filter posts that contain PDF comments
+const postsWithPDFs = allPosts.filter(post => {
+  return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
+});
+
+// Extract presentation data from posts
+const presentations = postsWithPDFs.flatMap(post => {
+  const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+  const pdfMatches = [...post.body.matchAll(pdfRegex)];
+  
+  if (pdfMatches.length === 0) return [];
+  
+  return pdfMatches.map((pdfMatch, index) => {
+    const filename = pdfMatch[1].trim();
+    const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+    const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
+    const pdfPath = `/pdfs/${filename}`;
+    const pdfTitle = title || post.data.title;
+    
+    return {
+      title: pdfTitle,
+      pdfPath: pdfPath,
+      postTitle: post.data.title,
+      postSlug: post.slug,
+      pubDatetime: post.data.pubDatetime,
+      description: post.data.description,
+      type: type
+    };
+  });
+}).filter(presentation => presentation.pdfPath);
+
+// Sort presentations by date (newest first)
+presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
+
+// Calculate pagination for all presentations (client-side filtering will handle the rest)
+const totalPresentations = presentations.length;
+const totalPages = Math.ceil(totalPresentations / POSTS_PER_PAGE);
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+const paginatedPresentations = presentations.slice(startIndex, endIndex);
+
+// Make all presentations available for client-side filtering
+const allPresentations = presentations;
+---
+
+<Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
+  <Header activeNav="resources" />
+  <Breadcrumbs />
+  <main id="main-content" class="@container">
+    <h1>{pageTitle}</h1>
+    <p>{pageDescription}</p>
+    
+    <div class="resources-content">
+      
+      <section class="mb-12">
+        <h2 class="section-title">Slides</h2>
+        <p class="section-description">
+          Slides from our sessions. Various sessions were preceeded by a 'preamble' which typically included news and updates.
+        </p>
+        
+        <!-- Filter buttons -->
+        <div class="filter-container">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="presentation">Presentations</button>
+          <button class="filter-btn" data-filter="preamble">Preambles & News</button>
+        </div>
+        
+        {allPresentations.length > 0 ? (
+          <div class="presentations-list">
+            {allPresentations.map((presentation, index) => (
+              <div 
+                class="presentation-card" 
+                data-type={presentation.type}
+                data-index={index}
+                style={index >= POSTS_PER_PAGE ? 'display: none;' : ''}
+              >
+                <div class="presentation-title">
+                  <h3>{presentation.title}</h3>
+                </div>
+                <div class="pdf-placeholder-container" data-pdf-src={presentation.pdfPath}>
+                  <div class="pdf-loading">
+                    <p>Loading PDF...</p>
+                  </div>
+                </div>
+                <div class="presentation-footer">
+                  <div class="presentation-info">
+                    <div class="presentation-date">{presentation.pubDatetime.toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}</div>
+                    <div class="presentation-source">
+                      <a href={`/posts/${presentation.postSlug}`} class="text-skin-accent hover:underline">
+                        From: {presentation.postTitle}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="presentation-download">
+                    <a href={presentation.pdfPath} download class="download-btn">
+                      📄 Download PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="pdf-placeholder">
+            <p class="text-skin-base opacity-70">
+              📄 No presentations found. Presentations will appear here when PDFs are attached to blog posts.
+            </p>
+          </div>
+        )}
+        
+        <!-- Dynamic pagination (controlled by JavaScript) -->
+        <div class="pagination-wrapper" id="pagination-container">
+          <nav class="mb-8 mt-auto flex justify-center items-center gap-2" aria-label="Pagination">
+            <!-- Previous/First buttons -->
+            <button id="first-btn" class="pagination-btn" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
+                <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41z" />
+                <path d="M11 16.59L6.41 12 11 7.41 9.59 6l-6 6 6 6L11 16.59z" />
+              </svg>
+              <span class="ml-1 pagination-text">First</span>
+            </button>
+            
+            <button id="prev-btn" class="pagination-btn" style="display: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+              <span class="ml-1 pagination-text">Prev</span>
+            </button>
+            
+            <!-- Page numbers -->
+            <div class="pagination-numbers mx-4" id="page-numbers">
+              1 / 1
+            </div>
+            
+            <!-- Next/Last buttons -->
+            <button id="next-btn" class="pagination-btn" style="display: none;">
+              <span class="mr-1 pagination-text">Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
+            </button>
+            
+            <button id="last-btn" class="pagination-btn" style="display: none;">
+              <span class="mr-1 pagination-text">Last</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg" viewBox="0 0 24 24">
+                <path d="M5.59 7.41L10.17 12l-4.58 4.59L7 18l6-6-6-6-1.41 1.41z" />
+                <path d="M12.59 7.41L17.17 12l-4.58 4.59L14 18l6-6-6-6-1.41 1.41z" />
+              </svg>
+            </button>
+          </nav>
+        </div>
+       </section>
+     </div>
+   </main>
+  <Footer />
+</Layout>
+
+<style>
+  #main-content {
+    @apply mx-auto w-full max-w-3xl px-4 pb-4;
+  }
+  
+  #main-content h1 {
+    @apply text-2xl font-semibold sm:text-3xl;
+  }
+  
+  #main-content p {
+    @apply mb-6 mt-2 italic;
+  }
+  
+  .resources-content {
+    @apply space-y-8;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  
+  .section-title {
+    @apply text-2xl font-semibold text-skin-accent mb-3;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 0.1rem;
+  }
+
+  html[data-theme="dark"] .section-title {
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .section-description {
+    @apply text-skin-base opacity-70 mb-6;
+  }
+  
+  .pdf-placeholder {
+    @apply p-8 border-2 border-dashed border-skin-line rounded-lg text-center;
+  }
+  
+  .presentations-list {
+    @apply space-y-0;
+  }
+  
+  .presentation-card {
+    @apply bg-skin-card;
+    border-radius: 0.9rem;
+    border: 2px solid rgb(0 0 0 / 10%);
+    margin-top: 0rem;
+    margin-bottom: 1rem !important;
+  }
+
+  html[data-theme="dark"] .presentation-card {
+    border: 2px solid rgb(255 255 255 / 20%);
+  }
+
+  .presentation-title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.4rem;
+  }
+
+  .presentation-title h3 {
+    @apply text-skin-base mb-0;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 16px;
+  }
+  
+  
+  .presentation-card:last-child {
+    margin-bottom: 0rem !important;
+  }
+  
+  .presentation-footer {
+    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+  }
+  
+  .presentation-info {
+    @apply flex flex-col;
+  }
+  
+  .presentation-date {
+    @apply font-medium mb-1;
+  }
+  
+  .presentation-source {
+    @apply text-xs;
+  }
+  
+  .presentation-download {
+    @apply flex-shrink-0;
+  }
+  
+  .download-btn {
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+  }
+  
+  .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  /* Override prose hover styles for download button */
+  .prose .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
+  
+  .pagination-wrapper {
+    @apply mt-8 flex justify-center;
+  }
+
+  /* Filter buttons */
+  .filter-container {
+    @apply flex flex-wrap gap-2 mb-6 justify-center;
+  }
+
+  .filter-btn {
+    @apply px-4 py-1 rounded-md border border-skin-line bg-skin-fill text-skin-base transition-all duration-200 no-underline;
+    outline: none;
+    border-width: 3px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    display: inline-block;
+  }
+
+  .filter-btn:focus {
+    outline: none;
+  }
+
+  .filter-btn:hover {
+    @apply bg-skin-card;
+  }
+
+  .filter-btn.active {
+    @apply bg-skin-accent text-white border-skin-accent;
+  }
+
+  /* Pagination buttons */
+  .pagination-btn {
+    @apply inline-flex items-center px-3 py-2 text-skin-base hover:text-skin-accent transition-colors cursor-pointer bg-transparent border-none;
+    outline: none;
+    min-width: fit-content;
+  }
+
+  .pagination-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .pagination-svg {
+    @apply w-5 h-5 fill-current flex-shrink-0;
+  }
+
+  .pagination-numbers {
+    @apply text-lg font-semibold;
+  }
+
+  .pagination-text {
+    @apply text-base font-light;
+  }
+
+  /* PDF lazy loading */
+  .pdf-placeholder-container {
+    height: 380px;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(var(--color-border));
+    overflow: hidden;
+    position: relative;
+  }
+
+  .pdf-loading {
+    @apply flex items-center justify-center h-full bg-skin-fill text-skin-base opacity-70;
+  }
+
+  .pdf-loaded {
+    height: 380px;
+  }
+
+  /* PDF viewer styles (for dynamically loaded PDFs) */
+  .pdf-viewer-container {
+    position: relative;
+    padding: 0.625rem;
+  }
+
+  .pdf-viewer {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(var(--color-border));
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .pdf-iframe {
+    border: none;
+  }
+
+  .pdf-fallback {
+    @apply bg-skin-fill p-8 text-center;
+  }
+
+  .pdf-fallback a {
+    @apply text-skin-accent hover:underline;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const presentationCards = document.querySelectorAll('.presentation-card');
+    const pageNumbers = document.getElementById('page-numbers');
+    const paginationContainer = document.getElementById('pagination-container');
+    const firstBtn = document.getElementById('first-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const lastBtn = document.getElementById('last-btn');
+
+    const POSTS_PER_PAGE = 3;
+    let currentFilter = 'all';
+    let currentPage = 1;
+    let filteredCards: Element[] = [];
+
+    // Initialize the filtering system
+    function init() {
+      currentFilter = 'all';
+      currentPage = 1;
+      applyFilter(currentFilter);
+    }
+
+    // Filter presentations based on type
+    function applyFilter(filterType: string) {
+      currentFilter = filterType;
+      currentPage = 1; // Reset to first page when filtering
+
+      // Update active button
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === filterType) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Get filtered cards
+      filteredCards = Array.from(presentationCards).filter(card => {
+        const cardType = card.getAttribute('data-type');
+        if (filterType === 'all') {
+          return true;
+        } else if (filterType === 'preamble') {
+          return cardType === 'preamble' || cardType === 'news';
+        } else {
+          return cardType === filterType;
+        }
+      });
+
+      // Update pagination and display
+      updatePagination();
+      updateDisplay();
+    }
+
+    // Update pagination controls
+    function updatePagination() {
+      const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
+
+      // Update page numbers
+      if (pageNumbers) {
+        pageNumbers.textContent = `${currentPage} / ${totalPages}`;
+      }
+
+      // Show/hide pagination container
+      if (paginationContainer) {
+        if (totalPages <= 1) {
+          paginationContainer.style.display = 'none';
+          return;
+        } else {
+          paginationContainer.style.display = 'flex';
+        }
+      }
+
+      // Update button states
+      if (firstBtn) {
+        firstBtn.style.display = currentPage > 1 && totalPages > 4 ? 'flex' : 'none';
+      }
+      if (prevBtn) {
+        prevBtn.style.display = currentPage > 1 ? 'flex' : 'none';
+      }
+      if (nextBtn) {
+        nextBtn.style.display = currentPage < totalPages ? 'flex' : 'none';
+      }
+      if (lastBtn) {
+        lastBtn.style.display = currentPage < totalPages && totalPages > 4 ? 'flex' : 'none';
+      }
+    }
+
+    // Update which cards are displayed
+    function updateDisplay() {
+      // Hide all cards first
+      presentationCards.forEach(card => {
+        (card as HTMLElement).style.display = 'none';
+      });
+
+      // Calculate which cards to show for current page
+      const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+      const endIndex = startIndex + POSTS_PER_PAGE;
+      
+      // Show the appropriate filtered cards and load their PDFs
+      for (let i = startIndex; i < endIndex && i < filteredCards.length; i++) {
+        const card = filteredCards[i] as HTMLElement;
+        card.style.display = 'block';
+        loadPDF(card);
+      }
+    }
+
+    // Lazy load PDF when card becomes visible
+    function loadPDF(card: HTMLElement) {
+      const pdfContainer = card.querySelector('.pdf-placeholder-container');
+      if (!pdfContainer || pdfContainer.classList.contains('pdf-loaded')) {
+        return; // Already loaded
+      }
+
+      const pdfSrc = pdfContainer.getAttribute('data-pdf-src');
+      if (!pdfSrc) return;
+
+      // Create PDF viewer HTML
+      const pdfHTML = `
+        <div class="pdf-viewer-container">
+          <div class="pdf-viewer">
+            <iframe src="${pdfSrc}#toolbar=0&navpanes=0" 
+                    width="100%" 
+                    height="380px" 
+                    class="pdf-iframe" 
+                    title="PDF Document">
+              <div class="pdf-fallback">
+                <p>Your browser doesn't support PDF viewing.</p>
+                <a href="${pdfSrc}" target="_blank">Open PDF in new tab</a>
+              </div>
+            </iframe>
+          </div>
+        </div>
+      `;
+
+      // Replace placeholder with actual PDF viewer
+      pdfContainer.innerHTML = pdfHTML;
+      pdfContainer.classList.add('pdf-loaded');
+    }
+
+    // Pagination navigation functions
+    function goToPage(page: number) {
+      const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        updatePagination();
+        updateDisplay();
+
+        // Scroll to top of presentations
+        const presentationsList = document.querySelector('.presentations-list');
+        if (presentationsList) {
+          presentationsList.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    }
+
+    // Event listeners for filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function(this: HTMLButtonElement) {
+        const filterType = this.getAttribute('data-filter');
+        if (filterType) {
+          applyFilter(filterType);
+        }
+      });
+    });
+
+    // Event listeners for pagination buttons
+    if (firstBtn) {
+      firstBtn.addEventListener('click', () => goToPage(1));
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
+    }
+    if (lastBtn) {
+      lastBtn.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
+        goToPage(totalPages);
+      });
+    }
+
+    // Initialize on page load
+    init();
+  });
+</script>
+

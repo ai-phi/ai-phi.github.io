@@ -31,6 +31,8 @@ I studied Mathematics (BSc) at the University of Padua and specialised in Probab
 
 I then joined Sony CSL in Paris, transitioning to computational social science, where I worked on projects involving music success prediction, news dynamics, and polarisation in social media. Currently, I serve as principal investigator on VALAWAI, a European project focused on value-aware artificial intelligence. Our goal is to design AI systems that integrate moral values to address online polarisation and enhance user experiences through more inclusive and constructive interactions.
 
+<!-- PDF: AI-PHI-18-VALAWAI.pdf | title: Value-Aware AI presentation by Giulio Prevedello | type: presentation -->
+
 ## Details
 
 **Date and Time:** Thursday, 13th of February 2025 - 7pm  

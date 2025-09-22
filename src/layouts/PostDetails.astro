@@ -103,6 +103,24 @@ const layoutProps = {
   .post-title {
     @apply text-2xl font-semibold font-serif text-skin-accent;
   }
+  
+  .download-btn {
+    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+  }
+  
+  .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+  }
+  
+  /* Override prose hover styles for download button */
+  .prose .download-btn:hover {
+    background-color: rgb(var(--color-accent)) !important;
+    color: white !important;
+    opacity: 1 !important;
+    text-decoration: none !important;
+  }
 </style>
 
 <script is:inline>

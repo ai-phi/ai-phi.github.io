@@ -6,40 +6,188 @@ const currentYear = new Date().getFullYear();
 
 export interface Props {
   noMarginTop?: boolean;
+  showIcons?: boolean;
 }
 
-const { noMarginTop = false } = Astro.props;
+const { noMarginTop = false, showIcons = true } = Astro.props;
 ---
 
-<footer class={`${noMarginTop ? "" : "mt-auto"}`}>
-  <Hr noPadding />
-  <div class="footer-wrapper">
-    <Socials centered />
-    <div class="copyright-wrapper">
-      <span>Copyright &#169; {currentYear}</span>
-      <span class="separator">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
-    </div>
+<footer class={`footer-container ${noMarginTop ? "" : "mt-auto"}`}>
+  <div class="footer-content">
+    <span class="copyright-text">Copyright © {currentYear} | All rights reserved.</span>
   </div>
+  
+  <!-- Random icons positioned half outside footer -->
+  {showIcons && (
+    <div class="footer-icons">
+      <!-- First icon - two versions -->
+      <img id="footer-icon-1" class="footer-icon footer-icon-main" alt="Footer Icon" />
+      <img id="footer-icon-1-backing" class="footer-icon footer-icon-backing" alt="Footer Icon" />
+      
+      <!-- Second icon - two versions -->
+      <img id="footer-icon-2" class="footer-icon footer-icon-main" alt="Footer Icon" />
+      <img id="footer-icon-2-backing" class="footer-icon footer-icon-backing" alt="Footer Icon" />
+    </div>
+  )}
 </footer>
 
 <style>
-  footer {
-    @apply w-full;
+  .footer-container {
+    @apply relative w-screen bg-skin-inverted mt-auto;
+    height: 64px;
   }
-  .footer-wrapper {
-    @apply flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4;
+  
+  .footer-content {
+    @apply mx-auto flex items-center justify-start;
+    width: 100%;
+    min-height: 64px;
   }
-  .link-button {
-    @apply my-1 p-2 hover:rotate-6;
+  
+  .copyright-text {
+    @apply text-skin-inverted font-sans;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
   }
-  .link-button svg {
-    @apply scale-125;
+  
+  .footer-icons {
+    @apply absolute bottom-0 right-0;
+    width: 200px;
+    height: 64px;
   }
-  .copyright-wrapper {
-    @apply my-2 flex flex-col items-center whitespace-nowrap sm:flex-row;
+  
+  .footer-icon {
+    @apply absolute w-24 h-24 object-contain;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    transform: rotate(var(--initial-rotation, 0deg));
+    animation: rotateToInitial 0.5s linear forwards;
   }
-  .separator {
-    @apply hidden sm:inline;
+  
+  @keyframes rotateToInitial {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(var(--initial-rotation, 0deg));
+    }
+  }
+  
+  .footer-icon-main {
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .footer-icon-backing {
+    opacity: 0.4;
+    z-index: 1;
+  }
+  
+  /* Hover animations */
+  .footer-icon:hover {
+    transform: scale(1.1) rotate(calc(var(--initial-rotation, 0deg) + 5deg));
+    opacity: 1;
+  }
+  
+  .footer-icon-main:hover {
+    z-index: 3;
+  }
+  
+  .footer-icon-backing:hover {
+    opacity: 0.9;
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  /* First icon pair - white */
+  #footer-icon-1{
+    /* Pure white filter */
+    filter: brightness(0) invert(1);
+    right: 250px;
+    bottom: 20px;/* Half icon (64px) above footer, half below */
+  }
+
+  #footer-icon-1-backing{
+    filter: brightness(1) invert(1);
+    right: 250px;
+    bottom: 20px;/* Half icon (64px) above footer, half below */
+  }
+  
+  /* Second icon pair - black */
+  #footer-icon-2{
+    right: 50px;
+    /* Pure black filter */
+    filter: brightness(0);
+    bottom: 20px; /* Half icon (64px) above footer, half below */
+  }
+    /* Second icon pair - black */
+  #footer-icon-2-backing {
+    right: 50px;
+    /* Pure black filter */
+    filter: brightness(0) invert(0);
+    bottom: 20px; /* Half icon (64px) above footer, half below */
   }
 </style>
+
+<script>
+  // Randomly select two different icons from the icons library
+  function setupFooterIcons() {
+    const icon1 = document.getElementById('footer-icon-1');
+    const icon1Backing = document.getElementById('footer-icon-1-backing');
+    const icon2 = document.getElementById('footer-icon-2');
+    const icon2Backing = document.getElementById('footer-icon-2-backing');
+    
+    // Only setup icons if they exist (i.e., showIcons is true)
+    if (icon1 && icon1Backing && icon2 && icon2Backing) {
+      // Available icons (I_1.png through I_16.png)
+      const availableIcons = [
+        'I_1.png', 'I_2.png', 'I_3.png', 'I_4.png', 'I_5.png', 'I_6.png', 'I_7.png', 'I_8.png',
+        'I_9.png', 'I_10.png', 'I_11.png', 'I_12.png', 'I_13.png', 'I_14.png', 'I_15.png', 'I_16.png'
+      ];
+         
+      const colors_hue_rotate = [
+        'invert(27%) sepia(82%) saturate(5724%) hue-rotate(4deg) brightness(103%) contrast(104%)', //RED
+        'invert(8%) sepia(100%) saturate(7103%) hue-rotate(201deg) brightness(105%) contrast(139%)', //BLUE
+        'invert(94%) sepia(83%) saturate(2543%) hue-rotate(0deg) brightness(112%) contrast(101%)', //YELLOW
+      ];
+
+      // Randomly select two different icons
+      const randomIndex1 = Math.floor(Math.random() * availableIcons.length);
+      let randomIndex2;
+      do {
+        randomIndex2 = Math.floor(Math.random() * availableIcons.length);
+      } while (randomIndex2 === randomIndex1);
+      
+      // Set the icon sources for both main and backing versions
+      const icon1Src = `/src/assets/images/icons-library/${availableIcons[randomIndex1]}`;
+      const icon2Src = `/src/assets/images/icons-library/${availableIcons[randomIndex2]}`;
+      
+      icon1.src = icon1Src;
+      icon1Backing.src = icon1Src;
+      icon2.src = icon2Src;
+      icon2Backing.src = icon2Src;
+
+      const randomFilter1 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      const randomFilter2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      
+      // Apply colored glow/shadow to opaque parts only
+      // lightGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
+      // darkGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
+
+      icon1Backing.style.filter = randomFilter1
+      icon2Backing.style.filter = 'brightness(0) saturate(100%)' + randomFilter2 // turns white image black first
+
+      // Add random slight tilt to both icons - only the main versions
+      const randomTilt1 = (Math.random() - 0.5) * 30 + (Math.random() > 0.5 ? 5 : -5); // Random tilt between -25 and +25 degrees, but always at least ±5 degrees
+      const randomTilt2 = (Math.random() - 0.5) * 30 + (Math.random() > 0.5 ? 5 : -5); // Random tilt between -25 and +25 degrees, but always at least ±5 degrees
+      icon1.style.setProperty('--initial-rotation', `${randomTilt1}deg`);
+      icon2.style.setProperty('--initial-rotation', `${randomTilt2}deg`);
+
+    }
+  }
+  
+  // Initialize icons when DOM is loaded
+  document.addEventListener('DOMContentLoaded', setupFooterIcons);
+  
+  // Re-initialize on view transitions
+  document.addEventListener('astro:after-swap', setupFooterIcons);
+</script>

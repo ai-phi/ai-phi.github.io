@@ -11,7 +11,7 @@ nextSession: false
 tags:
   - AI News
   - Informal Session
-description: News and community updates session
+description: News and community updates session.
 session: true
 # ogImage: assets/ai-phi-session-22.png
 ---
@@ -21,6 +21,8 @@ session: true
 Our traditional AI news and community update session.
 
 Feel free to bring drinks or snacks to share!
+
+<!-- PDF: AI-PHI-23-Preamble.pdf | title: News and updates from an informal session | type: news -->
 
 ## Details
 

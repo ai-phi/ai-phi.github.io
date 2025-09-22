@@ -48,13 +48,58 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     font-family: 'Nunito', sans-serif;
     font-size: 1.1em;
     font-weight: 600;
+
+    
+    @media (max-width: 420px) {
+          width: 50%;
+    }
   }
   
   .footer-icons {
     @apply absolute bottom-0 right-0;
-    width: 25%;
-    height: 64px;
+    width: 30%;
+    bottom: 6px;
+
+    @media (max-width: 420px) {
+          bottom: 24px;
+          width: 40%;
+    }
+
+    @media (max-width: 640px) {
+      bottom: 32px;
+      width: 40%;
+    }
+    
+    @media (min-width: 1024px) {
+      width: 30%;
+    }
+
+
   }
+
+  .footer-icons img {
+
+    height: 128px;
+    bottom: 6px;
+
+
+    @media (max-width: 420px) {
+      height: 32px;
+      bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      height: 32px;
+      bottom: 12px;
+    }
+    
+    @media (min-width: 1024px) {
+      height: 128px;
+      bottom: 12px;
+    }
+
+  }
+
   
   .footer-icon {
     @apply absolute w-24 h-24 object-contain;
@@ -103,7 +148,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     /* Pure white filter */
     filter: brightness(0) invert(1);
     right: 50%; /* Responsive positioning */
-    bottom: 20px;/* Half icon (64px) above footer, half below */
+
     
     /* Responsive adjustments */
     @media (max-width: 640px) {
@@ -118,7 +163,6 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
   #footer-icon-1-backing{
     filter: brightness(1) invert(1);
     right: 50%; /* Responsive positioning */
-    bottom: 20px;/* Half icon (64px) above footer, half below */
     
     /* Responsive adjustments */
     @media (max-width: 640px) {
@@ -135,7 +179,6 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     right: 8%; /* Responsive positioning */
     /* Pure black filter */
     filter: brightness(0);
-    bottom: 20px; /* Half icon (64px) above footer, half below */
     
     /* Responsive adjustments */
     @media (max-width: 640px) {
@@ -151,7 +194,6 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     right: 8%; /* Responsive positioning */
     /* Pure black filter */
     filter: brightness(0) invert(0);
-    bottom: 20px; /* Half icon (64px) above footer, half below */
     
     /* Responsive adjustments */
     @media (max-width: 640px) {
@@ -209,8 +251,8 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
       // lightGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
       // darkGhost.style.filter = `drop-shadow(0 0 1px ${randomColor}) drop-shadow(0 0 2px ${randomColor})`;
 
-      icon1Backing.style.filter = randomFilter1
-      icon2Backing.style.filter = 'brightness(0) saturate(100%)' + randomFilter2 // turns white image black first
+      icon1Backing.style.filter = randomFilter1;
+      icon2Backing.style.filter = 'brightness(0) saturate(100%)' + randomFilter2; // turns white image black first
 
       // Add random slight tilt to both icons - only the main versions
       const randomTilt1 = (Math.random() - 0.5) * 30 + (Math.random() > 0.5 ? 5 : -5); // Random tilt between -25 and +25 degrees, but always at least ±5 degrees

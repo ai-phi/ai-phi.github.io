@@ -240,20 +240,35 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-8 pt-8; /* Add padding on mobile */
     max-width: 58rem;
 
-    @media (min-width: 768px) {
+
+    @media (min-width: 480px) {
+  
+    }
+
+    /* Touch-friendly on mobile with slightly larger touch area */
+    @media (min-width: 640px) {
+ 
+    }
+    
+    @media (max-width: 768px) {
       @apply pb-0 pt-0; /* Remove padding on desktop */
       min-height: auto; /* Auto height on desktop */
+    }
+    
+    @media (min-width: 1024px) {
+      
     }
   }
   
   .hero-content {
-    @apply relative px-4;
+    @apply relative p-4;
     max-width: 100%;
     margin: 0;
     
     @media (min-width: 768px) {
       max-width: 58rem;
       margin-right: 35px;
+      margin-left: 35px;
       @apply px-0;
     }
   }
@@ -282,22 +297,39 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply block;
     /* display: flex; */
     /* flex-wrap: wrap; */
-    justify-content: center;
-    gap: 0.25rem; /* Reduced gap from 0.5rem to 0.25rem */
-    line-height: 0; /* Even tighter line height */
-    font-size: 1.5rem; /* More controlled sizing */
     clear: both; /* Ensure subtitles clear the logo on mobile */
+    text-align: justify; /* Full justification on mobile */
     
-    @media (min-width: 640px) {
-      font-size: 1.25rem; /* Slightly larger on tablet */
+    @media (min-width: 375px) {
+   
       gap: 0.375rem; /* Slightly larger gap on tablet */
+      text-align: justify; /* Full justification on mobile */
+    
+      padding-left: 2rem;
+      padding-right: 2rem;
+      line-height: 0; /* Even tighter line height */
+ 
+    }
+    
+    @media (min-width: 480px) {
+      justify-content: flex-end;
+      padding-left: 3rem;
+      text-align: justify; /* Full justification on mobile */
+    
+    }
+
+    @media (min-width: 640px) {
+
+      justify-content: flex-end;
+      padding-left: 3rem;
+      text-align: end; 
     }
     
     @media (min-width: 768px) {
       justify-content: flex-end;
-      font-size: 1.5rem; /* x-large equivalent on desktop */
-      gap: 0.5rem; /* Original gap on desktop */
       clear: none; /* Allow text to flow around logo on desktop */
+      text-align: end; 
+    
     }
   }
   
@@ -318,23 +350,23 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-title {
     @apply mb-6 font-bold leading-tight;
     font-family: 'Nunito', sans-serif;
-    font-size: 1.5rem; /* 24px on very small mobile */
+    font-size: 2.5rem; /* 24px on very small mobile */
     line-height: 1.2;
     
     @media (min-width: 375px) {
-      font-size: 1.75rem; /* 28px on small mobile */
+      font-size: 2.8rem; /* 28px on small mobile */
     }
     
     @media (min-width: 480px) {
-      font-size: 1.8rem; /* 32px on larger mobile */
+      font-size: 3rem; /* 32px on larger mobile */
     }
     
     @media (min-width: 640px) {
-      font-size: 2rem; /* 36px on small tablet */
+      font-size: 2.75rem; /* 36px on small tablet */
     }
     
     @media (min-width: 768px) {
-      font-size: 2.25rem; /* 44px on tablet */
+      font-size: 2.75rem; /* 44px on tablet */
     }
     
     @media (min-width: 1024px) {
@@ -343,7 +375,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   .hero-tagline {
-    @apply mt-8;
+    @apply mt-0 p-2;
     margin-bottom: 4rem; /* Increased bottom margin on mobile */
     max-width: 40rem;
     margin-left: auto;
@@ -359,7 +391,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-tagline::before {
     content: '';
     position: absolute;
-    top: -20px;
+    /* top: -20px; */
     left: 50%;
     transform: translateX(-50%);
     width: 22%;
@@ -397,13 +429,32 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-tagline p {
     @apply text-skin-base;
     font-family: 'Nunito', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.rem;
     line-height: 1.4;
     font-weight: 200;
     margin-top: 2rem;
     /* font-style: italic; */
     opacity: 0.85;
     letter-spacing: 0.02em;
+
+    @media (max-width: 480px) {
+      @apply p-4;
+      font-size: 1.1rem;/* 32px on larger mobile */
+    }
+    
+    @media (max-width: 640px) {
+      @apply p-4;
+      font-size: 1rem;/* 36px on small tablet */
+    }
+    
+    @media (max-width: 768px) {
+      @apply p-4;
+      font-size: 1.1rem; /* 44px on tablet */
+    }
+    
+    @media (min-width: 1024px) {
+      font-size: 1.5rem; /* 48px on desktop */
+    }
   }
 
   html[data-theme="light"] .hero-tagline p {
@@ -440,27 +491,32 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply relative inline-flex items-center justify-center;
     /* overflow: hidden; */
     /* Ultra-minimal padding for maximum compactness */
-    padding: 0.0625rem 0.125rem; /* Even smaller padding */
-    font-size: 0.8rem;
+  
     line-height: 0.9; /* Extra tight line height */
     vertical-align: middle; /* Align with dots */
     margin: 0; /* Remove any default margins */
     height: 1.2em; 
     
+    @media (min-width: 480px) {
+      font-size: 1.1rem;/* 32px on larger mobile */
+    }
+
     /* Touch-friendly on mobile with slightly larger touch area */
-    @media (max-width: 767px) {
-      padding: 0.1rem 0.2rem; /* Smaller mobile padding */
-      font-size: 0.75rem;
-      min-height: 20px; /* Much smaller min-height */
+    @media (min-width: 640px) {
+      font-size: 1.rem;
     }
     
-    @media (min-width: 640px) {
-      font-size: 1.25rem; /* Smaller than before */
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+    
+    @media (min-width: 1024px) {
+      font-size: 1.4rem;
     }
   }
 
     .glitch-container.glitch-active {
-      animation: glitch-container 2s steps(1, end);
+      /* animation: glitch-container 2s steps(1, end); */
       color: transparent;
     }
 
@@ -484,42 +540,42 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   /* Generate multiple glitch animations with stronger chromatic aberration */
   @keyframes glitch-text-strip {
-    0% {
+    0% 100%{
       transform: none;
-      filter: hue-rotate(0);
+
       color: var(--glitch-text-color);
+      filter: brightness(80%)
     }
-    15% {
+    10% {
       color: transparent;
     }
-    35% {
+    25% {
       color: var(--glitch-text-color);
+      filter: brightness(60%)
     }
     55% {
       color: transparent;
     }
     85% {
       color: var(--glitch-text-color);
+      filter: brightness(30%)
     }
-    95% {
-      color: transparent;
-    }
+
   }
   
   @keyframes glitch-red-blue {
     0%,  100% {
       transform: none;
-      filter: hue-rotate(0);
       color: transparent;
     }
     15% {
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.387), -1px -2px 0 rgba(0, 30, 255, 0.389);
+      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.1), -1px -2px 0 rgba(0, 8, 255, 0.1);
       color: transparent;
     }
     65% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.611), 2px -1px 0 rgba(0, 30, 255, 0.72);
+      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.4), 2px -1px 0 rgba(0, 8, 255, 0.4);
       color: transparent;
     }
   }
@@ -550,12 +606,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     35%{
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.354), -3px -1px 0 rgba(200, 255, 0, 0.5);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.25), -3px -1px 0 rgba(200, 255, 0, 0.25);
       color: transparent;
     }
     90% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.663), -3px -1px 0 rgba(200, 255, 0, 0.861);
+      transform: translateX(var(--glitch-x-2));
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.5), -3px -1px 0 rgba(200, 255, 0, 0.5);
       color: transparent;
     }
   }
@@ -563,27 +619,32 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   @keyframes glitch-text-hole {
     0%,     95% {
       transform: none;
-      filter: hue-rotate(0);
       color: transparent;
     }
-    25%, 90% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(12, 12, 12, 0.354), -3px -1px 0 rgba(0, 0, 0, 0.5);
-      color: transparent;
-    }
+
+    
   }
 
   .dot {
     @apply text-skin-accent font-bold;
-    font-size: 1.25em; /* Even smaller to match glitch containers */
+    font-size: 1.8em; /* Even smaller to match glitch containers */
     vertical-align: middle;
-    line-height: 0.9; /* Match glitch container line height */
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0; /* No padding */
     margin: 0; /* No margin */
     /* height: 1.2em; */
+    /* Desktop layout */
+    @media (min-width: 768px) {
+      font-size: 1.8em;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 2em;
+    }
+    
   }
   
   .hero-graphic {
@@ -603,13 +664,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       float: right;
       margin-left: 4rem;
       margin-bottom: 1rem;
-      margin-top: -2rem;
+      margin-top: -3rem;
       text-align: left;
       margin-right: 0; /* Remove auto margin on desktop */
     }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
-    clip-path: circle(50%);
+  
   }
   
   /* Hero ring logo styling */
@@ -617,24 +678,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply absolute w-auto transition-opacity duration-200;
     opacity: 0.3;
     pointer-events: none;
-    top: 0;
-    left: 0;
+
     z-index: -1;
+    padding: 0.2rem; /* It's not a perfect circle. Place it slightly inside so you don't notice as it rotates */
     animation: slowRotate 150s linear infinite;
     
-    /* Responsive sizing for ring logos */
-    height: 14rem; /* Mobile */
-    
+  
     @media (min-width: 640px) {
-      height: 18rem; /* Tablet */
+      height: 22rem; /* 256px on tablet */
     }
     
     @media (min-width: 768px) {
-      height: 22rem; /* Desktop */
+      height: 22rem; /* 320px on desktop */
     }
     
     @media (min-width: 1024px) {
-      height: 28rem; /* Large desktop */
+      height: 25rem; /* 400px on large desktop */
     }
   }
   
@@ -664,28 +723,36 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   #hero{
-    margin-top: 2rem; /* Smaller top margin on mobile */
-    margin-bottom: 3rem; /* Ensure bottom spacing on mobile */
+    margin-top: 1rem; /* Smaller top margin on mobile */
+    margin-bottom: 0rem; /* Ensure bottom spacing on mobile */
     margin-left: auto;
     margin-right: auto;
     
-    @media (min-width: 768px) {
-      margin-top: 70px; /* Original margins on desktop */
-      margin-bottom: 70px;
+    @media (max-width: 768px) {
+      margin-top: 0px; /* Original margins on desktop */
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+    }
+    @media (min-width: 1080px) {
+      margin-top: 2rem; /* Original margins on desktop */
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
     }
   }
 
   
   .hero-logo {
     @apply w-auto transition-opacity duration-200;
-    height: 12rem; /* 192px on mobile */
+    height: 18rem; /* 192px on mobile */
     
     @media (min-width: 640px) {
-      height: 16rem; /* 256px on tablet */
+      height: 22rem; /* 256px on tablet */
     }
     
     @media (min-width: 768px) {
-      height: 20rem; /* 320px on desktop */
+      height: 22rem; /* 320px on desktop */
     }
     
     @media (min-width: 1024px) {
@@ -731,12 +798,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin-top: 3rem; /* Increased top margin on mobile */
     margin-bottom: 2rem; /* Better bottom margin on mobile */
     max-width: 58rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     
     @media (min-width: 768px) {
       @apply my-8; /* Original margins on desktop */
       margin-top: 0px;
       margin-bottom: 0px;
+      font-size: 1.5rem;
     }
   }
 
@@ -802,15 +870,26 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       if (glitchType == 'glitch-text-strip' || glitchType == 'glitch-text-hole') {
         glitchTypeValues[glitchType] = { x1: 0, x2: 0 };
       } else if (glitchType == 'glitch-red-blue') {
-        glitchTypeValues[glitchType] = { x1: random(-15, -10), x2: random(-10, -5) };
+        glitchTypeValues[glitchType] = { x1: random(-15, -10), x2: random(5, 10) };
       } else if (glitchType == 'glitch-pink-yellow') {
-        glitchTypeValues[glitchType] = { x1: random(0, 5), x2: random(5, 10) };
+        glitchTypeValues[glitchType] = { x1: random(10, 15), x2: random(-5, 0) };
       }
     });
     
     // Create strips
     const strips = [];
     let currentTop = 0;
+    
+    // Choose color scheme for this container (prevent mixing pink-yellow and red-blue)
+    const colorSchemeChoice = Math.random();
+    let allowedGlitchTypes;
+    if (colorSchemeChoice < 0.5) {
+      // Red-blue scheme
+      allowedGlitchTypes = ['glitch-text-strip', 'glitch-red-blue', 'glitch-text-hole'];
+    } else if (colorSchemeChoice < 1) {
+      // Pink-yellow scheme  
+      allowedGlitchTypes = ['glitch-text-strip', 'glitch-pink-yellow', 'glitch-text-hole'];
+    }
     
     while (currentTop < lineHeight) {
       // Calculate remaining height
@@ -822,7 +901,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         actualHeight = remainingHeight;
       } else {
         // Calculate strip height as percentage of remaining height (10% to 40% of remaining)
-        const stripHeightPercent = random(20, 40); // Percentage of remaining height
+        const stripHeightPercent = random(20, 50); // Percentage of remaining height
         const stripHeight = (remainingHeight * stripHeightPercent) / 100;
         actualHeight = stripHeight;
       }
@@ -834,13 +913,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
        const strip = document.createElement('div');
        strip.className = 'glitch-strip';
 
-       // Choose random glitch type for this strip
-       var glitch_name = glitch_names[Math.floor(Math.random() * glitch_names.length)];
+       // Choose random glitch type from allowed types for this container
+       var glitch_name = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
        
        // Use pre-generated values for this glitch type
        var glitch_x_1 = glitchTypeValues[glitch_name].x1;
        var glitch_x_2 = glitchTypeValues[glitch_name].x2;
-       var timing_function = 'steps(1, end)';
+       var timing_function = 'steps(3, jump-start)';
+      //  var timing_function = 'linear';
        strip.style.cssText = `
          position: absolute;
          top: ${currentTop}px;
@@ -863,7 +943,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
          --glitch-text-color: ${textColor};
          --glitch-hue-1: ${random(10, 20)}deg;
          animation-name: ${glitch_name};
-         animation-duration: ${random(1000, 3000)}ms;
+         animation-duration: ${random(3000, 8000)}ms;
         //  animation-delay: ${random(0, 2000)}ms;
          animation-iteration-count: infinite;
          animation-play-state: paused;
@@ -972,8 +1052,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       clearTimeout(glitchTimeout);
     }
   
-    const minDelay = 18000;  // 18 seconds
-    const maxDelay = 22000;  // 22 seconds
+    const minDelay = 2000;  // 18 seconds
+    const maxDelay = 4000;  // 22 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     
     glitchTimeout = setTimeout(() => {

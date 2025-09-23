@@ -570,12 +570,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     15% {
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.1), -1px -2px 0 rgba(0, 8, 255, 0.1);
+      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.2), -1px -2px 0 rgba(0, 8, 255, 0.2);
       color: transparent;
     }
     65% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.4), 2px -1px 0 rgba(0, 8, 255, 0.4);
+      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.5), 2px -1px 0 rgba(0, 8, 255, 0.5);
       color: transparent;
     }
   }
@@ -611,7 +611,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     90% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.5), -3px -1px 0 rgba(200, 255, 0, 0.5);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.6), -3px -1px 0 rgba(200, 255, 0, 0.6);
       color: transparent;
     }
   }
@@ -891,19 +891,19 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       allowedGlitchTypes = ['glitch-text-strip', 'glitch-pink-yellow', 'glitch-text-hole'];
     }
     
-    while (currentTop < lineHeight) {
-      // Calculate remaining height
-      const remainingHeight = lineHeight - currentTop;
-      
+    // Randomly choose between 2, 3, or 4 strips
+    const stripCount = Math.floor(Math.random() * 3) + 2; // 2, 3, or 4
+    for (let i = 0; i < stripCount; i++) {
+      // Calculate strip height - divide lineHeight into equal parts with variation
       let actualHeight;
-      // For the last strip, use all remaining height
-      if (remainingHeight <= lineHeight * 0.1) { // If less than 10% remaining
-        actualHeight = remainingHeight;
+      if (i === stripCount - 1) {
+        // Last strip takes remaining height
+        actualHeight = lineHeight - currentTop;
       } else {
-        // Calculate strip height as percentage of remaining height (10% to 40% of remaining)
-        const stripHeightPercent = random(20, 50); // Percentage of remaining height
-        const stripHeight = (remainingHeight * stripHeightPercent) / 100;
-        actualHeight = stripHeight;
+        // Other strips get roughly equal portions with slight variation
+        const baseHeight = lineHeight / stripCount;
+        const variation = baseHeight * 0.3; // 30% variation for more diversity
+        actualHeight = baseHeight + (Math.random() - 0.5) * variation;
       }
       
        // Get theme background color for initial strip color
@@ -913,8 +913,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
        const strip = document.createElement('div');
        strip.className = 'glitch-strip';
 
-       // Choose random glitch type from allowed types for this container
-       var glitch_name = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
+       // Choose glitch type - ensure at least one colored glitch per container
+       var glitch_name;
+       if (i === 0) {
+         // First strip must be colored (red-blue or pink-yellow)
+         const coloredTypes = allowedGlitchTypes.filter(type => 
+           type === 'glitch-red-blue' || type === 'glitch-pink-yellow'
+         );
+         glitch_name = coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
+       } else {
+         // Other strips can be any allowed type
+         glitch_name = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
+       }
        
        // Use pre-generated values for this glitch type
        var glitch_x_1 = glitchTypeValues[glitch_name].x1;
@@ -1052,8 +1062,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       clearTimeout(glitchTimeout);
     }
   
-    const minDelay = 2000;  // 18 seconds
-    const maxDelay = 4000;  // 22 seconds
+    const minDelay = 8000;  // 18 seconds
+    const maxDelay = 12000;  // 22 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     
     glitchTimeout = setTimeout(() => {

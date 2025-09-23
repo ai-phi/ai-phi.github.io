@@ -103,7 +103,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               <span>Consciousness</span>
             </div>
             <span class="dot">·</span>
-            <div class="glitch-container" data-text="Regulation">
+            <div class="glitch-container" data-text="Regulations">
               <span>Regulation</span>
             </div>
             <span class="dot">·</span>
@@ -119,8 +119,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               <span>Reasoning</span>
             </div>
             <span class="dot">·</span>
-            <div class="glitch-container" data-text="LLM">
-              <span>LLM</span>
+            <div class="glitch-container" data-text="Machine Learning">
+              <span>Machine Learning</span>
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Agency">
@@ -283,6 +283,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply text-lg;
     font-family: 'Nunito', sans-serif;
     font-size: 25px;
+    font-weight: 400;
     text-align: center;
     clear: both; /* Ensure text clears floated logo on mobile */
     
@@ -299,12 +300,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
     text-align: justify; /* Full justification on mobile */
-    
+    font-weight: 300;
+
     @media (min-width: 375px) {
    
       gap: 0.375rem; /* Slightly larger gap on tablet */
       text-align: justify; /* Full justification on mobile */
-    
+      font-weight: 300;
       padding-left: 2rem;
       padding-right: 2rem;
       line-height: 0; /* Even tighter line height */
@@ -315,6 +317,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       justify-content: flex-end;
       padding-left: 3rem;
       text-align: justify; /* Full justification on mobile */
+
     
     }
 
@@ -323,6 +326,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       justify-content: flex-end;
       padding-left: 3rem;
       text-align: end; 
+      
     }
     
     @media (min-width: 768px) {
@@ -431,7 +435,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-family: 'Nunito', sans-serif;
     font-size: 1.rem;
     line-height: 1.4;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 2rem;
     /* font-style: italic; */
     opacity: 0.85;
@@ -495,7 +499,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     line-height: 0.9; /* Extra tight line height */
     vertical-align: middle; /* Align with dots */
     margin: 0; /* Remove any default margins */
-    height: 1.2em; 
+    height: 1.1em; 
     
     @media (min-width: 480px) {
       font-size: 1.1rem;/* 32px on larger mobile */
@@ -570,12 +574,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     15% {
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.2), -1px -2px 0 rgba(0, 8, 255, 0.2);
+      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.4), -1px -2px 0 rgba(0, 8, 255, 0.4);
       color: transparent;
     }
     65% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.5), 2px -1px 0 rgba(0, 8, 255, 0.5);
+      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.7), 2px -1px 0 rgba(0, 8, 255, 0.7);
       color: transparent;
     }
   }
@@ -606,12 +610,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     35%{
       transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.25), -3px -1px 0 rgba(200, 255, 0, 0.25);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.4), -3px -1px 0 rgba(200, 255, 0, 0.4);
       color: transparent;
     }
     90% {
       transform: translateX(var(--glitch-x-2));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.6), -3px -1px 0 rgba(200, 255, 0, 0.6);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.7), -3px -1px 0 rgba(200, 255, 0, 0.7);
       color: transparent;
     }
   }
@@ -747,6 +751,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply w-auto transition-opacity duration-200;
     height: 18rem; /* 192px on mobile */
     
+  
     @media (min-width: 640px) {
       height: 22rem; /* 256px on tablet */
     }
@@ -962,7 +967,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       
       // Create a span with the text and position it to show only the relevant slice
       const textSpan = document.createElement('span');
-      textSpan.textContent = text;
+      
+      // Randomly drop 1-2 letters and replace with spaces or corruption symbols for glitch effect
+      let glitchedText = text;
+      const numDrops = Math.floor(Math.random() * 2) + 1; // 1 or 2 drops
+      const corruptionSymbols = [' ', '@', '$', '!', '*', '&']; // Space or corruption symbols
+      
+      for (let drop = 0; drop < numDrops; drop++) {
+        if (glitchedText.length > 1) { // Don't drop if text is too short
+          const randomIndex = Math.floor(Math.random() * glitchedText.length);
+          const randomSymbol = corruptionSymbols[Math.floor(Math.random() * corruptionSymbols.length)];
+          // Replace character at random index with a random corruption symbol
+          glitchedText = glitchedText.substring(0, randomIndex) + randomSymbol + glitchedText.substring(randomIndex + 1);
+        }
+      }
+      
+      textSpan.textContent = glitchedText;
       textSpan.style.cssText = `
         position: absolute;
         top: -${currentTop}px;

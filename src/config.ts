@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "The AI-PHI team",
   desc: "Official page of the Paris-based AI-PHI community.",
   title: "AI-PHI",
-  ogImage: "aiphi-base.jpeg",
+  ogImage: "aiphi-og-new.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
 };

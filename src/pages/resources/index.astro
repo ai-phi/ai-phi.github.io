@@ -132,7 +132,7 @@ const allPresentations = presentations;
         )}
         
         <!-- Dynamic pagination (controlled by JavaScript) -->
-        <div class="pagination-wrapper" id="pagination-container">
+        <div class="pagination-wrapper" id="pagination-container" style="display: none;">
           <nav class="pagination-nav" aria-label="Pagination">
             <!-- Previous/First buttons -->
             <button id="first-btn" class="pagination-btn" style="display: none;">
@@ -447,16 +447,6 @@ const allPresentations = presentations;
     const isNavigatedPage = document.readyState === 'complete' && initAttempts === 1;
     
     if ((presentationCards.length < expectedMinCards || !pageNumbers || !paginationContainer) && initAttempts < maxInitAttempts) {
-      console.log('Resources not fully loaded yet, retrying...', {
-        attempt: initAttempts,
-        maxAttempts: maxInitAttempts,
-        cards: presentationCards.length,
-        expectedMin: expectedMinCards,
-        pageNumbers: !!pageNumbers,
-        paginationContainer: !!paginationContainer,
-        isNavigated: isNavigatedPage,
-        readyState: document.readyState
-      });
       
       // Use longer delay for navigation scenarios
       const retryDelay = isNavigatedPage ? 200 : 100;
@@ -475,8 +465,6 @@ const allPresentations = presentations;
 
     // Initialize the filtering system
     function init() {
-      console.log('Initializing resources page...');
-      console.log('Found presentation cards:', presentationCards.length);
       currentFilter = 'all';
       currentPage = 1;
       applyFilter(currentFilter);
@@ -517,20 +505,28 @@ const allPresentations = presentations;
 
     // Update pagination controls
     function updatePagination() {
+      console.log('Updating pagination:', filteredCards.length, POSTS_PER_PAGE);
       const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
 
       // Update page numbers
       if (pageNumbers) {
         pageNumbers.textContent = `${currentPage} / ${totalPages}`;
       }
+      console.log('Updating pagination:', pageNumbers);
 
-      // Show/hide pagination container
+      // Update button states
+      if (firstBtn) firstBtn.disabled = currentPage === 1;
+      if (prevBtn) prevBtn.disabled = currentPage === 1;
+      if (nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+      if (lastBtn) lastBtn.disabled = currentPage === totalPages || totalPages === 0;
+      
+      // Always show pagination container when we have data, hide only if no pages
       if (paginationContainer) {
-        if (totalPages <= 1) {
+        if (totalPages === 0 || filteredCards.length === 0) {
           paginationContainer.style.display = 'none';
-          return;
         } else {
-          paginationContainer.style.display = 'flex';
+          paginationContainer.style.display = 'block';
+          console.log('Showing pagination container');
         }
       }
 
@@ -589,7 +585,7 @@ const allPresentations = presentations;
 
     // Event listeners for filter buttons
     filterButtons.forEach(button => {
-      button.addEventListener('click', function(this: HTMLButtonElement) {
+      button.addEventListener('click', function() {
         const filterType = this.getAttribute('data-filter');
         if (filterType) {
           applyFilter(filterType);
@@ -618,21 +614,37 @@ const allPresentations = presentations;
     init();
   }
   
-  // Start initialization when DOM is ready, with retries if needed
+  // Start initialization - always use retry logic regardless of ready state
   function startInitialization() {
     console.log('Starting initialization...');
     initAttempts = 0; // Reset attempts counter
-    setTimeout(initializeWhenReady, 50);
+    setTimeout(initializeWhenReady, 100); // Longer initial delay for navigation
   }
   
-  // Handle both initial page load and navigation
-  if (document.readyState === 'loading') {
-    // Page is still loading
-    document.addEventListener('DOMContentLoaded', startInitialization);
-  } else {
-    // Page already loaded (navigation case)
-    console.log('Page already loaded, starting initialization');
-    startInitialization();
+  // Multiple initialization triggers to handle all navigation scenarios
+  
+  // 1. Fresh page load
+  document.addEventListener('DOMContentLoaded', startInitialization);
+  
+  // 2. Already loaded (first navigation)
+  if (document.readyState !== 'loading') {
+    console.log('DOM already ready, starting initialization');
+    setTimeout(startInitialization, 50);
   }
+  
+  // 3. Astro page navigation (for cached/repeated visits)
+  document.addEventListener('astro:page-load', function() {
+    console.log('Astro page load event');
+    setTimeout(startInitialization, 100);
+  });
+  
+  // 4. Fallback for any other navigation patterns
+  window.addEventListener('load', function() {
+    console.log('Window load event');
+    setTimeout(startInitialization, 150);
+  });
+  
+  // 5. Immediate attempt (covers edge cases)
+  setTimeout(startInitialization, 200);
 </script>
 

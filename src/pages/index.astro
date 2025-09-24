@@ -280,11 +280,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-family: "Nunito", sans-serif;
     font-size: 25px;
     font-weight: 400;
-    text-align: center;
     clear: both; /* Ensure text clears floated logo on mobile */
 
     @media (min-width: 768px) {
-      text-align: right;
+  
       clear: none; /* Allow text to flow around logo on desktop */
     }
     line-height: 1.5rem;
@@ -296,32 +295,33 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
     text-align: justify; /* Full justification on mobile */
-
-    @media (min-width: 375px) {
-      gap: 0.375rem; /* Slightly larger gap on tablet */
+    padding: 1rem;
+    
+    @media (max-width: 375px) {
+/* Slightly larger gap on tablet */
       text-align: justify; /* Full justification on mobile */
-
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding: 1rem;
       line-height: 0; /* Even tighter line height */
     }
 
-    @media (min-width: 480px) {
+    @media (max-width: 480px) {
       justify-content: flex-end;
-      padding-left: 3rem;
-      text-align: justify; /* Full justification on mobile */
+      padding: 1rem;
+      padding: 0rem;
     }
 
-    @media (min-width: 640px) {
+    @media (max-width: 640px) {
       justify-content: flex-end;
-      padding-left: 3rem;
-      text-align: end;
+      padding-left: 1rem;
+      padding-top: 0rem;
     }
 
     @media (min-width: 768px) {
       justify-content: flex-end;
+      padding-left: 3rem;
+      padding-top: 0rem;
       clear: none; /* Allow text to flow around logo on desktop */
-      text-align: end;
+      
     }
   }
 
@@ -329,52 +329,85 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     color: rgb(164 162 162); /* Slightly greyish text */
     margin-top: 1.5rem; /* Reduced from 2.5rem */
     margin-bottom: 0.75rem;
+
+
   }
 
   .subtitle-section.discussion-topics {
     color: rgb(115, 115, 115); /* Darker text for discussion topics */
     margin-top: 1rem; /* Reduced from 2rem */
     margin-bottom: 0.75rem;
+    margin-left: 0rem;
+
+    @media (max-width: 375px) {
+      margin-left: 0rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-left: 0rem;
+    }
+
+    @media (max-width: 640px) {
+      margin-left: 0rem;
+ 
+    }
+
+    @media (min-width: 768px) {
+      margin-left: 2rem;
+      
+    }
   }
 
   .hero-title {
     @apply mb-6 font-bold leading-tight;
     font-family: "Nunito", sans-serif;
-    font-size: 2.5rem; /* 24px on very small mobile */
+    font-size: 3rem; /* 24px on very small mobile */
     line-height: 1.2;
 
     @media (min-width: 375px) {
-      font-size: 2.8rem; /* 28px on small mobile */
+      font-size: 3rem;
+      text-align: center;
     }
 
     @media (min-width: 480px) {
       font-size: 3rem; /* 32px on larger mobile */
+      text-align: center;
     }
 
     @media (min-width: 640px) {
-      font-size: 2.75rem; /* 36px on small tablet */
+      font-size: 3rem; /* 36px on small tablet */
+      text-align: left;
     }
 
     @media (min-width: 768px) {
-      font-size: 2.75rem; /* 44px on tablet */
+      font-size: 3rem; /* 44px on tablet */
+      text-align: left;
     }
 
     @media (min-width: 1024px) {
-      font-size: 2.75rem; /* 48px on desktop */
+      font-size: 3rem; /* 48px on desktop */
+      text-align: left;
     }
   }
 
   .hero-tagline {
-    @apply mt-0 p-2;
-    margin-bottom: 4rem; /* Increased bottom margin on mobile */
-    max-width: 40rem;
+    @apply mt-2 p-4; 
+
+    font-size: 2rem;
+    margin-bottom: 0rem; /* Increased bottom margin on mobile */
+    margin-top: 0rem;
+    /* max-width: 40rem; */
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     position: relative;
+    
 
     @media (min-width: 768px) {
       @apply mb-12; /* Original margin on desktop */
+      font-size: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 4rem; 
     }
   }
 
@@ -384,7 +417,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* top: -20px; */
     left: 50%;
     transform: translateX(-50%);
-    width: 22%;
+    width: 45%;
     margin-top: -1rem;
 
     /* Wavy line CSS variables */
@@ -442,31 +475,32 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   .hero-tagline p {
     @apply text-skin-base;
     font-family: "Nunito", sans-serif;
-    font-size: 1rem;
-    line-height: 1.4;
+
+    line-height: 1.3;
     font-weight: 200;
     margin-top: 2rem;
     /* font-style: italic; */
     opacity: 0.85;
     letter-spacing: 0.02em;
+    font-size: 1.8rem; 
 
     @media (max-width: 480px) {
       @apply p-4;
-      font-size: 1.1rem; /* 32px on larger mobile */
+      font-size: 1.5rem; /* 32px on larger mobile */
     }
 
     @media (max-width: 640px) {
       @apply p-4;
-      font-size: 1rem; /* 36px on small tablet */
+      font-size: 1.5rem; /* 36px on small tablet */
     }
 
     @media (max-width: 768px) {
       @apply p-4;
-      font-size: 1.1rem; /* 44px on tablet */
+      font-size: 1.8rem; /* 44px on tablet */
     }
 
     @media (min-width: 1024px) {
-      font-size: 1.5rem; /* 48px on desktop */
+      font-size: 1.8rem; /* 48px on desktop */
     }
   }
 
@@ -515,11 +549,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     /* Touch-friendly on mobile with slightly larger touch area */
     @media (min-width: 640px) {
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
 
     @media (max-width: 768px) {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
     }
 
     @media (min-width: 1024px) {
@@ -656,7 +690,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         3px 1px 0 rgba(0, 132, 255, 0.3);
       color: transparent;
     }
-    95% {
+    55% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 0, 0),
+        3px 1px 0 rgba(0, 132, 255, 0);
+      color: transparent;
+    }
+    75% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
         0px 0px 0 rgba(255, 0, 0, 0.7),
@@ -685,11 +726,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         3px 2px 0 rgba(200, 255, 0, 0.4);
       color: transparent;
     }
-    95% {
+    70% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0.7),
-        4px 2px 0 rgba(200, 255, 0, 0.6);
+        0px 0px 0 rgba(255, 0, 162, 0),
+        4px 2px 0 rgba(200, 255, 0, 0);
+      color: transparent;
+    }
+    80% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 162, 0.5),
+        4px 2px 0 rgba(200, 255, 0, 0.5);
       color: transparent;
     }
     100% {
@@ -705,15 +753,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     0% {
       transform: none;
       color: var(--glitch-text-color);
-      opacity: 10%;
+      opacity: 5%;
     }
     25% {
       color: var(--glitch-text-color);
-      opacity: 10%;
+      opacity: 15%;
     }
     75% {
       color: var(--glitch-text-color);
-      opacity: 10%;
+      opacity: 0%;
     }
     100% {
       color: var(--glitch-text-color);
@@ -723,7 +771,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .dot {
     @apply font-bold text-skin-accent;
-    font-size: 1.8em; /* Even smaller to match glitch containers */
+    font-size: 1.8em !important;/* Even smaller to match glitch containers */
     vertical-align: middle;
 
     display: inline-flex;
@@ -986,18 +1034,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-red-blue",
-        "glitch-text-hole",
+        /* "glitch-text-hole", */
       ];
     } else {
       // Pink-yellow scheme
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-pink-yellow",
-        "glitch-text-hole",
+        /* "glitch-text-hole", */
       ];
     }
 
-    const stripCount = 6; // 3 to 8 strips
+    const stripCount = 5; // 3 to 8 strips
 
     // Create array of strip configurations first
     const stripConfigs: Array<{ height: number; glitchType: string }> = [];
@@ -1090,7 +1138,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
          ? "ease-in-out" 
          : "steps(6, jump-start)"; // Smooth flickering for text strips, stepped for movement
 
-       const animationDuration = 2000; // ms
+       const animationDuration = 3000; // ms
 
       strip.style.cssText = `
           position: absolute;
@@ -1314,8 +1362,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       clearTimeout(glitchTimeout);
     }
 
-    const minDelay = 10000; // 1 second
-    const maxDelay = 20000; // 2 seconds
+    const minDelay = 20000; // 1 second
+    const maxDelay = 30000; // 2 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
 
     glitchTimeout = setTimeout(() => {

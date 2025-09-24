@@ -21,14 +21,10 @@ const nextSessionPost = sortedPosts.filter(({ data }) => data.nextSession);
 const nextFormal = sortedPosts
   .filter(({ data }) => data.nextFormal)
   .sort(
-      (a, b) =>
-        Math.floor(
-          new Date(a.data.pubDatetime).getTime() / 1000
-        ) -
-        Math.floor(
-          new Date(b.data.pubDatetime).getTime() / 1000
-        )
-    );
+    (a, b) =>
+      Math.floor(new Date(a.data.pubDatetime).getTime() / 1000) -
+      Math.floor(new Date(b.data.pubDatetime).getTime() / 1000)
+  );
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -51,7 +47,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             alt=""
             class="hero-ring-logo dark-ring"
           />
-          
+
           <img
             src="/images/AiPhi_Logo_Black_Variante.png"
             alt="AI-PHI Logo"
@@ -63,10 +59,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             class="hero-logo dark-logo"
           />
         </div>
-        
+
         <div class="hero-text">
           <h1 class="hero-title">
-            AI & Philosophy<br>
+            AI & Philosophy<br />
             Discussion Group
           </h1>
           <!-- General aspects of AI-PHI -->
@@ -94,9 +90,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             <div class="glitch-container" data-text="Debates">
               <span>Debate</span>
             </div>
-
           </div>
-          
+
           <!-- Topics we discuss -->
           <div class="subtitle-section discussion-topics">
             <div class="glitch-container" data-text="Consciousness">
@@ -104,7 +99,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Regulations">
-              <span>Regulation</span>
+              <span>Regulations</span>
             </div>
             <span class="dot">·</span>
             <div class="glitch-container" data-text="Ethics">
@@ -129,12 +124,17 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         </div>
       </div>
-        <div class="hero-tagline">
-          <p>We are a Paris-based community of researchers and professionals at the <span class="tagline-highlight">intersection of AI and Philosophy</span>, trying to <span class="tagline-highlight">track the big ideas</span> that are shaping a rapidly changing world.</p>
-        </div>
+      <div class="hero-tagline">
+        <p>
+          We are a Paris-based community of researchers and professionals at the <span
+            class="tagline-highlight">intersection of AI and Philosophy</span
+          >, trying to <span class="tagline-highlight">track the big ideas</span
+          > that are shaping a rapidly changing world.
+        </p>
+      </div>
     </section>
 
-<!-- {
+    <!-- {
   nextFormal.length > 0 && (
     <>
       <section id="featured">
@@ -154,7 +154,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   )
 } -->
 
-<!-- {
+    <!-- {
   nextSessionPost.length > 0 && (
     <>
       <section id="featured">
@@ -195,7 +195,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       )
     }
     -->
-<!-- 
+    <!-- 
     <section id="recent-posts">
       <h2>📝 Recent Activity</h2>
       <ul>
@@ -216,8 +216,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             )
         }
       </ul> -->
-      
-      <section id="all-posts" class="hero-section">
+
+    <section id="all-posts" class="hero-section">
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts" className="all-posts-button">
           Our Posts
@@ -240,31 +240,27 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-8 pt-8; /* Add padding on mobile */
     max-width: 58rem;
 
-
     @media (min-width: 480px) {
-  
     }
 
     /* Touch-friendly on mobile with slightly larger touch area */
     @media (min-width: 640px) {
- 
     }
-    
+
     @media (max-width: 768px) {
       @apply pb-0 pt-0; /* Remove padding on desktop */
       min-height: auto; /* Auto height on desktop */
     }
-    
+
     @media (min-width: 1024px) {
-      
     }
   }
-  
+
   .hero-content {
     @apply relative p-4;
     max-width: 100%;
     margin: 0;
-    
+
     @media (min-width: 768px) {
       max-width: 58rem;
       margin-right: 35px;
@@ -272,107 +268,97 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       @apply px-0;
     }
   }
-  
+
   .hero-content::after {
     content: "";
     display: table;
     clear: both;
   }
-  
+
   .hero-text {
     @apply text-lg;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     font-size: 25px;
     font-weight: 400;
     text-align: center;
     clear: both; /* Ensure text clears floated logo on mobile */
-    
+
     @media (min-width: 768px) {
       text-align: right;
       clear: none; /* Allow text to flow around logo on desktop */
     }
-    line-height: 1.50rem;   
+    line-height: 1.5rem;
   }
-  
+
   .subtitle-section {
     @apply block;
     /* display: flex; */
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
     text-align: justify; /* Full justification on mobile */
-    font-weight: 300;
 
     @media (min-width: 375px) {
-   
       gap: 0.375rem; /* Slightly larger gap on tablet */
       text-align: justify; /* Full justification on mobile */
-      font-weight: 300;
+
       padding-left: 2rem;
       padding-right: 2rem;
       line-height: 0; /* Even tighter line height */
- 
     }
-    
+
     @media (min-width: 480px) {
       justify-content: flex-end;
       padding-left: 3rem;
       text-align: justify; /* Full justification on mobile */
-
-    
     }
 
     @media (min-width: 640px) {
-
       justify-content: flex-end;
       padding-left: 3rem;
-      text-align: end; 
-      
+      text-align: end;
     }
-    
+
     @media (min-width: 768px) {
       justify-content: flex-end;
       clear: none; /* Allow text to flow around logo on desktop */
-      text-align: end; 
-    
+      text-align: end;
     }
   }
-  
+
   .subtitle-section.general-aspects {
     color: rgb(164 162 162); /* Slightly greyish text */
     margin-top: 1.5rem; /* Reduced from 2.5rem */
     margin-bottom: 0.75rem;
   }
-  
+
   .subtitle-section.discussion-topics {
     color: rgb(115, 115, 115); /* Darker text for discussion topics */
     margin-top: 1rem; /* Reduced from 2rem */
     margin-bottom: 0.75rem;
   }
-  
 
-  
   .hero-title {
     @apply mb-6 font-bold leading-tight;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     font-size: 2.5rem; /* 24px on very small mobile */
     line-height: 1.2;
-    
+
     @media (min-width: 375px) {
       font-size: 2.8rem; /* 28px on small mobile */
     }
-    
+
     @media (min-width: 480px) {
       font-size: 3rem; /* 32px on larger mobile */
     }
-    
+
     @media (min-width: 640px) {
       font-size: 2.75rem; /* 36px on small tablet */
     }
-    
+
     @media (min-width: 768px) {
       font-size: 2.75rem; /* 44px on tablet */
     }
-    
+
     @media (min-width: 1024px) {
       font-size: 2.75rem; /* 48px on desktop */
     }
@@ -386,56 +372,79 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin-right: auto;
     text-align: center;
     position: relative;
-    
+
     @media (min-width: 768px) {
       @apply mb-12; /* Original margin on desktop */
     }
   }
 
   .hero-tagline::before {
-    content: '';
+    content: "";
     position: absolute;
     /* top: -20px; */
     left: 50%;
     transform: translateX(-50%);
     width: 22%;
     margin-top: -1rem;
-    
+
     /* Wavy line CSS variables */
     --s: 6px; /* size of the wave */
     --b: 3px; /* thickness of the line */
     --m: 1; /* curvature of the wave [0 2] */
-    
+
     /* Calculate dimensions */
-    --R: calc(var(--s)*sqrt(var(--m)*var(--m) + 1) + var(--b)/2);
-    height: calc(2*var(--R));
-    
+    --R: calc(var(--s) * sqrt(var(--m) * var(--m) + 1) + var(--b) / 2);
+    height: calc(2 * var(--R));
+
     /* Gradient background */
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.5) 5%, rgb(131, 130, 130) 50%, rgba(255, 255, 255, 0.5) 95%);
-    
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5) 5%,
+      rgb(131, 130, 130) 50%,
+      rgba(255, 255, 255, 0.5) 95%
+    );
+
     /* Wavy mask */
     --_g: #0000 calc(99% - var(--b)), #000 calc(101% - var(--b)) 99%, #0000 101%;
     mask:
-      radial-gradient(var(--R) at left 50% bottom calc(-1*var(--m)*var(--s)), var(--_g)) 
-       calc(50% - 2*var(--s)) calc(50% - var(--s)/2 - var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x,
-      radial-gradient(var(--R) at left 50% top calc(-1*var(--m)*var(--s)),var(--_g)) 
-       50% calc(50% + var(--s)/2 + var(--b)/2)/calc(4*var(--s)) calc(var(--s) + var(--b)) repeat-x;
+      radial-gradient(
+          var(--R) at left 50% bottom calc(-1 * var(--m) * var(--s)),
+          var(--_g)
+        )
+        calc(50% - 2 * var(--s)) calc(50% - var(--s) / 2 - var(--b) / 2) /
+        calc(4 * var(--s)) calc(var(--s) + var(--b)) repeat-x,
+      radial-gradient(
+          var(--R) at left 50% top calc(-1 * var(--m) * var(--s)),
+          var(--_g)
+        )
+        50% calc(50% + var(--s) / 2 + var(--b) / 2) / calc(4 * var(--s))
+        calc(var(--s) + var(--b)) repeat-x;
   }
 
   html[data-theme="light"] .hero-tagline::before {
-    background: linear-gradient(to right, rgba(80, 80, 80, 0) 5%, rgb(143, 142, 142) 50%, rgba(80, 80, 80, 0) 95%);
+    background: linear-gradient(
+      to right,
+      rgba(80, 80, 80, 0) 5%,
+      rgb(143, 142, 142) 50%,
+      rgba(80, 80, 80, 0) 95%
+    );
   }
 
   html[data-theme="dark"] .hero-tagline::before {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 5%, rgba(255, 255, 255, 1)50%, rgba(255, 255, 255, 0) 95%);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 5%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(255, 255, 255, 0) 95%
+    );
   }
 
   .hero-tagline p {
     @apply text-skin-base;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.rem;
+    font-family: "Nunito", sans-serif;
+    font-size: 1rem;
     line-height: 1.4;
-    font-weight: 300;
+    font-weight: 200;
     margin-top: 2rem;
     /* font-style: italic; */
     opacity: 0.85;
@@ -443,19 +452,19 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     @media (max-width: 480px) {
       @apply p-4;
-      font-size: 1.1rem;/* 32px on larger mobile */
+      font-size: 1.1rem; /* 32px on larger mobile */
     }
-    
+
     @media (max-width: 640px) {
       @apply p-4;
-      font-size: 1rem;/* 36px on small tablet */
+      font-size: 1rem; /* 36px on small tablet */
     }
-    
+
     @media (max-width: 768px) {
       @apply p-4;
       font-size: 1.1rem; /* 44px on tablet */
     }
-    
+
     @media (min-width: 1024px) {
       font-size: 1.5rem; /* 48px on desktop */
     }
@@ -482,12 +491,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   html[data-theme="dark"] .tagline-highlight {
     color: #ffffff;
   }
-  
-  
+
   .hero-text span {
     @apply whitespace-nowrap;
   }
-/* 
+  /* 
   # cursor got inspiration from https://muffinman.io/blog/css-image-glitch/
   # thank you muffinman! */
 
@@ -495,142 +503,226 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply relative inline-flex items-center justify-center;
     /* overflow: hidden; */
     /* Ultra-minimal padding for maximum compactness */
-  
+
     line-height: 0.9; /* Extra tight line height */
     vertical-align: middle; /* Align with dots */
     margin: 0; /* Remove any default margins */
-    height: 1.1em; 
-    
+    height: 1.2em;
+
     @media (min-width: 480px) {
-      font-size: 1.1rem;/* 32px on larger mobile */
+      font-size: 1.1rem; /* 32px on larger mobile */
     }
 
     /* Touch-friendly on mobile with slightly larger touch area */
     @media (min-width: 640px) {
-      font-size: 1.rem;
+      font-size: 1rem;
     }
-    
+
     @media (max-width: 768px) {
       font-size: 1.2rem;
     }
-    
+
     @media (min-width: 1024px) {
       font-size: 1.4rem;
     }
   }
 
-    .glitch-container.glitch-active {
-      /* animation: glitch-container 2s steps(1, end); */
-      color: transparent;
-    }
+   .glitch-container > span {
+     transition: opacity 100ms ease-in-out;
+   }
 
-    .glitch-strip {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeSpeed;
-      font-smooth: never;
-      outline: none;
-      border: none;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  .glitch-container.glitch-active > span {
+    opacity: 0;
+  }
 
+  .glitch-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    font-smooth: never;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: opacity 800ms ease-in-out;
+  }
+
+  .glitch-strip.fade-out {
+    opacity: 0;
+  }
 
   /* Generate multiple glitch animations with stronger chromatic aberration */
   @keyframes glitch-text-strip {
-    0% 100%{
+    0% {
       transform: none;
-
       color: var(--glitch-text-color);
-      filter: brightness(80%)
+      opacity: 20%;
     }
-    10% {
-      color: transparent;
+    /* Early phase: Slow, subtle flickering */
+    8% {
+      opacity: 15%;
+    }
+    15% {
+      opacity: 15%;
+    }
+    20% {
+      opacity: 55%;
     }
     25% {
-      color: var(--glitch-text-color);
-      filter: brightness(60%)
+      opacity: 15%;
     }
+    30% {
+      opacity: 5%;
+    }
+    /* Mid phase: More noticeable flickering */
+    35% {
+      opacity: 0%;
+    }
+    38% {
+      opacity: 5%;
+    }
+    42% {
+      opacity: 0%;
+    }
+    45% {
+      opacity: 5%;
+    }
+    50% {
+      opacity: 10%;
+    }
+    /* Late phase: Rapid, erratic flickering */
     55% {
-      color: transparent;
+      opacity: 10%;
+    }
+    58% {
+      opacity: 15%;
+    }
+    62% {
+      opacity: 10%;
+    }
+    65% {
+      opacity: 20%;
+    }
+    68% {
+      opacity: 15%;
+    }
+    72% {
+      opacity: 20%;
+    }
+    75% {
+      opacity: 20%;
+    }
+    78% {
+      opacity: 25%;
+    }
+    82% {
+      opacity: 25%;
     }
     85% {
-      color: var(--glitch-text-color);
-      filter: brightness(30%)
+      opacity: 15%;
     }
-
+    88% {
+      opacity: 10%;
+    }
+    92% {
+      opacity: 40%;
+    }
+    95% {
+      opacity: 20%;
+    }
+    98% {
+      opacity: 15%;
+    }
+    100% {
+      opacity: 10%;
+    }
   }
-  
+
   @keyframes glitch-red-blue {
-    0%,  100% {
-      transform: none;
+    0% {
+      transform: translateX(0) translateY(0);
+      color: transparent;
+    }
+    35% {
+      transform: translateX(var(--glitch-x-1)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 0, 0.3),
+        3px 1px 0 rgba(0, 132, 255, 0.3);
+      color: transparent;
+    }
+    95% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 0, 0.7),
+        3px 1px 0 rgba(0, 132, 255, 0.7);
+      color: transparent;
+    }
+    100% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 0, 0),
+        3px 1px 0 rgba(0, 132, 255, 0);
+      color: transparent;
+    }
+  }
+
+  @keyframes glitch-pink-yellow {
+    0% {
+      transform: translateX(0) translateY(0);
+      filter: hue-rotate(0);
       color: transparent;
     }
     15% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.4), -1px -2px 0 rgba(0, 8, 255, 0.4);
+      transform: translateX(var(--glitch-x-1)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 162, 0.4),
+        3px 2px 0 rgba(200, 255, 0, 0.4);
       color: transparent;
     }
-    65% {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.7), 2px -1px 0 rgba(0, 8, 255, 0.7);
+    95% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 162, 0.7),
+        4px 2px 0 rgba(200, 255, 0, 0.6);
       color: transparent;
     }
-  }
-/*   
-  @keyframes glitch-3 {
-    0%,    40%, 90% {
-      transform: none;
-      filter: hue-rotate(0);
-      color: transparent;
-    }
-    20% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(13, 0, 255, 0.354), -3px -1px 0 rgba(0, 195, 255, 0.5);
-      color: transparent;
-    }
-    70%, {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: -1px 3px 0 rgba(0, 60, 255, 0.365), 1px -3px 0 rgba(0, 204, 255, 0.365);
-      color: transparent;
-    }
-  } */
-
-  @keyframes glitch-pink-yellow {
-    0%,     95% {
-      transform: none;
-      filter: hue-rotate(0);
-      color: transparent;
-    }
-    35%{
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.4), -3px -1px 0 rgba(200, 255, 0, 0.4);
-      color: transparent;
-    }
-    90% {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.7), -3px -1px 0 rgba(200, 255, 0, 0.7);
+    100% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow:
+        0px 0px 0 rgba(255, 0, 162, 0),
+        4px 2px 0 rgba(200, 255, 0, 0);
       color: transparent;
     }
   }
 
   @keyframes glitch-text-hole {
-    0%,     95% {
+    0% {
       transform: none;
-      color: transparent;
+      color: var(--glitch-text-color);
+      opacity: 10%;
     }
-
-    
+    25% {
+      color: var(--glitch-text-color);
+      opacity: 10%;
+    }
+    75% {
+      color: var(--glitch-text-color);
+      opacity: 10%;
+    }
+    100% {
+      color: var(--glitch-text-color);
+      opacity: 10%;
+    }
   }
 
   .dot {
-    @apply text-skin-accent font-bold;
+    @apply font-bold text-skin-accent;
     font-size: 1.8em; /* Even smaller to match glitch containers */
     vertical-align: middle;
 
@@ -648,13 +740,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @media (min-width: 1024px) {
       font-size: 2em;
     }
-    
   }
-  
+
   .hero-graphic {
     @apply flex justify-center lg:flex-shrink-0;
   }
-  
+
   .logo-container {
     @apply relative;
     /* Mobile-first: center the logo */
@@ -662,7 +753,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin: 0 auto 2rem auto;
     text-align: center;
     width: fit-content; /* Ensure container fits logo */
-    
+
     /* Desktop layout */
     @media (min-width: 768px) {
       float: right;
@@ -674,9 +765,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
-  
   }
-  
+
   /* Hero ring logo styling */
   .hero-ring-logo {
     @apply absolute w-auto transition-opacity duration-200;
@@ -686,37 +776,36 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     z-index: -1;
     padding: 0.2rem; /* It's not a perfect circle. Place it slightly inside so you don't notice as it rotates */
     animation: slowRotate 150s linear infinite;
-    
-  
+
     @media (min-width: 640px) {
       height: 22rem; /* 256px on tablet */
     }
-    
+
     @media (min-width: 768px) {
       height: 22rem; /* 320px on desktop */
     }
-    
+
     @media (min-width: 1024px) {
       height: 25rem; /* 400px on large desktop */
     }
   }
-  
+
   .hero-ring-logo.light-ring {
     display: block;
   }
-  
+
   .hero-ring-logo.dark-ring {
     display: none;
   }
-  
+
   html[data-theme="dark"] .hero-ring-logo.light-ring {
     display: none;
   }
-  
+
   html[data-theme="dark"] .hero-ring-logo.dark-ring {
     display: block;
   }
-  
+
   @keyframes slowRotate {
     0% {
       transform: rotate(0deg);
@@ -725,13 +814,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       transform: rotate(360deg);
     }
   }
-  
-  #hero{
+
+  #hero {
     margin-top: 1rem; /* Smaller top margin on mobile */
     margin-bottom: 0rem; /* Ensure bottom spacing on mobile */
     margin-left: auto;
     margin-right: auto;
-    
+
     @media (max-width: 768px) {
       margin-top: 0px; /* Original margins on desktop */
       margin-bottom: 0px;
@@ -746,38 +835,36 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
   }
 
-  
   .hero-logo {
     @apply w-auto transition-opacity duration-200;
     height: 18rem; /* 192px on mobile */
-    
-  
+
     @media (min-width: 640px) {
       height: 22rem; /* 256px on tablet */
     }
-    
+
     @media (min-width: 768px) {
       height: 22rem; /* 320px on desktop */
     }
-    
+
     @media (min-width: 1024px) {
       height: 25rem; /* 400px on large desktop */
     }
   }
-  
+
   .light-logo {
     @apply block;
   }
-  
+
   .dark-logo {
     @apply hidden;
   }
-  
+
   /* Dark mode logo switching */
   html[data-theme="dark"] .light-logo {
     @apply hidden;
   }
-  
+
   html[data-theme="dark"] .dark-logo {
     @apply block;
   }
@@ -788,7 +875,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-0;
     max-width: 58rem;
     margin-top: 2rem; /* Positive margin on mobile */
-    
+
     @media (min-width: 768px) {
       margin-top: -40px; /* Negative margin only on desktop */
     }
@@ -804,7 +891,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin-bottom: 2rem; /* Better bottom margin on mobile */
     max-width: 58rem;
     font-size: 1.3rem;
-    
+
     @media (min-width: 768px) {
       @apply my-8; /* Original margins on desktop */
       margin-top: 0px;
@@ -819,7 +906,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* Touch-friendly button sizing */
     @apply px-6 py-3;
     min-height: 44px;
-    
+
     @media (min-width: 768px) {
       @apply px-8 py-4;
     }
@@ -828,7 +915,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   #all-posts {
     padding-bottom: 2rem; /* Better padding on mobile */
     margin-top: 2rem; /* Positive margin on mobile */
-    
+
     @media (min-width: 768px) {
       padding-bottom: 20px; /* Original padding on desktop */
       margin-top: -20px; /* Original negative margin on desktop */
@@ -847,258 +934,406 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 <script>
   // CSS-only glitch effect implementation based on muffinman.io
-  function random(min, max) {
+  function random(min: number, max: number): number {
     return Math.random() * (max - min) + min;
   }
 
-  function generateGlitchStrips(container) {
+  function generateGlitchStrips(container: HTMLElement) {
+    const text = container.getAttribute("data-text");
+    const textElement = container.querySelector("span");
 
+    if (!textElement) return [];
 
-    var glitch_names = [
-      'glitch-text-strip',
-      'glitch-red-blue',
-      'glitch-pink-yellow',
-      'glitch-text-hole',
-    ];
-
-    const text = container.getAttribute('data-text');
-    const textElement = container.querySelector('span');
-    
     // Get computed styles to determine height
     const computedStyle = window.getComputedStyle(textElement);
     const fontSize = parseFloat(computedStyle.fontSize);
-    const lineHeight = parseFloat(computedStyle.lineHeight) || fontSize * 1.2;
+    // Use the container's actual height instead of computed lineHeight for better alignment
+    const containerHeight = container.offsetHeight;
     const textColor = computedStyle.color;
-    // Generate movement values once per glitch type (shared across all strips of same type)
-    const glitchTypeValues = {};
-    glitch_names.forEach(glitchType => {
-      if (glitchType == 'glitch-text-strip' || glitchType == 'glitch-text-hole') {
-        glitchTypeValues[glitchType] = { x1: 0, x2: 0 };
-      } else if (glitchType == 'glitch-red-blue') {
-        glitchTypeValues[glitchType] = { x1: random(-15, -10), x2: random(5, 10) };
-      } else if (glitchType == 'glitch-pink-yellow') {
-        glitchTypeValues[glitchType] = { x1: random(10, 15), x2: random(-5, 0) };
+
+    // Generate movement values based on position (top half vs bottom half)
+    const generateGlitchValues = (glitchType: string, isTopHalf: boolean) => {
+      if (
+        glitchType == "glitch-text-strip" ||
+        glitchType == "glitch-text-hole"
+      ) {
+        return { x1: 0, x2: 0 };
+      } else if (glitchType == "glitch-red-blue") {
+        if (isTopHalf) {
+          return { x1: 8, x2: 0 };
+        } else {
+          return { x1: -12, x2: 0 };
+        }
+      } else if (glitchType == "glitch-pink-yellow") {
+        if (isTopHalf) {
+          return { x1: -8, x2: 0 };
+        } else {
+          return { x1: 8, x2: 0 };
+        }
       }
-    });
-    
+      return { x1: 0, x2: 0 };
+    };
+
     // Create strips
     const strips = [];
     let currentTop = 0;
-    
+
     // Choose color scheme for this container (prevent mixing pink-yellow and red-blue)
     const colorSchemeChoice = Math.random();
-    let allowedGlitchTypes;
+    let allowedGlitchTypes: string[];
     if (colorSchemeChoice < 0.5) {
       // Red-blue scheme
-      allowedGlitchTypes = ['glitch-text-strip', 'glitch-red-blue', 'glitch-text-hole'];
-    } else if (colorSchemeChoice < 1) {
-      // Pink-yellow scheme  
-      allowedGlitchTypes = ['glitch-text-strip', 'glitch-pink-yellow', 'glitch-text-hole'];
+      allowedGlitchTypes = [
+        "glitch-text-strip",
+        "glitch-red-blue",
+        "glitch-text-hole",
+      ];
+    } else {
+      // Pink-yellow scheme
+      allowedGlitchTypes = [
+        "glitch-text-strip",
+        "glitch-pink-yellow",
+        "glitch-text-hole",
+      ];
+    }
+
+    const stripCount = 5; // 3 to 8 strips
+
+    // Create array of strip configurations first
+    const stripConfigs: Array<{ height: number; glitchType: string }> = [];
+
+    // Calculate strip heights with more variation
+    let remainingHeight = containerHeight;
+    
+    // Generate random height multipliers for each strip (except the last one)
+    const heightMultipliers = [];
+    for (let i = 0; i < stripCount - 1; i++) {
+      // Random multiplier between 0.3 and 2.5 for varied strip sizes
+      heightMultipliers.push(0.3 + Math.random() * 2.2);
     }
     
-    // Randomly choose between 2, 3, or 4 strips
-    const stripCount = Math.floor(Math.random() * 3) + 2; // 2, 3, or 4
+    // Calculate the sum of multipliers to normalize
+    const totalMultiplier = heightMultipliers.reduce((sum, mult) => sum + mult, 0);
+    const baseHeight = containerHeight / stripCount;
+    
     for (let i = 0; i < stripCount; i++) {
-      // Calculate strip height - divide lineHeight into equal parts with variation
       let actualHeight;
       if (i === stripCount - 1) {
         // Last strip takes remaining height
-        actualHeight = lineHeight - currentTop;
+        actualHeight = Math.max(1, remainingHeight); // Ensure minimum 1px height
       } else {
-        // Other strips get roughly equal portions with slight variation
-        const baseHeight = lineHeight / stripCount;
-        const variation = baseHeight * 0.3; // 30% variation for more diversity
-        actualHeight = baseHeight + (Math.random() - 0.5) * variation;
+        // Calculate height based on normalized multiplier
+        const normalizedMultiplier = heightMultipliers[i] / (totalMultiplier / (stripCount - 1));
+        actualHeight = baseHeight * normalizedMultiplier;
+        remainingHeight -= actualHeight;
       }
-      
-       // Get theme background color for initial strip color
-       const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-       const backgroundColor = isDarkMode ? '#0f0f0f' : '#ffffff';
-       
-       const strip = document.createElement('div');
-       strip.className = 'glitch-strip';
+      stripConfigs.push({ height: actualHeight, glitchType: "" });
+    }
 
-       // Choose glitch type - ensure at least one colored glitch per container
-       var glitch_name;
-       if (i === 0) {
-         // First strip must be colored (red-blue or pink-yellow)
-         const coloredTypes = allowedGlitchTypes.filter(type => 
-           type === 'glitch-red-blue' || type === 'glitch-pink-yellow'
-         );
-         glitch_name = coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
-       } else {
-         // Other strips can be any allowed type
-         glitch_name = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
-       }
-       
-       // Use pre-generated values for this glitch type
-       var glitch_x_1 = glitchTypeValues[glitch_name].x1;
-       var glitch_x_2 = glitchTypeValues[glitch_name].x2;
-       var timing_function = 'steps(3, jump-start)';
-      //  var timing_function = 'linear';
-       strip.style.cssText = `
-         position: absolute;
-         top: ${currentTop}px;
-         left: 0;
-         right: 0;
-         height: ${actualHeight}px;
-         background: inherit;
-         color: inherit;
-         font-size: inherit;
-         font-family: inherit;
-         font-weight: inherit;
-         overflow: hidden;
-         outline: none;
-         border: none;
-         -webkit-font-smoothing: antialiased;
-         -moz-osx-font-smoothing: grayscale;
-         text-rendering: optimizeSpeed;
-         --glitch-x-1: ${glitch_x_1}px;
-         --glitch-x-2: ${glitch_x_2}px;
-         --glitch-text-color: ${textColor};
-         --glitch-hue-1: ${random(10, 20)}deg;
-         animation-name: ${glitch_name};
-         animation-duration: ${random(3000, 8000)}ms;
-        //  animation-delay: ${random(0, 2000)}ms;
-         animation-iteration-count: infinite;
-         animation-play-state: paused;
-          animation-timing-function: ${timing_function};
-       `;
-      
-      // Create a span with the text and position it to show only the relevant slice
-      const textSpan = document.createElement('span');
-      
-      // Randomly drop 1-2 letters and replace with spaces or corruption symbols for glitch effect
-      let glitchedText = text;
-      const numDrops = Math.floor(Math.random() * 2) + 1; // 1 or 2 drops
-      const corruptionSymbols = [' ', '@', '$', '!', '*', '&']; // Space or corruption symbols
-      
-      for (let drop = 0; drop < numDrops; drop++) {
-        if (glitchedText.length > 1) { // Don't drop if text is too short
-          const randomIndex = Math.floor(Math.random() * glitchedText.length);
-          const randomSymbol = corruptionSymbols[Math.floor(Math.random() * corruptionSymbols.length)];
-          // Replace character at random index with a random corruption symbol
-          glitchedText = glitchedText.substring(0, randomIndex) + randomSymbol + glitchedText.substring(randomIndex + 1);
-        }
+    // Randomly assign glitch types - ensure 40-80% colored strips with single color scheme
+    const coloredTypes = allowedGlitchTypes.filter(
+      type => type === "glitch-red-blue" || type === "glitch-pink-yellow"
+    );
+    const nonColoredTypes = allowedGlitchTypes.filter(
+      type => type === "glitch-text-strip" || type === "glitch-text-hole"
+    );
+
+    // Calculate how many strips should be colored (40-80% of total)
+    const minColoredStrips = 1;
+    const maxColoredStrips = 3;
+    const coloredStripCount =
+      Math.floor(Math.random() * (maxColoredStrips - minColoredStrips + 1)) +
+      minColoredStrips;
+
+    // Choose single color scheme for this animation (red-blue OR pink-yellow)
+    const chosenColorType =
+      coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
+
+    // Randomly select which strips will be colored
+    const stripIndices = Array.from({ length: stripCount }, (_, i) => i);
+    const shuffledIndices = stripIndices.sort(() => Math.random() - 0.5);
+    const coloredIndices = shuffledIndices.slice(0, coloredStripCount);
+
+    // Assign glitch types
+    for (let i = 0; i < stripCount; i++) {
+      if (coloredIndices.includes(i)) {
+        // This strip gets the chosen color animation
+        stripConfigs[i].glitchType = chosenColorType;
+      } else {
+        // This strip gets a non-colored animation
+        stripConfigs[i].glitchType =
+          nonColoredTypes[Math.floor(Math.random() * nonColoredTypes.length)];
       }
-      
-      textSpan.textContent = glitchedText;
+    }
+
+    // Now create the actual strips based on the configurations
+    for (let i = 0; i < stripCount; i++) {
+      const config = stripConfigs[i];
+
+      // Get theme background color for initial strip color
+      const isDarkMode =
+        document.documentElement.getAttribute("data-theme") === "dark";
+      const backgroundColor = isDarkMode ? "#0f0f0f" : "#ffffff";
+
+      const strip = document.createElement("div");
+      strip.className = "glitch-strip";
+
+      // Determine if this strip is in the top half or bottom half
+      const stripCenterY = currentTop + config.height / 2;
+      const isTopHalf = stripCenterY < containerHeight / 2;
+
+      // Generate position-based values for this glitch type
+      const glitchValues = generateGlitchValues(config.glitchType, isTopHalf);
+      const glitch_x_1 = glitchValues.x1;
+      const glitch_x_2 = glitchValues.x2;
+       const timing_function = config.glitchType === "glitch-text-strip" 
+         ? "ease-in" 
+         : "steps(2, jump-start)"; // Smooth flickering for text strips, stepped for movement
+
+       const animationDuration = 2000; // ms
+
+      strip.style.cssText = `
+          position: absolute;
+          top: ${currentTop}px;
+          left: 0;
+          right: 0;
+          height: ${config.height}px;
+          background: inherit;
+          color: inherit;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          overflow: hidden;
+          outline: none;
+          border: none;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeSpeed;
+          --glitch-x-1: ${glitch_x_1}px;
+          --glitch-x-2: ${glitch_x_2}px;
+          --glitch-text-color: ${textColor};
+          --glitch-hue-1: ${random(10, 20)}deg;
+          animation-name: ${config.glitchType};
+          animation-duration: ${animationDuration}ms;
+          animation-iteration-count: 1;
+          animation-play-state: paused;
+          animation-timing-function: ${timing_function};
+          animation-fill-mode: forwards;
+        `;
+
+      // Store animation duration on the strip for later use
+      strip.dataset.animationDuration = animationDuration.toString();
+
+      // Create a span with the text and position it to show only the relevant slice
+      const textSpan = document.createElement("span");
+
+      // Occasionally apply letter replacements to glitch strips (20% chance)
+      const shouldReplaceLetters = Math.random() < 0.2;
+      const displayText =
+        shouldReplaceLetters && text ? replaceLetters(text) : text;
+
+      textSpan.textContent = displayText;
+      // Calculate vertical centering offset to match the container's flexbox centering
+      const verticalOffset = -currentTop;
       textSpan.style.cssText = `
-        position: absolute;
-        top: -${currentTop}px;
-        left: 0;
-        line-height: inherit;
-        font-size: inherit;
-        font-family: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        word-spacing: inherit;
-        text-transform: inherit;
-        -webkit-font-smoothing: inherit;
-        -moz-osx-font-smoothing: inherit;
-        text-rendering: inherit;
-      `;
+       position: absolute;
+       top: ${verticalOffset}px;
+       left: 0;
+       line-height: 0.9;
+       font-size: inherit;
+       font-family: inherit;
+       font-weight: inherit;
+       letter-spacing: inherit;
+       word-spacing: inherit;
+       text-transform: inherit;
+       -webkit-font-smoothing: inherit;
+       -moz-osx-font-smoothing: inherit;
+       text-rendering: inherit;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       height: ${containerHeight}px;
+     `;
       strip.appendChild(textSpan);
       strips.push(strip);
-      currentTop += actualHeight;
+      currentTop += config.height;
     }
-    
+
     return strips;
   }
 
+  // Letter replacement animation function
+  function replaceLetters(text: string): string {
+    const replacements: { [key: string]: string } = {
+      A: "^",
+      o: "*",
+      i: "!",
+      I: "!",
+      e: "*",
+    };
+
+    return text
+      .split("")
+      .map(char => {
+        // Only replace letters occasionally (30% chance)
+        if (replacements[char] && Math.random() < 0.75) {
+          return replacements[char];
+        }
+        return char;
+      })
+      .join("");
+  }
+
+  function triggerLetterAnimation() {
+    // This function will be integrated into the glitch effect
+    // The letter animation will only happen on the glitch strips, not the main text
+  }
+
   function triggerGlitchEffect() {
-    const containers = document.querySelectorAll('.glitch-container');
-    
+    const containers = document.querySelectorAll(".glitch-container");
+
     if (containers.length > 0) {
+      // Set animation in progress flag
+      isAnimationInProgress = true;
       // Randomly select 1-3 containers
       const numContainers = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
       const selectedContainers = [];
-      
+
       // Create a copy of containers array and shuffle it
       const availableContainers = Array.from(containers);
       for (let i = availableContainers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [availableContainers[i], availableContainers[j]] = [availableContainers[j], availableContainers[i]];
+        [availableContainers[i], availableContainers[j]] = [
+          availableContainers[j],
+          availableContainers[i],
+        ];
       }
-      
+
       // Select the first numContainers
-      for (let i = 0; i < numContainers && i < availableContainers.length; i++) {
+      for (
+        let i = 0;
+        i < numContainers && i < availableContainers.length;
+        i++
+      ) {
         selectedContainers.push(availableContainers[i]);
       }
-      
+
+      // Calculate the total duration for all animations to complete
+      const maxStaggerDelay = ((selectedContainers.length - 1) * 1000) / selectedContainers.length;
+      const totalAnimationDuration = maxStaggerDelay + 2000 + GLITCH_STRIPS_FADE_DURATION * 0.25 + STATIC_TEXT_FADE_DURATION + TIMING_BUFFER; // stagger + animation + fade delays + cleanup
+
+      // Clear the animation flag after all animations are complete
+      setTimeout(() => {
+        isAnimationInProgress = false;
+      }, totalAnimationDuration);
+
       // Apply glitch effect to each selected container with staggered delays
       selectedContainers.forEach((container, index) => {
         // Calculate staggered delay (0-1000ms spread across containers)
         const delay = (index * 1000) / selectedContainers.length;
-        
+
         setTimeout(() => {
           // Clear existing strips
-          container.querySelectorAll('.glitch-strip').forEach(strip => strip.remove());
-          
+          container
+            .querySelectorAll(".glitch-strip")
+            .forEach(strip => strip.remove());
+
           // Generate new strips
-          const strips = generateGlitchStrips(container);
-          
+          const strips = generateGlitchStrips(container as HTMLElement);
+
           // Add strips to container
           strips.forEach(strip => {
             container.appendChild(strip);
           });
-          
+
           // Set container movement variable
-          const containerMovementx1 = random(-20, 30);
-          const containerMovementx2 = random(-50, -20);
-          const containerMovementy1 = random(-2, 2);
-          const containerMovementy2 = random(-2, 2);
-          container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
-          container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
-          container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
-          container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
-          
-          // Trigger glitch animation
-          container.classList.add('glitch-active');
-          
-          // Start strip animations
+          // const containerMovementx1 = random(-20, 30);
+          // const containerMovementx2 = random(-50, -20);
+          // const containerMovementy1 = random(-2, 2);
+          // const containerMovementy2 = random(-2, 2);
+          // container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
+          // container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
+          // container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
+          // container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
+
+          // Start strip animations immediately
           strips.forEach(strip => {
-            strip.style.animationPlayState = 'running';
+            strip.style.animationPlayState = "running";
           });
-          
-          // Clean up after animation (2 seconds after this container starts)
-          setTimeout(() => {
-            container.classList.remove('glitch-active');
-            strips.forEach(strip => {
-              strip.style.animationPlayState = 'paused';
-              strip.remove();
-            });
-          }, 2000);
+
+           // Start fading out the background text immediately for smooth transition
+           setTimeout(() => {
+             container.classList.add("glitch-active");
+           }, 0);
+
+           // Calculate cleanup timeout based on actual animation duration
+           const maxAnimationDuration = Math.max(
+             ...strips.map(strip =>
+               parseInt(strip.dataset.animationDuration || "2000")
+             )
+           );
+           const glitchAnimationEnd = maxAnimationDuration + TIMING_BUFFER;
+
+           // First phase: Fade out glitch strips when animation completes
+           setTimeout(() => {
+             strips.forEach(strip => {
+               strip.style.animationPlayState = "paused";
+               strip.classList.add("fade-out");
+             });
+           }, glitchAnimationEnd);
+
+           // Second phase: Start background text fade-in when strips are mostly faded out
+           const stripsFadeOutDelay = Math.floor(GLITCH_STRIPS_FADE_DURATION * 0.25); // Start when strips are 25% faded
+           setTimeout(() => {
+             // Fade the background text back in
+             container.classList.remove("glitch-active");
+
+             // Remove strips after their fade transition completes
+             setTimeout(() => {
+               strips.forEach(strip => {
+                 strip.remove();
+               });
+             }, GLITCH_STRIPS_FADE_DURATION + TIMING_BUFFER);
+           }, glitchAnimationEnd + stripsFadeOutDelay);
         }, delay);
       });
     }
   }
 
-  let glitchTimeout = null;
+  // Define fade duration constants (should match CSS transition duration)
+  const STATIC_TEXT_FADE_DURATION = 100; // ms - matches CSS transition: opacity 100ms ease-in-out
+  const GLITCH_STRIPS_FADE_DURATION = 800; // ms - glitch strips still use 800ms for smoother fade-out
+  const TIMING_BUFFER = 100; // ms - small buffer for timing reliability
+
+  let glitchTimeout: ReturnType<typeof setTimeout> | null = null;
+  let isAnimationInProgress = false;
 
   function scheduleGlitchEffect() {
     // Clear any existing timeout to prevent multiple loops
     if (glitchTimeout) {
       clearTimeout(glitchTimeout);
     }
-  
-    const minDelay = 8000;  // 18 seconds
-    const maxDelay = 12000;  // 22 seconds
+
+    const minDelay = 10000; // 1 second
+    const maxDelay = 20000; // 2 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-    
+
     glitchTimeout = setTimeout(() => {
-      triggerGlitchEffect();
+      // Only trigger if no animation is currently in progress
+      if (!isAnimationInProgress) {
+        triggerGlitchEffect();
+      }
       scheduleGlitchEffect();
     }, delay);
   }
 
-  // Initialize glitch effect
-  document.addEventListener('DOMContentLoaded', () => {
+  // Initialize glitch effect (letter animation is now integrated)
+  document.addEventListener("DOMContentLoaded", () => {
     setTimeout(scheduleGlitchEffect, 0);
   });
 
   // Re-setup on view transitions
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     scheduleGlitchEffect();
   });
 </script>

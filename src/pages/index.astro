@@ -613,13 +613,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       opacity: 15%;
     }
     72% {
-      opacity: 20%;
+      opacity: 40%;
     }
     75% {
-      opacity: 20%;
+      opacity: 30%;
     }
     78% {
-      opacity: 25%;
+      opacity: 55%;
     }
     82% {
       opacity: 25%;
@@ -960,15 +960,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         return { x1: 0, x2: 0 };
       } else if (glitchType == "glitch-red-blue") {
         if (isTopHalf) {
-          return { x1: 8, x2: 0 };
+          return { x1: 12, x2: 0 };
         } else {
           return { x1: -12, x2: 0 };
         }
       } else if (glitchType == "glitch-pink-yellow") {
         if (isTopHalf) {
-          return { x1: -8, x2: 0 };
+          return { x1: -12, x2: 0 };
         } else {
-          return { x1: 8, x2: 0 };
+          return { x1: 12, x2: 0 };
         }
       }
       return { x1: 0, x2: 0 };
@@ -997,7 +997,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       ];
     }
 
-    const stripCount = 5; // 3 to 8 strips
+    const stripCount = 6; // 3 to 8 strips
 
     // Create array of strip configurations first
     const stripConfigs: Array<{ height: number; glitchType: string }> = [];
@@ -1039,8 +1039,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     );
 
     // Calculate how many strips should be colored (40-80% of total)
-    const minColoredStrips = 1;
-    const maxColoredStrips = 3;
+    const minColoredStrips = 2;
+    const maxColoredStrips = 4;
     const coloredStripCount =
       Math.floor(Math.random() * (maxColoredStrips - minColoredStrips + 1)) +
       minColoredStrips;
@@ -1087,8 +1087,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       const glitch_x_1 = glitchValues.x1;
       const glitch_x_2 = glitchValues.x2;
        const timing_function = config.glitchType === "glitch-text-strip" 
-         ? "ease-in" 
-         : "steps(2, jump-start)"; // Smooth flickering for text strips, stepped for movement
+         ? "ease-in-out" 
+         : "steps(6, jump-start)"; // Smooth flickering for text strips, stepped for movement
 
        const animationDuration = 2000; // ms
 

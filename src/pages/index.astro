@@ -35,7 +35,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 <Layout>
   <Header activeNav="home" />
-  <main class="font-serif flex-1" id="main-content">
+  <main class="font-serif" id="main-content">
     <section id="hero" class="hero-section">
       <div class="hero-content">
         <!-- Logo positioned to float and allow text wrapping -->
@@ -103,7 +103,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               <span>Consciousness</span>
             </div>
             <span class="dot">·</span>
-            <div class="glitch-container" data-text="Regulations">
+            <div class="glitch-container" data-text="Regulation">
               <span>Regulation</span>
             </div>
             <span class="dot">·</span>
@@ -300,13 +300,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
     text-align: justify; /* Full justification on mobile */
-    font-weight: 300;
-
+    
     @media (min-width: 375px) {
    
       gap: 0.375rem; /* Slightly larger gap on tablet */
       text-align: justify; /* Full justification on mobile */
-      font-weight: 300;
+    
       padding-left: 2rem;
       padding-right: 2rem;
       line-height: 0; /* Even tighter line height */
@@ -317,7 +316,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       justify-content: flex-end;
       padding-left: 3rem;
       text-align: justify; /* Full justification on mobile */
-
     
     }
 
@@ -326,7 +324,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       justify-content: flex-end;
       padding-left: 3rem;
       text-align: end; 
-      
     }
     
     @media (min-width: 768px) {
@@ -435,7 +432,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     font-family: 'Nunito', sans-serif;
     font-size: 1.rem;
     line-height: 1.4;
-    font-weight: 300;
+    font-weight: 200;
     margin-top: 2rem;
     /* font-style: italic; */
     opacity: 0.85;
@@ -499,7 +496,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     line-height: 0.9; /* Extra tight line height */
     vertical-align: middle; /* Align with dots */
     margin: 0; /* Remove any default margins */
-    height: 1.1em; 
+    height: 1.2em; 
     
     @media (min-width: 480px) {
       font-size: 1.1rem;/* 32px on larger mobile */
@@ -518,6 +515,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       font-size: 1.4rem;
     }
   }
+
 
     .glitch-container.glitch-active {
       /* animation: glitch-container 2s steps(1, end); */
@@ -544,89 +542,79 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   /* Generate multiple glitch animations with stronger chromatic aberration */
   @keyframes glitch-text-strip {
-    0% 100%{
+    0% {
       transform: none;
-
       color: var(--glitch-text-color);
-      filter: brightness(80%)
-    }
-    10% {
-      color: transparent;
+      opacity: 50%;
     }
     25% {
       color: var(--glitch-text-color);
-      filter: brightness(60%)
+      opacity: 50%;
     }
-    55% {
-      color: transparent;
-    }
-    85% {
+    75% {
       color: var(--glitch-text-color);
-      filter: brightness(30%)
+      opacity: 50%;
     }
-
+    100% {
+      color: var(--glitch-text-color);
+      opacity: 50%;
+    }
   }
   
   @keyframes glitch-red-blue {
-    0%,  100% {
-      transform: none;
+    0% {
+      transform: translateX(0) translateY(0);
       color: transparent;
     }
-    15% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 1px 2px 0 rgba(255, 0, 0, 0.4), -1px -2px 0 rgba(0, 8, 255, 0.4);
+    35% {
+      transform: translateX(var(--glitch-x-1)) translateY(0);
+      text-shadow: 1px 2px 0 rgba(255, 0, 162, 0.4), 3px 3px 0 rgba(0, 8, 255, 0.4);
       color: transparent;
     }
-    65% {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: -2px 1px 0 rgba(255, 0, 0, 0.7), 2px -1px 0 rgba(0, 8, 255, 0.7);
+    100% {
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow: 1px 2px 0 rgba(255, 0, 162, 0.6), 3px 3px 0 rgba(0, 8, 255, 0.5);
       color: transparent;
     }
   }
-/*   
-  @keyframes glitch-3 {
-    0%,    40%, 90% {
-      transform: none;
-      filter: hue-rotate(0);
-      color: transparent;
-    }
-    20% {
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(13, 0, 255, 0.354), -3px -1px 0 rgba(0, 195, 255, 0.5);
-      color: transparent;
-    }
-    70%, {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: -1px 3px 0 rgba(0, 60, 255, 0.365), 1px -3px 0 rgba(0, 204, 255, 0.365);
-      color: transparent;
-    }
-  } */
+
 
   @keyframes glitch-pink-yellow {
-    0%,     95% {
-      transform: none;
+    0%,    {
+      transform: translateX(0) translateY(0);
       filter: hue-rotate(0);
       color: transparent;
     }
     35%{
-      transform: translateX(var(--glitch-x-1));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.4), -3px -1px 0 rgba(200, 255, 0, 0.4);
+      transform: translateX(var(--glitch-x-1)) translateY(0);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.2), 5px 2px 0 rgba(200, 255, 0, 0.2);
       color: transparent;
     }
-    90% {
-      transform: translateX(var(--glitch-x-2));
-      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.7), -3px -1px 0 rgba(200, 255, 0, 0.7);
+    100%{
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      text-shadow: 3px 1px 0 rgba(255, 0, 162, 0.3), 5px 2px 0 rgba(200, 255, 0, 0.3);
       color: transparent;
     }
   }
 
   @keyframes glitch-text-hole {
-    0%,     95% {
+    0% {
       transform: none;
-      color: transparent;
+      color: var(--glitch-text-color);
+      opacity: 10%
     }
-
-    
+    25% {
+      color: var(--glitch-text-color);
+      opacity: 10%
+    }
+    75% {
+      color: var(--glitch-text-color);
+      opacity: 10%
+    }
+    100% {
+      color: var(--glitch-text-color);
+      opacity: 10%
+    }
   }
 
   .dot {
@@ -648,7 +636,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @media (min-width: 1024px) {
       font-size: 2em;
     }
-    
   }
   
   .hero-graphic {
@@ -751,7 +738,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply w-auto transition-opacity duration-200;
     height: 18rem; /* 192px on mobile */
     
-  
     @media (min-width: 640px) {
       height: 22rem; /* 256px on tablet */
     }
@@ -847,39 +833,44 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
 <script>
   // CSS-only glitch effect implementation based on muffinman.io
-  function random(min, max) {
+  function random(min: number, max: number): number {
     return Math.random() * (max - min) + min;
   }
 
-  function generateGlitchStrips(container) {
+  function generateGlitchStrips(container: HTMLElement) {
 
-
-    var glitch_names = [
-      'glitch-text-strip',
-      'glitch-red-blue',
-      'glitch-pink-yellow',
-      'glitch-text-hole',
-    ];
 
     const text = container.getAttribute('data-text');
     const textElement = container.querySelector('span');
     
+    if (!textElement) return [];
+    
     // Get computed styles to determine height
     const computedStyle = window.getComputedStyle(textElement);
     const fontSize = parseFloat(computedStyle.fontSize);
-    const lineHeight = parseFloat(computedStyle.lineHeight) || fontSize * 1.2;
+    // Use the container's actual height instead of computed lineHeight for better alignment
+    const containerHeight = container.offsetHeight;
     const textColor = computedStyle.color;
-    // Generate movement values once per glitch type (shared across all strips of same type)
-    const glitchTypeValues = {};
-    glitch_names.forEach(glitchType => {
+    
+    // Generate movement values based on position (top half vs bottom half)
+    const generateGlitchValues = (glitchType: string, isTopHalf: boolean) => {
       if (glitchType == 'glitch-text-strip' || glitchType == 'glitch-text-hole') {
-        glitchTypeValues[glitchType] = { x1: 0, x2: 0 };
+        return { x1: 0, x2: 0 };
       } else if (glitchType == 'glitch-red-blue') {
-        glitchTypeValues[glitchType] = { x1: random(-15, -10), x2: random(5, 10) };
+        if (isTopHalf) {
+          return { x1: -3, x2: -1};
+        } else {
+          return { x1: -10, x2: -8};
+        }
       } else if (glitchType == 'glitch-pink-yellow') {
-        glitchTypeValues[glitchType] = { x1: random(10, 15), x2: random(-5, 0) };
+        if (isTopHalf) {
+          return { x1: 3, x2: 1 };
+        } else {
+          return { x1: 10, x2: 8};
+        }
       }
-    });
+      return { x1: 0, x2: 0 };
+    };
     
     // Create strips
     const strips = [];
@@ -887,123 +878,171 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     
     // Choose color scheme for this container (prevent mixing pink-yellow and red-blue)
     const colorSchemeChoice = Math.random();
-    let allowedGlitchTypes;
+    let allowedGlitchTypes: string[];
     if (colorSchemeChoice < 0.5) {
       // Red-blue scheme
       allowedGlitchTypes = ['glitch-text-strip', 'glitch-red-blue', 'glitch-text-hole'];
-    } else if (colorSchemeChoice < 1) {
+    } else {
       // Pink-yellow scheme  
       allowedGlitchTypes = ['glitch-text-strip', 'glitch-pink-yellow', 'glitch-text-hole'];
     }
     
-    // Randomly choose between 2, 3, or 4 strips
-    const stripCount = Math.floor(Math.random() * 3) + 2; // 2, 3, or 4
+
+    const stripCount = 3; // 3 to 8 strips
+    
+    // Create array of strip configurations first
+    const stripConfigs: Array<{ height: number; glitchType: string }> = [];
+    
+    // Calculate strip heights first
+    let remainingHeight = containerHeight;
     for (let i = 0; i < stripCount; i++) {
-      // Calculate strip height - divide lineHeight into equal parts with variation
       let actualHeight;
       if (i === stripCount - 1) {
         // Last strip takes remaining height
-        actualHeight = lineHeight - currentTop;
+        actualHeight = remainingHeight;
       } else {
         // Other strips get roughly equal portions with slight variation
-        const baseHeight = lineHeight / stripCount;
+        const baseHeight = containerHeight / stripCount;
         const variation = baseHeight * 0.3; // 30% variation for more diversity
         actualHeight = baseHeight + (Math.random() - 0.5) * variation;
+        remainingHeight -= actualHeight;
       }
+      stripConfigs.push({ height: actualHeight, glitchType: '' });
+    }
+    
+    // Randomly assign glitch types - ensure at least one colored effect
+    const coloredTypes = allowedGlitchTypes.filter(type => 
+      type === 'glitch-red-blue' || type === 'glitch-pink-yellow'
+    );
+    const nonColoredTypes = allowedGlitchTypes.filter(type => 
+      type === 'glitch-text-strip' || type === 'glitch-text-hole'
+    );
+    
+    // First, randomly place at least one colored effect
+    const coloredStripIndex = Math.floor(Math.random() * stripCount);
+    stripConfigs[coloredStripIndex].glitchType = coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
+    
+    // Then fill the remaining strips with random types (can be colored or non-colored)
+    for (let i = 0; i < stripCount; i++) {
+      if (stripConfigs[i].glitchType === '') {
+        stripConfigs[i].glitchType = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
+      }
+    }
+    
+    // Now create the actual strips based on the configurations
+    for (let i = 0; i < stripCount; i++) {
+      const config = stripConfigs[i];
       
-       // Get theme background color for initial strip color
-       const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-       const backgroundColor = isDarkMode ? '#0f0f0f' : '#ffffff';
-       
-       const strip = document.createElement('div');
-       strip.className = 'glitch-strip';
-
-       // Choose glitch type - ensure at least one colored glitch per container
-       var glitch_name;
-       if (i === 0) {
-         // First strip must be colored (red-blue or pink-yellow)
-         const coloredTypes = allowedGlitchTypes.filter(type => 
-           type === 'glitch-red-blue' || type === 'glitch-pink-yellow'
-         );
-         glitch_name = coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
-       } else {
-         // Other strips can be any allowed type
-         glitch_name = allowedGlitchTypes[Math.floor(Math.random() * allowedGlitchTypes.length)];
-       }
-       
-       // Use pre-generated values for this glitch type
-       var glitch_x_1 = glitchTypeValues[glitch_name].x1;
-       var glitch_x_2 = glitchTypeValues[glitch_name].x2;
-       var timing_function = 'steps(3, jump-start)';
-      //  var timing_function = 'linear';
-       strip.style.cssText = `
-         position: absolute;
-         top: ${currentTop}px;
-         left: 0;
-         right: 0;
-         height: ${actualHeight}px;
-         background: inherit;
-         color: inherit;
-         font-size: inherit;
-         font-family: inherit;
-         font-weight: inherit;
-         overflow: hidden;
-         outline: none;
-         border: none;
-         -webkit-font-smoothing: antialiased;
-         -moz-osx-font-smoothing: grayscale;
-         text-rendering: optimizeSpeed;
-         --glitch-x-1: ${glitch_x_1}px;
-         --glitch-x-2: ${glitch_x_2}px;
-         --glitch-text-color: ${textColor};
-         --glitch-hue-1: ${random(10, 20)}deg;
-         animation-name: ${glitch_name};
-         animation-duration: ${random(3000, 8000)}ms;
-        //  animation-delay: ${random(0, 2000)}ms;
-         animation-iteration-count: infinite;
-         animation-play-state: paused;
+      // Get theme background color for initial strip color
+      const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+      const backgroundColor = isDarkMode ? '#0f0f0f' : '#ffffff';
+      
+      const strip = document.createElement('div');
+      strip.className = 'glitch-strip';
+      
+      // Determine if this strip is in the top half or bottom half
+      const stripCenterY = currentTop + (config.height / 2);
+      const isTopHalf = stripCenterY < (containerHeight / 2);
+      
+      // Generate position-based values for this glitch type
+      const glitchValues = generateGlitchValues(config.glitchType, isTopHalf);
+      const glitch_x_1 = glitchValues.x1;
+      const glitch_x_2 = glitchValues.x2;
+      const timing_function = 'steps(10, jump-start)';
+      
+        const animationDuration = 600; // ms
+        
+        strip.style.cssText = `
+          position: absolute;
+          top: ${currentTop}px;
+          left: 0;
+          right: 0;
+          height: ${config.height}px;
+          background: inherit;
+          color: inherit;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          overflow: hidden;
+          outline: none;
+          border: none;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeSpeed;
+          --glitch-x-1: ${glitch_x_1}px;
+          --glitch-x-2: ${glitch_x_2}px;
+          --glitch-text-color: ${textColor};
+          --glitch-hue-1: ${random(10, 20)}deg;
+          animation-name: ${config.glitchType};
+          animation-duration: ${animationDuration}ms;
+          animation-iteration-count: 1;
+          animation-play-state: paused;
           animation-timing-function: ${timing_function};
-       `;
-      
-      // Create a span with the text and position it to show only the relevant slice
-      const textSpan = document.createElement('span');
-      
-      // Randomly drop 1-2 letters and replace with spaces or corruption symbols for glitch effect
-      let glitchedText = text;
-      const numDrops = Math.floor(Math.random() * 2) + 1; // 1 or 2 drops
-      const corruptionSymbols = [' ', '@', '$', '!', '*', '&']; // Space or corruption symbols
-      
-      for (let drop = 0; drop < numDrops; drop++) {
-        if (glitchedText.length > 1) { // Don't drop if text is too short
-          const randomIndex = Math.floor(Math.random() * glitchedText.length);
-          const randomSymbol = corruptionSymbols[Math.floor(Math.random() * corruptionSymbols.length)];
-          // Replace character at random index with a random corruption symbol
-          glitchedText = glitchedText.substring(0, randomIndex) + randomSymbol + glitchedText.substring(randomIndex + 1);
-        }
-      }
-      
-      textSpan.textContent = glitchedText;
-      textSpan.style.cssText = `
-        position: absolute;
-        top: -${currentTop}px;
-        left: 0;
-        line-height: inherit;
-        font-size: inherit;
-        font-family: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        word-spacing: inherit;
-        text-transform: inherit;
-        -webkit-font-smoothing: inherit;
-        -moz-osx-font-smoothing: inherit;
-        text-rendering: inherit;
-      `;
-      strip.appendChild(textSpan);
-      strips.push(strip);
-      currentTop += actualHeight;
+          animation-fill-mode: forwards;
+        `;
+        
+        // Store animation duration on the strip for later use
+        strip.dataset.animationDuration = animationDuration.toString();
+     
+     // Create a span with the text and position it to show only the relevant slice
+     const textSpan = document.createElement('span');
+     
+     // Occasionally apply letter replacements to glitch strips (20% chance)
+     const shouldReplaceLetters = Math.random() < 0.2;
+     const displayText = shouldReplaceLetters && text ? replaceLetters(text) : text;
+     
+     textSpan.textContent = displayText;
+     // Calculate vertical centering offset to match the container's flexbox centering
+     const verticalOffset = -currentTop;
+     textSpan.style.cssText = `
+       position: absolute;
+       top: ${verticalOffset}px;
+       left: 0;
+       line-height: 0.9;
+       font-size: inherit;
+       font-family: inherit;
+       font-weight: inherit;
+       letter-spacing: inherit;
+       word-spacing: inherit;
+       text-transform: inherit;
+       -webkit-font-smoothing: inherit;
+       -moz-osx-font-smoothing: inherit;
+       text-rendering: inherit;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       height: ${containerHeight}px;
+     `;
+     strip.appendChild(textSpan);
+     strips.push(strip);
+     currentTop += config.height;
     }
     
     return strips;
+  }
+
+  // Letter replacement animation function
+  function replaceLetters(text: string): string {
+    const replacements: { [key: string]: string } = {
+      'A': '^',
+      'o': '*',
+      'i': '!',
+      'I': '!',
+      'e': '*'
+    };
+    
+    return text.split('').map(char => {
+      // Only replace letters occasionally (30% chance)
+      if (replacements[char] && Math.random() < 0.75) {
+        return replacements[char];
+      }
+      return char;
+    }).join('');
+  }
+
+  function triggerLetterAnimation() {
+    // This function will be integrated into the glitch effect
+    // The letter animation will only happen on the glitch strips, not the main text
   }
 
   function triggerGlitchEffect() {
@@ -1036,7 +1075,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           container.querySelectorAll('.glitch-strip').forEach(strip => strip.remove());
           
           // Generate new strips
-          const strips = generateGlitchStrips(container);
+          const strips = generateGlitchStrips(container as HTMLElement);
           
           // Add strips to container
           strips.forEach(strip => {
@@ -1044,37 +1083,46 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           });
           
           // Set container movement variable
-          const containerMovementx1 = random(-20, 30);
-          const containerMovementx2 = random(-50, -20);
-          const containerMovementy1 = random(-2, 2);
-          const containerMovementy2 = random(-2, 2);
-          container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
-          container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
-          container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
-          container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
+          // const containerMovementx1 = random(-20, 30);
+          // const containerMovementx2 = random(-50, -20);
+          // const containerMovementy1 = random(-2, 2);
+          // const containerMovementy2 = random(-2, 2);
+          // container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
+          // container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
+          // container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
+          // container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
           
-          // Trigger glitch animation
-          container.classList.add('glitch-active');
-          
-          // Start strip animations
+          // Start strip animations immediately
           strips.forEach(strip => {
             strip.style.animationPlayState = 'running';
           });
           
-          // Clean up after animation (2 seconds after this container starts)
+          // Add a brief delay before hiding the background text (overlap effect)
+          const backgroundHideDelay = 200; // 200ms delay for overlap
+          setTimeout(() => {
+            container.classList.add('glitch-active');
+          }, backgroundHideDelay);
+          
+          // Calculate cleanup timeout based on actual animation duration
+          const maxAnimationDuration = Math.max(
+            ...strips.map(strip => parseInt(strip.dataset.animationDuration || '2000'))
+          );
+          const cleanupTimeout = maxAnimationDuration + 100; // Animation duration + small buffer
+          
+          // Single cleanup based on animation duration (more reliable than animationend events)
           setTimeout(() => {
             container.classList.remove('glitch-active');
             strips.forEach(strip => {
               strip.style.animationPlayState = 'paused';
               strip.remove();
             });
-          }, 2000);
+          }, cleanupTimeout);
         }, delay);
       });
     }
   }
 
-  let glitchTimeout = null;
+  let glitchTimeout: ReturnType<typeof setTimeout> | null = null;
 
   function scheduleGlitchEffect() {
     // Clear any existing timeout to prevent multiple loops
@@ -1082,8 +1130,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       clearTimeout(glitchTimeout);
     }
   
-    const minDelay = 8000;  // 18 seconds
-    const maxDelay = 12000;  // 22 seconds
+    const minDelay = 1000;  // 1 second
+    const maxDelay = 2000;  // 2 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     
     glitchTimeout = setTimeout(() => {
@@ -1092,7 +1140,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }, delay);
   }
 
-  // Initialize glitch effect
+  // Initialize glitch effect (letter animation is now integrated)
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(scheduleGlitchEffect, 0);
   });

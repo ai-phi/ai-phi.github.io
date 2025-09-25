@@ -295,31 +295,31 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
     text-align: justify; /* Full justification on mobile */
-    padding: 1rem;
+
     
     @media (max-width: 375px) {
 /* Slightly larger gap on tablet */
       text-align: justify; /* Full justification on mobile */
-      padding: 1rem;
+      padding: 2rem;
       line-height: 0; /* Even tighter line height */
     }
 
     @media (max-width: 480px) {
       justify-content: flex-end;
-      padding: 1rem;
-      padding: 0rem;
+
+      padding-bottom: 0rem;
     }
 
     @media (max-width: 640px) {
       justify-content: flex-end;
-      padding-left: 1rem;
-      padding-top: 0rem;
+    
+      padding-bottom: 0rem;
     }
 
     @media (min-width: 768px) {
       justify-content: flex-end;
       padding-left: 3rem;
-      padding-top: 0rem;
+      padding-bottom: 0rem;
       clear: none; /* Allow text to flow around logo on desktop */
       
     }
@@ -345,16 +345,17 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     @media (max-width: 480px) {
       margin-left: 0rem;
+      padding-bottom: 0rem;
     }
 
     @media (max-width: 640px) {
       margin-left: 0rem;
- 
+      padding-bottom: 0rem; 
     }
 
     @media (min-width: 768px) {
       margin-left: 2rem;
-      
+      padding-bottom: 0rem;
     }
   }
 
@@ -391,7 +392,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   .hero-tagline {
-    @apply mt-2 p-4; 
+    @apply mt-2; 
 
     font-size: 2rem;
     margin-bottom: 0rem; /* Increased bottom margin on mobile */
@@ -501,6 +502,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
     @media (min-width: 1024px) {
       font-size: 1.8rem; /* 48px on desktop */
+      padding: 2rem;
     }
   }
 
@@ -598,83 +600,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       color: var(--glitch-text-color);
       opacity: 20%;
     }
-    /* Early phase: Slow, subtle flickering */
-    8% {
-      opacity: 15%;
-    }
-    15% {
-      opacity: 15%;
-    }
-    20% {
-      opacity: 55%;
-    }
-    25% {
-      opacity: 15%;
-    }
-    30% {
-      opacity: 5%;
-    }
-    /* Mid phase: More noticeable flickering */
-    35% {
-      opacity: 0%;
-    }
-    38% {
-      opacity: 5%;
-    }
-    42% {
-      opacity: 0%;
-    }
-    45% {
-      opacity: 5%;
-    }
     50% {
+      transform: translateX(var(--glitch-x-1)) translateY(0);
+      color: var(--glitch-text-color);
       opacity: 10%;
-    }
-    /* Late phase: Rapid, erratic flickering */
-    55% {
-      opacity: 10%;
-    }
-    58% {
-      opacity: 15%;
-    }
-    62% {
-      opacity: 10%;
-    }
-    65% {
-      opacity: 20%;
-    }
-    68% {
-      opacity: 15%;
-    }
-    72% {
-      opacity: 40%;
-    }
-    75% {
-      opacity: 30%;
-    }
-    78% {
-      opacity: 55%;
-    }
-    82% {
-      opacity: 25%;
-    }
-    85% {
-      opacity: 15%;
-    }
-    88% {
-      opacity: 10%;
-    }
-    92% {
-      opacity: 40%;
-    }
-    95% {
-      opacity: 20%;
-    }
-    98% {
-      opacity: 15%;
     }
     100% {
-      opacity: 10%;
+      transform: translateX(var(--glitch-x-2)) translateY(0);
+      color: var(--glitch-text-color);
+      opacity: 20%;
     }
   }
 
@@ -686,29 +620,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0.3),
-        3px 1px 0 rgba(0, 132, 255, 0.3);
+        0px 0px 0 rgba(255, 0, 0, 0.4),
+        3px 1px 0 rgba(0, 132, 255, 0.4);
       color: transparent;
     }
-    55% {
+    75%, 85% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0),
-        3px 1px 0 rgba(0, 132, 255, 0);
-      color: transparent;
-    }
-    75% {
-      transform: translateX(var(--glitch-x-2)) translateY(0);
-      text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0.7),
-        3px 1px 0 rgba(0, 132, 255, 0.7);
+        0px 0px 0 rgba(255, 0, 0, 0.4),
+        3px 1px 0 rgba(0, 132, 255, 0.4);
       color: transparent;
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0),
-        3px 1px 0 rgba(0, 132, 255, 0);
+        0px 0px 0 rgba(255, 0, 0, 0.1),
+        3px 1px 0 rgba(0, 132, 255, 0.1);
       color: transparent;
     }
   }
@@ -719,25 +646,18 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       filter: hue-rotate(0);
       color: transparent;
     }
-    15% {
+    35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
         0px 0px 0 rgba(255, 0, 162, 0.4),
         3px 2px 0 rgba(200, 255, 0, 0.4);
       color: transparent;
     }
-    70% {
+    90% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0),
-        4px 2px 0 rgba(200, 255, 0, 0);
-      color: transparent;
-    }
-    80% {
-      transform: translateX(var(--glitch-x-2)) translateY(0);
-      text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0.5),
-        4px 2px 0 rgba(200, 255, 0, 0.5);
+        0px 0px 0 rgba(255, 0, 162, 0.4),
+        4px 2px 0 rgba(200, 255, 0, 0.4);
       color: transparent;
     }
     100% {
@@ -753,11 +673,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     0% {
       transform: none;
       color: var(--glitch-text-color);
-      opacity: 5%;
+      opacity: 0%;
     }
     25% {
       color: var(--glitch-text-color);
-      opacity: 15%;
+      opacity: 0%;
     }
     75% {
       color: var(--glitch-text-color);
@@ -765,7 +685,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     }
     100% {
       color: var(--glitch-text-color);
-      opacity: 10%;
+      opacity: 0%;
     }
   }
 
@@ -1005,18 +925,23 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         glitchType == "glitch-text-strip" ||
         glitchType == "glitch-text-hole"
       ) {
-        return { x1: 0, x2: 0 };
+        var x = Math.random() * (2 - 0) + 0;
+        return { x1: x, x2: 0 };
       } else if (glitchType == "glitch-red-blue") {
+
+        var x = Math.random() * (6 - 4) + 4;
         if (isTopHalf) {
-          return { x1: 12, x2: 0 };
+          return { x1: x, x2: x };
         } else {
-          return { x1: -12, x2: 0 };
+          return { x1: -x, x2: -x };
         }
       } else if (glitchType == "glitch-pink-yellow") {
+
+        var x = Math.random() * (6 - 4) + 4;
         if (isTopHalf) {
-          return { x1: -12, x2: 0 };
+          return { x1: -x, x2: -x };
         } else {
-          return { x1: 12, x2: 0 };
+          return { x1: x, x2: x };
         }
       }
       return { x1: 0, x2: 0 };
@@ -1034,18 +959,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-red-blue",
-        /* "glitch-text-hole", */
+        "glitch-text-hole",
       ];
     } else {
       // Pink-yellow scheme
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-pink-yellow",
-        /* "glitch-text-hole", */
+        "glitch-text-hole",
       ];
     }
 
-    const stripCount = 5; // 3 to 8 strips
+    const stripCount = 8; // 3 to 8 strips
+
+    // Calculate how many strips should be colored (40-80% of total)
+    const minColoredStrips = 3;
+    const maxColoredStrips = 6;
 
     // Create array of strip configurations first
     const stripConfigs: Array<{ height: number; glitchType: string }> = [];
@@ -1086,9 +1015,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       type => type === "glitch-text-strip" || type === "glitch-text-hole"
     );
 
-    // Calculate how many strips should be colored (40-80% of total)
-    const minColoredStrips = 2;
-    const maxColoredStrips = 4;
+
     const coloredStripCount =
       Math.floor(Math.random() * (maxColoredStrips - minColoredStrips + 1)) +
       minColoredStrips;
@@ -1136,9 +1063,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       const glitch_x_2 = glitchValues.x2;
        const timing_function = config.glitchType === "glitch-text-strip" 
          ? "ease-in-out" 
-         : "steps(6, jump-start)"; // Smooth flickering for text strips, stepped for movement
+         : "steps(20, jump-none)"; // Smooth flickering for text strips, stepped for movement
 
-       const animationDuration = 3000; // ms
+       const animationDuration = 1000; // ms
 
       strip.style.cssText = `
           position: absolute;
@@ -1267,7 +1194,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       }
 
       // Calculate the total duration for all animations to complete
-      const maxStaggerDelay = ((selectedContainers.length - 1) * 1000) / selectedContainers.length;
+      // Account for the new longer stagger delays (max possible delay)
+      const maxStaggerDelay = selectedContainers.length > 0 ? 
+        (selectedContainers.length - 1) * 3500 + 800 : 0;
       const totalAnimationDuration = maxStaggerDelay + 2000 + GLITCH_STRIPS_FADE_DURATION * 0.25 + STATIC_TEXT_FADE_DURATION + TIMING_BUFFER; // stagger + animation + fade delays + cleanup
 
       // Clear the animation flag after all animations are complete
@@ -1277,8 +1206,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
       // Apply glitch effect to each selected container with staggered delays
       selectedContainers.forEach((container, index) => {
-        // Calculate staggered delay (0-1000ms spread across containers)
-        const delay = (index * 1000) / selectedContainers.length;
+        // Calculate staggered delay with more separation between glitches
+        // Base delay increases significantly for each container
+        const baseDelay = index * (1000 + Math.random() * 1000); // 2-3.5s between each glitch
+        const randomOffset = Math.random() * 800; // Add some randomness
+        const delay = baseDelay + randomOffset;
 
         setTimeout(() => {
           // Clear existing strips
@@ -1362,8 +1294,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       clearTimeout(glitchTimeout);
     }
 
-    const minDelay = 20000; // 1 second
-    const maxDelay = 30000; // 2 seconds
+    const minDelay = 5000; // 1 second
+    const maxDelay = 10000; // 2 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
 
     glitchTimeout = setTimeout(() => {

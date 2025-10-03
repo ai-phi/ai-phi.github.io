@@ -844,10 +844,19 @@ const keywordMap = getKeywordMap(posts);
   .keywords-under-description .glitch-container {
     text-decoration: none;
     color: inherit;
+    will-change: transform, filter;
   }
   
   .keywords-under-description .glitch-container:hover {
     color: inherit;
+    transform: translateY(-0.5px);
+  }
+  
+  /* Subtle neon glow on hover for readability */
+  .keywords-under-description .glitch-container:hover span {
+    text-shadow:
+      0 0 6px rgba(0, 132, 255, 0.45),
+      0 0 12px rgba(255, 0, 162, 0.3);
   }
   
   .keywords-under-description .glitch-container:focus {
@@ -1252,6 +1261,60 @@ const keywordMap = getKeywordMap(posts);
     }
   }
 
+  // Trigger glitch for a specific container (used for hover/focus)
+  function triggerGlitchForContainer(container: HTMLElement) {
+    if (!container || container.dataset.animating === "1") return;
+    container.dataset.animating = "1";
+
+    // Clear existing strips
+    container.querySelectorAll(".glitch-strip").forEach(strip => strip.remove());
+
+    // Generate new strips
+    const strips = generateGlitchStrips(container as HTMLElement);
+
+    // Add strips to container
+    strips.forEach(strip => {
+      container.appendChild(strip);
+    });
+
+    // Start strip animations immediately
+    strips.forEach(strip => {
+      strip.style.animationPlayState = "running";
+    });
+
+    // Fade the background text out
+    setTimeout(() => {
+      container.classList.add("glitch-active");
+    }, 0);
+
+    // Calculate cleanup timeout based on actual animation duration
+    const maxAnimationDuration = Math.max(
+      ...strips.map(strip => parseInt(strip.dataset.animationDuration || "2000"))
+    );
+    const glitchAnimationEnd = maxAnimationDuration + TIMING_BUFFER;
+
+    // First phase: Fade out glitch strips when animation completes
+    setTimeout(() => {
+      strips.forEach(strip => {
+        strip.style.animationPlayState = "paused";
+        strip.classList.add("fade-out");
+      });
+    }, glitchAnimationEnd);
+
+    // Second phase: Start background text fade-in when strips are mostly faded out
+    const stripsFadeOutDelay = Math.floor(GLITCH_STRIPS_FADE_DURATION * 0.25);
+    setTimeout(() => {
+      container.classList.remove("glitch-active");
+      // Remove strips after their fade transition completes
+      setTimeout(() => {
+        strips.forEach(strip => {
+          strip.remove();
+        });
+        delete container.dataset.animating;
+      }, GLITCH_STRIPS_FADE_DURATION + TIMING_BUFFER);
+    }, glitchAnimationEnd + stripsFadeOutDelay);
+  }
+
   // Define fade duration constants (should match CSS transition duration)
   const STATIC_TEXT_FADE_DURATION = 100; // ms - matches CSS transition: opacity 100ms ease-in-out
   const GLITCH_STRIPS_FADE_DURATION = 800; // ms - glitch strips still use 800ms for smoother fade-out
@@ -1282,10 +1345,28 @@ const keywordMap = getKeywordMap(posts);
   // Initialize glitch effect (letter animation is now integrated)
   document.addEventListener("DOMContentLoaded", () => {
     setTimeout(scheduleGlitchEffect, 0);
+    // Hover/focus-triggered glitch on specific keyword
+    const wireHoverGlitch = () => {
+      document.querySelectorAll(".glitch-container").forEach(el => {
+        const container = el as HTMLElement;
+        container.addEventListener("mouseenter", () => triggerGlitchForContainer(container));
+        container.addEventListener("focusin", () => triggerGlitchForContainer(container));
+        // Optional: light tap support
+        container.addEventListener("touchstart", () => triggerGlitchForContainer(container), { passive: true });
+      });
+    };
+    wireHoverGlitch();
   });
 
   // Re-setup on view transitions
   document.addEventListener("astro:after-swap", () => {
     scheduleGlitchEffect();
+    // Re-bind listeners for newly swapped content
+    document.querySelectorAll(".glitch-container").forEach(el => {
+      const container = el as HTMLElement;
+      container.addEventListener("mouseenter", () => triggerGlitchForContainer(container));
+      container.addEventListener("focusin", () => triggerGlitchForContainer(container));
+      container.addEventListener("touchstart", () => triggerGlitchForContainer(container), { passive: true });
+    });
   });
 </script>

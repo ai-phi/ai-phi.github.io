@@ -180,6 +180,7 @@ const { activeNav } = Astro.props;
     @apply absolute py-1 text-xl font-semibold md:static md:text-2xl;
     margin-left: -40px;
     margin-bottom: 0px;
+    will-change: transform, filter;
   }
   
   .logo-container {
@@ -190,6 +191,7 @@ const { activeNav } = Astro.props;
     @apply h-12 w-auto transition-opacity duration-200;
     height: 4rem; /* Smaller on mobile (64px) */
     padding-top: 10px; /* Reduced padding on mobile */
+    transition: transform 150ms ease, filter 200ms ease, opacity 200ms ease;
     
     @media (min-width: 480px) {
       height: 5rem; /* Medium size on small tablets (80px) */
@@ -205,6 +207,15 @@ const { activeNav } = Astro.props;
       height: 7rem; /* Original size on desktop (112px) */
       padding-top: 15px;
     }
+  }
+
+  /* Subtle neon lift on hover/focus for the logo */
+  .nav-logo:hover .nav-logo-image,
+  .nav-logo:focus-visible .nav-logo-image {
+    transform: translateY(-1px);
+    filter:
+      drop-shadow(0 0 6px rgba(0, 132, 255, 0.35))
+      drop-shadow(0 0 12px rgba(255, 0, 162, 0.25));
   }
   
   .nav-light-logo {
@@ -606,8 +617,8 @@ const { activeNav } = Astro.props;
 
   // Subtle ghost effect with random colors and dual animations
   function triggerGhostEffect() {
-    const lightGhost = document.querySelector('.nav-light-ghost');
-    const darkGhost = document.querySelector('.nav-dark-ghost');
+    const lightGhost = document.querySelector('.nav-light-ghost') as HTMLImageElement | null;
+    const darkGhost = document.querySelector('.nav-dark-ghost') as HTMLImageElement | null;
     
     if (lightGhost && darkGhost) {
       // Choose two different random colors
@@ -620,12 +631,12 @@ const { activeNav } = Astro.props;
       }
       
       // Create first ghost object (clone)
-      const ghost1Light = lightGhost.cloneNode(true);
-      const ghost1Dark = darkGhost.cloneNode(true);
+      const ghost1Light = lightGhost.cloneNode(true) as HTMLImageElement;
+      const ghost1Dark = darkGhost.cloneNode(true) as HTMLImageElement;
       
       // Create second ghost object (clone)
-      const ghost2Light = lightGhost.cloneNode(true);
-      const ghost2Dark = darkGhost.cloneNode(true);
+      const ghost2Light = lightGhost.cloneNode(true) as HTMLImageElement;
+      const ghost2Dark = darkGhost.cloneNode(true) as HTMLImageElement;
       
       // Position the ghost objects
       ghost1Light.style.position = 'absolute';
@@ -655,23 +666,30 @@ const { activeNav } = Astro.props;
       ghost2Dark.style.filter = 'brightness(0) saturate(100%) ' + color2;
       
       // Add to DOM
-      lightGhost.parentNode.appendChild(ghost1Light);
-      lightGhost.parentNode.appendChild(ghost1Dark);
-      lightGhost.parentNode.appendChild(ghost2Light);
-      lightGhost.parentNode.appendChild(ghost2Dark);
+      const parent = lightGhost.parentElement;
+      if (!parent) return;
+      parent.appendChild(ghost1Light);
+      parent.appendChild(ghost1Dark);
+      parent.appendChild(ghost2Light);
+      parent.appendChild(ghost2Dark);
       
       // Apply animations
-      ghost1Light.classList.add('ghost-effect');
-      ghost1Dark.classList.add('ghost-effect');
-      ghost2Light.classList.add('ghost-effect-2');
-      ghost2Dark.classList.add('ghost-effect-2');
+      (ghost1Light as HTMLImageElement).classList.add('ghost-effect');
+      (ghost1Dark as HTMLImageElement).classList.add('ghost-effect');
+      (ghost2Light as HTMLImageElement).classList.add('ghost-effect-2');
+      (ghost2Dark as HTMLImageElement).classList.add('ghost-effect-2');
       
       // Remove ghost objects after animation completes
       setTimeout(() => {
-        ghost1Light.remove();
-        ghost1Dark.remove();
-        ghost2Light.remove();
-        ghost2Dark.remove();
+        const cleanup = (el: HTMLElement) => {
+          if (el.parentElement) {
+            el.parentElement.removeChild(el);
+          }
+        };
+        cleanup(ghost1Light);
+        cleanup(ghost1Dark);
+        cleanup(ghost2Light);
+        cleanup(ghost2Dark);
       }, 3000); // Animation duration is 3 seconds
     }
   }
@@ -698,11 +716,22 @@ const { activeNav } = Astro.props;
     const logoLink = document.querySelector('.nav-logo');
     
     if (logoContainer && logoLink) {
-      logoLink.addEventListener('click', (e) => {
-        // Let the normal link behavior handle navigation
-        // Trigger ghost effect
+      // Click always triggers ghost effect
+      logoLink.addEventListener('click', () => {
         triggerGhostEffect();
       });
+      // Hover/focus triggers ghost effect (throttled)
+      let logoHoverTimeout: ReturnType<typeof setTimeout> | null = null;
+      const triggerOnHover = () => {
+        if (logoHoverTimeout) return; // throttle
+        triggerGhostEffect();
+        logoHoverTimeout = setTimeout(() => {
+          logoHoverTimeout = null;
+        }, 2500);
+      };
+      logoLink.addEventListener('mouseenter', triggerOnHover);
+      logoLink.addEventListener('focusin', triggerOnHover);
+      logoLink.addEventListener('touchstart', triggerOnHover, { passive: true });
     }
   });
   
@@ -715,11 +744,20 @@ const { activeNav } = Astro.props;
     const logoLink = document.querySelector('.nav-logo');
     
     if (logoContainer && logoLink) {
-      logoLink.addEventListener('click', (e) => {
-        // Let the normal link behavior handle navigation
-        // Trigger ghost effect
+      logoLink.addEventListener('click', () => {
         triggerGhostEffect();
       });
+      let logoHoverTimeout: ReturnType<typeof setTimeout> | null = null;
+      const triggerOnHover = () => {
+        if (logoHoverTimeout) return;
+        triggerGhostEffect();
+        logoHoverTimeout = setTimeout(() => {
+          logoHoverTimeout = null;
+        }, 2500);
+      };
+      logoLink.addEventListener('mouseenter', triggerOnHover);
+      logoLink.addEventListener('focusin', triggerOnHover);
+      logoLink.addEventListener('touchstart', triggerOnHover, { passive: true });
     }
   });
 </script>

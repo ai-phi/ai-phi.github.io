@@ -172,8 +172,8 @@ const { activeNav } = Astro.props;
 
   .nav-logo {
     @apply absolute py-1 text-xl font-semibold md:static md:text-2xl;
-    margin-left: -200px;
-    margin-bottom: -40px;
+    margin-left: -40px;
+    margin-bottom: 0px;
   }
   
   .logo-container {
@@ -419,8 +419,7 @@ const { activeNav } = Astro.props;
   }
   
   #main-nav-items li a {
-    @apply px-2 py-1 text-center font-medium hover:text-skin-accent relative z-10;
-    font-family: 'Nunito', sans-serif;
+    @apply px-2 py-1 text-center font-medium hover:text-skin-accent relative z-10 font-serif;
     font-size: 1.2em; /* Smaller on mobile */
     padding: 0px;
     column-gap: 0.5rem;
@@ -447,14 +446,8 @@ const { activeNav } = Astro.props;
   }
   
   #main-nav-items li.nav-separator {
-    @apply text-skin-base;
-    font-family: 'Nunito', sans-serif;
-    border-right: 4px solid currentColor;
-    border-radius: 10%;
-    
-    @media (max-width: 639px) {
-      display: none;
-    }
+    display: none;
+    border-right: 0;
   }
   
   /* Search and theme toggle */
@@ -538,29 +531,7 @@ const { activeNav } = Astro.props;
   }
   
   .header-line {
-    @apply h-px bg-skin-inverted;
-    width: 100%; /* Full width on mobile */
-    height: 5px;
-    position: absolute;
-    justify-content: right;
-    margin-top: 48px;
-    
-    /* Responsive width scaling */
-    @media (min-width: 480px) {
-      width: 90%; /* Slightly narrower on small screens */
-    }
-    
-    @media (min-width: 640px) {
-      width: 100%; /* Medium width on tablets */
-    }
-    
-    @media (min-width: 768px) {
-      width: 100%; /* Narrower on larger tablets */
-    }
-    
-    @media (min-width: 1024px) {
-      width: 100%; /* Original fixed width on desktop */
-    }
+    display: none;
   }
 
 </style>
@@ -722,8 +693,7 @@ const { activeNav } = Astro.props;
     
     if (logoContainer && logoLink) {
       logoLink.addEventListener('click', (e) => {
-        // Prevent default link behavior
-        e.preventDefault();
+        // Let the normal link behavior handle navigation
         // Trigger ghost effect
         triggerGhostEffect();
       });
@@ -740,8 +710,7 @@ const { activeNav } = Astro.props;
     
     if (logoContainer && logoLink) {
       logoLink.addEventListener('click', (e) => {
-        // Prevent default link behavior
-        e.preventDefault();
+        // Let the normal link behavior handle navigation
         // Trigger ghost effect
         triggerGhostEffect();
       });

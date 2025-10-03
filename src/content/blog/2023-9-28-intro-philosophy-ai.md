@@ -16,3 +16,5 @@ session: true
 ## About the Inaugural Session:
 
 Introduction to Philosophy of AI by Aïda Elamrani (Institut Jean Nicod, ENS).
+
+<!-- PDF: AI-PHI-1-Intro to Philosophy of AI.pdf | title: Introduction to Philosophy of AI presentation by Aïda Elamrani | type: presentation -->

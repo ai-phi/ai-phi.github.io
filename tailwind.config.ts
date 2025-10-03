@@ -71,9 +71,25 @@ export default {
       },
 
       fontFamily: {
-        sans: ["Nunito", "sans-serif"],
+        sans: [
+          "Velvelyne",
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
         mono: ["IBM Plex Mono", "monospace"],
-        serif: ["Literata Variable"],
+        serif: [
+          "Velvelyne",
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
       },
 
       typography: {

@@ -61,10 +61,17 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </div>
 
         <div class="hero-text">
-          <h1 class="hero-title">
-            AI & Philosophy<br />
-            Discussion Group
-          </h1>
+          <div class="hero-tagline">
+            <p>
+              <b>AI-Phi</b> is a Paris-based community of researchers and professionals united by a shared interest for the intersection of<span
+                class="tagline-highlight"> AI & Philosophy</span
+              >.<br /> Together, we track the big ideas that are shaping a rapidly changing world.
+            </p>
+          </div>
+        </div>
+
+        <!-- Keywords under description -->
+        <div class="keywords-under-description">
           <!-- General aspects of AI-PHI -->
           <div class="subtitle-section general-aspects">
             <div class="glitch-container" data-text="Paris">
@@ -124,99 +131,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         </div>
       </div>
-      <div class="hero-tagline">
-        <p>
-          We are a Paris-based community of researchers and professionals at the <span
-            class="tagline-highlight">intersection of AI and Philosophy</span
-          >, trying to <span class="tagline-highlight">track the big ideas</span
-          > that are shaping a rapidly changing world.
-        </p>
-      </div>
+      
     </section>
 
-    <!-- {
-  nextFormal.length > 0 && (
-    <>
-      <section id="featured">
-        <h2>Upcoming Seminar Series </h2>
-        <div class="section-header-line"></div>
-        <ul>
-          {nextFormal.map(({ data, slug }) => (
-            <Card
-              href={`/posts/${slug}`}
-              frontmatter={data}
-              secHeading={false}
-            />
-          ))}
-        </ul>
-      </section>
-    </>
-  )
-} -->
-
-    <!-- {
-  nextSessionPost.length > 0 && (
-    <>
-      <section id="featured">
-        <h2>⭐ Upcoming Community Session</h2>
-        <ul>
-          {nextSessionPost.map(({ data, slug }) => (
-            <Card
-              href={`/posts/${slug}`}
-              frontmatter={data}
-              secHeading={false}
-            />
-          ))}
-        </ul>
-      </section>
-      <Hr />
-    </>
-  )
-}  -->
-
-    <!-- Featured Posts 
-      {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured Posts</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    }
-    -->
-    <!-- 
-    <section id="recent-posts">
-      <h2>📝 Recent Activity</h2>
-      <ul>
-        {
-          sortedPosts
-            //.filter(({ data }) => !data.featured)
-            .filter(({ data }) => !data.nextSession)
-            .filter(({ data }) => !data.nextFormal)
-            .map(
-              ({ data, slug }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slug}`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )
-        }
-      </ul> -->
-
+    <!-- Our Posts under image -->
     <section id="all-posts" class="hero-section">
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts" className="all-posts-button">
@@ -277,7 +195,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .hero-text {
     @apply text-lg;
-    font-family: "Nunito", sans-serif;
     font-size: 25px;
     font-weight: 400;
     clear: both; /* Ensure text clears floated logo on mobile */
@@ -360,8 +277,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   .hero-title {
-    @apply mb-6 font-bold leading-tight;
-    font-family: "Nunito", sans-serif;
+    @apply mb-2 font-bold leading-tight;
     font-size: 3rem; /* 24px on very small mobile */
     line-height: 1.2;
 
@@ -400,15 +316,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* max-width: 40rem; */
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: left;
     position: relative;
     
 
     @media (min-width: 768px) {
-      @apply mb-12; /* Original margin on desktop */
       font-size: 1rem;
-      margin-top: 2rem;
-      margin-bottom: 4rem; 
+      margin-top: -3rem; /* align with top of right image */
+      margin-bottom: 1rem; 
     }
   }
 
@@ -475,8 +390,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .hero-tagline p {
     @apply text-skin-base;
-    font-family: "Nunito", sans-serif;
-
     line-height: 1.3;
     font-weight: 200;
     margin-top: 2rem;
@@ -515,17 +428,24 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   .tagline-highlight {
-    font-style: italic;
-    color: rgb(var(--color-accent));
+    font-style: normal;
+    color: rgb(var(--color-text-base));
     font-weight: 700;
   }
 
   html[data-theme="light"] .tagline-highlight {
-    color: #1a1a1a;
+    color: rgb(var(--color-text-base));
   }
 
   html[data-theme="dark"] .tagline-highlight {
-    color: #ffffff;
+    color: rgb(var(--color-text-base));
+  }
+
+  /* Ensure plain <b> in tagline matches requested emphasis */
+  .hero-tagline b {
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(var(--color-text-base));
   }
 
   .hero-text span {
@@ -539,6 +459,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply relative inline-flex items-center justify-center;
     /* overflow: hidden; */
     /* Ultra-minimal padding for maximum compactness */
+    font-weight: normal; /* Remove bold styling */
 
     line-height: 0.9; /* Extra tight line height */
     vertical-align: middle; /* Align with dots */
@@ -690,8 +611,9 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
 
   .dot {
-    @apply font-bold text-skin-accent;
+    @apply text-skin-accent;
     font-size: 1.8em !important;/* Even smaller to match glitch containers */
+    font-weight: normal; /* Remove bold styling */
     vertical-align: middle;
 
     display: inline-flex;
@@ -721,6 +643,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     margin: 0 auto 2rem auto;
     text-align: center;
     width: fit-content; /* Ensure container fits logo */
+    padding: 0 1rem; /* Add padding on mobile to prevent cutoff */
 
     /* Desktop layout */
     @media (min-width: 768px) {
@@ -730,6 +653,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       margin-top: -3rem;
       text-align: left;
       margin-right: 0; /* Remove auto margin on desktop */
+      padding: 0; /* Remove padding on desktop */
     }
     /* defines circular wrap around the logo which is also circular */
     shape-outside: circle(50% at 50% 45%);
@@ -744,17 +668,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     z-index: -1;
     padding: 0.2rem; /* It's not a perfect circle. Place it slightly inside so you don't notice as it rotates */
     animation: slowRotate 150s linear infinite;
+    height: 10rem; /* Match main logo on mobile */
+
+    @media (min-width: 480px) {
+      height: 12rem; /* Match main logo */
+    }
 
     @media (min-width: 640px) {
-      height: 22rem; /* 256px on tablet */
+      height: 16rem; /* was 18rem */
     }
 
     @media (min-width: 768px) {
-      height: 22rem; /* 320px on desktop */
+      height: 18rem; /* was 22rem */
     }
 
     @media (min-width: 1024px) {
-      height: 25rem; /* 400px on large desktop */
+      height: 21rem; /* was 25rem */
     }
   }
 
@@ -805,18 +734,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   .hero-logo {
     @apply w-auto transition-opacity duration-200;
-    height: 18rem; /* 192px on mobile */
+    height: 10rem; /* Reduced from 14rem for mobile */
+
+    @media (min-width: 480px) {
+      height: 12rem; /* Slightly larger on small tablets */
+    }
 
     @media (min-width: 640px) {
-      height: 22rem; /* 256px on tablet */
+      height: 16rem; /* was 18rem on tablet */
     }
 
     @media (min-width: 768px) {
-      height: 22rem; /* 320px on desktop */
+      height: 18rem; /* was 22rem on desktop */
     }
 
     @media (min-width: 1024px) {
-      height: 25rem; /* 400px on large desktop */
+      height: 21rem; /* was 25rem on large desktop */
     }
   }
 
@@ -851,7 +784,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   #featured h2,
   #recent-posts h2 {
-    @apply text-4xl font-semibold tracking-wide;
+    @apply text-4xl font-semibold tracking-wide font-serif;
   }
   .all-posts-btn-wrapper {
     @apply text-center;
@@ -897,6 +830,56 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     float: left;
     height: 3px;
     margin: 10px auto 20px auto;
+  }
+
+  /* Footer text will inherit Velvelyne from global styles */
+
+  /* Remove wavy line above the description */
+  .hero-tagline::before {
+    display: none;
+    content: none;
+  }
+
+  /* Keywords under description */
+  .keywords-under-description {
+    @apply relative;
+    margin-top: 1.5rem;
+    clear: both; /* Ensure keywords clear the floated logo */
+  }
+  
+  .keywords-under-description .subtitle-section {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: flex-start;
+    font-weight: 300 !important; /* Use light weight */
+  }
+  
+  .keywords-under-description .glitch-container {
+    font-weight: 300 !important; /* Use light weight */
+  }
+  
+  .keywords-under-description .glitch-container span {
+    font-weight: 300 !important; /* Use light weight */
+  }
+  
+  .keywords-under-description .dot {
+    font-weight: 300 !important; /* Use light weight */
+  }
+
+  /* Bottom keywords centering */
+  #keywords-bottom .keywords-bottom-wrapper {
+    @apply mx-auto;
+    max-width: 58rem;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  #keywords-bottom .subtitle-section {
+    text-align: center;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: center;
   }
 </style>
 

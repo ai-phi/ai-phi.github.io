@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Velvelyne font faces */
+@font-face {
+  font-family: "Velvelyne";
+  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Velvelyne";
+  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Velvelyne";
+  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Book.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Velvelyne";
+  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root,
   html[data-theme="light"] {
@@ -43,6 +73,9 @@
   body {
     @apply flex min-h-[100svh] flex-col bg-skin-fill font-sans text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
   
   /* Ensure main content takes up available space and footer stays at bottom */

@@ -1,0 +1,136 @@
+Copyright (c) 2024, Manon Van der Borght (https://www.instagram.com/mvdbght/|hello@mvdbght.fr) & Mariel Nils (https://www.instagram.com/mariel.nils/|mariel.nils@byebyebinary.space),
+with Reserved Font Name Velvelyne.
+
+This Font Software is licensed under the CUTE (Conditions for Engaging Typographic Use), Version 0.1.
+This license is copied below, and is also available with in a French version at:
+https://genderfluid.space/documents/2024_BBB_CUTE-EN.pdf
+https://genderfluid.space/
+
+[this text is not here in its complete version, please see https://genderfluid.space/ for examples and lexicon.]
+
+Conditions for Engaging Typographic Use v0.1
+====================================================
+
+Text status
+____________________________________________________
+
+The Conditions d'utilisations typographiques engageantes (CUTE), written by the Bye Bye Binary collective, are a way of bringing together people who design, distribute and use post-binary fonts. These conditions are a kind of contract, a user guide, usable by anyone wishing to publish a post-binary font. Like a license, like a mussel on its rock, this text travels and spreads with the font files as they are downloaded. They stand out from most free licenses by integrating the question of economics and the material conditions of existence of designers. The critical and political ideas that drive them thus pollinate graphic practices committed to a radically feminist, anti-racist, anti-capitalist, queer and trans* perspective.
+
+____________________________________________________
+
+Contents
+____________________________________________________
+
+    • Why this text?
+    • Getting started
+    	• Conditions for use, copying and sharing
+   		• Crediting, attributing
+    		• Sharing complete files
+    		• Find your place on the donation scale
+    	• Conditions for redistribution
+    		• Keep CUTE
+   	• Conditions for modification
+    		• Do not delete post-binary characters
+    		• Keep a link to the font name
+    	• Invitation to re-share modifications
+    • Donations
+    	• In precarious situations
+    	• To support research
+    	• To place an order
+    		• For an association
+   		• For a cultural organization
+   		• For a cultural institution
+    		• For a small commercial enterprise
+    		• For a large company
+    • Lexicon
+    • Notes
+    • Resources
+    • Material conditions for writing this text
+
+____________________________________________________
+
+Why this text?
+____________________________________________________
+
+Since 2018, the Bye Bye Binary collective has been actively working on the design of post-binary fonts to enable the language to move beyond the debates around inclusive writing. In 2022, it published the first version of a type library. The typefaces distributed are under free licenses (OFL, OIFL or CC-BY-NC-SA). Their very permissive conditions and universalist heritage and approach do not take into account power dynamics and structural economic inequalities.
+Example: A major institution uses typefaces without donations in line with their means, while often precarious students contribute financially to research
+After rewriting the OFL in an inclusive language, the OIFL, the BBB collective felt it necessary to write specific conditions of use for post-binary fonts. Sharing practices and the invitation to modify free licenses  is, however, a dimension that is dear to the collective and is preserved in these CUTEs. As soon as it circulates, it moves.
+These conditions of use seek to navigate between the “tensions and paradoxes of sharing policies”  and the critique of the notion of the author. Firstly, the figure of the original author is ambiguous; every production is infused with previous ones and is part of a continuum of references and thought. Secondly, the act of affixing a signature to a production is linked to a history of appropriations of practices that have not been canonized and neglected by the dominant history. So it's a question that needs to be taken care of, paying attention to references, genealogies and contexts. It's a matter of “avoiding abusive appropriation by insisting on inclusive attribution.”.
+By drafting these conditions as tools of resistance, Bye Bye Binary indicates an initial framework of use for users and enables designers to publish their fonts according to a less unbalanced balance of power in the face of proprietary logics and to collectively resist the dynamics of knowledge extraction and colonization.
+These conditions of use are part of the field of typography and call for several points of attention:
+    • The fact that the production of typographic forms is part of a long history of copying [lexicon].
+    • The circulation of typographic objects on digital platforms tends to break ties and make our ecosystem less sustainable.
+    • The long history of invisibilization of minoritized people in the field of typography.
+    • The difficulty of keeping track of people within collective practices.
+    • Attention to sources, because referencing allows us not to lose existences. In this case, the messy histories of LGBTQIA+ struggles.
+
+____________________________________________________
+
+Getting started
+____________________________________________________
+
+BBB's Terms of Use invite you to use, copy, share, redistribute and modify fonts published under CUTE, and re-share modified versions, including for commercial use.
+
+- Conditions for use, copying and sharing -
+Any person or institution who has read these terms of use may download, install and use the fonts in any text-editing software. These conditions of use are specific to fonts and not to the documents they are used to produce (see: contamination).
+
+ - Credit, allocate -
+It is necessary to credit the designer(s) of the font as well as to provide a link to the original publication source (the BBB type library, or other), thus making it possible to link to the context of the work.
+
+ - Share complete files -
+A font is a piece of software made up of vector drawing elements, as well as lines of code describing its behavior and documentation providing an understanding of the context in which it was created. [lexicon: package] For the purposes of sharing and passing on knowledge, these are all ingredients that should travel with the font file. In this sense, for each copy, sharing or redistribution, it is important to take good care of the whole.
+
+ - Finding your place on the donation scale -
+See the “Donations” section for the criteria for this important condition.
+
+- Conditions for redistribution - 
+Fonts can be redistributed on websites, the cloud, peer-to-peer, and any other digital medium. In this case, the previous conditions Credit, Allocate and Share complete files apply.
+
+ - Keep CUTE -
+If you redistribute or modify a font published under CUTE, it must remain under CUTE. It can also cohabit with other licenses, guides and conditions of use in the same spirit, such as CC4R, GenderFail, ACAB or Non Violent Licenses. This condition produces a virality that allows fonts to pollinate committed graphic practices. At the same time, it prevents anyone from appropriating the work and its authorship.
+CUTE inherits the culture of Free, Libre and Open Source, but is not technically compatible with any FLOSS license to date. CUTE adopts a position that is radically and deliberately inconsistent with these in their current state.
+
+ - Conditions for modification -
+The fonts under CUTE have been programmed with QUNI (Queer Unicode Initiative) [lexicon], post-binary character activation features, a recipe, which you are invited to read before any modification or fork [lexicon]. The following modification conditions apply in addition to those above:
+
+ - Do not delete post-binary characters -
+Post-binary characters can be modified and augmented just like the rest of the file. But, because these characters are an integral part of the font, they cannot be deleted. This also applies to OpenType features that activate them. Any copy or modified version must retain the complete set.
+
+ - Rename but link - 
+To assume filiations and make paths more legible, forks must change the font name by adding a complement to the original name. If you have any questions, please contact the original authors.
+For fonts with the BBB prefix, keep the name of the original font without the BBB and add a complement. The initials BBB are an identifier for fonts designed by the collective, but the idea is not to impose them as a signature. It's also an opportunity to mark the handover of maintenance and monitoring of the project, which then passes into the hands of the fork designers.
+
+ - Invitation to re-share modifications -
+In the event of glyphset expansion (lexicon) without modification of the existing glyphs, the authors who published the font under these conditions would be happy to incorporate them into the basic version without changing the name. The designer of the augmentation would then be added to the list of designers of the font.
+With each modification, new designers are added to the list of previous designers in the font info [lexicon]. The complete history is kept, ideally with dates and contexts, in a font log file [lexicon].
+
+ - Donations - 
+The fonts distributed under these terms of use have been designed by and for people who stand in solidarity with the struggles against cis-hetero-patriarchy, white supremacy, validism and capitalism. The use of post-binary fonts is obviously not a substitute for other militant actions against these systems of oppression.
+These conditions of use encompass the question of the virtuous economy of research and the adoption of a materialist feminist position. Receiving donations creates the material conditions of existence for researchers active in the field of post-binary typography. Indeed, financial support makes it possible for people who can't afford unpaid work to participate, encourages designers to publish more, and opens the door to greater aesthetic and political variety. This field of research is precarious, existing on a shoestring thanks to a few grants and one-off commissions. Integrating a scale of donations with the conditions of use of fonts allows us to insist on concrete needs at different points in the ecosystem. This text thus distances itself from the received idea that “free” equals “gratis”.
+The cases listed below are non-exhaustive examples, as this scale of monetary value is culturally situated in a Belgian-French context. It's up to you to project yourself and assess your own position within the power dynamics. The Green bottle sliding scale [🧪] can be a useful complementary tool for self-determination and empowerment.
+As far as the donations received by BBB are concerned, they do not finance salaries. A portion is paid to external designers. The remainder is used mainly for train tickets.
+
+	In a precarious situation
+You want to use post-binary fonts for a student project, a fanzine, a classified ad for your flatmate, a TPBG leaflet or paint ligatures on protest banners. Go for it!
+Participate according to the project's means - keep your money if it's a hindrance.
+In support of the fight and of research
+You use post-binary fonts to write your own work (integrated into your own work, film subtitles, political writings, media files, university theses...), within collective practices (unfunded self-managed associations, precarious places, militant...). You want to support research and see post-binary fonts proliferate. > Donation between €10 and €50
+
+	In a commission situation
+If you are a graphic designer and would like to use post-binary fonts as part of a graphic design commission, we encourage you to make your client aware of the virtuous economy. Please refer to the donation level corresponding to your client's status, to propose an amount in line with the project's scope and distribution framework. > Donation between €50 and €1,000
+
+	For an association
+You have a small budget allocated to the communication of your structure or an event you're organizing. You need the services of a graphic designer or printer. You're subsidized, so you don't benefit from any other kind of income (admission tickets or bar profits).
+Donation between €50 and €150
+
+	For a cultural organization
+You are a theater, gallery, concert hall or festival. You have a budget dedicated to the production of your communications materials, or even a communications manager and/or graphic designer on staff. In addition to subsidies, you benefit from additional income (admission tickets or bar profits). > Donation between €50 and €500
+
+	For a local commercial enterprise
+You're a cooperative grocery store, a thrift shop, a bakery (that kneads bretz-iels), a feminist bookshop, the town's only lesbian bar, an independent publishing house, etc. that's struggling to cope with capitalist logic and is trying to change the world on its own scale. > Donations between €50 and €500
+
+	For a cultural institution
+You're a museum, a college, a national stage, a gallery, etc. You have a communications department within your organization. In addition to support and subsidies, you benefit from additional income (admission tickets or bar profits). > Donation between €300 and €1000
+
+	For a large company
+You want to produce objects on a large scale using post-binary fonts, or you want to give yourself an inclusive image and pinkwash your structural shortcomings. > Look elsewhere

@@ -8,11 +8,11 @@ draft: false
 featured: true
 nextFormal: false
 tags:
-  - causerie
-  - reasoning
-  - llm
-  - ai
-  - philosophy
+  - Causerie
+  - Reasoning
+  - LLM
+  - AI
+  - Philosophy
 description: An article written by Michael Anslow outlining the AI-Phi community discussion during our causerie on 'reasoning'. It also contains opinions from various AI-Phi members.
 session: false
 ogImage: assets/AI-Phi-Causerie-Reasoning.png

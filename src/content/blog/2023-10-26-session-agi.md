@@ -9,6 +9,7 @@ tags:
   - Session
   - AGI
   - Intro to AI
+  - other
 description: Session on Artificial General Intelligence by Michael Anslow. This first session starts with a whirlwind introduction to Artificial Intelligence, focusing on search, knowledge representation and reasoning and machine learning.
 session: true
 ---

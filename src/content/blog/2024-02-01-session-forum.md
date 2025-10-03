@@ -10,6 +10,7 @@ tags:
   - Session
   - AI-Forum
   - Discussion
+  - other
 description: AI-Forum Session Discussion
 session: true
 ---

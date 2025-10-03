@@ -7,7 +7,7 @@ slug: adding-new-posts-in-astropaper-theme
 featured: true
 draft: true
 tags:
-  - docs
+  - Docs
 description:
   Some rules & recommendations for creating or adding new posts using AstroPaper
   theme.
@@ -73,9 +73,9 @@ slug: the-title-of-the-post
 featured: true
 draft: false
 tags:
-  - some
-  - example
-  - tags
+  - Some
+  - Example
+  - Tags
 ogImage: ""
 description: This is the example description of the example post.
 canonicalURL: https://example.org/my-article-was-already-posted-here

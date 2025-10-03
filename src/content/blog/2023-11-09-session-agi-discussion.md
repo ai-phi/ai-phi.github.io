@@ -10,6 +10,7 @@ tags:
   - AGI
   - Intro to AI
   - Discussion
+  - other
 description: The second half of the session on AGI. This focuses on different approaches to characterising AGI and finishes with an exploration of the "Sparks of AGI" paper.
 session: true
 ---

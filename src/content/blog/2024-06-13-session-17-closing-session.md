@@ -11,6 +11,7 @@ tags:
   - Closing
   - AI-PHI
   - Discussion
+  - other
 description: 1st AI-PHI year Closing Session
 session: true
 ---

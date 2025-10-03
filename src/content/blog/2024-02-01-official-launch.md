@@ -7,8 +7,8 @@ slug: website-official-launch
 featured: false
 draft: false
 tags:
-  - website
-  - announcements
+  - Website
+  - Announcements
 description: Launching our AI-Phi website
 session: false
 ---

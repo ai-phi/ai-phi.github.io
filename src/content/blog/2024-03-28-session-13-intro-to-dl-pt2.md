@@ -12,6 +12,7 @@ tags:
   - Generative AI
   - Sequence Models
   - Training Paradigms
+  - other
 description: Generative AI, Sequence Models and Training Paradigms by Stefan Lattner (Sony CSL)
 session: true
 ---

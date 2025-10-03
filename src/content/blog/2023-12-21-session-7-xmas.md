@@ -9,6 +9,7 @@ tags:
   - Session
   - Xmas
   - Understanding
+  - other
 description: X-mas Session and NeurIPS report by Stefan Lattner
 session: true
 ---

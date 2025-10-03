@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Card from "@components/Card";
+import { SITE } from "@config";
+import getSortedPosts from "@utils/getSortedPosts";
+import { slugifyStr } from "@utils/slugify";
+
+const posts = await getCollection("blog");
+
+// Filter posts that are sessions (by title containing "Session" or having session: true)
+const sessionPosts = getSortedPosts(
+  posts.filter(post => {
+    const title = post.data.title?.toLowerCase() || "";
+    const isSessionInTitle = title.includes("session");
+    const isSessionField = post.data.session === true;
+    const hasSessionTag = post.data.tags?.some(tag => 
+      tag.toLowerCase() === "session"
+    );
+    
+    return isSessionInTitle || isSessionField || hasSessionTag;
+  })
+);
+
+// Count sessions by category
+const seminarSeriesCount = sessionPosts.filter(post => 
+  post.data.tags?.some(tag => tag.toLowerCase() === "seminar series")
+).length;
+
+const causerieCount = sessionPosts.filter(post => 
+  post.data.tags?.some(tag => tag.toLowerCase() === "causerie")
+).length;
+
+const otherCount = sessionPosts.filter(post => 
+  !post.data.tags?.some(tag => 
+    tag.toLowerCase() === "seminar series" || tag.toLowerCase() === "causerie"
+  )
+).length;
+---
+
+<Layout title={`Sessions | ${SITE.title}`}>
+  <Header activeNav="sessions" />
+  <Main pageTitle="Sessions" pageDesc="All AI-PHI session posts.">
+    <!-- Category links -->
+    <div class="mb-8 flex flex-wrap gap-4 justify-center">
+      <a 
+        href="/sessions"
+        class="px-4 py-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors bg-blue-500 text-white border-blue-500"
+      >
+        All ({sessionPosts.length})
+      </a>
+      <a 
+        href="/tags/seminar-series"
+        class="px-4 py-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors hover:bg-gray-100"
+      >
+        Seminar Series ({seminarSeriesCount})
+      </a>
+      <a 
+        href="/tags/causerie"
+        class="px-4 py-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors hover:bg-gray-100"
+      >
+        Causerie ({causerieCount})
+      </a>
+      <a 
+        href="/tags/session"
+        class="px-4 py-2 rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors hover:bg-gray-100"
+      >
+        Others ({otherCount})
+      </a>
+    </div>
+
+    <ul>
+      {
+        sessionPosts.map(({ data, slug }) => (
+          <Card href={`/posts/${slug}`} frontmatter={data} />
+        ))
+      }
+    </ul>
+  </Main>
+
+  <Footer />
+</Layout>

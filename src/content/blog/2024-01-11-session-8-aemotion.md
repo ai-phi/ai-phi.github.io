@@ -9,6 +9,7 @@ tags:
   - Session
   - Emotions
   - Understanding
+  - other
 description: Session on AEmotional Understanding by Constant Bonard and Gustave Cortal
 session: true
 ---

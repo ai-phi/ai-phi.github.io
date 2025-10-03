@@ -8,6 +8,7 @@ import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
+import getKeywordMap from "@utils/getKeywordMap";
 import { SOCIALS } from "@config";
 import RSSIcon from "@components/RSSIcon";
 import RandomGlossaryWords from "@components/RandomGlossaryWords";
@@ -27,6 +28,9 @@ const nextFormal = sortedPosts
   );
 
 const socialCount = SOCIALS.filter(social => social.active).length;
+
+// Get dynamic keywords from blog posts
+const keywordMap = getKeywordMap(posts);
 ---
 
 <Layout>
@@ -70,64 +74,30 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         </div>
 
-        <!-- Keywords under description -->
+        <!-- Keywords under description (randomly selected on each page load) -->
         <div class="keywords-under-description">
-          <!-- General aspects of AI-PHI -->
-          <div class="subtitle-section general-aspects">
-            <div class="glitch-container" data-text="Paris">
-              <span>Paris</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Community">
-              <span>Community</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Research">
-              <span>Research</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Interdisciplinary">
-              <span>Interdisciplinary</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="News">
-              <span>News</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Debates">
-              <span>Debate</span>
-            </div>
+          <!-- General categories (always shown) -->
+          <div class="subtitle-section general-categories">
+            {keywordMap.generalCategories.map((keyword, index) => (
+              <>
+                <a href={`/tags/${keyword.tag}`} class="glitch-container" data-text={keyword.tagName}>
+                  <span>{keyword.tagName}</span>
+                </a>
+                {index < keywordMap.generalCategories.length - 1 && <span class="dot">·</span>}
+              </>
+            ))}
           </div>
 
-          <!-- Topics we discuss -->
-          <div class="subtitle-section discussion-topics">
-            <div class="glitch-container" data-text="Consciousness">
-              <span>Consciousness</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Regulations">
-              <span>Regulations</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Ethics">
-              <span>Ethics</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Emotions">
-              <span>Emotions</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Reasoning">
-              <span>Reasoning</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Machine Learning">
-              <span>Machine Learning</span>
-            </div>
-            <span class="dot">·</span>
-            <div class="glitch-container" data-text="Agency">
-              <span>Agency</span>
-            </div>
+          <!-- Random themes -->
+          <div class="subtitle-section random-themes">
+            {keywordMap.randomThemes.map((keyword, index) => (
+              <>
+                <a href={`/tags/${keyword.tag}`} class="glitch-container" data-text={keyword.tagName}>
+                  <span>{keyword.tagName}</span>
+                </a>
+                {index < keywordMap.randomThemes.length - 1 && <span class="dot">·</span>}
+              </>
+            ))}
           </div>
         </div>
       </div>
@@ -211,38 +181,38 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     /* display: flex; */
     /* flex-wrap: wrap; */
     clear: both; /* Ensure subtitles clear the logo on mobile */
-    text-align: justify; /* Full justification on mobile */
+    text-align: center; /* Center alignment for keywords */
 
     
     @media (max-width: 375px) {
 /* Slightly larger gap on tablet */
-      text-align: justify; /* Full justification on mobile */
+      text-align: center; /* Center alignment on mobile */
       padding: 2rem;
       line-height: 0; /* Even tighter line height */
     }
 
     @media (max-width: 480px) {
-      justify-content: flex-end;
+      justify-content: center;
 
       padding-bottom: 0rem;
     }
 
     @media (max-width: 640px) {
-      justify-content: flex-end;
+      justify-content: center;
     
       padding-bottom: 0rem;
     }
 
     @media (min-width: 768px) {
-      justify-content: flex-end;
-      padding-left: 3rem;
+      justify-content: center;
+      padding-left: 0;
       padding-bottom: 0rem;
       clear: none; /* Allow text to flow around logo on desktop */
       
     }
   }
 
-  .subtitle-section.general-aspects {
+  .subtitle-section.general-categories {
     color: rgb(164 162 162); /* Slightly greyish text */
     margin-top: 1.5rem; /* Reduced from 2.5rem */
     margin-bottom: 0.75rem;
@@ -250,8 +220,8 @@ const socialCount = SOCIALS.filter(social => social.active).length;
 
   }
 
-  .subtitle-section.discussion-topics {
-    color: rgb(115, 115, 115); /* Darker text for discussion topics */
+  .subtitle-section.random-themes {
+    color: rgb(115, 115, 115); /* Darker text for random themes */
     margin-top: 1rem; /* Reduced from 2rem */
     margin-bottom: 0.75rem;
     margin-left: 0rem;
@@ -848,10 +818,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   
   .keywords-under-description .subtitle-section {
-    text-align: left;
+    text-align: center;
     margin-left: 0;
     padding-left: 0;
-    justify-content: flex-start;
+    justify-content: center;
     font-weight: 300 !important; /* Use light weight */
   }
   
@@ -865,6 +835,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   
   .keywords-under-description .dot {
     font-weight: 300 !important; /* Use light weight */
+  }
+  
+  /* Clickable keyword styling */
+  .keywords-under-description .glitch-container {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .keywords-under-description .glitch-container:hover {
+    color: inherit;
+  }
+  
+  .keywords-under-description .glitch-container:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   /* Bottom keywords centering */

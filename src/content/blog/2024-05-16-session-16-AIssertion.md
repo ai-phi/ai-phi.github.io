@@ -14,6 +14,7 @@ tags:
   - Pretense
   - Bullshit
   - Fiction
+  - other
 description: AI assertions by Merel Semeijn
 session: true
 ---

@@ -10,6 +10,7 @@ tags:
   - Philosophy of AI
   - Discussion
   - Glossary
+  - other
 description: Aïda Elamrani presented an Introduction to Philosophy Discussion
 session: true
 ---

@@ -5,7 +5,7 @@ import LinkButton from "./LinkButton.astro";
 import StyledTitle from "@components/StyledTitle";
 
 export interface Props {
-  activeNav?: "home" | "posts" | "tags" | "glossary" | "about" | "agenda" | "search" | "resources";
+  activeNav?: "home" | "posts" | "sessions" | "tags" | "glossary" | "about" | "agenda" | "search" | "resources";
 }
 
 const { activeNav } = Astro.props;
@@ -83,6 +83,12 @@ const { activeNav } = Astro.props;
           <li>
             <a href="/posts" class={activeNav === "posts" ? "active" : ""} data-text="Posts">
               Posts
+            </a>
+          </li>
+          <li class="nav-separator"></li>
+          <li>
+            <a href="/sessions" class={activeNav === "sessions" ? "active" : ""} data-text="Sessions">
+              Sessions
             </a>
           </li>
           <li class="nav-separator"></li>

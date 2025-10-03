@@ -11,6 +11,7 @@ nextSession: false
 tags:
   - AI News
   - Informal Session
+  - other
 description: News and community updates session.
 session: true
 # ogImage: assets/ai-phi-session-22.png

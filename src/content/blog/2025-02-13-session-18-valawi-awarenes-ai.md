@@ -12,6 +12,7 @@ tags:
   - Value-aware
   - VALAWAI
   - AI-PHI
+  - other
 description: A talk on Value-Aware Artificial Intelligence by Giulio Prevedello.
 session: true
 ogImage: assets/AI-PHI-session-18.png

@@ -9,6 +9,7 @@ tags:
   - Session
   - Explainability
   - Fairness
+  - other
 description: Session on Explainability and Fairness by Thomas Souverain
 session: true
 ---

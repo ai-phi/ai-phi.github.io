@@ -9,6 +9,7 @@ tags:
   - Session
   - Effective Altruism
   - AI Safety
+  - other
 description: Session on Effective Altruism by Jonathan Claybrough
 session: true
 ---

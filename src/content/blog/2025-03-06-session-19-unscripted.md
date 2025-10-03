@@ -11,6 +11,7 @@ tags:
   - AI News
   - LLM Innovations
   - AI-PHI
+  - other
 description: In this informal session, we will cover some of the main innovations in LLMs since AI-PHI 1.0.
 session: true
 ---

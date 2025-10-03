@@ -9,6 +9,7 @@ featured: false
 tags:
   - Session
   - Agency
+  - other
 description: Agency in Humans and in Machines by Lucas Battich and David Colliaux
 session: true
 ---

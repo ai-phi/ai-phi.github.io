@@ -9,6 +9,7 @@ featured: false
 tags:
   - Session
   - Artificial Consciousness
+  - other
 description: Artificial Consciousness by Gaspard Fougea (ENS Saclay)
 session: true
 ---

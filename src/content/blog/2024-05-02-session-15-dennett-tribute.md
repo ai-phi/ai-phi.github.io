@@ -11,6 +11,7 @@ tags:
   - Tribute
   - Daniel Dennett
   - Discussion
+  - other
 description: Screening of Daniel Dennett's interview about consciousness.
 session: true
 ---

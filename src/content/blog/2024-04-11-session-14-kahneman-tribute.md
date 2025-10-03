@@ -12,6 +12,7 @@ tags:
   - Daniel Kahneman
   - Lex Fridman
   - Discussion
+  - other
 description: Interactive discussion around Kahneman's interview with Lex Fridman
 session: true
 ---

@@ -14,7 +14,13 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
 
 <footer class={`footer-container ${noMarginTop ? "" : "mt-auto"}`}>
   <div class="footer-content">
-    <span class="copyright-text">Copyright © {currentYear} | All rights reserved.</span>
+    <!-- Social Media Icons (aligned left) -->
+    <div class="footer-socials">
+      <span class="footer-follow-text">Follow us</span>
+      <Socials />
+    </div>
+    
+    <span class="copyright-text">© 2023–2025 | All rights reserved.</span>
   </div>
   
   <!-- Random icons positioned half outside footer -->
@@ -38,9 +44,11 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
   }
   
   .footer-content {
-    @apply mx-auto flex items-center justify-start;
+    @apply mx-auto flex items-center justify-between;
     width: 100%;
     min-height: 64px;
+    padding: 0 1rem;
+    gap: 1rem;
   }
   
   .copyright-text {
@@ -53,6 +61,36 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
       margin-top: 25px;
       font-size: 0.8em;
     }
+  }
+
+  .footer-socials {
+    @apply flex items-center;
+    flex-shrink: 0;
+    min-width: 200px;
+    justify-content: flex-start;
+    /* Hardcode contrasting color per theme to ensure visibility */
+    color: rgb(var(--color-text-inverted));
+  }
+
+  .footer-follow-text {
+    @apply mr-2;
+    font-weight: 600;
+  }
+
+  /* Force explicit contrasting colors per theme for footer socials */
+  html[data-theme="light"] .footer-container .footer-socials {
+    color: #ffffff;
+  }
+  html[data-theme="dark"] .footer-container .footer-socials {
+    color: #000000;
+  }
+
+  .footer-socials .social-icons {
+    @apply flex-wrap justify-center gap-1;
+    display: flex;
+  }
+  .footer-socials .link-button {
+    @apply p-2 hover:rotate-6 sm:p-1;
   }
   
   .footer-icons {

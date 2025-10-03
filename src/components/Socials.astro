@@ -8,11 +8,29 @@ export interface Props {
 }
 
 const { centered = false } = Astro.props;
+
+// Desired display order
+const DISPLAY_ORDER = [
+  "Mastodon",
+  "Bluesky",
+  "X",
+  "YouTube",
+  "LinkedIn",
+] as const;
+
+const orderIndex = (name: string) => {
+  const idx = DISPLAY_ORDER.indexOf(name as any);
+  return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
+};
+
+const activeSocials = SOCIALS
+  .filter(social => social.active)
+  .sort((a, b) => orderIndex(a.name) - orderIndex(b.name));
 ---
 
 <div class={`social-icons ${centered ? "flex" : ""}`}>
   {
-    SOCIALS.filter(social => social.active).map(social => (
+    activeSocials.map(social => (
       <LinkButton
         href={social.href}
         className="link-button"
@@ -27,9 +45,29 @@ const { centered = false } = Astro.props;
 
 <style>
   .social-icons {
-    @apply flex-wrap justify-center gap-1;
+    @apply flex flex-wrap justify-center gap-1;
   }
   .link-button {
     @apply p-2 hover:rotate-6 sm:p-1;
+  }
+
+  /* Make all icons inherit the parent color */
+  .social-icons svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    color: inherit;
+  }
+
+  .social-icons svg path,
+  .social-icons svg line,
+  .social-icons svg rect,
+  .social-icons svg circle {
+    stroke: currentColor;
+  }
+
+  /* Filled icons that already use currentColor will respect this */
+  .social-icons svg [fill="currentColor"] {
+    fill: currentColor;
   }
 </style>

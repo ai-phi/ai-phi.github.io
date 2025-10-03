@@ -200,6 +200,28 @@ const socialIcons = {
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4"></path>
       </svg>`,
+  X: `<svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon-tabler"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+        <path d="M11.733 4l-7.733 12h4l7.733 -12z"></path>
+      </svg>`,
+  Bluesky: `<svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon-tabler"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M18.5 3h-13a3.5 3.5 0 0 0 -3.5 3.5v12a3.5 3.5 0 0 0 3.5 3.5h13a3.5 3.5 0 0 0 3.5 -3.5v-12a3.5 3.5 0 0 0 -3.5 -3.5z"></path>
+        <path d="M12 8l-3 8"></path>
+        <path d="M15 8l-3 8"></path>
+        <path d="M9 12h6"></path>
+      </svg>`,
   Mastodon: `<svg class="icon-tabler" viewBox="-10 -5 1034 1034" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
     <path fill="currentColor"
   d="M499 112q-93 1 -166 11q-81 11 -128 33l-14 8q-16 10 -32 25q-22 21 -38 47q-21 33 -32 73q-14 47 -14 103v37q0 77 1 119q3 113 18 188q19 95 62 154q50 67 134 89q109 29 210 24q46 -3 88 -12q30 -7 55 -17l19 -8l-4 -75l-22 6q-28 6 -57 10q-41 6 -78 4q-53 -1 -80 -7

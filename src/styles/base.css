@@ -37,24 +37,36 @@
   html[data-theme="light"] {
     --color-fill: 255, 255, 255; /* Pure white */
     --color-text-base: 0, 0, 0; /* Pure black */
-    --color-accent: 254, 95, 85; /* Black accent */
+    --color-accent: 139, 94, 60; /* Brown accent */
     --color-card: 245, 245, 245; /* Light grey */
     --color-card-muted: 230, 230, 230; /* Slightly darker grey */
     --color-border: 200, 200, 200; /* Light grey border */
 
     --color-brand: 0, 0, 0; /* Black */
     --color-secondary-brand: 100, 100, 100; /* Dark grey */
+
+    /* Glitch/ghost accent hues for light theme */
+    --glitch-warm-1: 139, 94, 60; /* earthy brown */
+    --glitch-warm-2: 210, 180, 140; /* tan/beige */
+    --glitch-cool-1: 120, 100, 80; /* muted brown-grey */
+    --glitch-cool-2: 180, 160, 130; /* muted beige-grey */
   }
   html[data-theme="dark"] {
     --color-fill: 0, 0, 0; /* Pure black */
     --color-text-base: 255, 255, 255; /* Pure white */
-    --color-accent: 254, 95, 85; /* White accent */
+    --color-accent: 210, 180, 140; /* Beige accent */
     --color-card: 20, 20, 20; /* Dark grey */
     --color-card-muted: 40, 40, 40; /* Slightly lighter grey */
     --color-border: 60, 60, 60; /* Dark grey border */
 
     --color-brand: 255, 255, 255; /* White */
     --color-secondary-brand: 180, 180, 180; /* Light grey */
+
+    /* Glitch/ghost accent hues for dark theme */
+    --glitch-warm-1: 210, 180, 140; /* tan/beige */
+    --glitch-warm-2: 139, 94, 60; /* earthy brown */
+    --glitch-cool-1: 200, 180, 160; /* soft warm grey */
+    --glitch-cool-2: 170, 140, 110; /* muted brown */
   }
   #sun-svg,
   html[data-theme="dark"] #moon-svg {

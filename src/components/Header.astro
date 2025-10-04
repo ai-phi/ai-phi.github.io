@@ -241,8 +241,8 @@ const { activeNav } = Astro.props;
   .nav-logo:focus-visible .nav-logo-image {
     transform: translateY(-1px);
     filter:
-      drop-shadow(0 0 6px rgba(0, 132, 255, 0.35))
-      drop-shadow(0 0 12px rgba(255, 0, 162, 0.25));
+      drop-shadow(0 0 6px rgba(var(--glitch-cool-1), 0.30))
+      drop-shadow(0 0 12px rgba(var(--glitch-warm-2), 0.22));
   }
   
   .nav-light-logo {
@@ -654,9 +654,10 @@ const { activeNav } = Astro.props;
 
    
   const colors_hue_rotate = [
-    'invert(27%) sepia(82%) saturate(5724%) hue-rotate(4deg) brightness(103%) contrast(104%)', //YELLOW
-    'invert(8%) sepia(100%) saturate(7103%) hue-rotate(201deg) brightness(105%) contrast(139%)', //BLUE
-    'invert(94%) sepia(83%) saturate(1543%) hue-rotate(20deg) brightness(52%) contrast(101%)', //RED
+    // Earthy warm/cool tints for ghost effect (works for both light/dark)
+    'invert(61%) sepia(12%) saturate(586%) hue-rotate(349deg) brightness(89%) contrast(88%)', // beige/tan
+    'invert(33%) sepia(18%) saturate(714%) hue-rotate(348deg) brightness(95%) contrast(93%)', // brown
+    'invert(52%) sepia(9%) saturate(475%) hue-rotate(344deg) brightness(95%) contrast(88%)',  // warm grey
   ];
 
   // Subtle ghost effect with random colors and dual animations

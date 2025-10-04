@@ -459,7 +459,12 @@ const keywordMap = getKeywordMap(posts);
    }
 
   .glitch-container.glitch-active > span {
-    opacity: 0;
+    opacity: 0.75; /* Keep base text visible while giving strips more presence */
+  }
+
+  /* Bold only during active glitch for painterly emphasis */
+  .glitch-container.glitch-active {
+    font-weight: 700;
   }
 
   .glitch-strip {
@@ -477,6 +482,7 @@ const keywordMap = getKeywordMap(posts);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    mix-blend-mode: multiply;
     transition: opacity 800ms ease-in-out;
   }
 
@@ -484,50 +490,85 @@ const keywordMap = getKeywordMap(posts);
     opacity: 0;
   }
 
+  /* Painterly/Logo-style soft flow */
+  @keyframes logo-like-flow {
+    0% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+      filter: blur(0.25px) saturate(1.04);
+      opacity: 0.42;
+    }
+    25% {
+      transform: translateX(var(--glitch-x-1)) translateY(0) rotate(0.6deg);
+      filter: blur(0.35px) saturate(1.06);
+      opacity: 0.44;
+    }
+    50% {
+      transform: translateX(calc((var(--glitch-x-1) + var(--glitch-x-2)) / 2)) translateY(0) rotate(1deg);
+      filter: blur(0.45px) saturate(1.08);
+      opacity: 0.46;
+    }
+    75% {
+      transform: translateX(var(--glitch-x-2)) translateY(0) rotate(0.6deg);
+      filter: blur(0.35px) saturate(1.06);
+      opacity: 0.44;
+    }
+    100% {
+      transform: translateX(0) translateY(0) rotate(0deg);
+      filter: blur(0.25px) saturate(1.04);
+      opacity: 0.42;
+    }
+  }
+
   /* Generate multiple glitch animations with stronger chromatic aberration */
   @keyframes glitch-text-strip {
     0% {
       transform: none;
       color: var(--glitch-text-color);
-      opacity: 20%;
+      opacity: 35%; /* slightly stronger base to avoid vanishing */
     }
     50% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       color: var(--glitch-text-color);
-      opacity: 10%;
+      opacity: 28%;
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       color: var(--glitch-text-color);
-      opacity: 20%;
+      opacity: 35%;
     }
   }
 
   @keyframes glitch-red-blue {
     0% {
       transform: translateX(0) translateY(0);
-      color: transparent;
+      color: var(--glitch-text-color);
     }
     35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-warm-1), 0.45),
-        3px 1px 0 rgba(var(--glitch-warm-2), 0.35);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-warm-1), 0.45),
+        -1px 0px 2px rgba(var(--glitch-warm-2), 0.35),
+        0px 0px 6px rgba(var(--glitch-warm-1), 0.20);
+      filter: blur(0.4px) saturate(1.05) contrast(1.05);
+      color: var(--glitch-text-color);
     }
     75%, 85% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-warm-1), 0.45),
-        3px 1px 0 rgba(var(--glitch-warm-2), 0.35);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-warm-1), 0.45),
+        -1px 0px 2px rgba(var(--glitch-warm-2), 0.35),
+        0px 0px 6px rgba(var(--glitch-warm-2), 0.18);
+      filter: blur(0.4px) saturate(1.05) contrast(1.05);
+      color: var(--glitch-text-color);
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-warm-1), 0.12),
-        3px 1px 0 rgba(var(--glitch-warm-2), 0.10);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-warm-1), 0.12),
+        -1px 0px 2px rgba(var(--glitch-warm-2), 0.10),
+        0px 0px 4px rgba(var(--glitch-warm-1), 0.10);
+      filter: blur(0.25px) saturate(1.02) contrast(1.02);
+      color: var(--glitch-text-color);
     }
   }
 
@@ -535,28 +576,34 @@ const keywordMap = getKeywordMap(posts);
     0% {
       transform: translateX(0) translateY(0);
       filter: hue-rotate(0);
-      color: transparent;
+      color: var(--glitch-text-color);
     }
     35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-cool-1), 0.45),
-        3px 2px 0 rgba(var(--glitch-cool-2), 0.35);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-cool-1), 0.45),
+        -1px 0px 2px rgba(var(--glitch-cool-2), 0.35),
+        0px 0px 6px rgba(var(--glitch-cool-1), 0.20);
+      filter: blur(0.4px) saturate(1.05) contrast(1.05);
+      color: var(--glitch-text-color);
     }
     90% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-cool-1), 0.45),
-        4px 2px 0 rgba(var(--glitch-cool-2), 0.35);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-cool-1), 0.45),
+        -1px 0px 2px rgba(var(--glitch-cool-2), 0.35),
+        0px 0px 6px rgba(var(--glitch-cool-2), 0.18);
+      filter: blur(0.4px) saturate(1.05) contrast(1.05);
+      color: var(--glitch-text-color);
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(var(--glitch-cool-1), 0),
-        4px 2px 0 rgba(var(--glitch-cool-2), 0);
-      color: transparent;
+        1px 0px 2px rgba(var(--glitch-cool-1), 0),
+        -1px 0px 2px rgba(var(--glitch-cool-2), 0),
+        0px 0px 4px rgba(var(--glitch-cool-1), 0);
+      filter: blur(0.25px) saturate(1.02) contrast(1.02);
+      color: var(--glitch-text-color);
     }
   }
 
@@ -829,11 +876,11 @@ const keywordMap = getKeywordMap(posts);
   }
   
   .keywords-under-description .glitch-container {
-    font-weight: 300 !important; /* Use light weight */
+    font-weight: 300 !important; /* Use light weight by default */
   }
   
   .keywords-under-description .glitch-container span {
-    font-weight: 300 !important; /* Use light weight */
+    font-weight: 300 !important; /* Use light weight by default */
   }
   
   .keywords-under-description .dot {
@@ -850,13 +897,16 @@ const keywordMap = getKeywordMap(posts);
   .keywords-under-description .glitch-container:hover {
     color: inherit;
     transform: translateY(-0.5px);
+    font-size: 1.1em;
+    font-weight: 600;
   }
   
   /* Subtle neon glow on hover for readability */
   .keywords-under-description .glitch-container:hover span {
     text-shadow:
-      0 0 6px rgba(var(--color-accent), 0.50),
-      0 0 12px rgba(var(--color-accent), 0.35);
+      0 0 8px rgba(var(--color-accent), 0.55),
+      0 0 14px rgba(var(--color-accent), 0.40),
+      1px 0 2px rgba(var(--glitch-warm-1), 0.35);
   }
   
   .keywords-under-description .glitch-container:focus {
@@ -940,18 +990,18 @@ const keywordMap = getKeywordMap(posts);
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-red-blue",
-        "glitch-text-hole",
+        // remove text-hole to keep visibility
       ];
     } else {
       // Pink-yellow scheme
       allowedGlitchTypes = [
         "glitch-text-strip",
         "glitch-pink-yellow",
-        "glitch-text-hole",
+        // remove text-hole to keep visibility
       ];
     }
 
-    const stripCount = 8; // 3 to 8 strips
+    const stripCount = 1; // single soft layer like the logo's gentle motion
 
     // Calculate how many strips should be colored (40-80% of total)
     const minColoredStrips = 3;
@@ -993,7 +1043,7 @@ const keywordMap = getKeywordMap(posts);
       type => type === "glitch-red-blue" || type === "glitch-pink-yellow"
     );
     const nonColoredTypes = allowedGlitchTypes.filter(
-      type => type === "glitch-text-strip" || type === "glitch-text-hole"
+      type => type === "glitch-text-strip"
     );
 
 
@@ -1040,13 +1090,11 @@ const keywordMap = getKeywordMap(posts);
 
       // Generate position-based values for this glitch type
       const glitchValues = generateGlitchValues(config.glitchType, isTopHalf);
-      const glitch_x_1 = glitchValues.x1;
-      const glitch_x_2 = glitchValues.x2;
-       const timing_function = config.glitchType === "glitch-text-strip" 
-         ? "ease-in-out" 
-         : "steps(20, jump-none)"; // Smooth flickering for text strips, stepped for movement
+      const glitch_x_1 = Math.sign(glitchValues.x1) * Math.min(Math.abs(glitchValues.x1), 4);
+      const glitch_x_2 = Math.sign(glitchValues.x2) * Math.min(Math.abs(glitchValues.x2), 4);
+       const timing_function = "ease-in-out"; // Smoother painterly motion
 
-       const animationDuration = 1000; // ms
+       const animationDuration = 1800; // ms, longer for logo-like flow
 
       strip.style.cssText = `
           position: absolute;
@@ -1069,7 +1117,7 @@ const keywordMap = getKeywordMap(posts);
           --glitch-x-2: ${glitch_x_2}px;
           --glitch-text-color: ${textColor};
           --glitch-hue-1: ${random(10, 20)}deg;
-          animation-name: ${config.glitchType};
+          animation-name: logo-like-flow;
           animation-duration: ${animationDuration}ms;
           animation-iteration-count: 1;
           animation-play-state: paused;
@@ -1128,16 +1176,8 @@ const keywordMap = getKeywordMap(posts);
       e: "*",
     };
 
-    return text
-      .split("")
-      .map(char => {
-        // Only replace letters occasionally (30% chance)
-        if (replacements[char] && Math.random() < 0.75) {
-          return replacements[char];
-        }
-        return char;
-      })
-      .join("");
+    // Painterly style: keep original letters to avoid breaking
+    return text;
   }
 
   function triggerLetterAnimation() {

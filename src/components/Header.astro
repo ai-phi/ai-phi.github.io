@@ -15,36 +15,6 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href="/" class="nav-logo whitespace-nowrap">
-        <div class="logo-container">
-          <!-- Ghost logo for subtle effect -->
-          <img
-            src="/images/AiPhi_Logo_Black_2lines.png"
-            alt=""
-            class="nav-ghost-logo nav-light-ghost"
-            z-index: 1;
-          />
-          <img
-            src="/images/AiPhi_Logo_White_2lines.png"
-            alt=""
-            class="nav-ghost-logo nav-dark-ghost"
-            z-index: 1;
-          />
-
-          <img
-            src="/images/AiPhi_Logo_Black_2lines.png"
-            alt={SITE.title}
-            class="nav-logo-image nav-light-logo"
-            z-index: auto;
-          />
-          <img
-            src="/images/AiPhi_Logo_White_2lines.png"
-            alt={SITE.title}
-            class="nav-logo-image nav-dark-logo"
-            z-index: auto;
-          />
-        </div>
-      </a>
       <nav id="nav-menu">
         <button
           class="hamburger-menu focus-outline"
@@ -74,9 +44,36 @@ const { activeNav } = Astro.props;
         
         <!-- Main navigation items -->
         <ul id="main-nav-items" class="hidden sm:flex">
-          <li>
-            <a href="/" class={activeNav === "home" ? "active" : ""} data-text="Home">
-              Home
+          <li class="nav-logo-item">
+            <a href="/" class="nav-logo nav-logo-in-menu whitespace-nowrap">
+              <div class="logo-container">
+                <!-- Ghost logo for subtle effect -->
+                <img
+                  src="/images/AiPhi_Logo_Black_2lines.png"
+                  alt=""
+                  class="nav-ghost-logo nav-light-ghost"
+                  z-index: 1;
+                />
+                <img
+                  src="/images/AiPhi_Logo_White_2lines.png"
+                  alt=""
+                  class="nav-ghost-logo nav-dark-ghost"
+                  z-index: 1;
+                />
+
+                <img
+                  src="/images/AiPhi_Logo_Black_2lines.png"
+                  alt={SITE.title}
+                  class="nav-logo-image nav-light-logo"
+                  z-index: auto;
+                />
+                <img
+                  src="/images/AiPhi_Logo_White_2lines.png"
+                  alt={SITE.title}
+                  class="nav-logo-image nav-dark-logo"
+                  z-index: auto;
+                />
+              </div>
             </a>
           </li>
           <li class="nav-separator"></li>
@@ -182,6 +179,19 @@ const { activeNav } = Astro.props;
     margin-bottom: 0px;
     will-change: transform, filter;
   }
+  /* Overrides when the logo is placed inside the nav menu */
+  .nav-logo-in-menu {
+    position: static !important;
+    margin-left: 0;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  .nav-logo-item {
+    display: flex;
+    align-items: center;
+  }
   
   .logo-container {
     @apply relative;
@@ -206,6 +216,23 @@ const { activeNav } = Astro.props;
     @media (min-width: 1024px) {
       height: 7rem; /* Original size on desktop (112px) */
       padding-top: 15px;
+    }
+  }
+  /* Tighter logo sizing when inside the menu to match text height */
+  .nav-logo-in-menu .nav-logo-image {
+    padding-top: 0;
+    height: 3.75rem;
+  }
+  @media (min-width: 768px) {
+    .nav-logo-in-menu .nav-logo-image {
+      height: 4.5rem;
+      margin-top: 6px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .nav-logo-in-menu .nav-logo-image {
+      height: 5.25rem;
+      margin-top: 10px;
     }
   }
 
@@ -260,6 +287,23 @@ const { activeNav } = Astro.props;
     @media (min-width: 1024px) {
       height: 7rem; /* Original size on desktop */
       padding-top: 15px;
+    }
+  }
+  /* Match ghost logo sizing when inside menu */
+  .nav-logo-in-menu .nav-ghost-logo {
+    padding-top: 0;
+    height: 3.75rem;
+  }
+  @media (min-width: 768px) {
+    .nav-logo-in-menu .nav-ghost-logo {
+      height: 4.5rem;
+      margin-top: 6px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .nav-logo-in-menu .nav-ghost-logo {
+      height: 5.25rem;
+      margin-top: 10px;
     }
   }
   
@@ -402,7 +446,7 @@ const { activeNav } = Astro.props;
   
   /* Main navigation items */
   #main-nav-items {
-    @apply mt-4 flex flex-wrap justify-evenly gap-x-6 gap-y-2 md:mt-0 md:flex-1 md:justify-evenly;
+    @apply mt-4 flex flex-wrap items-center justify-evenly gap-x-6 gap-y-2 md:mt-0 md:flex-1 md:justify-evenly;
     
     
     /* Mobile menu styling - simple dropdown */
@@ -437,22 +481,22 @@ const { activeNav } = Astro.props;
   
   #main-nav-items li a {
     @apply px-2 py-1 text-center font-medium hover:text-skin-accent relative z-10 font-serif;
-    font-size: 1.2em; /* Smaller on mobile */
+    font-size: 1.1em; /* Slightly reduced on mobile */
     padding: 0px;
     column-gap: 0.5rem;
     
     @media (min-width: 480px) {
-      font-size: 1.4em; /* Medium size on small tablets */
+      font-size: 1.3em; /* Slightly reduced on small tablets */
       column-gap: 1rem;
     }
     
     @media (min-width: 768px) {
-      font-size: 1.6em; /* Larger on tablets */
+      font-size: 1.5em; /* Slightly reduced on tablets */
       column-gap: 1.5rem;
     }
     
     @media (min-width: 1024px) {
-      font-size: 1.8em; /* Original size on desktop */
+      font-size: 1.7em; /* Slightly reduced on desktop */
       column-gap: 1.5rem;
     }
   }

@@ -511,22 +511,22 @@ const keywordMap = getKeywordMap(posts);
     35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0.4),
-        3px 1px 0 rgba(0, 132, 255, 0.4);
+        0px 0px 0 rgba(var(--glitch-warm-1), 0.45),
+        3px 1px 0 rgba(var(--glitch-warm-2), 0.35);
       color: transparent;
     }
     75%, 85% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0.4),
-        3px 1px 0 rgba(0, 132, 255, 0.4);
+        0px 0px 0 rgba(var(--glitch-warm-1), 0.45),
+        3px 1px 0 rgba(var(--glitch-warm-2), 0.35);
       color: transparent;
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 0, 0.1),
-        3px 1px 0 rgba(0, 132, 255, 0.1);
+        0px 0px 0 rgba(var(--glitch-warm-1), 0.12),
+        3px 1px 0 rgba(var(--glitch-warm-2), 0.10);
       color: transparent;
     }
   }
@@ -540,22 +540,22 @@ const keywordMap = getKeywordMap(posts);
     35% {
       transform: translateX(var(--glitch-x-1)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0.4),
-        3px 2px 0 rgba(200, 255, 0, 0.4);
+        0px 0px 0 rgba(var(--glitch-cool-1), 0.45),
+        3px 2px 0 rgba(var(--glitch-cool-2), 0.35);
       color: transparent;
     }
     90% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0.4),
-        4px 2px 0 rgba(200, 255, 0, 0.4);
+        0px 0px 0 rgba(var(--glitch-cool-1), 0.45),
+        4px 2px 0 rgba(var(--glitch-cool-2), 0.35);
       color: transparent;
     }
     100% {
       transform: translateX(var(--glitch-x-2)) translateY(0);
       text-shadow:
-        0px 0px 0 rgba(255, 0, 162, 0),
-        4px 2px 0 rgba(200, 255, 0, 0);
+        0px 0px 0 rgba(var(--glitch-cool-1), 0),
+        4px 2px 0 rgba(var(--glitch-cool-2), 0);
       color: transparent;
     }
   }
@@ -855,8 +855,8 @@ const keywordMap = getKeywordMap(posts);
   /* Subtle neon glow on hover for readability */
   .keywords-under-description .glitch-container:hover span {
     text-shadow:
-      0 0 6px rgba(0, 132, 255, 0.45),
-      0 0 12px rgba(255, 0, 162, 0.3);
+      0 0 6px rgba(var(--color-accent), 0.50),
+      0 0 12px rgba(var(--color-accent), 0.35);
   }
   
   .keywords-under-description .glitch-container:focus {

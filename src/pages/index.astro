@@ -18,6 +18,17 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const featuredPost = featuredPosts[0];
+const featuredPostLink = featuredPost ? `/posts/${featuredPost.slug}` : undefined;
+const normalizeOgImage = (ogImage?: string | { src: string }) => {
+  if (!ogImage) return undefined;
+  if (typeof ogImage === "string") {
+    if (ogImage.startsWith("http") || ogImage.startsWith("/")) return ogImage;
+    return `/${ogImage}`;
+  }
+  return ogImage.src;
+};
+const featuredPostImage = featuredPost ? normalizeOgImage(featuredPost.data.ogImage) : undefined;
 const nextSessionPost = sortedPosts.filter(({ data }) => data.nextSession);
 const nextFormal = sortedPosts
   .filter(({ data }) => data.nextFormal)
@@ -100,6 +111,42 @@ const keywordMap = getKeywordMap(posts);
             ))}
           </div>
         </div>
+
+        {featuredPost && (
+          <section class="featured-post" aria-labelledby="featured-post-heading">
+            <div class="featured-post-media">
+              {featuredPostImage ? (
+                <img
+                  src={featuredPostImage}
+                  alt={`Cover image for ${featuredPost.data.title}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="featured-post-placeholder">Image coming soon</div>
+              )}
+            </div>
+            <div class="featured-post-body">
+              <p class="featured-post-label">Featured Post</p>
+              <h2 id="featured-post-heading" class="featured-post-title">{featuredPost.data.title}</h2>
+              {featuredPost.data.description && (
+                <p class="featured-post-description">{featuredPost.data.description}</p>
+              )}
+              {featuredPostLink && (
+                <LinkButton
+                  href={featuredPostLink}
+                  className="featured-post-button"
+                  ariaLabel={`Read more: ${featuredPost.data.title}`}
+                >
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+                  </svg>
+                </LinkButton>
+              )}
+            </div>
+          </section>
+        )}
       </div>
       
     </section>
@@ -915,6 +962,109 @@ const keywordMap = getKeywordMap(posts);
     border-radius: 2px;
   }
 
+  /* Featured post block */
+  .featured-post {
+    margin-top: 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 1rem;
+    border: 1px solid rgba(var(--color-accent), 0.35);
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-card), 0.65),
+      rgba(var(--color-card), 0.2)
+    );
+    box-shadow: 0 24px 45px rgba(0, 0, 0, 0.08);
+  }
+
+  @media (min-width: 768px) {
+    .featured-post {
+      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+      align-items: center;
+    }
+  }
+
+  .featured-post-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.875rem;
+    aspect-ratio: 16 / 9;
+    background: rgba(var(--color-card), 0.45);
+    border: 1px solid rgba(var(--color-border), 0.6);
+  }
+
+  .featured-post-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .featured-post:hover .featured-post-media img,
+  .featured-post:focus-within .featured-post-media img {
+    transform: scale(1.05);
+  }
+
+  .featured-post-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(var(--color-text-base), 0.6);
+  }
+
+  .featured-post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .featured-post-label {
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    color: rgba(var(--color-accent), 0.85);
+    font-weight: 600;
+  }
+
+  .featured-post-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.2;
+    color: rgb(var(--color-text-base));
+  }
+
+  .featured-post-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(var(--color-text-base), 0.85);
+    max-width: 58ch;
+  }
+
+  .featured-post-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .featured-post-button svg {
+    height: 1.25rem;
+    width: 1.25rem;
+    transition: transform 250ms ease;
+  }
+
+  .featured-post-button:hover svg,
+  .featured-post-button:focus-visible svg {
+    transform: translateX(4px);
+  }
   /* Bottom keywords centering */
   #keywords-bottom .keywords-bottom-wrapper {
     @apply mx-auto;

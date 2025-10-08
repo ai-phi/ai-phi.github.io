@@ -42,4 +42,5 @@ export default defineConfig({
     enabled: false,
   },
   scopedStyleStrategy: "where",
+  outDir: "dist",
 });

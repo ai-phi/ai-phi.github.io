@@ -13,7 +13,6 @@ import { SOCIALS } from "@config";
 import RSSIcon from "@components/RSSIcon";
 import RandomGlossaryWords from "@components/RandomGlossaryWords";
 import StyledTitle from "@components/StyledTitle";
-import FeaturedPost from "@components/FeaturedPost.astro";
 
 const posts = await getCollection("blog");
 
@@ -74,50 +73,38 @@ const keywordMap = getKeywordMap(posts);
             </p>
           </div>
         </div>
-    </section>
 
-
-    <!-- Featured Post Section -->
-    {featuredPosts.length > 0 && (
-      <section id="featured-post" class="featured-post-section">
-        <FeaturedPost post={featuredPosts[0]} />
-      </section>
-    )}
-
-    <!-- Keywords Section -->
-    <section id="keywords-section" class="keywords-section">
-      <div class="keywords-container">
-        <h2 class="keywords-title">Explore Our Topics</h2>
-        
-        <!-- General Categories -->
-        <div class="keywords-category">
-          <h3 class="category-title">Browse Events</h3>
-          <div class="keywords-grid general-categories">
-            {keywordMap.generalCategories.map((keyword) => (
-              <a href={`/tags/${keyword.tag}`} class="keyword-tag general-tag" data-text={keyword.tagName}>
-                <span>{keyword.tagName}</span>
-                <span class="tag-count">({keyword.count})</span>
-              </a>
+        <!-- Keywords under description (randomly selected on each page load) -->
+        <div class="keywords-under-description">
+          <!-- General categories (always shown) -->
+          <div class="subtitle-section general-categories">
+            {keywordMap.generalCategories.map((keyword, index) => (
+              <>
+                <a href={`/tags/${keyword.tag}`} class="glitch-container" data-text={keyword.tagName}>
+                  <span>{keyword.tagName}</span>
+                </a>
+                {index < keywordMap.generalCategories.length - 1 && <span class="dot">·</span>}
+              </>
             ))}
           </div>
-        </div>
 
-        <!-- Random Themes -->
-        <div class="keywords-category">
-          <h3 class="category-title">Discussion Topics</h3>
-          <div class="keywords-grid random-themes">
-            {keywordMap.randomThemes.map((keyword) => (
-              <a href={`/tags/${keyword.tag}`} class="keyword-tag theme-tag" data-text={keyword.tagName}>
-                <span>{keyword.tagName}</span>
-                <span class="tag-count">({keyword.count})</span>
-              </a>
+          <!-- Random themes -->
+          <div class="subtitle-section random-themes">
+            {keywordMap.randomThemes.map((keyword, index) => (
+              <>
+                <a href={`/tags/${keyword.tag}`} class="glitch-container" data-text={keyword.tagName}>
+                  <span>{keyword.tagName}</span>
+                </a>
+                {index < keywordMap.randomThemes.length - 1 && <span class="dot">·</span>}
+              </>
             ))}
           </div>
         </div>
       </div>
+      
     </section>
 
-    <!-- Our Posts at bottom -->
+    <!-- Our Posts under image -->
     <section id="all-posts" class="hero-section">
       <div class="all-posts-btn-wrapper">
         <LinkButton href="/posts" className="all-posts-button">
@@ -130,7 +117,6 @@ const keywordMap = getKeywordMap(posts);
         </LinkButton>
       </div>
     </section>
-  
   </main>
 
   <Footer showIcons={false} />
@@ -142,9 +128,19 @@ const keywordMap = getKeywordMap(posts);
     @apply pb-8 pt-8; /* Add padding on mobile */
     max-width: 58rem;
 
+    @media (min-width: 480px) {
+    }
+
+    /* Touch-friendly on mobile with slightly larger touch area */
+    @media (min-width: 640px) {
+    }
+
     @media (max-width: 768px) {
       @apply pb-0 pt-0; /* Remove padding on desktop */
       min-height: auto; /* Auto height on desktop */
+    }
+
+    @media (min-width: 1024px) {
     }
   }
 
@@ -172,11 +168,12 @@ const keywordMap = getKeywordMap(posts);
     font-size: 25px;
     font-weight: 400;
     clear: both; /* Ensure text clears floated logo on mobile */
-    line-height: 1.5rem;
 
     @media (min-width: 768px) {
+  
       clear: none; /* Allow text to flow around logo on desktop */
     }
+    line-height: 1.5rem;
   }
 
   .subtitle-section {
@@ -790,17 +787,6 @@ const keywordMap = getKeywordMap(posts);
     @apply block;
   }
 
-  /* ===== Featured Post Section ===== */
-  #featured-post {
-    @apply pb-0;
-    max-width: 58rem;
-    margin-top: 2rem; /* Positive margin on mobile */
-
-    @media (min-width: 768px) {
-      margin-top: 2rem; /* Keep positive margin on desktop for featured post */
-    }
-  }
-
   /* ===== Featured & Recent Posts Sections ===== */
   #featured,
   #recent-posts {
@@ -942,130 +928,6 @@ const keywordMap = getKeywordMap(posts);
     margin-left: 0;
     padding-left: 0;
     justify-content: center;
-  }
-
-  /* ===== Keywords Section ===== */
-  .keywords-section {
-    @apply py-12 px-4;
-    max-width: 58rem;
-    margin: 0 auto;
-    margin-top: 3rem;
-  }
-
-  .keywords-container {
-    @apply mx-auto;
-    max-width: 100%;
-  }
-
-  .keywords-title {
-    @apply text-3xl font-bold text-center mb-8;
-    color: rgb(var(--color-text-base));
-  }
-
-  .keywords-category {
-    @apply mb-8;
-  }
-
-  .category-title {
-    @apply text-xl font-semibold mb-4;
-    color: rgb(var(--color-text-base));
-    border-bottom: 2px solid rgb(var(--color-accent));
-    padding-bottom: 0.5rem;
-    display: inline-block;
-  }
-
-  .keywords-grid {
-    @apply flex flex-wrap gap-3;
-    justify-content: center;
-  }
-
-  .keyword-tag {
-    @apply relative inline-flex items-center px-4 py-2 rounded-full;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    font-weight: 400;
-    font-size: 0.9rem;
-    min-height: 2.5rem;
-    will-change: transform, filter;
-  }
-
-  .general-tag {
-    background-color: rgba(var(--color-accent), 0.1);
-    color: rgb(var(--color-accent));
-    border-color: rgba(var(--color-accent), 0.3);
-  }
-
-  .theme-tag {
-    background-color: rgba(var(--color-text-base), 0.05);
-    color: rgb(var(--color-text-base));
-    border-color: rgba(var(--color-text-base), 0.2);
-  }
-
-  .keyword-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--color-accent), 0.2);
-  }
-
-  .general-tag:hover {
-    background-color: rgba(var(--color-accent), 0.2);
-    border-color: rgba(var(--color-accent), 0.5);
-  }
-
-  .theme-tag:hover {
-    background-color: rgba(var(--color-text-base), 0.1);
-    border-color: rgba(var(--color-text-base), 0.3);
-  }
-
-  .tag-count {
-    @apply ml-2 text-xs opacity-70;
-    font-weight: 300;
-  }
-
-  /* Glitch effect integration for keyword tags */
-  .keyword-tag.glitch-active {
-    font-weight: 600;
-  }
-
-  .keyword-tag.glitch-active span {
-    opacity: 0.75;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .keywords-section {
-      @apply py-8 px-2;
-      margin-top: 2rem;
-    }
-
-    .keywords-title {
-      @apply text-2xl mb-6;
-    }
-
-    .category-title {
-      @apply text-lg mb-3;
-    }
-
-    .keyword-tag {
-      @apply px-3 py-1.5;
-      font-size: 0.85rem;
-      min-height: 2rem;
-    }
-
-    .keywords-grid {
-      @apply gap-2;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .keywords-grid {
-      @apply justify-center;
-    }
-
-    .keyword-tag {
-      @apply px-2.5 py-1;
-      font-size: 0.8rem;
-    }
   }
 </style>
 
@@ -1324,7 +1186,7 @@ const keywordMap = getKeywordMap(posts);
   }
 
   function triggerGlitchEffect() {
-    const containers = document.querySelectorAll(".glitch-container, .keyword-tag");
+    const containers = document.querySelectorAll(".glitch-container");
 
     if (containers.length > 0) {
       // Set animation in progress flag
@@ -1525,7 +1387,7 @@ const keywordMap = getKeywordMap(posts);
     setTimeout(scheduleGlitchEffect, 0);
     // Hover/focus-triggered glitch on specific keyword
     const wireHoverGlitch = () => {
-      document.querySelectorAll(".glitch-container, .keyword-tag").forEach(el => {
+      document.querySelectorAll(".glitch-container").forEach(el => {
         const container = el as HTMLElement;
         container.addEventListener("mouseenter", () => triggerGlitchForContainer(container));
         container.addEventListener("focusin", () => triggerGlitchForContainer(container));
@@ -1540,7 +1402,7 @@ const keywordMap = getKeywordMap(posts);
   document.addEventListener("astro:after-swap", () => {
     scheduleGlitchEffect();
     // Re-bind listeners for newly swapped content
-    document.querySelectorAll(".glitch-container, .keyword-tag").forEach(el => {
+    document.querySelectorAll(".glitch-container").forEach(el => {
       const container = el as HTMLElement;
       container.addEventListener("mouseenter", () => triggerGlitchForContainer(container));
       container.addEventListener("focusin", () => triggerGlitchForContainer(container));

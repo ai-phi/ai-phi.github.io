@@ -5,7 +5,7 @@ pubDatetime: 2025-04-30T19:00:00Z
 title: Our Causerie on Reasoning
 slug: causerie-on-reasoning
 draft: false
-featured: false
+featured: true
 nextFormal: false
 tags:
   - Causerie

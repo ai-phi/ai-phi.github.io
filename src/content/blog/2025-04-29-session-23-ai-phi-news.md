@@ -5,7 +5,7 @@ pubDatetime: 2025-04-29T17:00:00Z
 title: Session 23 - AI-Phi News
 slug: session-23-ai-phi-news
 draft: false
-featured: false
+featured: true
 nextFormal: false
 nextSession: false
 tags:

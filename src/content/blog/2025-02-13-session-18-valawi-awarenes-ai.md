@@ -5,7 +5,7 @@ pubDatetime: 2025-02-13T19:00:00Z
 title: Session 18 - VALAWAI Value-Aware Artificial Intelligence
 slug: session-18-valawi-awarenes-ai
 draft: false
-featured: false
+featured: true
 tags:
   - Session
   - Awareness

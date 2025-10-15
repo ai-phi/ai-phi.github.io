@@ -4,15 +4,10 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
+import getSortedPosts, { getSortedByDateAsc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
 import { SOCIALS } from "@config";
-import RSSIcon from "@components/RSSIcon";
-import RandomGlossaryWords from "@components/RandomGlossaryWords";
-import StyledTitle from "@components/StyledTitle";
 
 const posts = await getCollection("blog");
 
@@ -29,14 +24,10 @@ const normalizeOgImage = (ogImage?: string | { src: string }) => {
   return ogImage.src;
 };
 const featuredPostImage = featuredPost ? normalizeOgImage(featuredPost.data.ogImage) : undefined;
-const nextSessionPost = sortedPosts.filter(({ data }) => data.nextSession);
-const nextFormal = sortedPosts
-  .filter(({ data }) => data.nextFormal)
-  .sort(
-    (a, b) =>
-      Math.floor(new Date(a.data.pubDatetime).getTime() / 1000) -
-      Math.floor(new Date(b.data.pubDatetime).getTime() / 1000)
-  );
+const nextSessions = getSortedByDateAsc(posts.filter(post => post.data.nextSession));
+const primarySession = nextSessions[0];
+const secondarySessions = nextSessions.slice(1);
+const primarySessionImage = primarySession ? normalizeOgImage(primarySession.data.ogImage) : undefined;
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 
@@ -147,6 +138,67 @@ const keywordMap = getKeywordMap(posts);
             </div>
           </section>
         )}
+        {nextSessions.length > 0 && primarySession && (
+          <div id="next-sessions" class="next-sessions-container" aria-labelledby="next-session-heading">
+            <section class="featured-post next-session-panel">
+              <div class="featured-post-media">
+                <a
+                  href={`/posts/${primarySession.slug}`}
+                  aria-label={`Read more: ${primarySession.data.title}`}
+                >
+                  {primarySessionImage ? (
+                    <img
+                      src={primarySessionImage}
+                      alt={`Cover image for ${primarySession.data.title}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div class="featured-post-placeholder">Artwork coming soon</div>
+                  )}
+                </a>
+              </div>
+              <div class="featured-post-body">
+                <p class="featured-post-label">
+                  {secondarySessions.length > 0 ? "Upcoming Sessions" : "Next Session"}
+                </p>
+                <h2 id="next-session-heading" class="featured-post-title">
+                  {primarySession.data.title}
+                </h2>
+                {primarySession.data.description && (
+                  <p class="featured-post-description">{primarySession.data.description}</p>
+                )}
+                <LinkButton
+                  href={`/posts/${primarySession.slug}`}
+                  className="featured-post-button next-session-button"
+                  ariaLabel={`View details for ${primarySession.data.title}`}
+                >
+                  View Details
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+                  </svg>
+                </LinkButton>
+              </div>
+            </section>
+
+            {secondarySessions.length > 0 && (
+              <aside class="next-sessions-more" aria-label="Additional upcoming sessions">
+                <h3 class="next-sessions-more-heading">Also Coming Up</h3>
+                <ul class="next-sessions-more-list">
+                  {secondarySessions.map(({ data, slug }) => (
+                    <Card
+                      href={`/posts/${slug}`}
+                      frontmatter={data}
+                      secHeading={false}
+                      className="next-sessions-card"
+                    />
+                  ))}
+                </ul>
+              </aside>
+            )}
+
+          </div>
+        )}
       </div>
       
     </section>
@@ -188,6 +240,60 @@ const keywordMap = getKeywordMap(posts);
     }
 
     @media (min-width: 1024px) {
+    }
+  }
+
+  .next-sessions-container {
+    margin-top: 3rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .next-session-panel .featured-post-media a {
+    display: block;
+    height: 100%;
+  }
+
+  .next-session-panel .featured-post-placeholder {
+    height: 100%;
+  }
+
+  .next-session-button {
+    margin-top: 0.5rem;
+  }
+
+  .next-sessions-more {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(var(--color-border), 0.35);
+    background: rgba(var(--color-card), 0.25);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.06);
+  }
+
+  .next-sessions-more-heading {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(var(--color-text-base), 0.8);
+  }
+
+  .next-sessions-more-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @apply grid gap-4;
+  }
+
+  .next-sessions-card {
+    @apply bg-skin-card/20;
+  }
+
+  @media (min-width: 768px) {
+    .next-sessions-container {
+      gap: 2.5rem;
     }
   }
 

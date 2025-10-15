@@ -8,12 +8,12 @@ slug: session-25-kathinka-evers
 draft: false
 featured: false
 nextSession: false
-nextFormal: true
+nextFormal: false
 tags:
   - Seminar Series
   - Artificial Consciousness
   - Neuroethics
-description: Katharina explores why the question of artificial sentience (or “awareness”, or “consciousness”) is raised in science receiving considerable public funding despite the lack of empirical evidence? What this might mean and what the implications of it are.
+description: Kathinka Evers explores why the question of artificial sentience (or “awareness”, or “consciousness”) is raised in science receiving considerable public funding despite the lack of empirical evidence? What this might mean and what the implications of it are.
 session: true
 ogImage: assets/ai-phi-session-25.png
 ---

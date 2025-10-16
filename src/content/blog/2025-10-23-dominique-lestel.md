@@ -32,6 +32,6 @@ Dominique Lestel teaches contemporary philosophy and philosophical ethology in t
 
 ## Details
 
-**Date and Time:** Wednesday, 23rd of October 2025 - <u>**2 PM**</u>  
+**Date and Time:** Thursday, 23rd of October 2025 - <u>**2 PM**</u>  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
 **Registration:** [here](https://luma.com/65lsqk3u)

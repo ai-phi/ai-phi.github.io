@@ -17,7 +17,7 @@ tags:
   - Postbiology
 description: Dominique Lestel explores humanoid robots like Sophia as “Insurrectionary Machines” — artifacts that unsettle rather than serve, existing in friction with humans. From ancient idols to AI systems, these machines invite us to rethink life itself through an ethological lens.
 session: true
-ogImage: assets/dominique-lestel-square.jpg
+ogImage: assets/session-26.png
 ---
 
 ## Steps to an Ethology of Insurrectionary Machines

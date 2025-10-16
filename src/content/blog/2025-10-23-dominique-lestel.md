@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-10-23T11:00:00Z
+pubDatetime: 2025-10-23T14:00:00+02:00
 # modDatetime:
 title: >-
   Session 26- Steps to an Ethology of Insurrectionary Machines

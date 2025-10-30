@@ -38,4 +38,4 @@ Edmund Ronald is a graduate of Sup Télécom in Paris, he was a grad student at 
 
 **Date and Time:** Thursday, 11th of November 2025 - **7 PM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** upcoming!
+**Registration:** [here](https://luma.com/ujc5sbow)

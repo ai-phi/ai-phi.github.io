@@ -3,12 +3,12 @@ author: AI-PHI
 pubDatetime: 2025-10-23T14:00:00+02:00
 # modDatetime:
 title: >-
-  Session 26- Steps to an Ethology of Insurrectionary Machines
+  Session 26 - Steps to an Ethology of Insurrectionary Machines
 slug: session-26-lestel-insurrectionary-machines
 draft: false
 featured: false
-nextSession: true
-nextFormal: true
+nextSession: false
+nextFormal: false
 tags:
   - Seminar Series
   - Humanoid Robots

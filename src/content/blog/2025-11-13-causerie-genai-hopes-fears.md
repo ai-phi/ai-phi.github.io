@@ -1,6 +1,6 @@
 ---
 author: AI-PHI
-pubDatetime: 2025-11-13T19:00:00+02:00
+pubDatetime: 2025-11-13T19:00:00+01:00
 # modDatetime:
 title: >-
   Session 27 - Causerie on Hopes, Fears, Trust, Understanding, Regulation

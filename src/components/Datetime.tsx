@@ -61,6 +61,7 @@ const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
   const time = dt.toLocaleTimeString(LOCALE.langTag, {
     hour: "2-digit",
     minute: "2-digit",
+    hour12: false,
     timeZone: tz,
     timeZoneName: "short",
   });

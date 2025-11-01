@@ -67,6 +67,13 @@ const layoutProps = {
       size="lg"
       className="my-2"
     />
+    {author && (
+      <p class="text-sm font-light italic opacity-80">
+        <span class="sr-only">Author:</span>
+        <span aria-hidden="true">By </span>
+        <span class="not-italic font-normal">{author}</span>
+      </p>
+    )}
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
@@ -121,6 +128,7 @@ const layoutProps = {
     opacity: 1 !important;
     text-decoration: none !important;
   }
+
 </style>
 
 <script is:inline>

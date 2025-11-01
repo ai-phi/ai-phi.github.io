@@ -146,6 +146,12 @@
   .prose a {
     @apply break-words hover:!text-skin-accent;
   }
+  .prose a::after {
+    content: "↗";
+    margin-left: 0.35em;
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
   .prose thead th:first-child,
   tbody td:first-child,
   tfoot td:first-child {

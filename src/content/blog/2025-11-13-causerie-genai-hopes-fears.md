@@ -7,8 +7,8 @@ title: >-
 slug: session-27-causerie-hope-fears
 draft: false
 featured: false
-nextSession: true
-nextFormal: true
+nextSession: false
+nextFormal: false
 tags:
   - Causerie
   - Hopes

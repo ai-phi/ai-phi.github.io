@@ -48,4 +48,4 @@ Pierre Bessière has worked on these topics at the University of Grenoble, INRIA
 
 **Date and Time:** Thursday, 27th of November 2025 - **2 PM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** upcoming
+**Registration:** [here](https://luma.com/ncm4wj7h)

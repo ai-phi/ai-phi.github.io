@@ -1,0 +1,42 @@
+---
+author: AI-PHI
+pubDatetime: 2025-12-18T19:00:00+01:00
+# modDatetime:
+title: >-
+  Session 29 - Xmas Causerie on the dark side of AI
+slug: session-29-causerie-dark-side-of-ai
+draft: false
+featured: false
+nextSession: true
+nextFormal: false
+tags:
+  - Causerie
+  - Privacy
+  - Surveillance
+  - Manipulation
+  - Digital Divide
+  - Environmental Impact
+  - Community
+  - Xmas
+description: "How can we address the systemic challenges of the digital ecosystem? This festive session will be shaped by community discussion."
+session: true
+ogImage: assets/session-29-xmas-dark-side.jpg
+---
+
+This causerie session, shaped by community discussion, will adress the systemic challenges of the digital ecosystem.
+
+We will share our knowledge, expertise and individual mitigation strategies as international citizens of the cybersphere.
+
+Key topics (not limited to) we will explore:
+
+1. Digital privacy
+2. Surveillance
+3. Manipulation
+4. Digital Divide
+5. Environmental Impact
+
+These issues collectively form a critique of _techno-capitalism_ or the _digital social power_. They highlight how our current technological systems, despite promises of connection and progress, can reinforce inequality, undermine autonomy, and create harm that's unevenly distributed across society.
+
+Our aim will be to raise awareness, strengthen connections as we wrap up 2025 and build future outlooks for the year to come.
+
+Bring your friends and share a festive spirit 🎄. We want to hear from everyone 🌟.

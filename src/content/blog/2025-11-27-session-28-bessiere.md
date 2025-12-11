@@ -7,8 +7,8 @@ title: >-
 slug: session-28-bessiere-wonderlands-of-reason
 draft: false
 featured: false
-nextSession: true
-nextFormal: true
+nextSession: false
+nextFormal: false
 tags:
   - Seminar Series
   - Intelligence

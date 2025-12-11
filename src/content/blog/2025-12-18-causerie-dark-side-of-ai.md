@@ -40,3 +40,9 @@ These issues collectively form a critique of _techno-capitalism_ or the _digital
 Our aim will be to raise awareness, strengthen connections as we wrap up 2025 and build future outlooks for the year to come.
 
 Bring your friends and share a festive spirit 🎄. We want to hear from everyone 🌟.
+
+## Details
+
+**Date and Time:** Thursday, 18th of December 2025 - **7 PM**  
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
+**Registration:** [here](https://luma.com/9lf5up4r)

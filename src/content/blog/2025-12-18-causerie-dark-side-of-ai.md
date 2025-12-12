@@ -23,7 +23,7 @@ session: true
 ogImage: assets/session-29-xmas-dark-side.jpg
 ---
 
-This causerie session, shaped by community discussion, will adress the systemic challenges of the digital ecosystem.
+This causerie session, shaped by community discussion, will address the systemic challenges of the digital ecosystem.
 
 We will share our knowledge, expertise and individual mitigation strategies as international citizens of the cybersphere.
 
@@ -39,7 +39,7 @@ These issues collectively form a critique of _techno-capitalism_ or the _digital
 
 Our aim will be to raise awareness, strengthen connections as we wrap up 2025 and build future outlooks for the year to come.
 
-Bring your friends and share a festive spirit 🎄. We want to hear from everyone 🌟.
+🎄 Bring your friends and share a festive spirit. 🌟 We want to hear from everyone.
 
 ## Details
 

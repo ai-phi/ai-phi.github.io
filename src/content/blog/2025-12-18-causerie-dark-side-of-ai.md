@@ -20,7 +20,7 @@ tags:
   - Xmas
 description: "How can we address the systemic challenges of the digital ecosystem? This festive session will be shaped by community discussion."
 session: true
-ogImage: assets/session-29-xmas-dark-side.jpg
+ogImage: assets/images/session-29-xmas-dark-side.jpg
 ---
 
 This causerie session, shaped by community discussion, will address the systemic challenges of the digital ecosystem.

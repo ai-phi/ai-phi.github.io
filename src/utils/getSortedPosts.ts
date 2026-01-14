@@ -34,3 +34,13 @@ export const getSortedByDateAsc = (posts: CollectionEntry<"blog">[]) => {
         new Date(b.data.pubDatetime).getTime()
     );
 };
+
+export const getSortedByDateDesc = (posts: CollectionEntry<"blog">[]) => {
+  return posts
+    .filter(({ data }) => !data.draft)
+    .sort(
+      (a, b) =>
+        new Date(b.data.pubDatetime).getTime() -
+        new Date(a.data.pubDatetime).getTime()
+    );
+};

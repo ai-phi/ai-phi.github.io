@@ -46,23 +46,16 @@ const EXCLUDED_KEYWORDS = new Set(["job", "xmas", "x-mas", "glossary"]);
 
 // Keywords that should be categorized as "discussion topics"
 const DISCUSSION_KEYWORDS = new Set([
-  "consciousness",
   "ethics",
   "emotions",
   "reasoning",
   "machine-learning",
   "agency",
-  "artificial-intelligence",
-  "ai",
-  "philosophy",
   "ai-safety",
   "alignment",
   "artificial-consciousness",
-  "artificial-phenomenology",
   "assertion",
   "awareness",
-  "daniel-dennett",
-  "daniel-kahneman",
   "deep-learning",
   "delusion",
   "effective-altruism",
@@ -70,25 +63,20 @@ const DISCUSSION_KEYWORDS = new Set([
   "explainability",
   "fairness",
   "generative-ai",
-  "glossary",
   "honesty",
   "human-values",
-  "lex-fridman",
   "lies",
   "llm-innovations",
-  "mathematics-of-consciousness",
   "philosophy-of-ai",
   "sequence-models",
   "training-paradigms",
   "understanding",
-  "valawai",
   "value-aware",
   "pretense",
   "agi",
   "neuroethics",
   "qualia",
   "mechanistic-interpretability",
-  "mathematical-structure",
 ]);
 
 /**
@@ -137,13 +125,13 @@ const getKeywordMap = (posts: CollectionEntry<"blog">[]): KeywordMap => {
     } else if (DISCUSSION_KEYWORDS.has(keyword.tag)) {
       discussionKeywords.push({ ...keyword, category: "discussion" });
     } else {
-      // For uncategorized keywords, try to determine category based on content
-      // If it appears frequently, it's likely a discussion topic
-      if (keyword.count >= 2) {
-        discussionKeywords.push({ ...keyword, category: "discussion" });
-      } else {
-        generalKeywords.push({ ...keyword, category: "general" });
-      }
+      // // For uncategorized keywords, try to determine category based on content
+      // // If it appears frequently, it's likely a discussion topic
+      // if (keyword.count >= 2) {
+      //   discussionKeywords.push({ ...keyword, category: "discussion" });
+      // } else {
+      //   generalKeywords.push({ ...keyword, category: "general" });
+      // }
     }
   });
 
@@ -172,8 +160,8 @@ const getKeywordMap = (posts: CollectionEntry<"blog">[]): KeywordMap => {
   // Shuffle discussion keywords for random themes
   const shuffledDiscussion = shuffleArray(discussionKeywords);
   const randomThemes =
-    shuffledDiscussion.length >= 7
-      ? shuffledDiscussion.slice(0, 7)
+    shuffledDiscussion.length >= 6
+      ? shuffledDiscussion.slice(0, 6)
       : shuffledDiscussion;
 
   return {

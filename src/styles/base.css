@@ -35,11 +35,12 @@
 @layer base {
   :root,
   html[data-theme="light"] {
-    --color-fill: 255, 255, 255; /* Pure white */
+    --color-fill: 235, 225, 210; /* Champagne */
     --color-text-base: 0, 0, 0; /* Pure black */
     --color-accent: 139, 94, 60; /* Brown accent */
     --color-card: 245, 245, 245; /* Light grey */
-    --color-card-muted: 230, 230, 230; /* Slightly darker grey */
+    --color-card-muted: 215, 200, 178; /* light beige */
+    --color-card-image-bg: 0, 0, 0; /* Black */
     --color-border: 200, 200, 200; /* Light grey border */
 
     --color-brand: 0, 0, 0; /* Black */
@@ -56,7 +57,8 @@
     --color-text-base: 255, 255, 255; /* Pure white */
     --color-accent: 210, 180, 140; /* Beige accent */
     --color-card: 20, 20, 20; /* Dark grey */
-    --color-card-muted: 40, 40, 40; /* Slightly lighter grey */
+    --color-card-muted: 90, 75, 60; /* Slightly lighter grey */
+    --color-card-image-bg: 0, 0, 0; /* Black */
     --color-border: 60, 60, 60; /* Dark grey border */
 
     --color-brand: 255, 255, 255; /* White */

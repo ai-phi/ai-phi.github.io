@@ -39,8 +39,6 @@ const GENERAL_KEYWORDS = new Set([
 ]);
 
 // Keywords that should always appear in general keywords
-const ALWAYS_INCLUDE_GENERAL = new Set(["seminar-series", "causerie", "other"]);
-
 // Keywords that should be excluded from front page
 const EXCLUDED_KEYWORDS = new Set(["job", "xmas", "x-mas", "glossary"]);
 
@@ -85,14 +83,18 @@ const DISCUSSION_KEYWORDS = new Set([
  * Second list: Random themes from discussion topics
  * Excludes: job, xmas, x-mas from appearing on front page
  */
-const getKeywordMap = (posts: CollectionEntry<"blog">[]): KeywordMap => {
+type ContentCollection = "posts" | "sessions";
+
+const getKeywordMap = (
+  posts: CollectionEntry<ContentCollection>[]
+): KeywordMap => {
   const filteredPosts = posts.filter(({ data }) => !data.draft);
 
   // Count tag frequency and preserve original names
   const tagCounts = new Map<string, { count: number; originalName: string }>();
 
   filteredPosts.forEach(post => {
-    post.data.tags.forEach(tag => {
+    (post.data.tags ?? []).forEach(tag => {
       const slugifiedTag = slugifyStr(tag);
       const existing = tagCounts.get(slugifiedTag);
       if (existing) {
@@ -146,7 +148,7 @@ const getKeywordMap = (posts: CollectionEntry<"blog">[]): KeywordMap => {
   };
 
   // Get the always-include general categories in specific order
-  const generalCategories = [];
+  const generalCategories: Keyword[] = [];
 
   // Add in specific order: seminar-series, causerie, other
   const orderedTags = ["seminar-series", "causerie", "other"];

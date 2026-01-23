@@ -9,11 +9,12 @@ import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
 import { SOCIALS } from "@config";
 
-
 const DEFAULT_OG_IMAGE = "/og/ai-phi-default-og.webp";
-const posts = await getCollection("blog");
+const posts = await getCollection("posts");
+const sessions = await getCollection("sessions");
 
 const sortedPosts = getSortedPosts(posts);
+const sortedSessions = getSortedPosts(sessions);
 const normalizeOgImage = (ogImage?: string | { src: string }) => {
   if (!ogImage) return undefined;
   if (typeof ogImage === "string") {
@@ -25,16 +26,16 @@ const normalizeOgImage = (ogImage?: string | { src: string }) => {
 const getCardOgImage = (ogImage?: string | { src: string }) =>
   normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
 const featuredNonSessionPosts = sortedPosts
-  .filter(({ data }) => data.featured && !data.session)
+  .filter(({ data }) => data.featured)
   .slice(0, 2);
 const featuredSessionPosts = getSortedByDateDesc(
-  posts.filter(post => post.data.featured && post.data.session)
+  sortedSessions.filter(post => post.data.featured)
 );
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 
 // Get dynamic keywords from blog posts
-const keywordMap = getKeywordMap(posts);
+const keywordMap = getKeywordMap([...posts, ...sessions]);
 ---
 
 <Layout>

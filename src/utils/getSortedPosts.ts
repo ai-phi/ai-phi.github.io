@@ -1,17 +1,22 @@
 import type { CollectionEntry } from "astro:content";
 
-const getSortedPosts = (posts: CollectionEntry<"blog">[]) => {
+type ContentCollection = "posts" | "sessions";
+type ContentEntry = CollectionEntry<ContentCollection>;
+
+const getUpdatedTimestamp = (entry: ContentEntry) =>
+  Math.floor(
+    new Date(
+      (entry.data.modDatetime ?? entry.data.pubDatetime) as Date
+    ).getTime() / 1000
+  );
+
+const getPublishedTimestamp = (entry: ContentEntry) =>
+  new Date(entry.data.pubDatetime as Date).getTime();
+
+const getSortedPosts = <T extends ContentEntry>(posts: T[]) => {
   return posts
     .filter(({ data }) => !data.draft)
-    .sort(
-      (a, b) =>
-        Math.floor(
-          new Date(b.data.modDatetime ?? b.data.pubDatetime).getTime() / 1000
-        ) -
-        Math.floor(
-          new Date(a.data.modDatetime ?? a.data.pubDatetime).getTime() / 1000
-        )
-    );
+    .sort((a, b) => getUpdatedTimestamp(b) - getUpdatedTimestamp(a));
 };
 
 export const getSortedGlossaryTerms = (
@@ -25,22 +30,14 @@ export const getSortedGlossaryTerms = (
 
 export default getSortedPosts;
 
-export const getSortedByDateAsc = (posts: CollectionEntry<"blog">[]) => {
+export const getSortedByDateAsc = <T extends ContentEntry>(posts: T[]) => {
   return posts
     .filter(({ data }) => !data.draft)
-    .sort(
-      (a, b) =>
-        new Date(a.data.pubDatetime).getTime() -
-        new Date(b.data.pubDatetime).getTime()
-    );
+    .sort((a, b) => getPublishedTimestamp(a) - getPublishedTimestamp(b));
 };
 
-export const getSortedByDateDesc = (posts: CollectionEntry<"blog">[]) => {
+export const getSortedByDateDesc = <T extends ContentEntry>(posts: T[]) => {
   return posts
     .filter(({ data }) => !data.draft)
-    .sort(
-      (a, b) =>
-        new Date(b.data.pubDatetime).getTime() -
-        new Date(a.data.pubDatetime).getTime()
-    );
+    .sort((a, b) => getPublishedTimestamp(b) - getPublishedTimestamp(a));
 };

@@ -7,11 +7,14 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import SearchBar, { type SearchItem } from "@components/Search";
 
-// Retrieve all articles
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const [posts, sessions] = await Promise.all([
+  getCollection("posts", ({ data }) => !data.draft),
+  getCollection("sessions", ({ data }) => !data.draft),
+]);
 
-// List of items to search in
-const searchList: SearchItem[] = posts.map(({ data, slug }) => ({
+const allEntries = [...posts, ...sessions];
+
+const searchList: SearchItem[] = allEntries.map(({ data, slug }) => ({
   title: data.title,
   description: data.description ?? "",
   data,

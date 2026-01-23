@@ -9,8 +9,11 @@ import Pagination from '../../components/Pagination.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  // Get all blog posts
-  const allPosts = await getCollection('blog');
+  const [posts, sessions] = await Promise.all([
+    getCollection('posts'),
+    getCollection('sessions'),
+  ]);
+  const allPosts = [...posts, ...sessions];
   
   // Filter posts that contain PDF comments
   const postsWithPDFs = allPosts.filter(post => {
@@ -76,8 +79,11 @@ const POSTS_PER_PAGE = 3;
 const { page } = Astro.params;
 const currentPage = page && !isNaN(Number(page)) ? Number(page) : 1;
 
-// Get all blog posts
-const allPosts = await getCollection('blog');
+const [posts, sessions] = await Promise.all([
+  getCollection('posts'),
+  getCollection('sessions'),
+]);
+const allPosts = [...posts, ...sessions];
 
 // Filter posts that contain PDF comments
 const postsWithPDFs = allPosts.filter(post => {
@@ -352,4 +358,3 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
     @apply bg-skin-accent text-white border-skin-accent;
   }
 </style>
-

@@ -1,0 +1,136 @@
+---
+import { LOCALE } from "@config";
+
+type OgImage = string | { src: string };
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: string | Date;
+  kind?: "seminar" | "causerie" | "other" | string;
+  ogImage?: OgImage;
+  href: string;
+}
+
+const { title, description, date, kind, ogImage, href } = Astro.props as Props;
+
+const DEFAULT_OG_IMAGE = "/og/ai-phi-default-og.webp";
+
+const normalizeOgImage = (image?: OgImage) => {
+  if (!image) return undefined;
+  if (typeof image === "string") {
+    if (image.startsWith("http") || image.startsWith("/")) return image;
+    return `/${image}`;
+  }
+  return image.src;
+};
+
+const resolvedImage = normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
+
+const kindLabels: Record<string, string> = {
+  seminar: "Seminar series",
+  causerie: "Causerie",
+  other: "Other",
+};
+const kindLabel =
+  kindLabels[(kind ?? "").toLowerCase()] ?? "Other";
+
+const dateValue = date ? new Date(date) : null;
+const hasTime = !!(
+  dateValue &&
+  (dateValue.getUTCHours() !== 0 || dateValue.getUTCMinutes() !== 0)
+);
+
+const displayDate = dateValue
+  ? dateValue.toLocaleDateString(LOCALE.langTag, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      timeZone: LOCALE.timeZone ?? "Europe/Paris",
+    })
+  : "";
+
+const displayTime =
+  dateValue && hasTime
+    ? dateValue.toLocaleTimeString(LOCALE.langTag, {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: LOCALE.timeZone ?? "Europe/Paris",
+      })
+    : "";
+---
+
+<article
+  class="group relative rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-4 sm:p-5 shadow-lg shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+>
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-5 md:flex-row md:items-start">
+      <div
+        class="relative w-full shrink-0 overflow-hidden rounded-xl bg-[rgb(var(--color-card-image-bg))] aspect-[16/9] md:w-60 lg:w-72 md:self-start"
+      >
+        <img
+          src={resolvedImage}
+          alt={title}
+          class="h-full w-full object-cover object-center scale-[1.12]"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="min-w-0 flex-1 pointer-events-none flex flex-col gap-3 text-skin-base">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
+          {kindLabel}
+        </p>
+
+        <h3
+          class="text-2xl font-semibold leading-snug transition-all duration-150 group-hover:text-3xl"
+        >
+          {title}
+        </h3>
+
+        {dateValue && (
+          <p class="text-base font-medium text-skin-base opacity-80">
+            <time datetime={dateValue.toISOString()}>{displayDate}</time>
+            {hasTime && (
+              <>
+                <span aria-hidden="true"> · </span>
+                <span class="text-nowrap">{displayTime}</span>
+              </>
+            )}
+          </p>
+        )}
+
+      </div>
+    </div>
+
+    {description && (
+      <p class="text-base leading-relaxed text-skin-base opacity-80">
+        {description}
+      </p>
+    )}
+
+    <div class="pt-2">
+      <span
+        class="inline-flex items-center gap-1 font-medium text-skin-base transition-all duration-150 group-hover:gap-2"
+      >
+        View session
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="m13 5 7 7-7 7M4 12h16" />
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <a
+    href={href}
+    class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
+    aria-label={`Open ${title}`}
+  ></a>
+</article>

@@ -34,3 +34,6 @@ pnpm-debug.log*
 !.yarn/versions
 .pnp.*
 *:Zone.Identifier*
+
+# Local AI agent instructions
+agent.md

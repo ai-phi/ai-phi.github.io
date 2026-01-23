@@ -6,10 +6,12 @@ interface Tag {
   tagName: string;
 }
 
-const getUniqueTags = (posts: CollectionEntry<"blog">[]) => {
+type ContentCollection = "posts" | "sessions";
+
+const getUniqueTags = (posts: CollectionEntry<ContentCollection>[]) => {
   const filteredPosts = posts.filter(({ data }) => !data.draft);
   const tags: Tag[] = filteredPosts
-    .flatMap(post => post.data.tags)
+    .flatMap(post => post.data.tags ?? [])
     .map(tag => ({ tag: slugifyStr(tag), tagName: tag }))
     .filter(
       (value, index, self) =>

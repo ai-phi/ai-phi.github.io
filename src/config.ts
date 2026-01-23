@@ -7,7 +7,7 @@ export const SITE: Site = {
   title: "AI-PHI",
   ogImage: "aiphi-og-new.jpg",
   lightAndDarkMode: true,
-  postPerPage: 3,
+  postPerPage: 10,
 };
 
 export const LOCALE = {

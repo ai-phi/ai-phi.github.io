@@ -11,7 +11,7 @@ import { SITE } from "@config";
 export interface Props {
   currentPage: number;
   totalPages: number;
-  paginatedEntries: CollectionEntry<"blog">[];
+  paginatedEntries: CollectionEntry<"posts">[];
   tag: string;
   tagName: string;
 }
@@ -28,11 +28,9 @@ const { currentPage, totalPages, paginatedEntries, tag, tagName } = Astro.props;
   >
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
-      {
-        paginatedEntries.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}`} frontmatter={data} />
-        ))
-      }
+      {paginatedEntries.map(({ data, slug }) => (
+        <Card href={`/posts/${slug}`} frontmatter={data} />
+      ))}
     </ul>
   </Main>
 

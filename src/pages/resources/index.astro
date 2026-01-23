@@ -15,8 +15,12 @@ const pageDescription = "These serve as a record of our sessions and a way to sh
 const POSTS_PER_PAGE = 3;
 const currentPage = 1;
 
-// Get all blog posts
-const allPosts = await getCollection('blog');
+// Get all content entries that might have slides
+const [posts, sessions] = await Promise.all([
+  getCollection('posts'),
+  getCollection('sessions'),
+]);
+const allPosts = [...posts, ...sessions];
 
 // Filter posts that contain PDF comments
 const postsWithPDFs = allPosts.filter(post => {
@@ -433,14 +437,15 @@ const allPresentations = presentations;
   
   function initializeWhenReady() {
     initAttempts++;
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const presentationCards = document.querySelectorAll('.presentation-card');
-    const pageNumbers = document.getElementById('page-numbers');
-    const paginationContainer = document.getElementById('pagination-container');
-    const firstBtn = document.getElementById('first-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const lastBtn = document.getElementById('last-btn');
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const presentationCards =
+    document.querySelectorAll<HTMLElement>('.presentation-card');
+  const pageNumbers = document.getElementById('page-numbers');
+  const paginationContainer = document.getElementById('pagination-container');
+  const firstBtn = document.getElementById('first-btn') as HTMLButtonElement | null;
+  const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement | null;
+  const nextBtn = document.getElementById('next-btn') as HTMLButtonElement | null;
+  const lastBtn = document.getElementById('last-btn') as HTMLButtonElement | null;
     
     // Check if all elements are loaded - we expect at least a few presentation cards
     const expectedMinCards = 3; // Adjust based on your content
@@ -461,7 +466,7 @@ const allPresentations = presentations;
     const POSTS_PER_PAGE = 3;
     let currentFilter = 'all';
     let currentPage = 1;
-    let filteredCards = [];
+    let filteredCards: HTMLElement[] = [];
 
     // Initialize the filtering system
     function init() {
@@ -471,7 +476,7 @@ const allPresentations = presentations;
     }
 
     // Filter presentations based on type
-    function applyFilter(filterType) {
+    function applyFilter(filterType: string) {
       console.log('Applying filter:', filterType);
       currentFilter = filterType;
       currentPage = 1; // Reset to first page when filtering
@@ -565,7 +570,7 @@ const allPresentations = presentations;
 
 
     // Pagination navigation functions
-    function goToPage(page) {
+    function goToPage(page: number) {
       const totalPages = Math.ceil(filteredCards.length / POSTS_PER_PAGE);
       if (page >= 1 && page <= totalPages) {
         currentPage = page;

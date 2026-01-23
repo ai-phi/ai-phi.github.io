@@ -8,22 +8,27 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 
+type ContentCollection = "posts" | "sessions";
+
 export interface Props {
-  post: CollectionEntry<"blog"> | CollectionEntry<"glossary">;
+  post: CollectionEntry<ContentCollection> | CollectionEntry<"glossary">;
 }
 
 const { post } = Astro.props;
 
 const {
   author,
-  title,
+  title = "",
   description,
   canonicalURL,
   ogImage,
   pubDatetime,
   modDatetime,
-  tags,
+  tags = [],
 } = post.data;
+
+const publishedAt = (pubDatetime ?? new Date()) as Date;
+const updatedAt = modDatetime ?? undefined;
 
 const { Content } = await post.render();
 
@@ -37,8 +42,8 @@ const layoutProps = {
   title,
   author,
   description,
-  pubDatetime,
-  modDatetime,
+  pubDatetime: publishedAt,
+  modDatetime: updatedAt,
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
@@ -62,8 +67,8 @@ const layoutProps = {
   <main id="main-content">
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
+      pubDatetime={publishedAt}
+      modDatetime={updatedAt}
       size="lg"
       className="my-2"
     />

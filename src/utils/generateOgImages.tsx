@@ -4,6 +4,8 @@ import { type CollectionEntry } from "astro:content";
 import postOgImage from "./og-templates/post";
 import siteOgImage from "./og-templates/site";
 
+type ContentCollection = "posts" | "sessions";
+
 const fetchFonts = async () => {
   // Regular Font
   const fontFileRegular = await fetch(
@@ -48,7 +50,9 @@ function svgBufferToPngBuffer(svg: string) {
   return pngData.asPng();
 }
 
-export async function generateOgImageForPost(post: CollectionEntry<"blog">) {
+export async function generateOgImageForPost(
+  post: CollectionEntry<ContentCollection>
+) {
   const svg = await satori(postOgImage(post), options);
   return svgBufferToPngBuffer(svg);
 }

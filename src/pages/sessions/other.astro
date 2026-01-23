@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import SessionHorizontalCard from "@components/SessionHorizontalCard.astro";
+import SessionsNav from "@components/sessions/SessionsNav.astro";
+import { SITE } from "@config";
+import { getSortedByDateDesc } from "@utils/getSortedPosts";
+import getSessionDate from "@utils/getSessionDate";
+
+const sessions = await getCollection("sessions");
+const otherSessions = getSortedByDateDesc(sessions).filter(
+  ({ data }) => data.kind === "other"
+);
+---
+
+<Layout title={`Other sessions | ${SITE.title}`}>
+  <Header activeNav="sessions" />
+  <Main pageTitle="Other sessions" pageDesc="Workshops, community meetups, and everything in between.">
+    <SessionsNav active="other" />
+
+    {otherSessions.length ? (
+      <div class="space-y-6">
+        {otherSessions.map(session => {
+          const { data, slug } = session;
+          return (
+            <SessionHorizontalCard
+              title={data.title}
+              description={data.description}
+              date={getSessionDate(session)}
+              kind={data.kind}
+              ogImage={data.ogImage}
+              href={`/posts/${slug}`}
+            />
+          );
+        })}
+      </div>
+    ) : (
+      <p class="text-base text-skin-base opacity-80">
+        No additional sessions are published yet.
+      </p>
+    )}
+  </Main>
+
+  <Footer />
+</Layout>

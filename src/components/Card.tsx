@@ -1,12 +1,15 @@
 import { slugifyStr } from "@utils/slugify";
 import Datetime from "./Datetime";
-import type { Frontmatter } from "@content/config";
+import type { CollectionEntry } from "astro:content";
 import clsx from "clsx";
 import type { PropsWithChildren } from "react";
 
+type CardCollections = "posts" | "sessions" | "glossary";
+type CardFrontmatter = CollectionEntry<CardCollections>["data"];
+
 export interface Props {
   className?: string;
-  frontmatter: Frontmatter;
+  frontmatter: CardFrontmatter;
   hideDatetime?: boolean;
   href?: string;
   secHeading?: boolean;

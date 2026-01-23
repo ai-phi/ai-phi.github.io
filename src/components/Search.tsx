@@ -3,10 +3,12 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
 
+type SearchCollections = "posts" | "sessions";
+
 export type SearchItem = {
   title: string;
   description: string;
-  data: CollectionEntry<"blog">["data"];
+  data: CollectionEntry<SearchCollections>["data"];
   slug: string;
 };
 

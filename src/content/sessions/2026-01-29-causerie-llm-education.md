@@ -1,0 +1,39 @@
+---
+author: AI-PHI
+pubDatetime: 2026-01-29T19:00:00+01:00
+# modDatetime:
+title: >-
+  Causerie on LLMs for French Secondary Education: Ethical Questions and Applied Research
+slug: session-31-causerie-llm-education
+draft: false
+featured: true
+nextSession: true
+nextFormal: false
+tags:
+  - Causerie
+  - Education
+  - Watermarks
+  - Adversarial Attacks
+description: "Large language models are rapidly entering classrooms, reshaping learning, assessment, and teaching practices. This session explores the ethical challenges raised by educational LLMs, drawing on the OpenLLM France 2030 project, and focuses on applied issues such as detecting LLM-assisted cheating and ensuring robustness against adversarial attacks in educational settings."
+# previousOgImage: ../og/og-session-30.webp
+ogImage: "/og/og-session-default.svg"
+kind: causerie
+---
+
+Large language models (LLMs) are now widely used in educational contexts, from pupils’ homework and revision to teachers’ lesson planning and classroom preparation. This talk examines how LLMs are reshaping the educational landscape and the novel ethical challenges this transformation entails.
+The discussion is grounded in an ongoing France 2030–funded research initiative, **OpenLLM**, in which a consortium bringing together CEA Paris-Saclay, École Polytechnique, LORIA, Linagora, Opsci, and TALKR is developing a frugal, open, and sovereign European LLM designed for French secondary schools. Within this programme, Thomas will present his current applied ethics work, focusing on (i) the identification of LLM-assisted cheating through watermarking techniques, and (ii) the robustness of educational LLMs against adversarial attacks specifically targeting learning and assessment settings.
+
+## About Thomas Souverain
+
+<img
+  src="/assets/session-31-thomas_souverain.jpeg"
+  alt="Portrait of Thomas Souverain"
+  class="speaker-portrait"
+/>
+Thomas Souverain is a postdoctoral researcher at CEA Paris-Saclay and teaches AI ethics in education (MSN Paris XIII; ENS). He holds a PhD in Philosophy from the École Normale Supérieure (ENS). His research investigates how programming and model design choices bear on fairness, explainability, and the security of AI systems across domains including employment and education.
+
+## Details
+
+**Date and Time:** Thursday, 29th of January 2026 - **7 PM**  
+**Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
+**Registration:** upcoming

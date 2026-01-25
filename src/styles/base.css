@@ -215,6 +215,31 @@
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
 
+  /* Speaker portraits in session pages */
+  .speaker-portrait {
+    /* Base (mobile-first)
+      Shown above or below text */
+    max-width: 16rem;      /* 256px — readable face on mobile */
+    width: 100%;
+    border-radius: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Tablet and up (portrait + text side-by-side) */
+  @media (min-width: 640px) {
+    .speaker-portrait {
+      max-width: 18rem;    /* 288px — balanced next to bio */
+    }
+  }
+
+  /* Desktop and large screens */
+  @media (min-width: 1024px) {
+    .speaker-portrait {
+      max-width: 20rem;    /* 320px — intentional presence, not hero */
+    }
+  }
+
+
   /* Blog PDF Card Styles - matching resources page styling */
   .blog-pdf-card {
     @apply bg-skin-card my-8;
@@ -274,4 +299,6 @@
     color: white !important;
     opacity: 1 !important;
   }
+
+  
 }

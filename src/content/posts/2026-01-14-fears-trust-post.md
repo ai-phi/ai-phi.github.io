@@ -1,5 +1,5 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2026-01-15T19:00:00+01:00
 # modDatetime:
 title: >-
@@ -7,8 +7,6 @@ title: >-
 slug: fears-trust-post
 draft: false
 featured: true
-nextSession: false
-nextFormal: false
 tags:
   - Causerie
   - Hopes
@@ -19,13 +17,13 @@ tags:
   - Agency
   - Autonomy
   - Persuasion
-description: "A community post summarising the exchanges of an AI-Phi causerie facilitated by Edmund Ronald, bringing together original contributions from members on hopes, fears, trust, and regulation in the age of generative AI."
+description: "A community post summarising the exchanges of an ai-phi causerie facilitated by Edmund Ronald, bringing together original contributions from members on hopes, fears, trust, and regulation in the age of generative AI."
 ogImage: ../og/og-causerie-edmund-post.jpg
 ---
 
-## What is AI-Phi?
+## What is ai-phi?
 
-AI-Phi is a research community in Paris that operates at the
+ai-phi is a research community in Paris that operates at the
 intersection of AI and philosophy. Its purpose is to set the stage for
 social and intellectual gatherings that nurture connections, discussion
 and debate among diverse individuals.
@@ -117,7 +115,7 @@ whack-a-mole against an evolving target.
 
 After the causerie, we continued our discussion, as we normally do,
 somewhere along Rue du Pot de Fer in the Latin Quarter of Paris. Edmund,
-who is also our own unofficial AI-Phi sketch artist, pulled out his
+who is also our own unofficial ai-phi sketch artist, pulled out his
 water colours and pad and captured the likeness of people at the event.
 This was his creation.
 
@@ -400,5 +398,5 @@ more broadly related to how AI will affect wider societal issues such as
 inequality and socio-economic problems. Many of our responses have been
 reactionary and adaptive, rather than preemptive which is understandable
 given that we are dealing with an unknown artificial entites with
-wide-reaching influence. Here are at AI-Phi we will continue to engage
+wide-reaching influence. Here are at ai-phi we will continue to engage
 with this issues as they arise and evolve over time.

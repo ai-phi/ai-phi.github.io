@@ -2,9 +2,9 @@ import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
   website: "https://ai-phi.github.io/", // replace this with your deployed domain
-  author: "The AI-PHI team",
-  desc: "Official page of the Paris-based AI-PHI community.",
-  title: "AI-PHI",
+  author: "The ai-phi team",
+  desc: "Official page of the Paris-based ai-phi community.",
+  title: "ai-phi",
   ogImage: "aiphi-og-new.jpg",
   lightAndDarkMode: true,
   postPerPage: 10,

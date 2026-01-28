@@ -7,12 +7,12 @@ export interface Props {
   showDownload?: boolean;
 }
 
-const { 
-  src, 
-  title = "PDF Document", 
-  width = "100%", 
+const {
+  src,
+  title = "PDF Document",
+  width = "100%",
   height = "600px",
-  showDownload = true 
+  showDownload = true,
 } = Astro.props;
 ---
 
@@ -25,21 +25,28 @@ const {
         <h4 class="pdf-title-mobile">{title}</h4>
         <p class="pdf-description">PDF Document</p>
         <div class="mobile-pdf-actions">
-          <a href={src} target="_blank" rel="noopener noreferrer" class="mobile-pdf-btn view-btn">
+          <a
+            href={src}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mobile-pdf-btn view-btn"
+          >
             👁️ View PDF
           </a>
-          {showDownload && (
-            <a href={src} download class="mobile-pdf-btn download-btn">
-              ⬇️ Download
-            </a>
-          )}
+          {
+            showDownload && (
+              <a href={src} download class="mobile-pdf-btn download-btn">
+                ⬇️ Download
+              </a>
+            )
+          }
         </div>
       </div>
     </div>
-    
+
     <!-- Desktop PDF viewer -->
     <div class="desktop-pdf-viewer">
-      <iframe 
+      <iframe
         src={`${src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
         width={width}
         height={height}
@@ -49,14 +56,10 @@ const {
         frameborder="0"
         allowfullscreen
       >
-        <div class="pdf-fallback">
-          <p>Your browser doesn't support PDF viewing.</p>
-          {showDownload && (
-            <a href={src} download class="pdf-download-btn">
-              📄 Download PDF
-            </a>
-          )}
-          <p><a href={src} target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
+        <div class="pdf-fallback"> <p>Your browser doesn't support PDF
+        viewing.</p> {showDownload && ( <a href={src} download
+        class="pdf-download-btn"> 📄 Download PDF </a> )} <p><a href={src}
+        target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
         </div>
       </iframe>
     </div>
@@ -65,26 +68,26 @@ const {
 
 <style>
   .pdf-viewer-container {
-    @apply p-2.5 relative;
+    @apply relative p-2.5;
     /* Debug: Add visible border to check container */
     /* border: 2px solid red; */
   }
-  
+
   .pdf-title {
-    @apply text-xl font-semibold mb-4 text-skin-accent;
+    @apply mb-4 text-xl font-semibold text-skin-accent;
   }
-  
+
   .pdf-viewer {
-    @apply border border-skin-line rounded-lg overflow-hidden shadow-lg;
+    @apply overflow-hidden rounded-lg border border-skin-line shadow-lg;
   }
-  
+
   .pdf-iframe {
     @apply border-0;
     /* Enable smooth scrolling on mobile */
     -webkit-overflow-scrolling: touch;
     overflow: auto;
   }
-  
+
   /* Mobile-specific PDF handling */
   @media (max-width: 768px) {
     .pdf-viewer {
@@ -92,7 +95,7 @@ const {
       overflow: visible;
       position: relative;
     }
-    
+
     .pdf-iframe {
       /* Improve mobile scrolling */
       -webkit-overflow-scrolling: touch;
@@ -103,14 +106,14 @@ const {
       min-height: 400px;
     }
   }
-  
+
   /* Very small screens - make PDFs more accessible */
   @media (max-width: 480px) {
     .pdf-iframe {
       min-height: 350px;
     }
   }
-  
+
   /* Device toolbar/emulation mode fixes */
   @media screen and (max-device-width: 768px) {
     .pdf-iframe {
@@ -120,18 +123,18 @@ const {
       min-height: 400px;
     }
   }
-  
+
   .pdf-fallback {
-    @apply p-8 text-center bg-skin-fill;
+    @apply bg-skin-fill p-8 text-center;
   }
-  
+
   /* Mobile PDF fallback styling */
   .mobile-pdf-fallback {
     @apply hidden;
   }
-  
+
   .pdf-preview {
-    @apply bg-skin-card border border-skin-line rounded-lg p-6 text-center;
+    @apply rounded-lg border border-skin-line bg-skin-card p-6 text-center;
     min-height: 380px;
     display: flex;
     flex-direction: column;
@@ -140,48 +143,48 @@ const {
     /* Temporary debug border */
     border: 3px solid #ff0000 !important;
   }
-  
+
   .pdf-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
     opacity: 0.7;
   }
-  
+
   .pdf-title-mobile {
-    @apply text-lg font-semibold mb-2 text-skin-base;
+    @apply mb-2 text-lg font-semibold text-skin-base;
   }
-  
+
   .pdf-description {
-    @apply text-sm text-skin-base opacity-70 mb-4;
+    @apply mb-4 text-sm text-skin-base opacity-70;
   }
-  
+
   .mobile-pdf-actions {
-    @apply flex gap-3 justify-center flex-wrap;
+    @apply flex flex-wrap justify-center gap-3;
   }
-  
+
   .mobile-pdf-btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors text-sm;
+    @apply rounded-lg px-4 py-2 text-sm font-medium transition-colors;
   }
-  
+
   .view-btn {
     @apply bg-skin-accent text-skin-inverted hover:bg-opacity-80;
   }
-  
+
   .download-btn {
     @apply border border-skin-accent text-skin-accent hover:bg-skin-accent hover:text-skin-inverted;
   }
-  
+
   /* Desktop PDF viewer - show by default */
   .desktop-pdf-viewer {
     @apply block;
   }
-  
+
   /* Mobile devices - show fallback instead of iframe */
   @media (max-width: 768px) {
     .mobile-pdf-fallback {
       @apply block !important;
     }
-    
+
     .desktop-pdf-viewer {
       @apply hidden !important;
     }
@@ -192,10 +195,9 @@ const {
     .mobile-pdf-fallback {
       @apply block !important;
     }
-    
+
     .desktop-pdf-viewer {
       @apply hidden !important;
     }
   }
-  
 </style>

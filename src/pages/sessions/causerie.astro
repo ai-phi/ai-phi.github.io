@@ -18,30 +18,40 @@ const causerieSessions = getSortedByDateDesc(sessions).filter(
 
 <Layout title={`Causeries | ${SITE.title}`}>
   <Header activeNav="sessions" />
-  <Main pageTitle="Causeries" pageDesc="Interactive, semi-structured collective discussions.">
+  <Main
+    pageTitle="Causeries"
+    pageDesc="Interactive, semi-structured collective discussions."
+  >
     <SessionsNav active="causerie" />
 
-    {causerieSessions.length ? (
-      <div class="space-y-6">
-        {causerieSessions.map(session => {
-          const { data, slug } = session;
-          return (
-            <SessionHorizontalCard
-              title={data.title}
-              description={data.description}
-              date={getSessionDate(session)}
-              kind={data.kind}
-              ogImage={data.ogImage}
-              href={`/posts/${slug}`}
-            />
-          );
-        })}
-      </div>
-    ) : (
-      <p class="text-base text-skin-base opacity-80">
-        No causerie sessions are published yet.
-      </p>
-    )}
+    {
+      causerieSessions.length ? (
+        <div class="space-y-6">
+          {causerieSessions.map(session => {
+            const { data, slug } = session;
+            return (
+              <SessionHorizontalCard
+                slug={data.slug ?? slug}
+                title={data.title}
+                titleShort={data.titleShort}
+                sessionNumber={data.sessionNumber}
+                speakers={data.speakers}
+                description={data.description}
+                date={getSessionDate(session)}
+                kind={data.kind}
+                ogImage={data.ogImage}
+                baseIllustration={data.baseIllustration}
+                href={`/posts/${slug}`}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <p class="text-base text-skin-base opacity-80">
+          No causerie sessions are published yet.
+        </p>
+      )
+    }
   </Main>
 
   <Footer />

@@ -1,22 +1,30 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-05-14T19:00:00Z
-# modDatetime:
-title: "Session 24 - Ryota Kanai (Araya Inc.) - Qualia and Symmetry: A Mathematical Framework For Understanding the Qualitative Nature of Consciousness"
+author: ai-phi
+pubDatetime: 2025-05-14T17:00:00.000Z
+title: >-
+  Qualia and Symmetry: A Mathematical Framework For Understanding the
+  Qualitative Nature of Consciousness
 slug: session-24-ryota-kanai
+sessionNumber: 24
+titleShort: Qualia & Symmetry
+speakers:
+  - name: Ryota Kanai
+    affiliation: Araya Inc.
+baseIllustration: /images/base/sessions/session-24-ryota-kanai.jpg
 draft: false
 featured: false
-nextFormal: false
 tags:
-  - Seminar Series
   - Qualia
   - Mechanistic Interpretability
   - Mathematical Structure
-description: Are qualitative differences in conscious experience, like vision versus audition, shaped by the intrinsic structure of neural networks? This talk proposes a mathematical framework using symmetry groups and equivariance to characterize these differences. This approach offers a new path for linking consciousness to neural architecture.
-# previousOgImage: assets/AI-Phi-session-24.png
-ogImage: "/og/og-session-default.svg"
+description: >-
+  Are qualitative differences in conscious experience, like vision versus
+  audition, shaped by the intrinsic structure of neural networks? This talk
+  proposes a mathematical framework using symmetry groups and equivariance to
+  characterize these differences. This approach offers a new path for linking
+  consciousness to neural architecture.
 kind: seminar
-series: "AI-Phi Seminar Series"
+series: AI-Phi Seminar Series
 ---
 
 # Qualia and Symmetry: A Mathematical Framework For Understanding the Qualitative Nature of Consciousness
@@ -27,7 +35,7 @@ Here, we advance the hypothesis that these intrinsic structural properties can b
 
 ## About Ryota Kanai
 
-<img src="/assets/session-24-ryota-kanai.jpg" alt="A portrait of Ryota Kanai" />
+<img src="/images/base/sessions/session-24-ryota-kanai.jpg" alt="A portrait of Ryota Kanai" />
 
 Dr Ryota Kanai is the Founder and CEO of Araya Inc., a Tokyo-based company specialising in advanced artificial intelligence (AI) and neuroscience research. He earned his PhD in Experimental Psychology (Cum Laude) from Utrecht University in 2005, following his graduation from the Faculty of Science at Kyoto University in 2000. Dr Kanai has held research positions at the California Institute of Technology and University College London, and served as an Associate Professor of Cognitive Neuroscience at the University of Sussex .
 

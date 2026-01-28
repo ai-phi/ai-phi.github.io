@@ -1,21 +1,20 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-04-29T17:00:00Z
-# modDatetime:
-title: Session 23 - AI-Phi News
+author: ai-phi
+pubDatetime: 2025-04-29T17:00:00.000Z
+title: AI-Phi News
 slug: session-23-ai-phi-news
+sessionNumber: 23
+titleShort: AI-Phi News
+speakers:
+  - name: AI-Phi
 draft: false
 featured: false
-nextFormal: false
-nextSession: false
 tags:
   - AI News
   - Informal Session
   - other
 description: News and community updates session.
-# ogImage: assets/ai-phi-session-22.png
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 # AI-Phi News

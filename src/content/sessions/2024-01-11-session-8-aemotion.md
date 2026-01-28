@@ -1,18 +1,20 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-01-11T19:00:00Z
-# modDatetime:
-title: Session  8 - AEmotional Understanding
+author: ai-phi
+pubDatetime: 2024-01-18T18:00:00.000Z
+title: AEmotional Understanding
 slug: session-8-aemotional-understanding
+sessionNumber: 8
+titleShort: AEmotional Understanding
+speakers:
+  - name: Constant Bonard
+  - name: Gustave Cortal
 draft: false
 tags:
-  - Session
   - Emotions
   - Understanding
   - other
 description: Session on AEmotional Understanding by Constant Bonard and Gustave Cortal
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 In this session, Constant Bonard (IJN, ENS) and Gustave Cortal (ENS Saclay) discussed the nature of emotions according to contemporary affective sciences, present the state of the art in sentiment analysis and its limitations, what cognitive capacities allow humans to understand others' emotions, and whether AI can achieve this emotional understanding.

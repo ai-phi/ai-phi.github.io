@@ -1,23 +1,28 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-10-23T14:00:00+02:00
-# modDatetime:
-title: >-
-  Session 26 - Steps to an Ethology of Insurrectionary Machines
+author: ai-phi
+pubDatetime: 2025-10-23T12:00:00.000Z
+title: Steps to an Ethology of Insurrectionary Machines
 slug: session-26-lestel-insurrectionary-machines
+sessionNumber: 26
+titleShort: Insurrectionary Machines
+speakers:
+  - name: Dominique Lestel
+    affiliation: ENS
+baseIllustration: /images/base/sessions/session-26-lestel-insurrectionary-machines.jpg
 draft: false
 featured: false
 tags:
-  - Seminar Series
   - Humanoid Robots
   - Insurrectionary Machines
   - History of Technology
   - Postbiology
-description: Dominique Lestel explores humanoid robots like Sophia as “Insurrectionary Machines” — artifacts that unsettle rather than serve, existing in friction with humans. From ancient idols to AI systems, these machines invite us to rethink life itself through an ethological lens.
-# previousOgImage: assets/session-26.png
-ogImage: "/og/og-session-default.svg"
+description: >-
+  Dominique Lestel explores humanoid robots like Sophia as “Insurrectionary
+  Machines” — artifacts that unsettle rather than serve, existing in friction
+  with humans. From ancient idols to AI systems, these machines invite us to
+  rethink life itself through an ethological lens.
 kind: seminar
-series: "AI-Phi Seminar Series"
+series: AI-Phi Seminar Series
 ---
 
 ## Steps to an Ethology of Insurrectionary Machines
@@ -26,7 +31,7 @@ I will begin by discussing the significance of an exemplary contemporary humanoi
 
 ## About Dominique Lestel
 
-![Alt text](@assets/images/dominique-lestel.jpg)
+![Portrait of Dominique Lestel](/images/base/sessions/session-26-lestel-insurrectionary-machines.jpg)
 
 Dominique Lestel teaches contemporary philosophy and philosophical ethology in the philosophy department at the École Normale Supérieure (ENS) in Paris. He introduced cognitive science to the ENS in the 1990s and was a founding member of the DEC. He was director of the “Etho-ecology and Cognitive Ethology” team at the MNHN for many years. In 2013-2014, he was awarded a CNRS position to the Department of Computer Science at the University of Tokyo. In 2017-2018, he was a laureate of the Japan Society for the Promotion of Sciences (JSPS) and Visiting Professor in the Robotics Laboratory at Tokyo University of Agriculture and Technology. In 2018-2019, he was a Berggruen Fellow at the Center for Advanced Studies in the Behavioral Sciences at Stanford University, and during the winter-spring of 2025, he was a Visiting Professor at the University of Tokyo.
 

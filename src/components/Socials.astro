@@ -23,9 +23,9 @@ const orderIndex = (name: string) => {
   return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
 };
 
-const activeSocials = SOCIALS
-  .filter(social => social.active)
-  .sort((a, b) => orderIndex(a.name) - orderIndex(b.name));
+const activeSocials = SOCIALS.filter(social => social.active).sort(
+  (a, b) => orderIndex(a.name) - orderIndex(b.name)
+);
 ---
 
 <div class={`social-icons ${centered ? "flex" : ""}`}>

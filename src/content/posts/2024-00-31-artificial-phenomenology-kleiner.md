@@ -1,5 +1,5 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2024-05-9T18:00:00Z
 # modDatetime:
 title: Towards Artificial Phenomenology

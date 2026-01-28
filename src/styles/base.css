@@ -12,7 +12,8 @@
 }
 @font-face {
   font-family: "Velvelyne";
-  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Regular.ttf") format("truetype");
+  src: url("./Velvelyne-main/fonts/ttf/Velvelyne-Regular.ttf")
+    format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -78,20 +79,26 @@
   html[data-theme="dark"] #sun-svg {
     display: block;
   }
-  html, body {
+  html,
+  body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
-  
+
   body {
     @apply flex min-h-[100svh] flex-col bg-skin-fill font-sans text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-serif;
   }
-  
+
   /* Ensure main content takes up available space and footer stays at bottom */
   main {
     @apply flex-1;
@@ -106,7 +113,7 @@
     @apply mx-auto px-4;
   }
 
-  nav.breadcrumb{
+  nav.breadcrumb {
     margin-bottom: 1rem;
     margin-top: 0rem;
   }
@@ -219,7 +226,7 @@
   .speaker-portrait {
     /* Base (mobile-first)
       Shown above or below text */
-    max-width: 16rem;      /* 256px — readable face on mobile */
+    max-width: 16rem; /* 256px — readable face on mobile */
     width: 100%;
     border-radius: 1rem;
     margin-top: 0.75rem;
@@ -228,77 +235,74 @@
   /* Tablet and up (portrait + text side-by-side) */
   @media (min-width: 640px) {
     .speaker-portrait {
-      max-width: 18rem;    /* 288px — balanced next to bio */
+      max-width: 18rem; /* 288px — balanced next to bio */
     }
   }
 
   /* Desktop and large screens */
   @media (min-width: 1024px) {
     .speaker-portrait {
-      max-width: 20rem;    /* 320px — intentional presence, not hero */
+      max-width: 20rem; /* 320px — intentional presence, not hero */
     }
   }
 
-
   /* Blog PDF Card Styles - matching resources page styling */
   .blog-pdf-card {
-    @apply bg-skin-card my-8;
+    @apply my-8 bg-skin-card;
     border-radius: 0.9rem;
     border: 2px solid rgb(0 0 0 / 20%);
   }
-  
+
   html[data-theme="dark"] .blog-pdf-card {
     border: 2px solid rgb(255 255 255 / 20%);
   }
-  
+
   .blog-pdf-card .pdf-viewer-container {
-    @apply p-2.5 relative;
+    @apply relative p-2.5;
   }
-  
+
   .blog-pdf-card .pdf-viewer {
-    @apply border border-skin-line rounded-lg overflow-hidden shadow-lg;
+    @apply overflow-hidden rounded-lg border border-skin-line shadow-lg;
   }
-  
+
   .blog-pdf-card .pdf-iframe {
     @apply border-0;
   }
-  
+
   .blog-pdf-card .pdf-fallback {
-    @apply p-8 text-center bg-skin-fill;
+    @apply bg-skin-fill p-8 text-center;
   }
-  
+
   .blog-pdf-footer {
-    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+    @apply flex items-center justify-between p-4 text-sm text-skin-base opacity-70;
   }
-  
+
   .blog-pdf-info {
     @apply flex flex-col;
   }
-  
+
   .blog-pdf-title {
-    @apply font-medium mb-1;
+    @apply mb-1 font-medium;
   }
-  
+
   .blog-pdf-download {
     @apply flex-shrink-0;
   }
-  
+
   .blog-pdf-card .download-btn {
-    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+    @apply inline-flex items-center rounded-md bg-transparent px-3 py-1 text-sm text-skin-accent no-underline transition-colors;
   }
-  
+
   .blog-pdf-card .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
     color: white !important;
     opacity: 1 !important;
   }
-  
+
   /* Override prose hover styles for download button in blog posts */
   .prose .blog-pdf-card .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
     color: white !important;
     opacity: 1 !important;
   }
-
-  
 }

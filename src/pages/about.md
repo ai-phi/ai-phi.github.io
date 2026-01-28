@@ -3,9 +3,9 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-After years of friendly discussions about AI and philosophy during after-work hours, Aïda Elamrani (then at ENS), Michael Anslow and Stefan Lattner (both at Sony CSL) decided it was time to turn this energy into something more substantial. AI-PHI was born in the Quartier Latin from their friendship and shared passion. David Colliaux soon cheerfully joined the initiative.
+After years of friendly discussions about AI and philosophy during after-work hours, Aïda Elamrani (then at ENS), Michael Anslow and Stefan Lattner (both at Sony CSL) decided it was time to turn this energy into something more substantial. ai-phi was born in the Quartier Latin from their friendship and shared passion. David Colliaux soon cheerfully joined the initiative.
 
-The AI-PHI community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
+The ai-phi community involves researchers and professionals from diverse backgrounds, cultures and disciplines.
 
 ### Founding members (in alphabetical order)
 
@@ -41,5 +41,5 @@ The AI-PHI community involves researchers and professionals from diverse backgro
 
 ### Special Thanks
 
-- **Sébastien Marino**, Creative Director for AI-Phi 3.0 Style
+- **Sébastien Marino**, Creative Director for [ai-phi 3.0 Style](posts/ai-phi-3), [📸](https://www.instagram.com/mstheghost/)
 - **Théis Bazin**, Setting up Initial Website and Infrastructure

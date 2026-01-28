@@ -1,5 +1,5 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2024-04-04T19:00:00Z
 # modDatetime:
 title: Mini-Workshop on Honesty in LLMs
@@ -17,4 +17,4 @@ description: Join us for a mini-workshop on honesty in LLMs!
 
 We are organising a mini-workshop on the topic of: Honesty in LLMs. The objective being to produce a first, small, collective output, and identify avenues for further research.
 
-The workshop is open to all AI-PHI members: check the mailing list and whatsapp group for more details and further announcements.
+The workshop is open to all ai-phi members: check the mailing list and whatsapp group for more details and further announcements.

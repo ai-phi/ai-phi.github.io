@@ -7,6 +7,8 @@ import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
+import getSessionKindLabel from "@utils/getSessionKindLabel";
+import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
 type ContentCollection = "posts" | "sessions";
 
@@ -32,7 +34,17 @@ const updatedAt = modDatetime ?? undefined;
 
 const { Content } = await post.render();
 
-const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
+const baseOgImage = typeof ogImage === "string" ? ogImage : ogImage?.src;
+const isSession = post.collection === "sessions";
+const sessionSlug =
+  isSession && typeof post.data.slug === "string"
+    ? post.data.slug
+    : post.slug;
+const sessionOgImage = isSession
+  ? await resolveSessionOgImage(sessionSlug, baseOgImage)
+  : undefined;
+
+const ogImageUrl = sessionOgImage ?? baseOgImage;
 const ogUrl = new URL(
   ogImageUrl ?? `/posts/${slugifyStr(title)}.png`,
   Astro.url.origin
@@ -47,6 +59,35 @@ const layoutProps = {
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
+};
+
+const sessionNumber = isSession ? post.data.sessionNumber : undefined;
+const sessionSpeakers = isSession ? post.data.speakers : undefined;
+const sessionKind = isSession ? getSessionKindLabel(post.data.kind) : undefined;
+
+const formatSingleSpeaker = (speaker?: {
+  name?: string;
+  affiliation?: string;
+}) => {
+  if (!speaker || !speaker.name) return null;
+  return speaker.affiliation
+    ? `${speaker.name} (${speaker.affiliation})`
+    : speaker.name;
+};
+
+const formatSpeakers = (
+  speakers?: { name?: string; affiliation?: string }[]
+) => {
+  if (!speakers || speakers.length === 0) return "AI-Phi";
+  const formatted = speakers
+    .map(formatSingleSpeaker)
+    .filter(Boolean) as string[];
+  if (!formatted.length) return "AI-Phi";
+  if (formatted.length === 1) return formatted[0];
+  if (formatted.length === 2) return `${formatted[0]} & ${formatted[1]}`;
+  return `${formatted.slice(0, -1).join(", ")} & ${
+    formatted[formatted.length - 1]
+  }`;
 };
 ---
 
@@ -72,13 +113,29 @@ const layoutProps = {
       size="lg"
       className="my-2"
     />
-    {author && (
-      <p class="text-sm font-light italic opacity-80">
-        <span class="sr-only">Author:</span>
-        <span aria-hidden="true">By </span>
-        <span class="not-italic font-normal">{author}</span>
-      </p>
-    )}
+    {
+      isSession && (
+        <div class="mb-4 mt-1 space-y-1">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
+            {sessionNumber ? `Session ${sessionNumber}` : "Session"}
+            <span aria-hidden="true"> · </span>
+            {sessionKind}
+          </p>
+          <p class="text-base font-medium text-skin-base opacity-80">
+            {formatSpeakers(sessionSpeakers)}
+          </p>
+        </div>
+      )
+    }
+    {
+      author && (
+        <p class="text-sm font-light italic opacity-80">
+          <span class="sr-only">Author:</span>
+          <span aria-hidden="true">By </span>
+          <span class="not-italic font-normal">{author}</span>
+        </p>
+      )
+    }
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
@@ -110,22 +167,22 @@ const layoutProps = {
 
 <style>
   main {
-    @apply mx-auto w-full font-sans max-w-3xl px-4 pb-12;
+    @apply mx-auto w-full max-w-3xl px-4 pb-12 font-sans;
   }
   .post-title {
-    @apply text-2xl font-semibold font-serif text-skin-accent;
+    @apply font-serif text-2xl font-semibold text-skin-accent;
   }
-  
+
   .download-btn {
-    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+    @apply inline-flex items-center rounded-md bg-transparent px-3 py-1 text-sm text-skin-accent no-underline transition-colors;
   }
-  
+
   .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
     color: white !important;
     opacity: 1 !important;
   }
-  
+
   /* Override prose hover styles for download button */
   .prose .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
@@ -133,7 +190,6 @@ const layoutProps = {
     opacity: 1 !important;
     text-decoration: none !important;
   }
-
 </style>
 
 <script is:inline>

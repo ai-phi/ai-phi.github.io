@@ -2,6 +2,14 @@ import { SITE } from "@config";
 import type { ImageMetadata } from "astro";
 import { defineCollection, z } from "astro:content";
 
+const TitleShortSchema = z
+  .string()
+  .min(1)
+  .refine(
+    value => value.trim().split(/\s+/).filter(Boolean).length <= 5,
+    "titleShort must be at most 5 words"
+  );
+
 export const Frontmatter = z.object({
   pubDatetime: z.date(),
   modDatetime: z.date().optional().nullable(),
@@ -12,8 +20,6 @@ export const Frontmatter = z.object({
   featured: z.boolean().optional(),
   tags: z.array(z.string()).default(["others"]),
   canonicalURL: z.string().optional(),
-  nextSession: z.boolean().optional(),
-  nextFormal: z.boolean().optional(),
 });
 export type Frontmatter = z.infer<typeof Frontmatter>;
 
@@ -36,19 +42,21 @@ const posts = defineCollection({
 
 const sessions = defineCollection({
   type: "content",
-  schema: ({ image }) =>
+  schema: () =>
     Frontmatter.extend({
       description: z.string(),
-      ogImage: image()
-        .refine(
-          (img: ImageMetadata) => img.width >= 1200 && img.height >= 630,
-          {
-            message: "OpenGraph image must be at least 1200 X 630 pixels!",
-          }
+      sessionNumber: z.number(),
+      titleShort: TitleShortSchema,
+      speakers: z
+        .array(
+          z.object({
+            name: z.string().min(1),
+            affiliation: z.string().optional(),
+          })
         )
-        .or(z.string())
-        .optional(),
-      speakers: z.array(z.string()).optional(),
+        .default([]),
+      baseIllustration: z.string().optional(),
+      ogImage: z.string().optional(),
       location: z.string().optional(),
       kind: z
         .enum(["seminar", "causerie", "community", "workshop", "other"])

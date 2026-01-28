@@ -1,25 +1,27 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-02-13T19:00:00Z
-# modDatetime:
-title: Session 18 - VALAWAI Value-Aware Artificial Intelligence
+author: ai-phi
+pubDatetime: 2025-02-13T18:00:00.000Z
+title: VALAWAI Value-Aware Artificial Intelligence
 slug: session-18-valawi-awarenes-ai
+sessionNumber: 18
+titleShort: Value-Aware AI
+speakers:
+  - name: Giulio Prevedello
+    affiliation: Sony CSL
+baseIllustration: /images/base/sessions/session-18-valawi-awarenes-ai.jpg
 draft: false
 featured: false
 tags:
-  - Session
   - Awareness
   - Value-aware
   - VALAWAI
-  - AI-PHI
+  - ai-phi
   - other
 description: A talk on Value-Aware Artificial Intelligence by Giulio Prevedello.
-# previousOgImage: assets/AI-PHI-session-18.png
-ogImage: "/og/og-session-default.svg"
 kind: other
 ---
 
-# AI-PHI 2.0 Inaugural Session: Value-Aware AI
+# ai-phi 2.0 Inaugural Session: Value-Aware AI
 
 What does it mean for artificial intelligence systems to be aware of moral values? How can such systems be designed, and what are their potential benefits?
 
@@ -27,7 +29,7 @@ In this talk, I will introduce the EU project VALAWAI, where we explore the theo
 
 ## About Giulio Prevedello
 
-<img src="/assets/Giulio-Prevedello-small.jpg" alt="A portrait of Giulio Prevedello" />
+<img src="/images/base/sessions/session-18-valawi-awarenes-ai.jpg" alt="A portrait of Giulio Prevedello" />
 
 I studied Mathematics (BSc) at the University of Padua and specialised in Probability Theory (MSc) at Pierre et Marie Curie University in Paris. Recognizing the potential of mathematical methods, I pursued a PhD in Applied Mathematics at the Hamilton Institute, Ireland, under Prof. Ken Duffy, collaborating with immunologists to analyse T-cell division data and develop probabilistic models of cell proliferation. Afterward, I conducted postdoctoral research at Institut Curie, using transcriptomics to study DNA damage response.
 

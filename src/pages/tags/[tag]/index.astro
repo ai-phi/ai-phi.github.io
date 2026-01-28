@@ -49,37 +49,37 @@ const pagination = getPagination({
   >
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
-      {pagination.paginatedEntries.map(({ data, slug }) => (
-        <Card href={`/posts/${slug}`} frontmatter={data} />
-      ))}
+      {
+        pagination.paginatedEntries.map(({ data, slug }) => (
+          <Card href={`/posts/${slug}`} frontmatter={data} />
+        ))
+      }
     </ul>
-    {sessionsByTag.length > 0 && (
-      <section class="mt-12">
-        <h2 class="text-xl font-semibold">Sessions with this tag</h2>
-        <ul>
-          {sessionsByTag.map(({ data, slug }) => (
-            <Card href={`/posts/${slug}`} frontmatter={data} />
-          ))}
-        </ul>
-      </section>
-    )}
+    {
+      sessionsByTag.length > 0 && (
+        <section class="mt-12">
+          <h2 class="text-xl font-semibold">Sessions with this tag</h2>
+          <ul>
+            {sessionsByTag.map(({ data, slug }) => (
+              <Card href={`/posts/${slug}`} frontmatter={data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
   </Main>
 
   <Pagination
     currentPage={pagination.currentPage}
     totalPages={pagination.totalPages}
     prevUrl={`/tags/${tag}${
-      pagination.currentPage - 1 !== 1
-        ? "/" + (pagination.currentPage - 1)
-        : ""
+      pagination.currentPage - 1 !== 1 ? "/" + (pagination.currentPage - 1) : ""
     }`}
     nextUrl={`/tags/${tag}/${pagination.currentPage + 1}`}
     firstUrl={pagination.totalPages > 4 ? `/tags/${tag}` : undefined}
-    lastUrl={
-      pagination.totalPages > 4
-        ? `/tags/${tag}/${pagination.totalPages}`
-        : undefined
-    }
+    lastUrl={pagination.totalPages > 4
+      ? `/tags/${tag}/${pagination.totalPages}`
+      : undefined}
   />
 
   <Footer noMarginTop={pagination.totalPages > 1} />

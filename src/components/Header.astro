@@ -5,7 +5,15 @@ import LinkButton from "./LinkButton.astro";
 import StyledTitle from "@components/StyledTitle";
 
 export interface Props {
-  activeNav?: "home" | "posts" | "sessions" | "tags" | "glossary" | "about" | "search" | "resources";
+  activeNav?:
+    | "home"
+    | "posts"
+    | "sessions"
+    | "tags"
+    | "glossary"
+    | "about"
+    | "search"
+    | "resources";
 }
 
 const { activeNav } = Astro.props;
@@ -41,7 +49,7 @@ const { activeNav } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        
+
         <!-- Main navigation items -->
         <ul id="main-nav-items" class="hidden sm:flex">
           <li class="nav-logo-item">
@@ -52,56 +60,76 @@ const { activeNav } = Astro.props;
                   src="/images/AiPhi_Logo_Black_2lines.png"
                   alt=""
                   class="nav-ghost-logo nav-light-ghost"
-                  z-index: 1;
+                  z-index:
+                  1;
                 />
                 <img
                   src="/images/AiPhi_Logo_White_2lines.png"
                   alt=""
                   class="nav-ghost-logo nav-dark-ghost"
-                  z-index: 1;
+                  z-index:
+                  1;
                 />
 
                 <img
                   src="/images/AiPhi_Logo_Black_2lines.png"
                   alt={SITE.title}
                   class="nav-logo-image nav-light-logo"
-                  z-index: auto;
+                  z-index:
+                  auto;
                 />
                 <img
                   src="/images/AiPhi_Logo_White_2lines.png"
                   alt={SITE.title}
                   class="nav-logo-image nav-dark-logo"
-                  z-index: auto;
+                  z-index:
+                  auto;
                 />
               </div>
             </a>
           </li>
           <li class="nav-separator"></li>
           <li>
-            <a href="/posts" class={activeNav === "posts" ? "active" : ""} data-text="Posts">
+            <a
+              href="/posts"
+              class={activeNav === "posts" ? "active" : ""}
+              data-text="Posts"
+            >
               Posts
             </a>
           </li>
           <li class="nav-separator"></li>
           <li>
-            <a href="/sessions" class={activeNav === "sessions" ? "active" : ""} data-text="Sessions">
+            <a
+              href="/sessions"
+              class={activeNav === "sessions" ? "active" : ""}
+              data-text="Sessions"
+            >
               Sessions
             </a>
           </li>
           <li class="nav-separator"></li>
           <li>
-            <a href="/resources" class={activeNav === "resources" ? "active" : ""} data-text="Resources">
+            <a
+              href="/resources"
+              class={activeNav === "resources" ? "active" : ""}
+              data-text="Resources"
+            >
               Resources
             </a>
           </li>
           <li class="nav-separator"></li>
           <li>
-            <a href="/about" class={activeNav === "about" ? "active" : ""} data-text="About">
+            <a
+              href="/about"
+              class={activeNav === "about" ? "active" : ""}
+              data-text="About"
+            >
               About
             </a>
           </li>
         </ul>
-        
+
         <!-- Search and theme toggle -->
         <ul id="nav-actions" class="flex">
           <li>
@@ -134,10 +162,18 @@ const { activeNav } = Astro.props;
                   aria-label="auto"
                   aria-live="polite"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" id="moon-svg" viewBox="0 0 24 24">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="moon-svg"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M20.742 13.045a8.088 8.088 0 0 1-2.077.271c-2.135 0-4.14-.83-5.646-2.336a8.025 8.025 0 0 1-2.064-7.723A1 1 0 0 0 9.73 2.034a10.014 10.014 0 0 0-4.489 2.582c-3.898 3.898-3.898 10.243 0 14.143a9.937 9.937 0 0 0 7.072 2.93 9.93 9.93 0 0 0 7.07-2.929 10.007 10.007 0 0 0 2.583-4.491 1.001 1.001 0 0 0-1.224-1.224zm-2.772 4.301a7.947 7.947 0 0 1-5.656 2.343 7.953 7.953 0 0 1-5.658-2.344c-3.118-3.119-3.118-8.195 0-11.314a7.923 7.923 0 0 1 2.06-1.483 10.027 10.027 0 0 0 2.89 7.848 9.972 9.972 0 0 0 7.848 2.891 8.036 8.036 0 0 1-1.484 2.059z" />
                   </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" id="sun-svg" viewBox="0 0 24 24">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="sun-svg"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z" />
                   </svg>
                 </button>
@@ -149,19 +185,18 @@ const { activeNav } = Astro.props;
       <div class="header-line"></div>
     </div>
   </div>
-
 </header>
 
 <style>
   #skip-to-content {
     @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
   }
-  
+
   .nav-container {
     @apply mx-auto flex max-w-3xl flex-col items-center justify-between md:flex-row;
     max-width: 58rem;
   }
-  
+
   header {
     position: relative;
     z-index: 40; /* Above mobile menu */
@@ -192,27 +227,30 @@ const { activeNav } = Astro.props;
     display: flex;
     align-items: center;
   }
-  
+
   .logo-container {
     @apply relative;
   }
-  
+
   .nav-logo-image {
     @apply h-12 w-auto transition-opacity duration-200;
     height: 4rem; /* Smaller on mobile (64px) */
     padding-top: 10px; /* Reduced padding on mobile */
-    transition: transform 150ms ease, filter 200ms ease, opacity 200ms ease;
-    
+    transition:
+      transform 150ms ease,
+      filter 200ms ease,
+      opacity 200ms ease;
+
     @media (min-width: 480px) {
       height: 5rem; /* Medium size on small tablets (80px) */
       padding-top: 12px;
     }
-    
+
     @media (min-width: 768px) {
       height: 6rem; /* Larger on tablets (96px) */
       padding-top: 14px;
     }
-    
+
     @media (min-width: 1024px) {
       height: 7rem; /* Original size on desktop (112px) */
       padding-top: 15px;
@@ -240,28 +278,26 @@ const { activeNav } = Astro.props;
   .nav-logo:hover .nav-logo-image,
   .nav-logo:focus-visible .nav-logo-image {
     transform: translateY(-1px);
-    filter:
-      drop-shadow(0 0 6px rgba(var(--glitch-cool-1), 0.30))
+    filter: drop-shadow(0 0 6px rgba(var(--glitch-cool-1), 0.3))
       drop-shadow(0 0 12px rgba(var(--glitch-warm-2), 0.22));
   }
-  
+
   .nav-light-logo {
     @apply block;
   }
-  
+
   .nav-dark-logo {
     @apply hidden;
   }
-  
+
   /* Dark mode logo switching */
   html[data-theme="dark"] .nav-light-logo {
     @apply hidden;
   }
-  
+
   html[data-theme="dark"] .nav-dark-logo {
     @apply block;
   }
-  
 
   /* Ghost logo styling */
   .nav-ghost-logo {
@@ -273,17 +309,17 @@ const { activeNav } = Astro.props;
     left: 0;
     padding-top: 10px; /* Match main logo padding */
     z-index: -1;
-    
+
     @media (min-width: 480px) {
       height: 5rem; /* Match main logo scaling */
       padding-top: 12px;
     }
-    
+
     @media (min-width: 768px) {
       height: 6rem; /* Match main logo scaling */
       padding-top: 14px;
     }
-    
+
     @media (min-width: 1024px) {
       height: 7rem; /* Original size on desktop */
       padding-top: 15px;
@@ -306,33 +342,32 @@ const { activeNav } = Astro.props;
       margin-top: 10px;
     }
   }
-  
+
   .nav-ghost-logo.ghost-effect {
     animation: subtleGhost 3s ease-in-out;
   }
-  
+
   .nav-ghost-logo.ghost-effect-2 {
     animation: subtleGhost2 3s ease-in-out;
   }
-  
+
   .nav-light-ghost {
     display: block;
   }
-  
+
   .nav-dark-ghost {
     display: none;
   }
-  
+
   html[data-theme="dark"] .nav-light-ghost {
     display: none;
   }
-  
+
   html[data-theme="dark"] .nav-dark-ghost {
     display: block;
   }
-  
-  @keyframes subtleGhost {
 
+  @keyframes subtleGhost {
     0% {
       transform: translate(4px, -3px) rotate(0.5deg) scale(1.012);
       opacity: 0.6;
@@ -350,7 +385,7 @@ const { activeNav } = Astro.props;
       opacity: 0.6;
     }
     40% {
-      transform: translate(3px, -4px) rotate(0.2deg) scale(1.);
+      transform: translate(3px, -4px) rotate(0.2deg) scale(1);
       opacity: 0.4;
     }
     50% {
@@ -373,7 +408,6 @@ const { activeNav } = Astro.props;
       transform: translate(-2px, 3px) rotate(-0.4deg) scale(0.98);
       opacity: 0.1;
     }
-    
   }
 
   @keyframes subtleGhost2 {
@@ -418,8 +452,7 @@ const { activeNav } = Astro.props;
       opacity: 0.1;
     }
   }
-  
-  
+
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
     position: relative;
@@ -435,7 +468,7 @@ const { activeNav } = Astro.props;
     right: 2%;
     top: 4%;
   }
-  
+
   .hamburger-menu:hover {
     background: rgb(var(--color-border));
   }
@@ -443,12 +476,11 @@ const { activeNav } = Astro.props;
   nav {
     @apply flex w-full flex-col items-center md:ml-2 md:flex-row md:justify-between md:py-0;
   }
-  
+
   /* Main navigation items */
   #main-nav-items {
     @apply mt-4 flex flex-wrap items-center justify-evenly gap-x-6 gap-y-2 md:mt-0 md:flex-1 md:justify-evenly;
-    
-    
+
     /* Mobile menu styling - simple dropdown */
     @media (max-width: 640px) {
       position: absolute;
@@ -466,7 +498,7 @@ const { activeNav } = Astro.props;
       gap: 1rem;
     }
   }
-  
+
   /* Ensure hidden state works on mobile only */
   @media (max-width: 639px) {
     #main-nav-items.hidden {
@@ -474,67 +506,66 @@ const { activeNav } = Astro.props;
       top: 40%;
     }
   }
-  
+
   #main-nav-items li {
     @apply relative;
   }
-  
+
   #main-nav-items li a {
-    @apply px-2 py-1 text-center font-medium hover:text-skin-accent relative z-10 font-serif;
+    @apply relative z-10 px-2 py-1 text-center font-serif font-medium hover:text-skin-accent;
     font-size: 1.1em; /* Slightly reduced on mobile */
     padding: 0px;
     column-gap: 0.5rem;
-    
+
     @media (min-width: 480px) {
       font-size: 1.3em; /* Slightly reduced on small tablets */
       column-gap: 1rem;
     }
-    
+
     @media (min-width: 768px) {
       font-size: 1.5em; /* Slightly reduced on tablets */
       column-gap: 1.5rem;
     }
-    
+
     @media (min-width: 1024px) {
       font-size: 1.7em; /* Slightly reduced on desktop */
       column-gap: 1.5rem;
     }
   }
-  
+
   /* Active nav styling */
   #main-nav-items li a.active {
     color: rgb(var(--color-accent));
   }
-  
+
   #main-nav-items li.nav-separator {
     display: none;
     border-right: 0;
   }
-  
+
   /* Search and theme toggle */
   #nav-actions {
     @apply flex items-center gap-4 md:flex-shrink-0;
-    
+
     @media (max-width: 639px) {
       /* margin-top: 1rem; */
       gap: 0.5rem;
       padding-top: 1rem;
     }
-    
+
     @media (min-width: 768px) {
       margin-right: -110px;
     }
   }
-  
-  
+
   #nav-actions li {
     @apply flex items-center;
   }
-  
+
   #nav-actions li a {
     @apply w-auto;
   }
-  
+
   /* nav a.active {
     @apply underline;
   }
@@ -548,12 +579,12 @@ const { activeNav } = Astro.props;
   nav button svg {
     @apply h-8 w-8 fill-skin-base hover:fill-skin-accent; /* Increased from h-6 w-6 to h-8 w-8 */
   }
-  
+
   /* Search button specific styling */
   .search-btn svg {
     @apply h-9 w-9; /* Larger search icon */
   }
-  
+
   #theme-btn {
     @apply p-4 sm:p-2; /* Increased padding for better touch area */
   }
@@ -562,13 +593,13 @@ const { activeNav } = Astro.props;
     @apply hover:rotate-12; /* Increased scaling */
     margin: auto; /* Center the SVG within the button */
   }
-  
+
   /* Theme icon switching */
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
     display: none !important; /* Use !important to override any other display rules */
   }
-  
+
   #moon-svg,
   html[data-theme="dark"] #sun-svg {
     display: block !important; /* Use !important to ensure visibility */
@@ -590,11 +621,10 @@ const { activeNav } = Astro.props;
   .menu-icon.is-active .close {
     @apply opacity-100;
   }
-  
+
   .header-line {
     display: none;
   }
-
 </style>
 
 <script>
@@ -623,14 +653,14 @@ const { activeNav } = Astro.props;
 
   function toggleTheme() {
     const themeBtn = document.querySelector("#theme-btn");
-    
+
     themeBtn?.addEventListener("click", () => {
       const currentTheme = document.documentElement.getAttribute("data-theme");
       const newTheme = currentTheme === "dark" ? "light" : "dark";
-      
+
       document.documentElement.setAttribute("data-theme", newTheme);
       localStorage.setItem("theme", newTheme);
-      
+
       // Update aria-label
       themeBtn.setAttribute("aria-label", `Switch to ${currentTheme} mode`);
     });
@@ -652,64 +682,72 @@ const { activeNav } = Astro.props;
     toggleTheme();
   });
 
-   
   const colors_hue_rotate = [
     // Earthy warm/cool tints for ghost effect (works for both light/dark)
-    'invert(61%) sepia(12%) saturate(586%) hue-rotate(349deg) brightness(89%) contrast(88%)', // beige/tan
-    'invert(33%) sepia(18%) saturate(714%) hue-rotate(348deg) brightness(95%) contrast(93%)', // brown
-    'invert(52%) sepia(9%) saturate(475%) hue-rotate(344deg) brightness(95%) contrast(88%)',  // warm grey
+    "invert(61%) sepia(12%) saturate(586%) hue-rotate(349deg) brightness(89%) contrast(88%)", // beige/tan
+    "invert(33%) sepia(18%) saturate(714%) hue-rotate(348deg) brightness(95%) contrast(93%)", // brown
+    "invert(52%) sepia(9%) saturate(475%) hue-rotate(344deg) brightness(95%) contrast(88%)", // warm grey
   ];
 
   // Subtle ghost effect with random colors and dual animations
   function triggerGhostEffect() {
-    const lightGhost = document.querySelector('.nav-light-ghost') as HTMLImageElement | null;
-    const darkGhost = document.querySelector('.nav-dark-ghost') as HTMLImageElement | null;
-    
+    const lightGhost = document.querySelector(
+      ".nav-light-ghost"
+    ) as HTMLImageElement | null;
+    const darkGhost = document.querySelector(
+      ".nav-dark-ghost"
+    ) as HTMLImageElement | null;
+
     if (lightGhost && darkGhost) {
       // Choose two different random colors
-      let color1 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
-      let color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
-      
+      let color1 =
+        colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+      let color2 =
+        colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+
       // Ensure colors are different
       while (color1 === color2) {
-        color2 = colors_hue_rotate[Math.floor(Math.random() * colors_hue_rotate.length)];
+        color2 =
+          colors_hue_rotate[
+            Math.floor(Math.random() * colors_hue_rotate.length)
+          ];
       }
-      
+
       // Create first ghost object (clone)
       const ghost1Light = lightGhost.cloneNode(true) as HTMLImageElement;
       const ghost1Dark = darkGhost.cloneNode(true) as HTMLImageElement;
-      
+
       // Create second ghost object (clone)
       const ghost2Light = lightGhost.cloneNode(true) as HTMLImageElement;
       const ghost2Dark = darkGhost.cloneNode(true) as HTMLImageElement;
-      
+
       // Position the ghost objects
-      ghost1Light.style.position = 'absolute';
-      ghost1Light.style.top = '0';
-      ghost1Light.style.left = '0';
-      ghost1Light.style.zIndex = '-2';
-      
-      ghost1Dark.style.position = 'absolute';
-      ghost1Dark.style.top = '0';
-      ghost1Dark.style.left = '0';
-      ghost1Dark.style.zIndex = '-2';
-      
-      ghost2Light.style.position = 'absolute';
-      ghost2Light.style.top = '0';
-      ghost2Light.style.left = '0';
-      ghost2Light.style.zIndex = '-3';
-      
-      ghost2Dark.style.position = 'absolute';
-      ghost2Dark.style.top = '0';
-      ghost2Dark.style.left = '0';
-      ghost2Dark.style.zIndex = '-3';
-      
+      ghost1Light.style.position = "absolute";
+      ghost1Light.style.top = "0";
+      ghost1Light.style.left = "0";
+      ghost1Light.style.zIndex = "-2";
+
+      ghost1Dark.style.position = "absolute";
+      ghost1Dark.style.top = "0";
+      ghost1Dark.style.left = "0";
+      ghost1Dark.style.zIndex = "-2";
+
+      ghost2Light.style.position = "absolute";
+      ghost2Light.style.top = "0";
+      ghost2Light.style.left = "0";
+      ghost2Light.style.zIndex = "-3";
+
+      ghost2Dark.style.position = "absolute";
+      ghost2Dark.style.top = "0";
+      ghost2Dark.style.left = "0";
+      ghost2Dark.style.zIndex = "-3";
+
       // Apply colors
       ghost1Light.style.filter = color1;
-      ghost1Dark.style.filter = 'brightness(0) saturate(100%) ' + color1;
+      ghost1Dark.style.filter = "brightness(0) saturate(100%) " + color1;
       ghost2Light.style.filter = color2;
-      ghost2Dark.style.filter = 'brightness(0) saturate(100%) ' + color2;
-      
+      ghost2Dark.style.filter = "brightness(0) saturate(100%) " + color2;
+
       // Add to DOM
       const parent = lightGhost.parentElement;
       if (!parent) return;
@@ -717,13 +755,13 @@ const { activeNav } = Astro.props;
       parent.appendChild(ghost1Dark);
       parent.appendChild(ghost2Light);
       parent.appendChild(ghost2Dark);
-      
+
       // Apply animations
-      (ghost1Light as HTMLImageElement).classList.add('ghost-effect');
-      (ghost1Dark as HTMLImageElement).classList.add('ghost-effect');
-      (ghost2Light as HTMLImageElement).classList.add('ghost-effect-2');
-      (ghost2Dark as HTMLImageElement).classList.add('ghost-effect-2');
-      
+      (ghost1Light as HTMLImageElement).classList.add("ghost-effect");
+      (ghost1Dark as HTMLImageElement).classList.add("ghost-effect");
+      (ghost2Light as HTMLImageElement).classList.add("ghost-effect-2");
+      (ghost2Dark as HTMLImageElement).classList.add("ghost-effect-2");
+
       // Remove ghost objects after animation completes
       setTimeout(() => {
         const cleanup = (el: HTMLElement) => {
@@ -738,31 +776,31 @@ const { activeNav } = Astro.props;
       }, 3000); // Animation duration is 3 seconds
     }
   }
-  
+
   function scheduleGhostEffect() {
     // Random delay around 60 seconds (once per minute)
     const minDelay = 55000; // 55 seconds
     const maxDelay = 65000; // 65 seconds
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-    
+
     setTimeout(() => {
       triggerGhostEffect();
       scheduleGhostEffect(); // Schedule the next one
     }, delay);
   }
-  
+
   // Start the ghost effect cycle
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Initial delay before first ghost effect
     setTimeout(scheduleGhostEffect, 60000); // Start after 60 seconds
-    
+
     // Add click event listener to logo container
-    const logoContainer = document.querySelector('.logo-container');
-    const logoLink = document.querySelector('.nav-logo');
-    
+    const logoContainer = document.querySelector(".logo-container");
+    const logoLink = document.querySelector(".nav-logo");
+
     if (logoContainer && logoLink) {
       // Click always triggers ghost effect
-      logoLink.addEventListener('click', () => {
+      logoLink.addEventListener("click", () => {
         triggerGhostEffect();
       });
       // Hover/focus triggers ghost effect (throttled)
@@ -774,22 +812,24 @@ const { activeNav } = Astro.props;
           logoHoverTimeout = null;
         }, 2500);
       };
-      logoLink.addEventListener('mouseenter', triggerOnHover);
-      logoLink.addEventListener('focusin', triggerOnHover);
-      logoLink.addEventListener('touchstart', triggerOnHover, { passive: true });
+      logoLink.addEventListener("mouseenter", triggerOnHover);
+      logoLink.addEventListener("focusin", triggerOnHover);
+      logoLink.addEventListener("touchstart", triggerOnHover, {
+        passive: true,
+      });
     }
   });
-  
+
   // Re-setup on view transitions
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     scheduleGhostEffect();
-    
+
     // Re-add click event listener after view transitions
-    const logoContainer = document.querySelector('.logo-container');
-    const logoLink = document.querySelector('.nav-logo');
-    
+    const logoContainer = document.querySelector(".logo-container");
+    const logoLink = document.querySelector(".nav-logo");
+
     if (logoContainer && logoLink) {
-      logoLink.addEventListener('click', () => {
+      logoLink.addEventListener("click", () => {
         triggerGhostEffect();
       });
       let logoHoverTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -800,10 +840,11 @@ const { activeNav } = Astro.props;
           logoHoverTimeout = null;
         }, 2500);
       };
-      logoLink.addEventListener('mouseenter', triggerOnHover);
-      logoLink.addEventListener('focusin', triggerOnHover);
-      logoLink.addEventListener('touchstart', triggerOnHover, { passive: true });
+      logoLink.addEventListener("mouseenter", triggerOnHover);
+      logoLink.addEventListener("focusin", triggerOnHover);
+      logoLink.addEventListener("touchstart", triggerOnHover, {
+        passive: true,
+      });
     }
   });
 </script>
-

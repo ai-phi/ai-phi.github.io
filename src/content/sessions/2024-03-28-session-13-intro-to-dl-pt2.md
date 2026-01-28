@@ -1,21 +1,24 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-03-28T19:00:00Z
-# modDatetime:
-title: Session 13 - Generative AI, Sequence Models and Training Paradigms
+author: ai-phi
+pubDatetime: 2024-03-28T18:00:00.000Z
+title: "Generative AI, Sequence Models and Training Paradigms"
 slug: session-13-intro-dl-pt2
+sessionNumber: 13
+titleShort: Generative AI Paradigms
+speakers:
+  - name: Stefan Lattner
 draft: false
 featured: false
 tags:
-  - Session
   - Deep Learning
   - Generative AI
   - Sequence Models
   - Training Paradigms
   - other
-description: Generative AI, Sequence Models and Training Paradigms by Stefan Lattner (Sony CSL)
+description: >-
+  Generative AI, Sequence Models and Training Paradigms by Stefan Lattner (Sony
+  CSL)
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 This is the second part of Stefan Lattner's (Sony CSL) presentation on the evolution and the current state of the art of Deep Learning. It is designed to bridge the gap between the highly technical aspects of DL and audiences without a technical background, such as those from the humanities. The goal is to enhance their comprehension of this complex technology. Moreover, Lattner accomplishes more than just explaining the computations involved in Deep Learning; he also critically explores its ramifications, contributing to a more nuanced discussion that benefits both newcomers and experienced practitioners. The previous session has already highlighted the value of integrating diverse perspectives and insights into our understanding of DL algorithms. We eagerly anticipate further enriching discussions that stimulate deeper reflection and cross-disciplinary engagement.

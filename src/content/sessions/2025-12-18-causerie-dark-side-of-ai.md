@@ -1,16 +1,15 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-12-18T19:00:00+01:00
-# modDatetime:
-title: >-
-  Session 29 - Xmas Causerie on the dark side of AI
+author: ai-phi
+pubDatetime: 2025-12-18T18:00:00.000Z
+title: Xmas Dark Side of AI
 slug: session-29-causerie-dark-side-of-ai
+sessionNumber: 29
+titleShort: Dark Side of AI
+speakers:
+  - name: AI-Phi
 draft: false
 featured: false
-nextSession: true
-nextFormal: false
 tags:
-  - Causerie
   - Privacy
   - Surveillance
   - Manipulation
@@ -18,11 +17,11 @@ tags:
   - Environmental Impact
   - Community
   - Xmas
-description: "How can we address the systemic challenges of the digital ecosystem? This festive session will be shaped by community discussion."
-# previousOgImage: assets/session-29-xmas-dark-side.jpg
-ogImage: "/og/og-session-default.svg"
+description: >-
+  How can we address the systemic challenges of the digital ecosystem? This
+  festive session will be shaped by community discussion.
 kind: causerie
-series: "AI-Phi Causeries"
+series: AI-Phi Causeries
 ---
 
 This causerie session, shaped by community discussion, will address the systemic challenges of the digital ecosystem.

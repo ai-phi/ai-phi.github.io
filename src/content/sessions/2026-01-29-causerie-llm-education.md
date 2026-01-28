@@ -1,22 +1,26 @@
 ---
-author: AI-PHI
-pubDatetime: 2026-01-29T19:00:00+01:00
-# modDatetime:
-title: >-
-  Causerie on LLMs for French Secondary Education: Ethical Questions and Applied Research
+author: ai-phi
+pubDatetime: 2026-01-29T18:00:00.000Z
+title: "LLMs for French Secondary Education: Ethical Questions and Applied Research"
 slug: session-31-causerie-llm-education
+sessionNumber: 31
+titleShort: Education LLM Ethics
+speakers:
+  - name: Thomas Souverain
+    affiliation: CEA Paris-Saclay
+baseIllustration: /images/base/sessions/session-31-causerie-llm-education.jpeg
 draft: false
 featured: true
-nextSession: true
-nextFormal: false
 tags:
-  - Causerie
   - Education
   - Watermarks
   - Adversarial Attacks
-description: "Large language models are rapidly entering classrooms, reshaping learning, assessment, and teaching practices. This session explores the ethical challenges raised by educational LLMs, drawing on the OpenLLM France 2030 project, and focuses on applied issues such as detecting LLM-assisted cheating and ensuring robustness against adversarial attacks in educational settings."
-# previousOgImage: ../og/og-session-30.webp
-ogImage: "/og/og-session-default.svg"
+description: >-
+  Large language models are rapidly entering classrooms, reshaping learning,
+  assessment, and teaching practices. This session explores the ethical
+  challenges raised by educational LLMs, drawing on the OpenLLM France 2030
+  project, and focuses on applied issues such as detecting LLM-assisted cheating
+  and ensuring robustness against adversarial attacks in educational settings.
 kind: causerie
 ---
 
@@ -26,7 +30,7 @@ The discussion is grounded in an ongoing France 2030–funded research initiativ
 ## About Thomas Souverain
 
 <img
-  src="/assets/session-31-thomas_souverain.jpeg"
+  src="/images/base/sessions/session-31-causerie-llm-education.jpeg"
   alt="Portrait of Thomas Souverain"
   class="speaker-portrait"
 />
@@ -36,4 +40,4 @@ Thomas Souverain is a postdoctoral researcher at CEA Paris-Saclay and teaches AI
 
 **Date and Time:** Thursday, 29th of January 2026 - **7 PM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** upcoming
+**Registration:** [here](https://luma.com/9foimifa)

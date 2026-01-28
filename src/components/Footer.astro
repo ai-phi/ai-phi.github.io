@@ -31,7 +31,7 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
       </a>
     </div>
     
-    <span class="copyright-text">© 2023–2025 | All rights reserved.</span>
+    <span class="copyright-text">© 2023–2026 | All rights reserved.</span>
   </div>
   
   <!-- Random icons positioned half outside footer -->
@@ -66,12 +66,12 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     @apply text-skin-inverted font-sans;
     font-size: 1.1em;
     font-weight: 600;
-
     
     @media (max-width: 420px) {
       margin-top: 25px;
       font-size: 0.8em;
     }
+    
   }
 
   .footer-socials {
@@ -112,6 +112,14 @@ const { noMarginTop = false, showIcons = true } = Astro.props;
     color: #ffffff;
   }
   html[data-theme="dark"] .footer-container .footer-subscribe {
+    color: #000000;
+  }
+
+    /* Force explicit contrasting colors per theme for subscribe link */
+  html[data-theme="light"] .footer-container .copyright-text {
+    color: #ffffff;
+  }
+  html[data-theme="dark"] .footer-container .copyright-text {
     color: #000000;
   }
 

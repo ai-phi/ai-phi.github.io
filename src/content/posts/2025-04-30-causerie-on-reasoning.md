@@ -1,31 +1,30 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2025-04-30T19:00:00Z
 # modDatetime:
 title: Our Causerie on Reasoning
 slug: causerie-on-reasoning
 draft: false
 featured: false
-nextFormal: false
 tags:
   - Causerie
   - Reasoning
   - LLM
   - AI
   - Philosophy
-description: An article written by Michael Anslow outlining the AI-Phi community discussion during our causerie on 'reasoning'. It also contains opinions from various AI-Phi members.
-ogImage: assets/AI-Phi-Causerie-Reasoning.png
+description: An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains opinions from various ai-phi members.
+ogImage: assets/ai-phi-Causerie-Reasoning.png
 ---
 
-## What is AI-Phi?
+## What is ai-phi?
 
-AI-Phi is a research community in Paris that operates at the intersection of AI and philosophy. Its purpose is to set the stage for social and intellectual gatherings that nurture connections, discussion and debate among diverse individuals.
+ai-phi is a research community in Paris that operates at the intersection of AI and philosophy. Its purpose is to set the stage for social and intellectual gatherings that nurture connections, discussion and debate among diverse individuals.
 
 ## What is a Causerie?
 
 A traditional seminar typically showcases a single expert’s perspective, often leaving the audience in the background, in a passive role. In contrast, we wanted to create a space where individuals could actively contribute, bringing their unique research contexts and personalities into an open-form, relaxed discussion. To achieve this, we took inspiration from the French concept of a _causerie_—a term originating from the Parisian salons, where intellectuals engaged in informal yet thought-provoking discussion.
 
-<img src="/assets/AI-Phi-Causerie-Reasoning.png" alt="Cyberpunk illustration of french salons." />
+<img src="/assets/ai-phi-Causerie-Reasoning.png" alt="Cyberpunk illustration of french salons." />
 
 ## Our Approach
 
@@ -57,7 +56,7 @@ Later in our discussion there was also the question of whether reasoning really 
 
 Perhaps what constitutes reasoning lies along a continuum. We start from vague intuitions and emotions that continuously survey the landscape of our embodied experience. These serve to better stage the information we have about the world. Somewhere further down the road of this continuum, automatic processes steer our cognition, creating meandering moments of thought from which ideas drift into our minds for consideration. As we arrive at more self aware and goal-oriented modes of reasoning, we make crude judgments and justifications based on instinct, where social aspects such as appeals to authority and expertise serve as the basis for our arguments. Here, we are far away from objective fact, focusing on forming convenient narratives and explanations that allow us to co-exist in social contexts. The examples of reasoning we usually talk about in AI are at the end of this continuum, involving facts, rules and search across symbolic-like representations based on logically valid inference steps. All of these parts of the continuum are probably necessary for an autonomous AI with fully integrated reasoning. Having said that, not every problem out there, and perhaps most of the problems we might practically encounter as engineers, might not require such depth of integration and complexity.
 
-_This was just one viewpoint on the intense and varied discussion of our first causerie. It is emblematic of an attempt to grasp at a deeper understanding rather than a definitive statement on reasoning itself. What follows are more perspectives from the AI-Phi community._
+_This was just one viewpoint on the intense and varied discussion of our first causerie. It is emblematic of an attempt to grasp at a deeper understanding rather than a definitive statement on reasoning itself. What follows are more perspectives from the ai-phi community._
 
 _Michael Anslow_
 
@@ -133,7 +132,7 @@ Now, when it comes to today’s most popular AI architecture — Transformers �
 [🐧 Twitter](https://x.com/AidaElam/);
 [💼 LinkedIn](www.linkedin.com/in/aida-elamrani);
 
-While collectively _reasoning about reasoning_ during the causerie session, a linguistic confusion was raised a few times. Reasoning carries a variety of nuances, but two of them consistently stood out in our AI-Phi conversation:
+While collectively _reasoning about reasoning_ during the causerie session, a linguistic confusion was raised a few times. Reasoning carries a variety of nuances, but two of them consistently stood out in our ai-phi conversation:
 
 (1) the _actions_ and processes by which reasoning happens (i.e. cerebral or algorithmic activity);
 
@@ -161,4 +160,4 @@ For some reason, I guess the next step would be to compare the structures of var
 
 ## Closing Remarks
 
-Our first Causerie on Reasoning brought together diverse minds to examine one of AI's hot topics — reasoning. In the spirit of AI-Phi, our Paris-based initiative at the intersection of AI and philosophy, the causerie aimed not to define reasoning in absolute terms, but to explore it by asking many questions, probing its definitions, functions, and boundaries through a shared intellectual experience. Rather than convening around lectures, we built our conversations on open-ended questions, historical contexts, and informal exchanges that gave space to intuition, emotion, and multiple kinds of expertise. In the end, the causerie did not produce a single answer—nor was that ever the goal. Instead, it revealed the multiplicity of what reasoning might be, a conceptual puzzle whose contours shift depending on whether we look through the eyes of philosophers, engineers, or everyday thinkers. And from this shared reflection, new questions emerged—fuel for future causeries and deeper, collective inquiry.
+Our first Causerie on Reasoning brought together diverse minds to examine one of AI's hot topics — reasoning. In the spirit of ai-phi, our Paris-based initiative at the intersection of AI and philosophy, the causerie aimed not to define reasoning in absolute terms, but to explore it by asking many questions, probing its definitions, functions, and boundaries through a shared intellectual experience. Rather than convening around lectures, we built our conversations on open-ended questions, historical contexts, and informal exchanges that gave space to intuition, emotion, and multiple kinds of expertise. In the end, the causerie did not produce a single answer—nor was that ever the goal. Instead, it revealed the multiplicity of what reasoning might be, a conceptual puzzle whose contours shift depending on whether we look through the eyes of philosophers, engineers, or everyday thinkers. And from this shared reflection, new questions emerged—fuel for future causeries and deeper, collective inquiry.

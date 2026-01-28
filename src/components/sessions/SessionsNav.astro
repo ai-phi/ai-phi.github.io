@@ -13,24 +13,23 @@ const navItems = [
 ];
 ---
 
-<nav
-  class="mb-10 flex flex-wrap gap-3"
-  aria-label="Sessions navigation"
->
-  {navItems.map(({ label, href, key }) => {
-    const isActive = active === key;
-    return (
-      <a
-        href={href}
-        aria-current={isActive ? "page" : undefined}
-        class={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-          isActive
-            ? "border-skin-line/60 bg-[rgb(var(--color-card-muted))] text-skin-base font-semibold"
-  : "border-skin-line/60 text-skin-base hover:bg-[rgb(var(--color-card-muted))] hover:font-semibold"
-        }`}
-      >
-        {label}
-      </a>
-    );
-  })}
+<nav class="mb-10 flex flex-wrap gap-3" aria-label="Sessions navigation">
+  {
+    navItems.map(({ label, href, key }) => {
+      const isActive = active === key;
+      return (
+        <a
+          href={href}
+          aria-current={isActive ? "page" : undefined}
+          class={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+            isActive
+              ? "border-skin-line/60 bg-[rgb(var(--color-card-muted))] text-skin-base font-semibold"
+              : "border-skin-line/60 text-skin-base hover:bg-[rgb(var(--color-card-muted))] hover:font-semibold"
+          }`}
+        >
+          {label}
+        </a>
+      );
+    })
+  }
 </nav>

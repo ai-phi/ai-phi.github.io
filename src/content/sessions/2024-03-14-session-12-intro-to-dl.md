@@ -1,18 +1,19 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-03-14T19:00:00Z
-# modDatetime:
-title: Session 12 - Introduction to Deep Learning
+author: ai-phi
+pubDatetime: 2024-03-14T18:00:00.000Z
+title: Introduction to Deep Learning
 slug: session-12-intro-dl
+sessionNumber: 12
+titleShort: Intro to Deep Learning
+speakers:
+  - name: Stefan Lattner
 draft: false
 featured: false
 tags:
-  - Session
   - Deep Learning
   - other
 description: Introduction to Deep Learning by Stefan Lattner (Sony CSL)
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 Stefan Lattner (Sony CSL) will deliver both a historic and technical build-up towards the state of the art of Deep Learning. This is an accessible presentation, that is suitable for a non-technical audience, while also providing original insights to a technical audience.

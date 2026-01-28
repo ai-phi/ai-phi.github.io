@@ -1,23 +1,26 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-06-26T11:00:00Z
-# modDatetime:
-title: >-
-  Session 25- Kathinka Evers (Uppsala University) - Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
+author: ai-phi
+pubDatetime: 2025-06-26T09:00:00.000Z
+title: "Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?"
 slug: session-25-kathinka-evers
+sessionNumber: 25
+titleShort: Consciousness Futures
+speakers:
+  - name: Kathinka Evers
+    affiliation: Uppsala University
+baseIllustration: /images/base/sessions/session-25-kathinka-evers.png
 draft: false
 featured: false
-nextSession: false
-nextFormal: false
 tags:
-  - Seminar Series
   - Artificial Consciousness
   - Neuroethics
-description: Kathinka Evers explores why the question of artificial sentience (or “awareness”, or “consciousness”) is raised in science receiving considerable public funding despite the lack of empirical evidence? What this might mean and what the implications of it are.
-# previousOgImage: assets/AI-Phi-session-25.png
-ogImage: "/og/og-session-default.svg"
+description: >-
+  Kathinka Evers explores why the question of artificial sentience (or
+  “awareness”, or “consciousness”) is raised in science receiving considerable
+  public funding despite the lack of empirical evidence? What this might mean
+  and what the implications of it are.
 kind: seminar
-series: "AI-Phi Seminar Series"
+series: AI-Phi Seminar Series
 ---
 
 ## Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
@@ -36,7 +39,7 @@ In view of how human nature has expressed itself throughout history, conscious A
 
 ## About Kathinka Evers
 
-<img src="/assets/ai-phi-kathinka-evers-small.png" alt="A portrait of Kathinka Evers" />
+<img src="/images/base/sessions/session-25-kathinka-evers.png" alt="A portrait of Kathinka Evers" />
 
 Kathinka Evers is Professor of philosophy, senior researcher at the Centre for Research Ethics & Bioethics (CRB) at Uppsala University, Sweden, and Professor ad honoram at the Universidad Central de Chile, Santiago. She has been Invited Professor on the Chair Condorcet at École Normale Supérieure, Paris (2002); at Collège de France, Paris (2006 -7). 2013-21, she was member of the Science and Infrastructure Board of the European Flagship, the Human Brain Project (HBP), where she directed the Ethics and Society Subproject, and led the Philosophy and Neuroethics research. Today, Kathinka Evers co-leads philosophy research in the Horizon 2020-projects Neurotwin and CAVAA. Her research focuses on philosophy of mind and brain, bioethics and neuroethics. She directs the teaching and research on neuroethics at Uppsala University, where she started the first courses in the subject. She is also interested in the social responsibility of science and was between 1997 and 2002 Executive Director for the Standing Committee for Ethics and Responsibility in Science of the International Council for Science (ICSU); and 2008-2014 Expert in Scientific Review Panels for the ERC on ‘The Human Mind and Its Complexity’. Since her first public lectures at the University of Oxford in 1990, she has lectured extensively at universities and research centres in Europe, the U.S., South America, Asia, and Australia.
 

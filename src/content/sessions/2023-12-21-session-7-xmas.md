@@ -1,18 +1,20 @@
 ---
-author: AI-PHI
-pubDatetime: 2023-12-21T19:00:00Z
-
-title: Session  7 - Christmas Session + NeurIPS report
+author: ai-phi
+pubDatetime: 2023-12-21T19:00:00.000Z
+title: Christmas Session + NeurIPS report
 slug: session-7-xmas
+sessionNumber: 7
+titleShort: Xmas & NeurIPS
+speakers:
+  - name: Michael Anslow
+  - name: Stefan Lattner
 draft: false
 tags:
-  - Session
   - Xmas
   - Understanding
   - other
 description: X-mas Session and NeurIPS report by Stefan Lattner
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 ## About the 7th session (12-21-2023):

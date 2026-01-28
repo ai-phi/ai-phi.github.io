@@ -11,7 +11,10 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const glossaryTerms = await getCollection("glossary", ({ data }) => !data.draft);
+  const glossaryTerms = await getCollection(
+    "glossary",
+    ({ data }) => !data.draft
+  );
 
   const postResult = glossaryTerms.map(glossaryTerm => ({
     params: { slug: glossaryTerm.slug },
@@ -38,4 +41,10 @@ const pagination = getPagination({
 });
 ---
 
-{glossaryTerm ? <PostDetails post={glossaryTerm} /> : <GlossaryTerms {...pagination} />}
+{
+  glossaryTerm ? (
+    <PostDetails post={glossaryTerm} />
+  ) : (
+    <GlossaryTerms {...pagination} />
+  )
+}

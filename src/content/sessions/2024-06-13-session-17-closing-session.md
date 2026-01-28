@@ -1,23 +1,24 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-06-13T19:00:00Z
-# modDatetime:
-title: Session 17 - Closing Session
+author: ai-phi
+pubDatetime: 2024-06-13T17:00:00.000Z
+title: Closing Session
 slug: session-17-closing
+sessionNumber: 17
+titleShort: Closing Session
+speakers:
+  - name: AI-Phi
 draft: false
 featured: false
 tags:
-  - Session
   - Closing
-  - AI-PHI
+  - ai-phi
   - Discussion
   - other
-description: 1st AI-PHI year Closing Session
+description: 1st ai-phi year Closing Session
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
-We’re happy to announce the closing session of the first year of AI-PHI, this Thursday, the 13th of June.
+We’re happy to announce the closing session of the first year of ai-phi, this Thursday, the 13th of June.
 This session will be dedicated to a retrospective on this past year, and discussions about the future of our community (if weather allows, in the garden!).
 
 Thank you again for your participation and insights throughout this adventure!

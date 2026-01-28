@@ -1,26 +1,31 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-11-27T14:00:00+01:00
-# modDatetime:
-title: >-
-  Session 28 - Intelligences - Alice and Bob's adventures in wonderlands of Reason
+author: ai-phi
+pubDatetime: 2025-11-27T13:00:00.000Z
+title: Alice and Bob's adventures in wonderlands of Reason
 slug: session-28-bessiere-wonderlands-of-reason
+sessionNumber: 28
+titleShort: Wonderlands of Reason
+speakers:
+  - name: Pierre Bessière
+    affiliation: CNRS - College de France - LPPA
+baseIllustration: /images/base/sessions/session-28-bessiere-wonderlands-of-reason.png
 draft: false
 featured: false
-nextSession: false
-nextFormal: false
 tags:
-  - Seminar Series
   - Intelligence
   - Meaning
   - Probability
   - Logic
   - Reasoning
-description: "In this talk, Pierre Bessière presents the central ideas of his new book: why having a body fundamentally shapes intelligence, why disembodied AI systems depend on humans for meaning, and how natural agents remain necessarily ignorant of the world they act in. He contrasts two models of reasoning: logic and probability, arguing that only probabilistic reasoning allows intelligences to act meaningfully under uncertainty."
-# previousOgImage: assets/session-28-og.jpg
-ogImage: "/og/og-session-default.svg"
+description: >-
+  In this talk, Pierre Bessière presents the central ideas of his new book: why
+  having a body fundamentally shapes intelligence, why disembodied AI systems
+  depend on humans for meaning, and how natural agents remain necessarily
+  ignorant of the world they act in. He contrasts two models of reasoning: logic
+  and probability, arguing that only probabilistic reasoning allows
+  intelligences to act meaningfully under uncertainty.
 kind: seminar
-series: "AI-Phi Seminar Series"
+series: AI-Phi Seminar Series
 ---
 
 ![Bessiere's latest book cover](@assets/images/session-28-book-cover.jpg)
@@ -38,7 +43,7 @@ Pierre Bessiere will discuss four key points made in his latest book (released n
 
 ## About Pierre Bessière
 
-![Portrait of Pierre Bessière](@assets/images/session-28-bessiere.png)
+![Portrait of Pierre Bessière](/images/base/sessions/session-28-bessiere-wonderlands-of-reason.png)
 
 Pierre Bessière is an emeritus director at the CNRS, working within the ISIR laboratory at Sorbonne University. He led the [Bayesian Programming research project](https://bayesian-programming.org), whose central focus is the probabilistic modelling of perception, inference, learning, and action. The group’s core thesis is that subjectivist (Bayesian) probabilities offer a simple mathematical theory of cognition and rationality—an alternative and an extension to logic.
 

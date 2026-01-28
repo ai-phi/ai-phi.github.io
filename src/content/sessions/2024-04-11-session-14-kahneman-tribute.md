@@ -1,24 +1,24 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-04-11T19:00:00Z
-# modDatetime:
-title: Session 14 - Tribute to Daniel Kahneman
+author: ai-phi
+pubDatetime: 2024-04-11T17:00:00.000Z
+title: Tribute to Daniel Kahneman
 slug: session-14-kahneman-tribute
+sessionNumber: 14
+titleShort: Kahneman Tribute
+speakers:
+  - name: ai-phi
 draft: false
 featured: false
 tags:
-  - Session
   - Tribute
   - Daniel Kahneman
   - Lex Fridman
   - Discussion
-  - other
 description: Interactive discussion around Kahneman's interview with Lex Fridman
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
-In this session, we will honor the memory of Daniel Kahneman, who passed away on March 27, 2024. We will watch an interview with Kahneman conducted four years ago by Lex Fridman, the renowned AI podcaster. We will explore a new format, inspired by suggestions from the AI-PHI Forum, designed to foster interactive discussions. We will regularly pause the video to engage in topics of interest.
+In this session, we will honor the memory of Daniel Kahneman, who passed away on March 27, 2024. We will watch an interview with Kahneman conducted four years ago by Lex Fridman, the renowned AI podcaster. We will explore a new format, inspired by suggestions from the ai-phi Forum, designed to foster interactive discussions. We will regularly pause the video to engage in topics of interest.
 
 ## Details
 

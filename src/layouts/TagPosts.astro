@@ -28,9 +28,11 @@ const { currentPage, totalPages, paginatedEntries, tag, tagName } = Astro.props;
   >
     <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
     <ul>
-      {paginatedEntries.map(({ data, slug }) => (
-        <Card href={`/posts/${slug}`} frontmatter={data} />
-      ))}
+      {
+        paginatedEntries.map(({ data, slug }) => (
+          <Card href={`/posts/${slug}`} frontmatter={data} />
+        ))
+      }
     </ul>
   </Main>
 

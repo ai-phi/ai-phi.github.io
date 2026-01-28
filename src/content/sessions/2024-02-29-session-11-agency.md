@@ -1,18 +1,20 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-02-29T19:00:00Z
-# modDatetime:
-title: Session 11 - Agency in Humans and in Machines
+author: ai-phi
+pubDatetime: 2024-02-29T18:00:00.000Z
+title: Agency in Humans and in Machines
 slug: session-11-agency
+sessionNumber: 11
+titleShort: Human Machine Agency
+speakers:
+  - name: Lucas Battich
+  - name: David Colliaux
 draft: false
 featured: false
 tags:
-  - Session
   - Agency
   - other
 description: Agency in Humans and in Machines by Lucas Battich and David Colliaux
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 In this joint session, Lucas Battich (Institut Jean Nicod, ENS-PSL) and David Colliaux (Sony) will combine their knowledge of cognitive science and robotics engineering to explore the notion of agency in humans and in machines.

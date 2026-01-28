@@ -1,39 +1,68 @@
 ---
 import { LOCALE } from "@config";
+import getSessionKindLabel from "@utils/getSessionKindLabel";
+import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
 type OgImage = string | { src: string };
 
+type Speaker = {
+  name: string;
+  affiliation?: string;
+};
+
 interface Props {
+  slug: string;
   title: string;
+  titleShort?: string;
+  sessionNumber?: number;
+  speakers?: Speaker[];
   description?: string;
   date?: string | Date;
   kind?: "seminar" | "causerie" | "other" | string;
   ogImage?: OgImage;
+  baseIllustration?: string;
   href: string;
 }
 
-const { title, description, date, kind, ogImage, href } = Astro.props as Props;
+const {
+  slug,
+  title,
+  titleShort,
+  sessionNumber,
+  speakers = [],
+  description,
+  date,
+  kind,
+  ogImage,
+  baseIllustration,
+  href,
+} = Astro.props as Props;
 
-const DEFAULT_OG_IMAGE = "/og/ai-phi-default-og.webp";
+const overrideOgImage =
+  typeof ogImage === "string" ? ogImage : ogImage?.src ?? undefined;
+const resolvedImage = await resolveSessionOgImage(slug, overrideOgImage);
 
-const normalizeOgImage = (image?: OgImage) => {
-  if (!image) return undefined;
-  if (typeof image === "string") {
-    if (image.startsWith("http") || image.startsWith("/")) return image;
-    return `/${image}`;
-  }
-  return image.src;
+const kindLabel = getSessionKindLabel(kind);
+const kindLower = (kind ?? "").toLowerCase();
+const heading = title;
+
+const formatSingleSpeaker = (speaker?: Speaker) => {
+  if (!speaker || !speaker.name) return null;
+  return speaker.affiliation
+    ? `${speaker.name} (${speaker.affiliation})`
+    : speaker.name;
 };
 
-const resolvedImage = normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
-
-const kindLabels: Record<string, string> = {
-  seminar: "Seminar series",
-  causerie: "Causerie",
-  other: "Other",
+const formatSpeakers = (list: Speaker[]) => {
+  if (!list.length) return "AI-Phi";
+  const formatted = list.map(formatSingleSpeaker).filter(Boolean) as string[];
+  if (!formatted.length) return "AI-Phi";
+  if (formatted.length === 1) return formatted[0];
+  if (formatted.length === 2) return `${formatted[0]} & ${formatted[1]}`;
+  return `${formatted.slice(0, -1).join(", ")} & ${
+    formatted[formatted.length - 1]
+  }`;
 };
-const kindLabel =
-  kindLabels[(kind ?? "").toLowerCase()] ?? "Other";
 
 const dateValue = date ? new Date(date) : null;
 const hasTime = !!(
@@ -59,62 +88,86 @@ const displayTime =
         timeZone: LOCALE.timeZone ?? "Europe/Paris",
       })
     : "";
+
+const showKindSuffix =
+  kindLower === "causerie"
+    ? "CAUSERIE"
+    : kindLower === "seminar"
+      ? "SEMINAR SERIES"
+      : undefined;
 ---
 
 <article
-  class="group relative rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-4 sm:p-5 shadow-lg shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+  class="group relative rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-4 shadow-lg shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
 >
-  <div class="flex flex-col gap-4">
-    <div class="flex flex-col gap-5 md:flex-row md:items-start">
+  <div class="pointer-events-none flex flex-col gap-3 text-skin-base">
+    <div class="flex flex-col gap-2">
       <div
-        class="relative w-full shrink-0 overflow-hidden rounded-xl bg-[rgb(var(--color-card-image-bg))] aspect-[16/9] md:w-60 lg:w-72 md:self-start"
+        class="flex flex-wrap items-center justify-end gap-2 text-xs font-medium text-skin-base/80"
       >
-        <img
-          src={resolvedImage}
-          alt={title}
-          class="h-full w-full object-cover object-center scale-[1.12]"
-          loading="lazy"
-          decoding="async"
-        />
+        <span class="flex items-center gap-1">
+          <span>ai-phi</span>
+          {
+            sessionNumber ? (
+              <span class="text-sm font-semibold">#{sessionNumber}</span>
+            ) : (
+              ""
+            )
+          }
+        </span>
+        {
+          showKindSuffix && (
+            <span class="flex items-center gap-1 text-skin-base/70">
+              <span aria-hidden="true">·</span>
+              <span class="font-semibold">{showKindSuffix}</span>
+            </span>
+          )
+        }
+        {
+          dateValue && (
+            <span class="flex items-center gap-1">
+              <span aria-hidden="true">·</span>
+              <time datetime={dateValue.toISOString()}>{displayDate}</time>
+              {hasTime && <span class="text-nowrap">{displayTime}</span>}
+            </span>
+          )
+        }
       </div>
 
-      <div class="min-w-0 flex-1 pointer-events-none flex flex-col gap-3 text-skin-base">
-        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
-          {kindLabel}
-        </p>
+      <h3
+        class="text-2xl font-semibold leading-tight transition-colors duration-150 group-hover:underline group-hover:underline-offset-4"
+      >
+        {heading}
+      </h3>
 
-        <h3
-          class="text-2xl font-semibold leading-snug transition-all duration-150 group-hover:text-3xl"
-        >
-          {title}
-        </h3>
-
-        {dateValue && (
-          <p class="text-base font-medium text-skin-base opacity-80">
-            <time datetime={dateValue.toISOString()}>{displayDate}</time>
-            {hasTime && (
-              <>
-                <span aria-hidden="true"> · </span>
-                <span class="text-nowrap">{displayTime}</span>
-              </>
-            )}
-          </p>
-        )}
-
-      </div>
+      <p class="text-base font-medium text-skin-base opacity-80">
+        {formatSpeakers(speakers)}
+      </p>
     </div>
 
-    {description && (
-      <p class="text-base leading-relaxed text-skin-base opacity-80">
-        {description}
-      </p>
-    )}
+    {
+      description && (
+        <p class="text-sm leading-relaxed text-skin-base opacity-80">
+          {description}
+        </p>
+      )
+    }
+
+    <div class="flex justify-center">
+      <img
+        src={resolvedImage}
+        alt={title}
+        class="w-full max-w-xl rounded-xl object-contain"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
 
     <div class="pt-2">
       <span
         class="inline-flex items-center gap-1 font-medium text-skin-base transition-all duration-150 group-hover:gap-2"
       >
-        View session
+        More details
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
@@ -122,7 +175,7 @@ const displayTime =
           fill="currentColor"
           aria-hidden="true"
         >
-          <path d="m13 5 7 7-7 7M4 12h16" />
+          <path d="m13 5 7 7-7 7M4 12h16"></path>
         </svg>
       </span>
     </div>
@@ -131,6 +184,5 @@ const displayTime =
   <a
     href={href}
     class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
-    aria-label={`Open ${title}`}
-  ></a>
+    aria-label={`Open ${kindLabel} session ${title}`}></a>
 </article>

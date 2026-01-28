@@ -1,5 +1,5 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2024-02-29T18:00:00Z
 # modDatetime:
 title: Job Offer! Research Assistant in AI Ethics at ENS

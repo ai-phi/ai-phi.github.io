@@ -10,7 +10,8 @@ export interface Props {
   lastUrl?: string;
 }
 
-const { currentPage, totalPages, prevUrl, nextUrl, firstUrl, lastUrl } = Astro.props;
+const { currentPage, totalPages, prevUrl, nextUrl, firstUrl, lastUrl } =
+  Astro.props;
 
 const prev = currentPage > 1 ? "" : "disabled";
 const next = currentPage < totalPages ? "" : "disabled";
@@ -22,7 +23,10 @@ const next = currentPage < totalPages ? "" : "disabled";
       {/* First button - only show when more than 4 pages */}
       {totalPages > 4 ? (
         currentPage > 1 && firstUrl ? (
-          <a href={firstUrl} class="group inline-flex items-center hover:text-skin-accent mr-3 select-none">
+          <a
+            href={firstUrl}
+            class="group inline-flex items-center hover:text-skin-accent mr-3 select-none"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg">
               <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
               <path d="M6.707 17.293 2.414 13H12v-2H2.414l4.293-4.293-1.414-1.414L-1.414 12l6.707 6.707z" />
@@ -30,7 +34,10 @@ const next = currentPage < totalPages ? "" : "disabled";
             <span class="ml-1 pagination-text">First</span>
           </a>
         ) : (
-          <span class="group inline-flex items-center mr-3 select-none opacity-50" aria-disabled="true">
+          <span
+            class="group inline-flex items-center mr-3 select-none opacity-50"
+            aria-disabled="true"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
               <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
               <path d="M6.707 17.293 2.414 13H12v-2H2.414l4.293-4.293-1.414-1.414L-1.414 12l6.707 6.707z" />
@@ -39,50 +46,65 @@ const next = currentPage < totalPages ? "" : "disabled";
           </span>
         )
       ) : null}
-      
+
       {/* Previous button */}
       {prev === "disabled" ? (
-        <span class="group inline-flex items-center mr-3 select-none opacity-50" aria-disabled="true">
+        <span
+          class="group inline-flex items-center mr-3 select-none opacity-50"
+          aria-disabled="true"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
             <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
           </svg>
           <span class="ml-1 pagination-text">Prev</span>
         </span>
       ) : (
-        <a href={prevUrl} class="group inline-flex items-center hover:text-skin-accent mr-3 select-none">
+        <a
+          href={prevUrl}
+          class="group inline-flex items-center hover:text-skin-accent mr-3 select-none"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
             <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
           </svg>
           <span class="ml-1 pagination-text">Prev</span>
         </a>
       )}
-      
+
       {/* Page numbers */}
       <div class="pagination-numbers mx-4">
         {currentPage} / {totalPages}
       </div>
-      
+
       {/* Next button */}
       {next === "disabled" ? (
-        <span class="group inline-flex items-center ml-3 select-none opacity-50" aria-disabled="true">
+        <span
+          class="group inline-flex items-center ml-3 select-none opacity-50"
+          aria-disabled="true"
+        >
           <span class="mr-1 pagination-text">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
             <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
           </svg>
         </span>
       ) : (
-        <a href={nextUrl} class="group inline-flex items-center hover:text-skin-accent ml-3 select-none">
+        <a
+          href={nextUrl}
+          class="group inline-flex items-center hover:text-skin-accent ml-3 select-none"
+        >
           <span class="mr-1 pagination-text">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
             <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
           </svg>
         </a>
       )}
-      
+
       {/* Last button - only show when more than 4 pages */}
       {totalPages > 4 ? (
         currentPage < totalPages && lastUrl ? (
-          <a href={lastUrl} class="group inline-flex items-center hover:text-skin-accent ml-3 select-none">
+          <a
+            href={lastUrl}
+            class="group inline-flex items-center hover:text-skin-accent ml-3 select-none"
+          >
             <span class="mr-1 pagination-text">Last</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="pagination-svg">
               <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
@@ -90,7 +112,10 @@ const next = currentPage < totalPages ? "" : "disabled";
             </svg>
           </a>
         ) : (
-          <span class="group inline-flex items-center ml-3 select-none opacity-50" aria-disabled="true">
+          <span
+            class="group inline-flex items-center ml-3 select-none opacity-50"
+            aria-disabled="true"
+          >
             <span class="mr-1 pagination-text">Last</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="disabled-svg">
               <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
@@ -103,65 +128,66 @@ const next = currentPage < totalPages ? "" : "disabled";
   )
 }
 
-       <style>
-         .pagination-nav {
-           @apply mb-8 mt-auto flex justify-center items-center gap-2;
-           
-           /* Smaller gap on mobile */
-           @media (max-width: 640px) {
-             gap: 0.25rem;
-           }
-           
-           /* Even smaller gap on very small screens */
-           @media (max-width: 480px) {
-             gap: 0.125rem;
-           }
-         }
-         
-         .disabled-svg {
-           @apply group-hover:!fill-skin-base fill-current flex-shrink-0;
-         }
-         
-         .pagination-svg {
-           @apply inline-block fill-current flex-shrink-0;
-         }
-         
-         nav {
-           @apply text-lg;
-         }
-         
-         .pagination-numbers {
-           font-size: 1.5rem;
-           line-height: 1.75rem;
-           font-weight: 600;
-           
-           /* Smaller text on mobile */
-           @media (max-width: 640px) {
-             font-size: 1.25rem;
-           }
-         }
-         
-         .pagination-text {
-           font-size: 1.3rem;
-           line-height: 1.75rem;
-           font-weight: 300;
-           
-           /* Smaller text on mobile */
-           @media (max-width: 640px) {
-             font-size: 1rem;
-           }
-           
-           /* Hide text labels on very small screens */
-           @media (max-width: 480px) {
-             display: none;
-           }
-         }
-         
-         /* Responsive link/button styling */
-         nav a, nav span {
-           /* Smaller padding on mobile */
-           @media (max-width: 640px) {
-             @apply px-2 py-1;
-           }
-         }
-       </style>
+<style>
+  .pagination-nav {
+    @apply mb-8 mt-auto flex items-center justify-center gap-2;
+
+    /* Smaller gap on mobile */
+    @media (max-width: 640px) {
+      gap: 0.25rem;
+    }
+
+    /* Even smaller gap on very small screens */
+    @media (max-width: 480px) {
+      gap: 0.125rem;
+    }
+  }
+
+  .disabled-svg {
+    @apply flex-shrink-0 fill-current group-hover:!fill-skin-base;
+  }
+
+  .pagination-svg {
+    @apply inline-block flex-shrink-0 fill-current;
+  }
+
+  nav {
+    @apply text-lg;
+  }
+
+  .pagination-numbers {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+
+    /* Smaller text on mobile */
+    @media (max-width: 640px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  .pagination-text {
+    font-size: 1.3rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+
+    /* Smaller text on mobile */
+    @media (max-width: 640px) {
+      font-size: 1rem;
+    }
+
+    /* Hide text labels on very small screens */
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  /* Responsive link/button styling */
+  nav a,
+  nav span {
+    /* Smaller padding on mobile */
+    @media (max-width: 640px) {
+      @apply px-2 py-1;
+    }
+  }
+</style>

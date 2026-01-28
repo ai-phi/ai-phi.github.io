@@ -1,20 +1,23 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-04-17T9:00:00Z
-# modDatetime:
-title: Session 22 - Giada Pistilli - Beyond Consent, The Limits of Data Agency in Generative AI Systems
+author: ai-phi
+pubDatetime: 2025-04-17T09:00:00.000Z
+title: "Beyond Consent, The Limits of Data Agency in Generative AI Systems"
 slug: session-22-pistilli-ai-ethics
+sessionNumber: 22
+titleShort: Beyond Consent
+speakers:
+  - name: Giada Pistilli
+    affiliation: Hugging Face
+baseIllustration: /images/base/sessions/session-22-pistilli-ai-ethics.JPG
 draft: false
 featured: false
-nextFormal: false
-tags:
-  - Seminar Series
-description: Can traditional notions of consent meaningfully apply to AI-generated content? What happens when our data creates representations of ourselves beyond our control?
-
-# previousOgImage: assets/ai-phi-session-22.png
-ogImage: "/og/og-session-default.svg"
+tags: []
+description: >-
+  Can traditional notions of consent meaningfully apply to AI-generated content?
+  What happens when our data creates representations of ourselves beyond our
+  control?
 kind: seminar
-series: "AI-Phi Seminar Series"
+series: AI-Phi Seminar Series
 ---
 
 🤗 <u>Please note this session will exceptionally be held at **11 AM** during working hours.</u>
@@ -25,7 +28,7 @@ Can traditional notions of consent meaningfully apply to AI-generated content? W
 
 ## About Giada Pistilli
 
-<img src="/assets/session-22-Giada-Pistilli-small.JPG" alt="A portrait of Giada Pistilli." />
+<img src="/images/base/sessions/session-22-pistilli-ai-ethics.JPG" alt="A portrait of Giada Pistilli." />
 
 Giada Pistilli is a philosopher specialized in AI ethics, focusing on conversational agents and generative AI. With a PhD in philosophy from Sorbonne University, her research explores the intersections of value systems, ethical frameworks, multilingualism, and cultural biases in emerging technological landscapes. As Principal Ethicist at Hugging Face, she conducts interdisciplinary research that bridges philosophical inquiry with technological development. In this role, she also oversees the platform's content moderation policy, applying ethical principles to the challenges of large-scale AI systems.
 

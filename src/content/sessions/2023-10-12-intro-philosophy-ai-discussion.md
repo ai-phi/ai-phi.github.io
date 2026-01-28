@@ -1,19 +1,20 @@
 ---
-author: AI-PHI
-pubDatetime: 2023-10-12T19:00:00Z
-
-title: Session 2 - Philosophy of AI - Discussion
+author: ai-phi
+pubDatetime: 2023-10-12T19:00:00.000Z
+title: Philosophy of AI - Discussion
 slug: session-2-phil-of-ai-discussion
+sessionNumber: 2
+titleShort: Philosophy of AI
+speakers:
+  - name: Aïda Elamrani
 draft: false
 tags:
-  - Session
   - Philosophy of AI
   - Discussion
   - Glossary
   - other
 description: Aïda Elamrani presented an Introduction to Philosophy Discussion
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 ## About the 2nd session:

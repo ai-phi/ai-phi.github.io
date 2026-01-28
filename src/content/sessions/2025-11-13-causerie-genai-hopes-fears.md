@@ -1,25 +1,29 @@
 ---
-author: AI-PHI
-pubDatetime: 2025-11-13T19:00:00+01:00
-# modDatetime:
-title: >-
-  Session 27 - Causerie on Hopes, Fears, Trust, Understanding, Regulation
+author: ai-phi
+pubDatetime: 2025-11-13T18:00:00.000Z
+title: "Hopes, Fears, Trust, Understanding, Regulation"
 slug: session-27-causerie-hope-fears
+sessionNumber: 27
+titleShort: Hopes & Fears
+speakers:
+  - name: Edmund Ronald
+baseIllustration: /images/base/sessions/session-27-causerie-hope-fears.png
 draft: false
 featured: false
-nextSession: false
-nextFormal: false
 tags:
-  - Causerie
   - Hopes
   - Fears
   - Trust
   - Regulation
-description: "From creative studios to classrooms and boardrooms, generative AI is reshaping the way we work, learn, and imagine. This first Causerie of AI-Phi 3.0 invites an open discussion on the hopes and anxieties surrounding this technology: from the promise of universal creativity and efficiency to the spectre of runaway intelligence. Together with Edmund Ronald, we’ll reflect on how trust, safety, and understanding evolve as AI spreads through everyday life."
-# previousOgImage: assets/session-27.jpg
-ogImage: "/og/og-session-default.svg"
+description: >-
+  From creative studios to classrooms and boardrooms, generative AI is reshaping
+  the way we work, learn, and imagine. This first Causerie of AI-Phi 3.0 invites
+  an open discussion on the hopes and anxieties surrounding this technology:
+  from the promise of universal creativity and efficiency to the spectre of
+  runaway intelligence. Together with Edmund Ronald, we’ll reflect on how trust,
+  safety, and understanding evolve as AI spreads through everyday life.
 kind: causerie
-series: "AI-Phi Causeries"
+series: AI-Phi Causeries
 ---
 
 ## Generative AI Everywhere - Hopes, Fears, Trust, Understanding, Regulation
@@ -30,7 +34,7 @@ This Causerie is about the social emotions projected onto AI, namely Hope, Fear,
 
 ## About Edmund Ronald
 
-![Alt text](@assets/images/session-27-ronald.png)
+![Portrait of Edmund Ronald](/images/base/sessions/session-27-causerie-hope-fears.png)
 
 Edmund Ronald is a graduate of Sup Télécom in Paris, he was a grad student at King's Cambridge, and did his Ph.D thesis at Ecole Polytéchnique, on evolutionary neural network training for control applications, and was one of the founders of the Artificial Evolution conference series. He has been a science journalist, and has taught AI at Paris 7 and Paris 8 Universities. Edmund has authored a number of epistemological papers on Alife and AI.
 

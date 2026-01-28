@@ -1,13 +1,16 @@
 ---
-author: AI-PHI
-pubDatetime: 2024-05-16T19:00:00Z
-# modDatetime:
-title: Session 16 - AIssertions
+author: ai-phi
+pubDatetime: 2024-05-16T17:00:00.000Z
+title: AIssertions
 slug: session-16-AIssertions
+sessionNumber: 16
+titleShort: AIssertions
+speakers:
+  - name: Merel Semeijn
+    affiliation: Institut Jean Nicod
 draft: false
 featured: false
 tags:
-  - Session
   - AI
   - Assertion
   - Delusion
@@ -17,7 +20,6 @@ tags:
   - other
 description: AI assertions by Merel Semeijn
 kind: other
-ogImage: "/og/og-session-default.svg"
 ---
 
 Merel Semeijn will explore the debate on AI assertion (i.e., can AI systems make assertions?), focusing in particular on notions such as proxy-assertion, delusion, pretense, bullshit and fictional discourse.

@@ -1,5 +1,5 @@
 ---
-author: AI-PHI
+author: ai-phi
 pubDatetime: 2026-01-14T19:00:00+01:00
 # modDatetime:
 title: >-
@@ -7,8 +7,6 @@ title: >-
 slug: 2026-biennale-augmentism
 draft: false
 featured: true
-nextSession: false
-nextFormal: false
 tags:
   - Creative AI
   - Augmentism

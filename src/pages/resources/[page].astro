@@ -4,73 +4,80 @@ import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
-import PDFViewer from '../../components/PDFViewer.astro';
-import Pagination from '../../components/Pagination.astro';
-import { getCollection } from 'astro:content';
+import PDFViewer from "../../components/PDFViewer.astro";
+import Pagination from "../../components/Pagination.astro";
+import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
   const [posts, sessions] = await Promise.all([
-    getCollection('posts'),
-    getCollection('sessions'),
+    getCollection("posts"),
+    getCollection("sessions"),
   ]);
   const allPosts = [...posts, ...sessions];
-  
+
   // Filter posts that contain PDF comments
   const postsWithPDFs = allPosts.filter(post => {
-    return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
+    return post.body.includes("<!-- PDF:") && post.body.includes(".pdf");
   });
-  
+
   // Extract presentation data from posts
-  const presentations = postsWithPDFs.flatMap(post => {
-    const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
-    const pdfMatches = [...post.body.matchAll(pdfRegex)];
-    
-    if (pdfMatches.length === 0) return [];
-    
-    return pdfMatches.map((pdfMatch, index) => {
-      const filename = pdfMatch[1].trim();
-      const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
-      const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
-      const pdfPath = `/pdfs/${filename}`;
-      const pdfTitle = title || post.data.title;
-      
-      return {
-        title: pdfTitle,
-        pdfPath: pdfPath,
-        postTitle: post.data.title,
-        postSlug: post.slug,
-        pubDatetime: post.data.pubDatetime,
-        description: post.data.description,
-        type: type
-      };
-    });
-  }).filter(presentation => presentation.pdfPath);
-  
+  const presentations = postsWithPDFs
+    .flatMap(post => {
+      const pdfRegex =
+        /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+      const pdfMatches = [...post.body.matchAll(pdfRegex)];
+
+      if (pdfMatches.length === 0) return [];
+
+      return pdfMatches.map((pdfMatch, index) => {
+        const filename = pdfMatch[1].trim();
+        const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+        const type = pdfMatch[3] ? pdfMatch[3].trim() : "seminar";
+        const pdfPath = `/pdfs/${filename}`;
+        const pdfTitle = title || post.data.title;
+
+        return {
+          title: pdfTitle,
+          pdfPath: pdfPath,
+          postTitle: post.data.title,
+          postSlug: post.slug,
+          pubDatetime: post.data.pubDatetime,
+          description: post.data.description,
+          type: type,
+        };
+      });
+    })
+    .filter(presentation => presentation.pdfPath);
+
   // Sort presentations by date (newest first)
-  presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
-  
+  presentations.sort(
+    (a, b) =>
+      new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime()
+  );
+
   const POSTS_PER_PAGE = 3;
-  
+
   // Generate paths for unfiltered pagination (pages 2, 3, etc.)
   const totalPages = Math.ceil(presentations.length / POSTS_PER_PAGE);
   const paths = [];
-  
+
   for (let i = 2; i <= totalPages; i++) {
     paths.push({
       params: { page: String(i) },
-      props: { page: i }
+      props: { page: i },
     });
   }
-  
+
   return paths;
 }
 
 const pageTitle = "Resources";
-const pageDescription = "These serve as a record of our sessions and a way to share outputs.";
+const pageDescription =
+  "These serve as a record of our sessions and a way to share outputs.";
 
 // Get filter type from URL parameters
 const url = Astro.url;
-const filterType = url.searchParams.get('type') || 'all';
+const filterType = url.searchParams.get("type") || "all";
 
 // Pagination parameters
 const POSTS_PER_PAGE = 3;
@@ -80,51 +87,59 @@ const { page } = Astro.params;
 const currentPage = page && !isNaN(Number(page)) ? Number(page) : 1;
 
 const [posts, sessions] = await Promise.all([
-  getCollection('posts'),
-  getCollection('sessions'),
+  getCollection("posts"),
+  getCollection("sessions"),
 ]);
 const allPosts = [...posts, ...sessions];
 
 // Filter posts that contain PDF comments
 const postsWithPDFs = allPosts.filter(post => {
-  return post.body.includes('<!-- PDF:') && post.body.includes('.pdf');
+  return post.body.includes("<!-- PDF:") && post.body.includes(".pdf");
 });
 
 // Extract presentation data from posts
-const presentations = postsWithPDFs.flatMap(post => {
-  const pdfRegex = /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
-  const pdfMatches = [...post.body.matchAll(pdfRegex)];
-  
-  if (pdfMatches.length === 0) return [];
-  
-  return pdfMatches.map((pdfMatch, index) => {
-    const filename = pdfMatch[1].trim();
-    const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
-    const type = pdfMatch[3] ? pdfMatch[3].trim() : 'seminar';
-    const pdfPath = `/pdfs/${filename}`;
-    const pdfTitle = title || post.data.title;
-    
-    return {
-      title: pdfTitle,
-      pdfPath: pdfPath,
-      postTitle: post.data.title,
-      postSlug: post.slug,
-      pubDatetime: post.data.pubDatetime,
-      description: post.data.description,
-      type: type
-    };
-  });
-}).filter(presentation => presentation.pdfPath);
+const presentations = postsWithPDFs
+  .flatMap(post => {
+    const pdfRegex =
+      /<!--\s*PDF:\s*([^|]+?)(?:\s*\|\s*title:\s*([^|]+?))?(?:\s*\|\s*type:\s*([^|]+?))?\s*-->/g;
+    const pdfMatches = [...post.body.matchAll(pdfRegex)];
+
+    if (pdfMatches.length === 0) return [];
+
+    return pdfMatches.map((pdfMatch, index) => {
+      const filename = pdfMatch[1].trim();
+      const title = pdfMatch[2] ? pdfMatch[2].trim() : null;
+      const type = pdfMatch[3] ? pdfMatch[3].trim() : "seminar";
+      const pdfPath = `/pdfs/${filename}`;
+      const pdfTitle = title || post.data.title;
+
+      return {
+        title: pdfTitle,
+        pdfPath: pdfPath,
+        postTitle: post.data.title,
+        postSlug: post.slug,
+        pubDatetime: post.data.pubDatetime,
+        description: post.data.description,
+        type: type,
+      };
+    });
+  })
+  .filter(presentation => presentation.pdfPath);
 
 // Sort presentations by date (newest first)
-presentations.sort((a, b) => new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime());
+presentations.sort(
+  (a, b) =>
+    new Date(b.pubDatetime).getTime() - new Date(a.pubDatetime).getTime()
+);
 
 // Apply filtering based on type
 let filteredPresentations = presentations;
-if (filterType !== 'all') {
-  if (filterType === 'preamble') {
+if (filterType !== "all") {
+  if (filterType === "preamble") {
     // Include both preamble and news types
-    filteredPresentations = presentations.filter(p => p.type === 'preamble' || p.type === 'news');
+    filteredPresentations = presentations.filter(
+      p => p.type === "preamble" || p.type === "news"
+    );
   } else {
     filteredPresentations = presentations.filter(p => p.type === filterType);
   }
@@ -135,7 +150,10 @@ const totalPresentations = filteredPresentations.length;
 const totalPages = Math.ceil(totalPresentations / POSTS_PER_PAGE);
 const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
 const endIndex = startIndex + POSTS_PER_PAGE;
-const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex);
+const paginatedPresentations = filteredPresentations.slice(
+  startIndex,
+  endIndex
+);
 ---
 
 <Layout title={`${pageTitle} | ${SITE.title}`} description={pageDescription}>
@@ -144,79 +162,133 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
   <main id="main-content" class="@container">
     <h1>{pageTitle}</h1>
     <p>{pageDescription}</p>
-    
+
     <div class="resources-content">
-      
       <section class="mb-12">
         <h2 class="section-title">Slides</h2>
         <p class="section-description">
-          Slides from our sessions. Various sessions were preceeded by a 'preamble' which often included news and updates.
+          Slides from our sessions. Various sessions were preceeded by a
+          'preamble' which often included news and updates.
         </p>
-        
+
         <!-- Filter buttons -->
         <div class="filter-container">
-          <a href="/resources" class={`filter-btn ${filterType === 'all' ? 'active' : ''}`}>All</a>
-          <a href="/resources?type=presentation" class={`filter-btn ${filterType === 'presentation' ? 'active' : ''}`}>Presentations</a>
-          <a href="/resources?type=preamble" class={`filter-btn ${filterType === 'preamble' ? 'active' : ''}`}>Preambles & News</a>
+          <a
+            href="/resources"
+            class={`filter-btn ${filterType === "all" ? "active" : ""}`}>All</a
+          >
+          <a
+            href="/resources?type=presentation"
+            class={`filter-btn ${
+              filterType === "presentation" ? "active" : ""
+            }`}>Presentations</a
+          >
+          <a
+            href="/resources?type=preamble"
+            class={`filter-btn ${filterType === "preamble" ? "active" : ""}`}
+            >Preambles & News</a
+          >
         </div>
-        
-        {presentations.length > 0 ? (
-          <div class="presentations-list">
-            {paginatedPresentations.map((presentation, index) => (
-              <div class="presentation-card">
-                <div class="presentation-title">
-                  <h3>{presentation.title}</h3>
-                </div>
-                <PDFViewer 
-                  src={presentation.pdfPath} 
-                  height="380px"
-                />
-                <div class="presentation-footer">
-                  <div class="presentation-info">
-                    <div class="presentation-date">{presentation.pubDatetime.toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}</div>
-                    <div class="presentation-source">
-                      <a href={`/posts/${presentation.postSlug}`} class="text-skin-accent hover:underline">
-                        From: {presentation.postTitle}
+
+        {
+          presentations.length > 0 ? (
+            <div class="presentations-list">
+              {paginatedPresentations.map((presentation, index) => (
+                <div class="presentation-card">
+                  <div class="presentation-title">
+                    <h3>{presentation.title}</h3>
+                  </div>
+                  <PDFViewer src={presentation.pdfPath} height="380px" />
+                  <div class="presentation-footer">
+                    <div class="presentation-info">
+                      <div class="presentation-date">
+                        {presentation.pubDatetime.toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </div>
+                      <div class="presentation-source">
+                        <a
+                          href={`/posts/${presentation.postSlug}`}
+                          class="text-skin-accent hover:underline"
+                        >
+                          From: {presentation.postTitle}
+                        </a>
+                      </div>
+                    </div>
+                    <div class="presentation-download">
+                      <a
+                        href={presentation.pdfPath}
+                        download
+                        class="download-btn"
+                      >
+                        📄 Download PDF
                       </a>
                     </div>
                   </div>
-                  <div class="presentation-download">
-                    <a href={presentation.pdfPath} download class="download-btn">
-                      📄 Download PDF
-                    </a>
-                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div class="pdf-placeholder">
-            <p class="text-skin-base opacity-70">
-              📄 No presentations found. Presentations will appear here when PDFs are attached to blog posts.
-            </p>
-          </div>
-        )}
-        
-        {totalPages > 1 && (
-          <div class="pagination-wrapper">
-            
-            <Pagination 
-              currentPage={currentPage} 
-              totalPages={totalPages} 
-              prevUrl={currentPage > 1 ? (currentPage - 1 === 1 ? `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}` : `/resources/${currentPage - 1}${filterType !== 'all' ? `?type=${filterType}` : ''}`) : `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}`}
-              nextUrl={currentPage < totalPages ? `/resources/${currentPage + 1}${filterType !== 'all' ? `?type=${filterType}` : ''}` : `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}`}
-              firstUrl={totalPages > 4 ? `/resources${filterType !== 'all' ? `?type=${filterType}` : ''}` : undefined}
-              lastUrl={totalPages > 4 ? `/resources/${totalPages}${filterType !== 'all' ? `?type=${filterType}` : ''}` : undefined}
-            />
-          </div>
-         )}
-       </section>
-     </div>
-   </main>
+              ))}
+            </div>
+          ) : (
+            <div class="pdf-placeholder">
+              <p class="text-skin-base opacity-70">
+                📄 No presentations found. Presentations will appear here when
+                PDFs are attached to blog posts.
+              </p>
+            </div>
+          )
+        }
+
+        {
+          totalPages > 1 && (
+            <div class="pagination-wrapper">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                prevUrl={
+                  currentPage > 1
+                    ? currentPage - 1 === 1
+                      ? `/resources${
+                          filterType !== "all" ? `?type=${filterType}` : ""
+                        }`
+                      : `/resources/${currentPage - 1}${
+                          filterType !== "all" ? `?type=${filterType}` : ""
+                        }`
+                    : `/resources${
+                        filterType !== "all" ? `?type=${filterType}` : ""
+                      }`
+                }
+                nextUrl={
+                  currentPage < totalPages
+                    ? `/resources/${currentPage + 1}${
+                        filterType !== "all" ? `?type=${filterType}` : ""
+                      }`
+                    : `/resources${
+                        filterType !== "all" ? `?type=${filterType}` : ""
+                      }`
+                }
+                firstUrl={
+                  totalPages > 4
+                    ? `/resources${
+                        filterType !== "all" ? `?type=${filterType}` : ""
+                      }`
+                    : undefined
+                }
+                lastUrl={
+                  totalPages > 4
+                    ? `/resources/${totalPages}${
+                        filterType !== "all" ? `?type=${filterType}` : ""
+                      }`
+                    : undefined
+                }
+              />
+            </div>
+          )
+        }
+      </section>
+    </div>
+  </main>
   <Footer />
 </Layout>
 
@@ -224,22 +296,22 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
   #main-content {
     @apply mx-auto w-full max-w-3xl px-4 pb-4;
   }
-  
+
   #main-content h1 {
     @apply text-2xl font-semibold sm:text-3xl;
   }
-  
+
   #main-content p {
     @apply mb-6 mt-2 italic;
   }
-  
+
   .resources-content {
     @apply space-y-8;
     padding: 20px;
   }
-  
+
   .section-title {
-    @apply text-2xl font-semibold text-skin-accent mb-3;
+    @apply mb-3 text-2xl font-semibold text-skin-accent;
     border-bottom: 2px solid #000000;
     padding-bottom: 0.5rem;
   }
@@ -247,19 +319,19 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
   html[data-theme="dark"] .section-title {
     border-bottom: 2px solid #ffffff;
   }
-  
+
   .section-description {
-    @apply text-skin-base opacity-70 mb-6;
+    @apply mb-6 text-skin-base opacity-70;
   }
-  
+
   .pdf-placeholder {
-    @apply p-8 border-2 border-dashed border-skin-line rounded-lg text-center;
+    @apply rounded-lg border-2 border-dashed border-skin-line p-8 text-center;
   }
-  
+
   .presentations-list {
     @apply space-y-0;
   }
-  
+
   .presentation-card {
     @apply bg-skin-card;
     border-radius: 0.9rem;
@@ -279,47 +351,46 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
   }
 
   .presentation-title h3 {
-    @apply text-skin-base mb-0;
+    @apply mb-0 text-skin-base;
     font-style: italic;
     font-weight: 200;
     font-size: 16px;
   }
-  
-  
+
   .presentation-card:last-child {
     margin-bottom: 0rem !important;
   }
-  
+
   .presentation-footer {
-    @apply flex justify-between items-center p-4 text-sm text-skin-base opacity-70;
+    @apply flex items-center justify-between p-4 text-sm text-skin-base opacity-70;
   }
-  
+
   .presentation-info {
     @apply flex flex-col;
   }
-  
+
   .presentation-date {
-    @apply font-medium mb-1;
+    @apply mb-1 font-medium;
   }
-  
+
   .presentation-source {
     @apply text-xs;
   }
-  
+
   .presentation-download {
     @apply flex-shrink-0;
   }
-  
+
   .download-btn {
-    @apply inline-flex items-center px-3 py-1 bg-transparent text-skin-accent rounded-md transition-colors text-sm no-underline;
+    @apply inline-flex items-center rounded-md bg-transparent px-3 py-1 text-sm text-skin-accent no-underline transition-colors;
   }
-  
+
   .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
     color: white !important;
     opacity: 1 !important;
   }
-  
+
   /* Override prose hover styles for download button */
   .prose .download-btn:hover {
     background-color: rgb(var(--color-accent)) !important;
@@ -327,18 +398,18 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
     opacity: 1 !important;
     text-decoration: none !important;
   }
-  
+
   .pagination-wrapper {
     @apply mt-8 flex justify-center;
   }
 
   /* Filter buttons */
   .filter-container {
-    @apply flex flex-wrap gap-2 mb-6 justify-center;
+    @apply mb-6 flex flex-wrap justify-center gap-2;
   }
 
   .filter-btn {
-    @apply px-4 py-1 rounded-md border border-skin-line bg-skin-fill text-skin-base transition-all duration-200 cursor-pointer;
+    @apply cursor-pointer rounded-md border border-skin-line bg-skin-fill px-4 py-1 text-skin-base transition-all duration-200;
     outline: none;
     border-width: 3px;
     padding-top: 0.1rem;
@@ -355,6 +426,6 @@ const paginatedPresentations = filteredPresentations.slice(startIndex, endIndex)
   }
 
   .filter-btn.active {
-    @apply bg-skin-accent text-white border-skin-accent;
+    @apply border-skin-accent bg-skin-accent text-white;
   }
 </style>

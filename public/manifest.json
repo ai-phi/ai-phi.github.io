@@ -1,0 +1,583 @@
+{
+  "meta": {
+    "version": "1.0",
+    "generatedAt": "2026-01-28T15:20:02.955Z",
+    "project": "AI-Phi",
+    "siteBaseUrl": "https://ai-phi.github.io/"
+  },
+  "sessions": [
+    {
+      "slug": "session-31-causerie-llm-education",
+      "sessionNumber": 31,
+      "kind": "causerie",
+      "title": "LLMs for French Secondary Education: Ethical Questions and Applied Research",
+      "date": "2026-01-29",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-31-causerie-llm-education.jpeg",
+      "speakers": [
+        {
+          "name": "Thomas Souverain",
+          "affiliation": "CEA Paris-Saclay"
+        }
+      ]
+    },
+    {
+      "slug": "session-30-happy-2026",
+      "sessionNumber": 30,
+      "kind": "other",
+      "title": "2025 Wrap-up & 2026 Predictions",
+      "date": "2026-01-22",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Michael Anslow",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-29-causerie-dark-side-of-ai",
+      "sessionNumber": 29,
+      "kind": "causerie",
+      "title": "Xmas Dark Side of AI",
+      "date": "2025-12-18",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "AI-Phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-28-bessiere-wonderlands-of-reason",
+      "sessionNumber": 28,
+      "kind": "seminar",
+      "title": "Alice and Bob's adventures in wonderlands of Reason",
+      "date": "2025-11-27",
+      "time": "14:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-28-bessiere-wonderlands-of-reason.png",
+      "speakers": [
+        {
+          "name": "Pierre Bessière",
+          "affiliation": "CNRS - College de France - LPPA"
+        }
+      ]
+    },
+    {
+      "slug": "session-27-causerie-hope-fears",
+      "sessionNumber": 27,
+      "kind": "causerie",
+      "title": "Hopes, Fears, Trust, Understanding, Regulation",
+      "date": "2025-11-13",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-27-causerie-hope-fears.png",
+      "speakers": [
+        {
+          "name": "Edmund Ronald",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-26-lestel-insurrectionary-machines",
+      "sessionNumber": 26,
+      "kind": "seminar",
+      "title": "Steps to an Ethology of Insurrectionary Machines",
+      "date": "2025-10-23",
+      "time": "14:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-26-lestel-insurrectionary-machines.jpg",
+      "speakers": [
+        {
+          "name": "Dominique Lestel",
+          "affiliation": "ENS"
+        }
+      ]
+    },
+    {
+      "slug": "session-25-kathinka-evers",
+      "sessionNumber": 25,
+      "kind": "seminar",
+      "title": "Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?",
+      "date": "2025-06-26",
+      "time": "11:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-25-kathinka-evers.png",
+      "speakers": [
+        {
+          "name": "Kathinka Evers",
+          "affiliation": "Uppsala University"
+        }
+      ]
+    },
+    {
+      "slug": "session-24-ryota-kanai",
+      "sessionNumber": 24,
+      "kind": "seminar",
+      "title": "Qualia and Symmetry: A Mathematical Framework For Understanding the Qualitative Nature of Consciousness",
+      "date": "2025-05-14",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-24-ryota-kanai.jpg",
+      "speakers": [
+        {
+          "name": "Ryota Kanai",
+          "affiliation": "Araya Inc."
+        }
+      ]
+    },
+    {
+      "slug": "session-23-ai-phi-news",
+      "sessionNumber": 23,
+      "kind": "other",
+      "title": "AI-Phi News",
+      "date": "2025-04-29",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "AI-Phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-22-pistilli-ai-ethics",
+      "sessionNumber": 22,
+      "kind": "seminar",
+      "title": "Beyond Consent, The Limits of Data Agency in Generative AI Systems",
+      "date": "2025-04-17",
+      "time": "11:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-22-pistilli-ai-ethics.JPG",
+      "speakers": [
+        {
+          "name": "Giada Pistilli",
+          "affiliation": "Hugging Face"
+        }
+      ]
+    },
+    {
+      "slug": "session-21-khamassi-alignment-human-values",
+      "sessionNumber": 21,
+      "kind": "seminar",
+      "title": "Ensuring Alignment with Human Values",
+      "date": "2025-03-27",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-21-khamassi-alignment-human-values.JPG",
+      "speakers": [
+        {
+          "name": "Mehdi Khamassi",
+          "affiliation": "CNRS, ISIR, UPMC"
+        }
+      ]
+    },
+    {
+      "slug": "session-20-Causerie-Reasoning",
+      "sessionNumber": 20,
+      "kind": "causerie",
+      "title": "Reasoning",
+      "date": "2025-03-20",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "AI-Phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-19-unscripted",
+      "sessionNumber": 19,
+      "kind": "other",
+      "title": "Unscripted",
+      "date": "2025-03-06",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Michael Anslow",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-18-valawi-awarenes-ai",
+      "sessionNumber": 18,
+      "kind": "other",
+      "title": "VALAWAI Value-Aware Artificial Intelligence",
+      "date": "2025-02-13",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-18-valawi-awarenes-ai.jpg",
+      "speakers": [
+        {
+          "name": "Giulio Prevedello",
+          "affiliation": "Sony CSL"
+        }
+      ]
+    },
+    {
+      "slug": "session-17-closing",
+      "sessionNumber": 17,
+      "kind": "other",
+      "title": "Closing Session",
+      "date": "2024-06-13",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "AI-Phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-16-AIssertions",
+      "sessionNumber": 16,
+      "kind": "other",
+      "title": "AIssertions",
+      "date": "2024-05-16",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Merel Semeijn",
+          "affiliation": "Institut Jean Nicod"
+        }
+      ]
+    },
+    {
+      "slug": "session-15-dennett-tribute",
+      "sessionNumber": 15,
+      "kind": "other",
+      "title": "Tribute to Daniel Dennett",
+      "date": "2024-05-02",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "ai-phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-14-kahneman-tribute",
+      "sessionNumber": 14,
+      "kind": "other",
+      "title": "Tribute to Daniel Kahneman",
+      "date": "2024-04-11",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "ai-phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-13-intro-dl-pt2",
+      "sessionNumber": 13,
+      "kind": "other",
+      "title": "Generative AI, Sequence Models and Training Paradigms",
+      "date": "2024-03-28",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Stefan Lattner",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-12-intro-dl",
+      "sessionNumber": 12,
+      "kind": "other",
+      "title": "Introduction to Deep Learning",
+      "date": "2024-03-14",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Stefan Lattner",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-11-agency",
+      "sessionNumber": 11,
+      "kind": "other",
+      "title": "Agency in Humans and in Machines",
+      "date": "2024-02-29",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Lucas Battich",
+          "affiliation": null
+        },
+        {
+          "name": "David Colliaux",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-10-artificial-consc",
+      "sessionNumber": 10,
+      "kind": "other",
+      "title": "The Possibility of Artificial Consciousness",
+      "date": "2024-02-15",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Gaspard Fougea",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-9-ai-forum",
+      "sessionNumber": 9,
+      "kind": "other",
+      "title": "AI-Forum",
+      "date": "2024-02-01",
+      "time": "20:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "ai-phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-8-aemotional-understanding",
+      "sessionNumber": 8,
+      "kind": "other",
+      "title": "AEmotional Understanding",
+      "date": "2024-01-18",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Constant Bonard",
+          "affiliation": null
+        },
+        {
+          "name": "Gustave Cortal",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-7-xmas",
+      "sessionNumber": 7,
+      "kind": "other",
+      "title": "Christmas Session + NeurIPS report",
+      "date": "2023-12-21",
+      "time": "20:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Michael Anslow",
+          "affiliation": null
+        },
+        {
+          "name": "Stefan Lattner",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-6-xplainable",
+      "sessionNumber": 6,
+      "kind": "other",
+      "title": "Explainability and Fairness",
+      "date": "2023-12-07",
+      "time": "20:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Thomas Souverain",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-5-effective-altruism",
+      "sessionNumber": 5,
+      "kind": "other",
+      "title": "Effective Altruism",
+      "date": "2023-11-23",
+      "time": "20:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Jonathan Claybrough",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-4-agi-2",
+      "sessionNumber": 4,
+      "kind": "other",
+      "title": "AGI Part 2",
+      "date": "2023-11-09",
+      "time": "20:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Michael Anslow",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-3-agi-1",
+      "sessionNumber": 3,
+      "kind": "other",
+      "title": "AGI Part 1",
+      "date": "2023-10-26",
+      "time": "21:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Michael Anslow",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-2-phil-of-ai-discussion",
+      "sessionNumber": 2,
+      "kind": "other",
+      "title": "Philosophy of AI - Discussion",
+      "date": "2023-10-12",
+      "time": "21:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Aïda Elamrani",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-1-phil-of-ai",
+      "sessionNumber": 1,
+      "kind": "other",
+      "title": "Philosophy of AI",
+      "date": "2023-09-28",
+      "time": "21:00",
+      "location": null,
+      "baseIllustration": null,
+      "speakers": [
+        {
+          "name": "Aïda Elamrani",
+          "affiliation": null
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "fears-trust-post",
+      "title": "Our Causerie on Hopes, Fears, Trust, Understanding and Regulation",
+      "kind": null,
+      "subtitle": "A community post summarising the exchanges of an ai-phi causerie facilitated by Edmund Ronald, bringing together original contributions from members on hopes, fears, trust, and regulation in the age of generative AI.",
+      "illustration": "../og/og-causerie-edmund-post.jpg"
+    },
+    {
+      "slug": "2026-biennale-augmentism",
+      "title": "PROXIMA — Launch of the European Biennale of AI & Augmentism",
+      "kind": null,
+      "subtitle": "PROXIMA is a European biennale dedicated to AI and augmentism, examining how emerging technologies reshape artistic expression, aesthetics, and their ethical implications.",
+      "illustration": "../og/og-proxima-poster.jpg"
+    },
+    {
+      "slug": "ai-phi-creative",
+      "title": "Creative Outbursts in the ai-phi Community",
+      "kind": null,
+      "subtitle": "From blogs to sketches to new channels: celebrating the many ways ai-phi members turn philosophical curiosity into creative expression.",
+      "illustration": "assets/creative-outbursts.jpg"
+    },
+    {
+      "slug": "ai-phi-3",
+      "title": "Announcing ai-phi 3.0",
+      "kind": null,
+      "subtitle": "ai-phi 3.0 is here! With a bold new identity, a new season of events, and a few surprises on the horizon.",
+      "illustration": "assets/ai-phi-wall-small.png"
+    },
+    {
+      "slug": "causerie-on-reasoning",
+      "title": "Our Causerie on Reasoning",
+      "kind": null,
+      "subtitle": "An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains opinions from various ai-phi members.",
+      "illustration": "assets/ai-phi-Causerie-Reasoning.png"
+    },
+    {
+      "slug": "artificial-phenomenology-kleiner",
+      "title": "Towards Artificial Phenomenology",
+      "kind": null,
+      "subtitle": "(Conference Announcement) Talk by Johannes Kleiner",
+      "illustration": null
+    },
+    {
+      "slug": "mini-workshop-honesty",
+      "title": "Mini-Workshop on Honesty in LLMs",
+      "kind": null,
+      "subtitle": "Join us for a mini-workshop on honesty in LLMs!",
+      "illustration": null
+    },
+    {
+      "slug": "job-ai-ethics-ens",
+      "title": "Job Offer! Research Assistant in AI Ethics at ENS",
+      "kind": null,
+      "subtitle": "An opportunity to shape the future of conversational agents 🚀",
+      "illustration": null
+    },
+    {
+      "slug": "website-official-launch",
+      "title": "Official Launch of the Website!",
+      "kind": null,
+      "subtitle": "Launching our ai-phi website",
+      "illustration": null
+    }
+  ]
+}

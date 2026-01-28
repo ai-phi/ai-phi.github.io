@@ -13,7 +13,8 @@
     "format": "prettier --plugin-search-dir=. --write .",
     "cz": "cz",
     "prepare": "husky install",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "manifest": "node scripts/generate-manifest.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
@@ -23,6 +24,7 @@
     "astro": "^4.1.1",
     "clsx": "^2.1.0",
     "fuse.js": "^7.0.0",
+    "fast-glob": "^3.3.2",
     "github-slugger": "^2.0.0",
     "lodash": "^4.17.21",
     "remark-collapse": "^0.1.2",

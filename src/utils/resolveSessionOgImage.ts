@@ -1,5 +1,5 @@
 import { access } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 
 const SESSION_OG_BASE_PATH = "/images/og/sessions";
 const DEFAULT_SESSION_OG = `${SESSION_OG_BASE_PATH}/session-default.svg`;
@@ -19,8 +19,9 @@ const normalizeOverride = (override?: string | null) => {
 };
 
 const getCandidateFilePath = (relative: string) => {
-  const fileUrl = new URL(`../../public${relative}`, import.meta.url);
-  return fileURLToPath(fileUrl);
+  // relative is like "/images/og/sessions/foo.png"
+  const rel = relative.replace(/^\/+/, ""); // "images/og/sessions/foo.png"
+  return path.join(process.cwd(), "public", rel);
 };
 
 export async function resolveSessionOgImage(

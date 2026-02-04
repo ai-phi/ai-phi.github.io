@@ -35,7 +35,7 @@ CeSIA (Centre pour la Sécurité de l'IA), which he co-founded and directs, sits
 
 <img
   src="/images/base/sessions/session-32-segerie-losing-control.png"
-  alt="Portrait of Thomas Souverain"
+  alt="Speaker portrait"
   class="speaker-portrait"
 />
 
@@ -47,4 +47,4 @@ Charbel-Raphael Segerie is the executive director of CeSIA, the French Center fo
 
 **Date and Time:** Thursday, 12th of February 2026 - **7 PM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** [here](https://luma.com/8t8kcxd1)
+**Registration:** [here](https://luma.com/9v9fh6lp)

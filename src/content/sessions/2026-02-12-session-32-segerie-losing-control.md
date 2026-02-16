@@ -3,7 +3,7 @@ author: ai-phi
 pubDatetime: 2026-02-12T18:00:00.000Z
 title: Are We Losing Control?
 slug: session-32-segerie-losing-control
-sessionNumber: 28
+sessionNumber: 32
 titleShort: Are We Losing Control?
 speakers:
   - name: Charbel-Raphaël Segerie

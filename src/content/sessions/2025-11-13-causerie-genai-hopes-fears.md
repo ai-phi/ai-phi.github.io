@@ -15,6 +15,7 @@ tags:
   - Fears
   - Trust
   - Regulation
+  - Safety
 description: >-
   From creative studios to classrooms and boardrooms, generative AI is reshaping
   the way we work, learn, and imagine. This first Causerie of AI-Phi 3.0 invites

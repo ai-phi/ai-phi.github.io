@@ -10,8 +10,7 @@ speakers:
 draft: false
 tags:
   - Effective Altruism
-  - AI Safety
-  - other
+  - Safety
 description: Session on Effective Altruism by Jonathan Claybrough
 kind: other
 ---

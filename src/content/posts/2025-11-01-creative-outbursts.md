@@ -11,6 +11,7 @@ tags:
   - Creativity
   - Diversity
 description: "From blogs to sketches to new channels: celebrating the many ways ai-phi members turn philosophical curiosity into creative expression."
+
 ogImage: assets/creative-outbursts.jpg
 ---
 

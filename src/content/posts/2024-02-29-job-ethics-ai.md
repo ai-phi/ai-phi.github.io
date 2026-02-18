@@ -11,6 +11,7 @@ tags:
   - Job
   - Ethics of AI
 description: An opportunity to shape the future of conversational agents 🚀
+longDescription: "Join the ASTOUND team at ENS! We're hiring a Research Assistant. This is a unique chance to contribute to pioneering research at the intersection of Philosophy and AI, focusing on the ethical implications of cutting edge chatbots."
 ---
 
 ## Join the ASTOUND team at ENS!

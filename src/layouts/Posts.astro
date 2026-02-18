@@ -5,7 +5,7 @@ import Main from "@layouts/Main.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Pagination from "@components/Pagination.astro";
-import Card from "@components/Card";
+import PostCardNoImage from "@components/blog/PostCardNoImage.astro";
 import { SITE } from "@config";
 
 export interface Props {
@@ -20,13 +20,13 @@ const { currentPage, totalPages, paginatedEntries } = Astro.props;
 <Layout title={`Posts | ${SITE.title}`}>
   <Header activeNav="posts" />
   <Main pageTitle="Posts" pageDesc="Browse our posts.">
-    <ul>
+    <div class="space-y-6">
       {
-        paginatedEntries.map(({ data, slug }) => (
-          <Card href={`/posts/${slug}`} frontmatter={data} />
+        paginatedEntries.map(post => (
+          <PostCardNoImage post={post} href={`/posts/${post.slug}`} />
         ))
       }
-    </ul>
+    </div>
   </Main>
 
   <Pagination

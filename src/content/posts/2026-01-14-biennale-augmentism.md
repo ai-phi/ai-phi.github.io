@@ -12,6 +12,7 @@ tags:
   - Augmentism
   - Digital Art
 description: "PROXIMA is a European biennale dedicated to AI and augmentism, examining how emerging technologies reshape artistic expression, aesthetics, and their ethical implications."
+longDescription: "We’re pleased to share an upcoming event organised by one of our community members, Alexandra Boucherifi-Kornmann: PROXIMA, a new European biennale dedicated to the intersections of art, artificial intelligence, and augmentation technologies, supported by the French Ministry of Culture. Starting in January 2026, in France and abroad, PROXIMA will bring together exhibitions and round tables exploring how AI and so-called augmentation technologies (augmented reality, mapping, QR codes, mixed reality) are reshaping pictorial creation."
 ogImage: ../og/og-proxima-poster.jpg
 ---
 

@@ -13,6 +13,7 @@ tags:
   - Lex Fridman
   - Discussion
 description: Join us for a mini-workshop on honesty in LLMs!
+longDescription: "We are organising a mini-workshop on the topic of: Honesty in LLMs. The objective being to produce a first, small, collective output, and identify avenues for further research. The workshop is open to all ai-phi members: check the mailing list and whatsapp group for more details and further announcements."
 ---
 
 We are organising a mini-workshop on the topic of: Honesty in LLMs. The objective being to produce a first, small, collective output, and identify avenues for further research.

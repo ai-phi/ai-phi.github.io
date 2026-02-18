@@ -12,7 +12,8 @@ tags:
   - LLM
   - AI
   - Philosophy
-description: An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains opinions from various ai-phi members.
+description: An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains contributions from various ai-phi members.
+longDescription: "A topic as broad as reasoning needs to be cut down to a more manageable size. To facilitate this, we published a set of questions before the causerie. These questions were: ⁠What is reasoning in an AI system? How can we know that an AI system is reasoning? What is missing from existing AI systems that prevent them from reasoning effectively? This served to both prompt thought and to be used as the basis for creating materials for the causerie to help guide the conversation. A collection of relevant ideas were presented during the causerie, not to showcase expertise, but to provide a common ground for discussion. The focus was on providing many on-ramps to different concepts that people could engage with, which is important given our diverse audience. This post contains an article written by Michael Anslow outlining the ai-phi community discussion during our causerie on reasoning, as well as individual contributions from multiple ai-phi members."
 ogImage: assets/ai-phi-Causerie-Reasoning.png
 ---
 

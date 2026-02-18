@@ -1,0 +1,70 @@
+---
+import { LOCALE } from "@config";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  href: string;
+}
+
+const { post, href } = Astro.props as Props;
+const { title, description, longDescription, pubDatetime } = post.data;
+
+const dateValue = new Date(pubDatetime);
+const displayDate = dateValue.toLocaleDateString(LOCALE.langTag, {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: LOCALE.timeZone ?? "Europe/Paris",
+});
+---
+
+<article
+  class="group relative rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-4 shadow-lg shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+>
+  <div class="pointer-events-none flex flex-col gap-3 text-skin-base">
+    <div class="flex flex-col gap-2">
+      <div
+        class="flex flex-wrap items-center justify-between gap-2 text-xs font-medium text-skin-base/80"
+      >
+        <time datetime={dateValue.toISOString()}>{displayDate}</time>
+      </div>
+
+      <h3
+        class="text-2xl font-semibold leading-tight transition-colors duration-150 group-hover:underline group-hover:underline-offset-4"
+      >
+        {title}
+      </h3>
+    </div>
+
+    {
+      (longDescription ?? description) && (
+        <p class="text-sm leading-relaxed text-skin-base opacity-80">
+          {longDescription ?? description}
+        </p>
+      )
+    }
+
+    <div class="pt-2">
+      <span
+        class="inline-flex items-center gap-1 font-medium text-skin-base transition-all duration-150 group-hover:gap-2"
+      >
+        More details
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="m13 5 7 7-7 7M4 12h16"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <a
+    href={href}
+    class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
+    aria-label={`Open post ${title}`}></a>
+</article>

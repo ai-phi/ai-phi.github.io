@@ -10,6 +10,7 @@ tags:
   - Website
   - Announcements
 description: Launching our ai-phi website
+longDescription: "Our ai-phi website is up and running! A huge thanks to Théis Bazin for all his hard work in setting this up! ❤️ You can look forward to the latest news and outputs from the ai-phi community as we hold more sessions and continue to dive into the intersection of AI and Philosophy."
 ---
 
 Our ai-phi website is up and running! A huge thanks to Théis Bazin for all his hard work in setting this up! ❤️

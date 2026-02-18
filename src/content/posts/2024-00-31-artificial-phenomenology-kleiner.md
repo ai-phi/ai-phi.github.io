@@ -11,6 +11,7 @@ tags:
   - Artificial Phenomenology
   - Mathematics of Consciousness
 description: (Conference Announcement) Talk by Johannes Kleiner
+longDescription: "This talk is part of the EIC-funded ASTOUND project, which investigates the impact of artificial consciousness. Johannes Kleiner will address the possibility of artificial phenomenology—the application of phenomenology to artificial systems, most notably artificial intelligence (AI) systems. Can we, as human beings, develop an understanding of the phenomenology of artificial systems, if some such phenomenology exists? The goal of this talk is to explain how recent developments in mathematical phenomenology (Prentner) and objective phenomenology (Lee) might afford a positive answer to this question. In providing a sketch of the resulting research program, he will also highlight why and where artificial phenomenology is needed in understanding and doing justice to the postbiotic conscious systems of the future. Johannes Kleiner is a physicist and mathematician who works on mathematical topics in consciousness science."
 ---
 
 # Towards Artificial Phenomenology

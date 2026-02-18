@@ -18,6 +18,7 @@ tags:
   - Autonomy
   - Persuasion
 description: "A community post summarising the exchanges of an ai-phi causerie facilitated by Edmund Ronald, bringing together original contributions from members on hopes, fears, trust, and regulation in the age of generative AI."
+longDescription: "This community post documents an ai-phi causerie on hopes, fears, trust, understanding, and regulation in the age of generative AI. The discussion examines a widening gap between engineering realities and public expectations: engineers treat complex systems as provisional and fallible, while public discourse often demands certainty about safety, control, and governance. A central theme is that many current AI systems are emergent rather than fully predictable, which complicates accountability and regulation. The text also explores how hope and fear are intertwined, with the same capabilities that promise augmentation and discovery also raising concerns about manipulation, misaligned autonomy, and poorly governed optimization. Trust appears as a practical, fragile construct built through repeated use rather than deep understanding, and the post questions whether fluent language can encourage misplaced deference to AI systems. The article then brings in member contributions that extend the conversation across agency, persuasion, and ethical evaluation, emphasizing that conceptual clarity must evolve alongside technological change."
 ogImage: ../og/og-causerie-edmund-post.jpg
 ---
 

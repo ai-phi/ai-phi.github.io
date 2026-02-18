@@ -68,31 +68,28 @@
 @layer base {
   :root,
   html[data-theme="light"] {
-    --color-fill: 255, 255, 255; /* Charcoal White */
+    --color-fill: 255, 255, 255; /* White */
     --color-text-base: 0, 0, 0; /* Pure black */
-    --color-accent: 217, 108, 41; /* Brown accent */
+    --color-accent: 139, 94, 60; /* Warm brown accent */
     --color-card: 245, 245, 245; /* Light grey */
-    --color-card-muted: 255, 253, 245; /* light beige */
+    --color-card-muted: 215, 200, 178; /* Muted beige */
     --color-card-image-bg: 0, 0, 0; /* Black */
     --color-border: 200, 200, 200; /* Light grey border */
-    --color-test: rgb(127, 47, 1); /* Red for testing */
-    --color-test: rgb(243, 82, 13); /* Red for testing */
-    --color-test: rgb(255, 253, 245); /* Red for testing */
     --color-brand: 0, 0, 0; /* Black */
     --color-secondary-brand: 100, 100, 100; /* Dark grey */
 
     /* Glitch/ghost accent hues for light theme */
-    --glitch-warm-1: 243, 124, 13; /* earthy brown */
-    --glitch-warm-2: 243, 82, 13; /* tan/beige */
-    --glitch-cool-1: 254, 214, 113; /* muted brown-grey */
-    --glitch-cool-2: 254, 250, 217; /* muted beige-grey */
+    --glitch-warm-1: 243, 124, 13; /* vibrant orange */
+    --glitch-warm-2: 243, 82, 13; /* vibrant orange */
+    --glitch-cool-1: 254, 214, 113; /* light yellow */
+    --glitch-cool-2: 254, 250, 217; /* very light yellow */
   }
   html[data-theme="dark"] {
     --color-fill: 5, 5, 5;             /* Deep cave black */
     --color-text-base: 255, 255, 255; /* Pure white */
-    --color-accent: 217, 108, 41; /* Beige accent */
+    --color-accent: 210, 180, 140; /* Beige accent */
     --color-card: 20, 20, 20; /* Dark grey */
-    --color-card-muted: 37, 31, 2; /* Slightly lighter grey */
+    --color-card-muted: 90, 75, 60; /* Muted brown */
     --color-card-image-bg: 0, 0, 0; /* Black */
     --color-border: 60, 60, 60; /* Dark grey border */
 
@@ -100,9 +97,9 @@
     --color-secondary-brand: 180, 180, 180; /* Light grey */
 
     /* Glitch/ghost accent hues for dark theme */
-    --glitch-warm-1: 243, 124, 13; /* earthy brown */
-    --glitch-warm-2: 243, 82, 13; /* tan/beige */
-    --glitch-cool-1: 254, 214, 113; /* muted brown-grey */
+    --glitch-warm-1: 243, 124, 13; 
+    --glitch-warm-2: 243, 82, 13; 
+    --glitch-cool-1: 254, 214, 113; 
     --glitch-cool-2: 254, 250, 217;
   }
   #sun-svg,

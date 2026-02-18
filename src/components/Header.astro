@@ -23,6 +23,40 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
+      <a href="/" class="nav-logo nav-logo-standalone whitespace-nowrap">
+        <div class="logo-container">
+          <!-- Ghost logo for subtle effect -->
+          <img
+            src="/images/AiPhi_Logo_Black_2lines.png"
+            alt=""
+            class="nav-ghost-logo nav-light-ghost"
+            z-index:
+            1;
+          />
+          <img
+            src="/images/AiPhi_Logo_White_2lines.png"
+            alt=""
+            class="nav-ghost-logo nav-dark-ghost"
+            z-index:
+            1;
+          />
+
+          <img
+            src="/images/AiPhi_Logo_Black_2lines.png"
+            alt={SITE.title}
+            class="nav-logo-image nav-light-logo"
+            z-index:
+            auto;
+          />
+          <img
+            src="/images/AiPhi_Logo_White_2lines.png"
+            alt={SITE.title}
+            class="nav-logo-image nav-dark-logo"
+            z-index:
+            auto;
+          />
+        </div>
+      </a>
       <nav id="nav-menu">
         <button
           class="hamburger-menu focus-outline"
@@ -52,7 +86,7 @@ const { activeNav } = Astro.props;
 
         <!-- Main navigation items -->
         <ul id="main-nav-items" class="hidden sm:flex">
-          <li class="nav-logo-item">
+          <li class="nav-logo-item nav-logo-item-inline">
             <a href="/" class="nav-logo nav-logo-in-menu whitespace-nowrap">
               <div class="logo-container">
                 <!-- Ghost logo for subtle effect -->
@@ -193,8 +227,10 @@ const { activeNav } = Astro.props;
   }
 
   .nav-container {
-    @apply mx-auto flex max-w-3xl flex-col items-center justify-between md:flex-row;
-    max-width: 58rem;
+    @apply mx-auto flex w-full flex-col items-center justify-between md:flex-row;
+    max-width: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   header {
@@ -206,6 +242,15 @@ const { activeNav } = Astro.props;
   .top-nav-wrap {
     @apply relative flex w-full items-start justify-between md:items-center md:pb-8;
     padding-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .top-nav-wrap {
+      display: grid;
+      grid-template-columns: auto minmax(0, 58rem) auto;
+      align-items: center;
+      column-gap: 1rem;
+      width: 100%;
+    }
   }
 
   .nav-logo {
@@ -226,6 +271,24 @@ const { activeNav } = Astro.props;
   .nav-logo-item {
     display: flex;
     align-items: center;
+  }
+
+  .nav-logo-standalone {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .nav-logo-standalone {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      margin-left: 0;
+      margin-right: 1rem;
+      grid-column: 1;
+    }
+
+    .nav-logo-item-inline {
+      display: none;
+    }
   }
 
   .logo-container {
@@ -476,6 +539,33 @@ const { activeNav } = Astro.props;
   nav {
     @apply flex w-full flex-col items-center md:ml-2 md:flex-row md:justify-between md:py-0;
   }
+  @media (min-width: 768px) {
+    nav {
+      display: contents;
+    }
+
+    #main-nav-items {
+      grid-column: 2;
+      justify-content: space-between;
+      gap: 0;
+      width: 100%;
+      min-width: 0;
+      flex: 0 1 auto;
+    }
+
+    #nav-actions {
+      grid-column: 3;
+      justify-self: end;
+      margin-right: 0;
+      flex-shrink: 0;
+      padding-top: 0;
+    }
+
+    #nav-menu {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
 
   /* Main navigation items */
   #main-nav-items {
@@ -554,7 +644,7 @@ const { activeNav } = Astro.props;
     }
 
     @media (min-width: 768px) {
-      margin-right: -110px;
+      margin-right: 0;
     }
   }
 

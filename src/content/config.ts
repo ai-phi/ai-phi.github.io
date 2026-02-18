@@ -28,6 +28,7 @@ const posts = defineCollection({
   schema: ({ image }) =>
     Frontmatter.extend({
       description: z.string(),
+      longDescription: z.string().optional(),
       ogImage: image()
         .refine(
           (img: ImageMetadata) => img.width >= 1200 && img.height >= 630,

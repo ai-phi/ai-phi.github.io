@@ -9,9 +9,9 @@ The ai-phi community involves researchers and professionals from diverse backgro
 
 ### Founding members (in alphabetical order)
 
-- **Michael Anslow**, Sony CSL
-- **David Colliaux**, Sony CSL, (also organiser of [Sony CSL's étincelle seminar](https://csl.sony.fr/seminars/))
-- **Aïda Elamrani**, [Conscienc.AI 🦄](https://conscienc.ai/)
+- **Michael Anslow**, Sony CSL, [Medium](https://medium.com/@michael.anslow)
+- **David Colliaux**, Sony CSL, [Mil Lieues](https://kodda.github.io/millieues/), [Étincelle seminar](https://csl.sony.fr/seminars/)
+- **Aïda Elamrani**, AI-Phil Consulting, [Conscienc.AI 🦄](https://conscienc.ai/), [Symbolon Seminar](https://leprojety.github.io/page/philo.html)
 - **Stefan Lattner**, Sony CSL
 
 ### Distinguished members (in alphabetical order)

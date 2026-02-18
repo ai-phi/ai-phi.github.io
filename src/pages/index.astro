@@ -55,17 +55,68 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
     <section id="hero" class="hero-section">
       <div class="hero-content">
         <!-- Logo positioned to float and allow text wrapping -->
-        <div class="logo-container">
+        <div class="logo-container hero-logo-container">
           <!-- Ring logos for background rotation -->
           <img
             src="/images/AiPhi_Logo_Black_Variante_Ring.png"
             alt=""
-            class="hero-ring-logo light-ring"
+            class="hero-ring-logo light-ring ring ring-1"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-2"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-3"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-4"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-5"
           />
           <img
             src="/images/AiPhi_Logo_White_Variante_Ring.png"
             alt=""
-            class="hero-ring-logo dark-ring"
+            class="hero-ring-logo dark-ring ring ring-1"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-2"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-3"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-4"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-5"
+          />
+          <span class="hero-logo-hit-area" aria-hidden="true"></span>
+          <img
+            src="/images/AiPhi_Logo_Black_Variante.png"
+            alt=""
+            class="hero-ghost-logo hero-light-ghost"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante.png"
+            alt=""
+            class="hero-ghost-logo hero-dark-ghost"
           />
 
           <img
@@ -91,15 +142,15 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                 changing world.</b
               >
             </p>
+            
+              
           </div>
           <!-- Keywords under description (randomly selected on each page load) -->
           <div class="keywords-under-description">
             <!-- General categories (always shown) -->
             <div class="subtitle-section general-categories">
-              <!-- <h3 class="text-2xl text-left"> <b>Session Type:</b> -->
-
-              <a
-                href={`sessions/seminar-series`}
+              <!-- <p> <span style="font-weight: bold;">Events:</span>  -->
+              <a  href={`sessions/seminar-series`}
                 class="glitch-container"
                 data-text={"Seminar Series"}
               >
@@ -119,12 +170,12 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
               >
                 <span>Other Sessions</span>
               </a>
-              <!-- </h3> -->
+            <!-- </p> -->
             </div>
 
             <!-- Random themes -->
             <div class="subtitle-section random-themes">
-              <!-- <h3 class="text-2xl text-left"> <b>Browse Randomly:</b> -->
+              <!-- <p> <span style="font-weight: bold;">Random Themes:</span>  -->
               {
                 keywordMap.randomThemes.map((keyword, index) => (
                   <>
@@ -141,7 +192,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                   </>
                 ))
               }
-              <!-- </h3> -->
+              <!-- </p> -->
             </div>
           </div>
         </div>
@@ -347,7 +398,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
         font-weight: 400;
         clear: both; /* Ensure text clears floated logo on mobile */
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           clear: none; /* Allow text to flow around logo on desktop */
         }
         line-height: 1.5rem;
@@ -379,7 +430,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
           padding-bottom: 0rem;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           justify-content: center;
           padding-left: 0;
           padding-bottom: 0rem;
@@ -832,6 +883,10 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
       .logo-container {
         @apply relative;
+        position: relative;
+        --hero-logo-h: clamp(7.75rem, 19vw, 15rem);
+        isolation: isolate;
+        z-index: 0;
         /* Mobile-first: center the logo */
         float: none;
         margin: 0 auto 2rem auto;
@@ -840,7 +895,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
         padding: 0 1rem; /* Add padding on mobile to prevent cutoff */
 
         /* Desktop layout */
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           float: right;
           margin-left: 4rem;
           margin-bottom: 1rem;
@@ -857,28 +912,103 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
       /* Ring: a bit larger than the logo, slightly elliptical, slightly offset */
       .hero-ring-logo {
         @apply absolute w-auto transition-opacity duration-200;
-        opacity: 0.25;
+        top: 50%;
+        left: 50%;
+        opacity: var(--ring-opacity, 0.18);
+        filter: var(--ring-filter, none);
         pointer-events: none;
         z-index: -1;
         padding: 0.2rem;
+        -webkit-clip-path: ellipse(50% 50% at 50% 50%);
+        clip-path: ellipse(50% 50% at 50% 50%);
 
-        /* Bigger than the hero-logo */
-        height: clamp(9rem, 19vw, 20rem);
+        /* Keep a stable ratio with the foreground logo across breakpoints */
+        height: calc(var(--hero-logo-h) * var(--ring-scale, 1.28));
 
         /* Keep the same animation */
-        animation: slowRotate 150s linear infinite;
+        animation: slowRotate var(--ring-speed, 150s) linear infinite;
 
         /* Helps the ellipse feel “orbit-like” */
         transform-origin: center;
       }
 
-      /* IMPORTANT: bake translate + ellipse into the keyframes so animation doesn't override it */
+      .ring-1 {
+        --ring-scale: 1.20;
+        --ring-speed: 210s;
+        --ring-dir: 1;
+        --ring-opacity: 0.26;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(86%) sepia(74%) saturate(997%)
+          hue-rotate(344deg) brightness(101%) contrast(103%);
+      }
+
+      .ring-2 {
+        --ring-scale: 1.05;
+        --ring-speed: 140s;
+        --ring-dir: -1;
+        --ring-opacity: 0.2;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(63%) sepia(92%) saturate(2175%)
+          hue-rotate(358deg) brightness(101%) contrast(105%);
+      }
+
+      .ring-3 {
+        --ring-scale: 1.12;
+        --ring-speed: 178s;
+        --ring-dir: 1;
+        --ring-opacity: 0.17;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(36%) sepia(89%) saturate(2707%)
+          hue-rotate(347deg) brightness(94%) contrast(106%);
+      }
+
+      .ring-4 {
+        --ring-scale: 1.18;
+        --ring-speed: 232s;
+        --ring-dir: -1;
+        --ring-opacity: 0.14;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(28%) sepia(49%) saturate(922%)
+          hue-rotate(352deg) brightness(94%) contrast(89%);
+      }
+
+      .ring-5 {
+        --ring-scale: 1.14;
+        --ring-speed: 260s;
+        --ring-dir: 1;
+        --ring-opacity: 0.12;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(44%) sepia(17%) saturate(617%)
+          hue-rotate(354deg) brightness(88%) contrast(86%);
+      }
+
+      html[data-theme="dark"] .ring-1 {
+        --ring-opacity: 0.28;
+      }
+
+      html[data-theme="dark"] .ring-2 {
+        --ring-opacity: 0.22;
+      }
+
+      html[data-theme="dark"] .ring-3 {
+        --ring-opacity: 0.19;
+      }
+
+      html[data-theme="dark"] .ring-4 {
+        --ring-opacity: 0.16;
+      }
+
+      html[data-theme="dark"] .ring-5 {
+        --ring-opacity: 0.14;
+      }
+
+      /* IMPORTANT: bake translate into keyframes so animation doesn't override centering */
       @keyframes slowRotate {
-        0% {
-          transform: scaleX(2) scaleY(0.7) rotate(0deg);
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
         }
-        100% {
-          transform: scaleX(1.12) scaleY(0.92) rotate(360deg);
+        to {
+          transform: translate(-50%, -50%) rotate(calc(360deg * var(--ring-dir, 1)));
         }
       }
 
@@ -896,15 +1026,6 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
       html[data-theme="dark"] .hero-ring-logo.dark-ring {
         display: block;
-      }
-
-      @keyframes slowRotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
       }
 
       #hero {
@@ -929,7 +1050,171 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
       .hero-logo {
         @apply w-auto transition-opacity duration-200;
-        height: clamp(7rem, 18vw, 14rem); /* Responsive height */
+        height: var(--hero-logo-h); /* Responsive height */
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-logo-hit-area {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(var(--hero-logo-h) * 1.9);
+        height: calc(var(--hero-logo-h) * 1.9);
+        transform: translate(-50%, -50%);
+        border-radius: 9999px;
+        background: transparent;
+        z-index: 3;
+      }
+
+      .hero-ghost-logo {
+        @apply absolute w-auto transition-opacity duration-200;
+        top: 50%;
+        left: 50%;
+        height: var(--hero-logo-h);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-ghost-logo.ghost-effect {
+        animation: heroSubtleGhost 3s ease-in-out;
+      }
+
+      .hero-ghost-logo.ghost-effect-2 {
+        animation: heroSubtleGhost2 3s ease-in-out;
+      }
+
+      .hero-light-ghost {
+        display: block;
+      }
+
+      .hero-dark-ghost {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-light-ghost {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-dark-ghost {
+        display: block;
+      }
+
+      @keyframes heroSubtleGhost {
+        0% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.5deg)
+            scale(1.012);
+          opacity: 0.6;
+        }
+        10% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(1.03);
+          opacity: 0.4;
+        }
+        20% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px)) rotate(-0.4deg)
+            scale(0.95);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px)) rotate(-0.1deg)
+            scale(0.92);
+          opacity: 0.6;
+        }
+        40% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.2deg)
+            scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.4deg)
+            scale(0.99);
+          opacity: 0.5;
+        }
+        60% {
+          transform: translate(calc(-50% - 2px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(1.04);
+          opacity: 0.55;
+        }
+        70% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 2px))
+            rotate(-0.2deg) scale(0.98);
+          opacity: 0.35;
+        }
+        80% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(1.01);
+          opacity: 0.5;
+        }
+        90% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px)) rotate(-0.4deg)
+            scale(0.97);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.2deg)
+            scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes heroSubtleGhost2 {
+        0% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px))
+            rotate(-0.5deg) scale(0.988);
+          opacity: 0.6;
+        }
+        10% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(0.97);
+          opacity: 0.4;
+        }
+        20% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.4deg)
+            scale(1.05);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.1deg)
+            scale(1.08);
+          opacity: 0.6;
+        }
+        40% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.2deg) scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px))
+            rotate(-0.4deg) scale(1.01);
+          opacity: 0.5;
+        }
+        60% {
+          transform: translate(calc(-50% + 2px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(0.96);
+          opacity: 0.55;
+        }
+        70% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 2px)) rotate(0.2deg)
+            scale(1.02);
+          opacity: 0.35;
+        }
+        80% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(0.99);
+          opacity: 0.5;
+        }
+        90% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.4deg)
+            scale(1.03);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.2deg) scale(1);
+          opacity: 0;
+        }
       }
 
       .light-logo {
@@ -1461,6 +1746,118 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
         // The letter animation will only happen on the glitch strips, not the main text
       }
 
+      const heroGhostColors = [
+        "invert(61%) sepia(12%) saturate(586%) hue-rotate(349deg) brightness(89%) contrast(88%)",
+        "invert(33%) sepia(18%) saturate(714%) hue-rotate(348deg) brightness(95%) contrast(93%)",
+        "invert(52%) sepia(9%) saturate(475%) hue-rotate(344deg) brightness(95%) contrast(88%)",
+      ];
+
+      let heroGhostTimeout: ReturnType<typeof setTimeout> | null = null;
+
+      function triggerHeroGhostEffect() {
+        const lightGhost = document.querySelector(
+          ".hero-light-ghost"
+        ) as HTMLImageElement | null;
+        const darkGhost = document.querySelector(
+          ".hero-dark-ghost"
+        ) as HTMLImageElement | null;
+
+        if (!lightGhost || !darkGhost) return;
+
+        let color1 =
+          heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+        let color2 =
+          heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+
+        while (color1 === color2) {
+          color2 =
+            heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+        }
+
+        const ghost1Light = lightGhost.cloneNode(true) as HTMLImageElement;
+        const ghost1Dark = darkGhost.cloneNode(true) as HTMLImageElement;
+        const ghost2Light = lightGhost.cloneNode(true) as HTMLImageElement;
+        const ghost2Dark = darkGhost.cloneNode(true) as HTMLImageElement;
+
+        ghost1Light.style.filter = color1;
+        ghost1Dark.style.filter = "brightness(0) saturate(100%) " + color1;
+        ghost2Light.style.filter = color2;
+        ghost2Dark.style.filter = "brightness(0) saturate(100%) " + color2;
+        ghost1Light.style.zIndex = "1";
+        ghost1Dark.style.zIndex = "1";
+        ghost2Light.style.zIndex = "0";
+        ghost2Dark.style.zIndex = "0";
+
+        const parent = lightGhost.parentElement;
+        if (!parent) return;
+
+        parent.appendChild(ghost1Light);
+        parent.appendChild(ghost1Dark);
+        parent.appendChild(ghost2Light);
+        parent.appendChild(ghost2Dark);
+
+        ghost1Light.classList.add("ghost-effect");
+        ghost1Dark.classList.add("ghost-effect");
+        ghost2Light.classList.add("ghost-effect-2");
+        ghost2Dark.classList.add("ghost-effect-2");
+
+        setTimeout(() => {
+          [ghost1Light, ghost1Dark, ghost2Light, ghost2Dark].forEach(el => {
+            if (el.parentElement) el.parentElement.removeChild(el);
+          });
+        }, 3000);
+      }
+
+      function scheduleHeroGhostEffect() {
+        if (heroGhostTimeout) {
+          clearTimeout(heroGhostTimeout);
+        }
+
+        const delay = Math.random() * (65000 - 55000) + 55000;
+        heroGhostTimeout = setTimeout(() => {
+          triggerHeroGhostEffect();
+          scheduleHeroGhostEffect();
+        }, delay);
+      }
+
+      function setupHeroGhostTriggers() {
+        const heroLogoContainer = document.querySelector(
+          ".hero-logo-container"
+        ) as HTMLElement | null;
+        if (!heroLogoContainer || heroLogoContainer.dataset.ghostBound === "1")
+          return;
+
+        heroLogoContainer.dataset.ghostBound = "1";
+        let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+        const triggerOnHover = () => {
+          if (hoverTimeout) return;
+          triggerHeroGhostEffect();
+          hoverTimeout = setTimeout(() => {
+            hoverTimeout = null;
+          }, 2500);
+        };
+
+        const heroHitArea = heroLogoContainer.querySelector(
+          ".hero-logo-hit-area"
+        );
+        const heroTagline = document.querySelector(".hero-tagline");
+        const triggerTargets: EventTarget[] = [
+          heroLogoContainer,
+          ...(heroHitArea ? [heroHitArea] : []),
+          ...(heroTagline ? [heroTagline] : []),
+          ...Array.from(heroLogoContainer.querySelectorAll(".hero-logo")),
+        ];
+
+        triggerTargets.forEach(target => {
+          target.addEventListener("mouseenter", triggerOnHover);
+          target.addEventListener("focusin", triggerOnHover);
+          target.addEventListener("touchstart", triggerOnHover, {
+            passive: true,
+          });
+          target.addEventListener("click", triggerHeroGhostEffect);
+        });
+      }
+
       function triggerGlitchEffect() {
         const containers = document.querySelectorAll(".glitch-container");
 
@@ -1676,6 +2073,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
       // Initialize glitch effect (letter animation is now integrated)
       document.addEventListener("DOMContentLoaded", () => {
         setTimeout(scheduleGlitchEffect, 0);
+        setTimeout(scheduleHeroGhostEffect, 60000);
+        setupHeroGhostTriggers();
         // Hover/focus-triggered glitch on specific keyword
         const wireHoverGlitch = () => {
           document.querySelectorAll(".glitch-container").forEach(el => {
@@ -1700,6 +2099,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
       // Re-setup on view transitions
       document.addEventListener("astro:after-swap", () => {
         scheduleGlitchEffect();
+        scheduleHeroGhostEffect();
+        setupHeroGhostTriggers();
         // Re-bind listeners for newly swapped content
         document.querySelectorAll(".glitch-container").forEach(el => {
           const container = el as HTMLElement;

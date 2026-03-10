@@ -47,4 +47,4 @@ He is a co-author of the recently released open book "History of Ideas in the Sc
 
 **Date and Time:** Thursday, 19th of February 2026 - **11 AM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
-**Registration:** upcoming
+**Registration:** [here](https://luma.com/tn7mfmj6)

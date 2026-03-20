@@ -1,11 +1,63 @@
 {
   "meta": {
     "version": "1.0",
-    "generatedAt": "2026-01-28T15:20:02.955Z",
+    "generatedAt": "2026-03-20T14:20:49.701Z",
     "project": "AI-Phi",
     "siteBaseUrl": "https://ai-phi.github.io/"
   },
   "sessions": [
+    {
+      "slug": "session-34-systemic-challenges",
+      "sessionNumber": 34,
+      "kind": "causerie",
+      "title": "Systemic Challenges of the Digital Ecosystem",
+      "date": "2026-03-26",
+      "time": "18:30",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-34-systemic-challenges.png",
+      "speakers": [
+        {
+          "name": "Charbel Segerie",
+          "affiliation": "CeSIA"
+        },
+        {
+          "name": "Aïda Elamrani",
+          "affiliation": "U Gent, AI-Phil Consulting"
+        }
+      ]
+    },
+    {
+      "slug": "session-33-van-trijp-phylo-epistemic",
+      "sessionNumber": 33,
+      "kind": "seminar",
+      "title": "Phylo-Epistemic Networks for Understanding the Science of Artificial Intelligence",
+      "date": "2026-03-19",
+      "time": "11:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-33-van-trijp-phylo-epistemic.jpg",
+      "speakers": [
+        {
+          "name": "Remi van Trijp",
+          "affiliation": "Sony CSL Paris"
+        }
+      ]
+    },
+    {
+      "slug": "session-32-segerie-losing-control",
+      "sessionNumber": 32,
+      "kind": "seminar",
+      "title": "Are We Losing Control?",
+      "date": "2026-02-12",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-32-segerie-losing-control.png",
+      "speakers": [
+        {
+          "name": "Charbel-Raphaël Segerie",
+          "affiliation": "CeSIA"
+        }
+      ]
+    },
     {
       "slug": "session-31-causerie-llm-education",
       "sessionNumber": 31,
@@ -548,7 +600,7 @@
       "slug": "causerie-on-reasoning",
       "title": "Our Causerie on Reasoning",
       "kind": null,
-      "subtitle": "An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains opinions from various ai-phi members.",
+      "subtitle": "An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains contributions from various ai-phi members.",
       "illustration": "assets/ai-phi-Causerie-Reasoning.png"
     },
     {

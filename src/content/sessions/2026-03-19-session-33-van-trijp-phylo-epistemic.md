@@ -18,7 +18,7 @@ tags:
   - Language
   - Discoveries
 description: >-
-  Artificial intelligence is often portrayed as a linear story of breakthroughs and progress. This talk proposes a different perspective: AI research evolves as a network of interacting ideas, communities, and technologies. Using phylo-epistemic networks — graph-based tools that map conceptual and scientific lineages — the talk explores the history of modelling language as a complex adaptive system. This case study highlights how alternative research trajectories emerge, evolve, and sometimes disappear, raising important questions about the diversity and future directions of AI research.
+  AI research evolves as a network of interacting ideas, communities, and technologies. Using phylo-epistemic networks, the talk explores the history of modelling language as a complex adaptive system. This case study highlights how alternative research trajectories can live, raising important questions about the diversity and future directions of AI research.
 kind: seminar
 series: AI-Phi Seminar Series
 ---

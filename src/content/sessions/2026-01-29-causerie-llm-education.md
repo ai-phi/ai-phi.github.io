@@ -10,7 +10,7 @@ speakers:
     affiliation: CEA Paris-Saclay
 baseIllustration: /images/base/sessions/session-31-causerie-llm-education.jpeg
 draft: false
-featured: true
+featured: false
 tags:
   - Education
   - Watermarks

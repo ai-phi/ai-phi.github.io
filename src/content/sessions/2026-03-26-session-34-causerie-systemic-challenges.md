@@ -42,6 +42,6 @@ As usual, the causerie will be followed by a collective post on our blog with op
 
 ## Details
 
-**Date and Time:** Thursday, 26th of February 2026 - **6:30 PM**  
+**Date and Time:** Thursday, 26th of March 2026 - **6:30 PM**  
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
 **Registration:** [here](https://luma.com/deztlkd5) - Registration is not mandatory, but it helps us better prepare the space and logistics.

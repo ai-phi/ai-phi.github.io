@@ -10,7 +10,7 @@ speakers:
     affiliation: CeSIA
 baseIllustration: /images/base/sessions/session-32-segerie-losing-control.png
 draft: false
-featured: true
+featured: false
 tags:
   - Safety
   - Control

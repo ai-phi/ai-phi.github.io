@@ -1,11 +1,27 @@
 {
   "meta": {
     "version": "1.0",
-    "generatedAt": "2026-03-20T14:20:49.701Z",
+    "generatedAt": "2026-04-07T15:53:17.217Z",
     "project": "AI-Phi",
     "siteBaseUrl": "https://ai-phi.github.io/"
   },
   "sessions": [
+    {
+      "slug": "session-35-causerie-fragile-values",
+      "sessionNumber": 35,
+      "kind": "causerie",
+      "title": "Fragile values: a goal-centric view on learning and decision-making",
+      "date": "2026-04-16",
+      "time": "19:30",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-35-causerie-fragile-values.jpeg",
+      "speakers": [
+        {
+          "name": "Ali Shiravand",
+          "affiliation": "ENS"
+        }
+      ]
+    },
     {
       "slug": "session-34-systemic-challenges",
       "sessionNumber": 34,

@@ -389,7 +389,7 @@ _\[Disclosure: An AI language model was used to interactively refine the
 original draft of this piece, preserving the ideas and flow while
 improving clarity and language.\]_
 
-# Final Remarks
+## Final Remarks
 
 Discussion about AI often devolves into doom vs gloom narratives.
 However, our hopes and fears are often different sides of the same coin:

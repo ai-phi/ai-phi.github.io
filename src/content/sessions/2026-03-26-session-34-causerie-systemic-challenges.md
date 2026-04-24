@@ -12,7 +12,7 @@ speakers:
     affiliation: U Gent, AI-Phil Consulting
 baseIllustration: /images/base/sessions/session-34-systemic-challenges.png
 draft: false
-featured: true
+featured: false
 tags:
   - Privacy
   - Surveillance

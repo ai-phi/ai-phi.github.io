@@ -1,18 +1,38 @@
 {
   "meta": {
     "version": "1.0",
-    "generatedAt": "2026-04-07T15:53:17.217Z",
+    "generatedAt": "2026-04-24T17:40:27.231Z",
     "project": "AI-Phi",
     "siteBaseUrl": "https://ai-phi.github.io/"
   },
   "sessions": [
+    {
+      "slug": "session-36-systemic-challenges",
+      "sessionNumber": 36,
+      "kind": "causerie",
+      "title": "Systemic Challenges of the Digital Ecosystem - part 2",
+      "date": "2026-04-30",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-36-systemic-challenges.png",
+      "speakers": [
+        {
+          "name": "Charbel Segerie",
+          "affiliation": "CeSIA"
+        },
+        {
+          "name": "Aïda Elamrani",
+          "affiliation": "U Gent, AI-Phil Consulting"
+        }
+      ]
+    },
     {
       "slug": "session-35-causerie-fragile-values",
       "sessionNumber": 35,
       "kind": "causerie",
       "title": "Fragile values: a goal-centric view on learning and decision-making",
       "date": "2026-04-16",
-      "time": "19:30",
+      "time": "18:30",
       "location": null,
       "baseIllustration": "/images/base/sessions/session-35-causerie-fragile-values.jpeg",
       "speakers": [

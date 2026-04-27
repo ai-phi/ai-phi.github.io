@@ -41,5 +41,5 @@ The ai-phi community involves researchers and professionals from diverse backgro
 
 ### Special Thanks
 
-- **Sébastien Marino**, Creative Director for [ai-phi 3.0 Style](posts/ai-phi-3), [📸](https://www.instagram.com/mstheghost/)
+- **Sébastien Marino**, Creative Director for [ai-phi 3.0 Style](/posts/ai-phi-3), [📸](https://www.instagram.com/mstheghost/)
 - **Théis Bazin**, Setting up Initial Website and Infrastructure

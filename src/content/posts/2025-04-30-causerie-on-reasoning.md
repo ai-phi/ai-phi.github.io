@@ -14,7 +14,7 @@ tags:
   - Philosophy
 description: An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains contributions from various ai-phi members.
 longDescription: "A topic as broad as reasoning needs to be cut down to a more manageable size. To facilitate this, we published a set of questions before the causerie. These questions were: ⁠What is reasoning in an AI system? How can we know that an AI system is reasoning? What is missing from existing AI systems that prevent them from reasoning effectively? This served to both prompt thought and to be used as the basis for creating materials for the causerie to help guide the conversation. A collection of relevant ideas were presented during the causerie, not to showcase expertise, but to provide a common ground for discussion. The focus was on providing many on-ramps to different concepts that people could engage with, which is important given our diverse audience. This post contains an article written by Michael Anslow outlining the ai-phi community discussion during our causerie on reasoning, as well as individual contributions from multiple ai-phi members."
-ogImage: assets/ai-phi-Causerie-Reasoning.png
+ogImage: assets/AI-Phi-Causerie-Reasoning.png
 ---
 
 ## What is ai-phi?
@@ -25,7 +25,7 @@ ai-phi is a research community in Paris that operates at the intersection of AI 
 
 A traditional seminar typically showcases a single expert’s perspective, often leaving the audience in the background, in a passive role. In contrast, we wanted to create a space where individuals could actively contribute, bringing their unique research contexts and personalities into an open-form, relaxed discussion. To achieve this, we took inspiration from the French concept of a _causerie_—a term originating from the Parisian salons, where intellectuals engaged in informal yet thought-provoking discussion.
 
-<img src="/assets/ai-phi-Causerie-Reasoning.png" alt="Cyberpunk illustration of french salons." />
+<img src="/assets/AI-Phi-Causerie-Reasoning.png" alt="Cyberpunk illustration of french salons." />
 
 ## Our Approach
 
@@ -131,7 +131,7 @@ Now, when it comes to today’s most popular AI architecture — Transformers �
 [🦋Bluesky](https://bsky.app/profile/aidaelamrani.bsky.social);
 [🐘 Mastodon](https://mastodon.social/@AidaElamrani);
 [🐧 Twitter](https://x.com/AidaElam/);
-[💼 LinkedIn](www.linkedin.com/in/aida-elamrani);
+[💼 LinkedIn](https://www.linkedin.com/in/aida-elamrani);
 
 While collectively _reasoning about reasoning_ during the causerie session, a linguistic confusion was raised a few times. Reasoning carries a variety of nuances, but two of them consistently stood out in our ai-phi conversation:
 

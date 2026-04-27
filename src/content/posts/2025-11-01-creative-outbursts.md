@@ -19,13 +19,13 @@ ogImage: assets/creative-outbursts.jpg
 
 It’s heartening to see how deeply our community is infused with **creative energy**!
 
-Earlier on, this year, I finally realised a long-held dream by launching my personal blog on the epistemological, ethical, and metaphysical implications of artificial minds: [Conscienc.AI](https://conscienc.ai/).
+Earlier on, this year, I finally realised a long-held dream by launching my personal blog on the epistemological, ethical, and metaphysical implications of artificial minds: [Conscienc.AI](https://conscienc.ai/?utm_source=ai-phi&utm_medium=creative-outbursts-post&utm_campaign=outbound-profile-link).
 
 Meanwhile, Michael Anslow led the first collective ai-phi post about [our Causerie on Reasoning](/posts/causerie-on-reasoning) and has since begun a sharp, ongoing series about how generative AI is reshaping humanity [on Medium](https://medium.com/@michael.anslow).
 
 Last month, David Colliaux launched his own blog, ["Mil Lieues”](https://kodda.github.io/millieues) about computation and biology ! _Stefan, we’re waiting for yours next!_ And our dear Sylvy Anscombe opened a [political substack](https://sylvyanscombe.substack.com/).
 
-David’s [latest post](https://kodda.github.io/millieues/posts/2025-10-30-Existential-machines/) is a retrospective on our inaugural ai-phi 3.0 [session with Dominique Lestel](posts/session-26-lestel-insurrectionary-machines): whether you could join us or not, it provides an interesting summary and perspective. The post is illustrated by Edmund Ronald’s sketch, drawn live during the session:
+David’s [latest post](https://kodda.github.io/millieues/posts/2025-10-30-Existential-machines/) is a retrospective on our inaugural ai-phi 3.0 [session with Dominique Lestel](/posts/session-26-lestel-insurrectionary-machines): whether you could join us or not, it provides an interesting summary and perspective. The post is illustrated by Edmund Ronald’s sketch, drawn live during the session:
 
 ![Edmund's sketch](/assets/edmund-drawing-lestel-small-75.jpg)
 

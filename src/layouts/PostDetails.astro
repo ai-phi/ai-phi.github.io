@@ -61,6 +61,7 @@ const layoutProps = {
   scrollSmooth: true,
 };
 
+const showTags = post.collection !== "glossary";
 const sessionNumber = isSession ? post.data.sessionNumber : undefined;
 const sessionSpeakers = isSession ? post.data.speakers : undefined;
 const sessionKind = isSession ? getSessionKindLabel(post.data.kind) : undefined;
@@ -140,9 +141,13 @@ const formatSpeakers = (
       <Content />
     </article>
 
-    <ul class="my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
-    </ul>
+    {
+      showTags && (
+        <ul class="my-8">
+          {tags.map(tag => <Tag tag={slugifyStr(tag)} />)}
+        </ul>
+      )
+    }
 
     <div
       class="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row-reverse sm:items-end sm:gap-4"

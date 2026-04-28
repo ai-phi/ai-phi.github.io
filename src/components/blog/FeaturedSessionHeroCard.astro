@@ -44,7 +44,12 @@ const displayTime = dateValue
   : "";
 ---
 
-<article class="group relative h-full rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-5 shadow-lg shadow-black/10 transition-shadow transition-transform hover:-translate-y-0.5 hover:shadow-xl">
+<article
+  class="group relative h-full cursor-pointer rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-5 shadow-lg shadow-black/10 transition-shadow transition-transform hover:-translate-y-0.5 hover:shadow-xl"
+  data-card-link={href}
+  tabindex="0"
+  role="link"
+>
   <div class="flex justify-start overflow-hidden rounded-lg bg-[rgb(var(--color-card-muted))]">
     <img
       src={resolvedImage}
@@ -55,12 +60,7 @@ const displayTime = dateValue
     />
   </div>
 
-  <a
-    href={href}
-    class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
-    aria-label={`Open ${title}`}></a>
-
-  <div class="relative z-20 mt-4 flex h-full flex-col pointer-events-none">
+  <div class="relative z-20 mt-4 flex h-full select-text flex-col">
     {
       eyebrow && (
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
@@ -71,7 +71,12 @@ const displayTime = dateValue
     <h3
       class="text-2xl font-semibold leading-tight text-skin-base transition-colors duration-150 group-hover:text-3xl"
     >
-      {title}
+      <a
+        href={href}
+        class="relative z-30 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
+      >
+        {title}
+      </a>
     </h3>
 
     {
@@ -94,7 +99,8 @@ const displayTime = dateValue
     }
 
     <div class="mt-auto pt-4">
-      <span
+      <a
+        href={href}
         class="inline-flex items-center gap-1 font-medium transition-all duration-150 group-hover:font-bold text-skin-base cursor-pointer"
       >
         Check details
@@ -107,7 +113,45 @@ const displayTime = dateValue
         >
           <path d="m13 5 7 7-7 7M4 12h16"></path>
         </svg>
-      </span>
+      </a>
     </div>
   </div>
 </article>
+
+<script is:inline>
+  const isInteractiveElement = (element, card) => {
+    if (!(element instanceof HTMLElement)) return false;
+    const interactiveAncestor = element.closest(
+      'a, button, input, textarea, select, summary, [role="button"], [role="link"]'
+    );
+    return !!interactiveAncestor && interactiveAncestor !== card;
+  };
+
+  const hasSelectedText = () => {
+    const selection = window.getSelection();
+    return !!selection && selection.toString().trim().length > 0;
+  };
+
+  const activateCard = card => {
+    const href = card.dataset.cardLink;
+    if (href) window.location.assign(href);
+  };
+
+  document.querySelectorAll("[data-card-link]").forEach(card => {
+    if (!(card instanceof HTMLElement) || card.dataset.cardBound === "true") return;
+    card.dataset.cardBound = "true";
+
+    card.addEventListener("click", event => {
+      if (hasSelectedText()) return;
+      if (isInteractiveElement(event.target, card)) return;
+      activateCard(card);
+    });
+
+    card.addEventListener("keydown", event => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      if (isInteractiveElement(event.target, card)) return;
+      event.preventDefault();
+      activateCard(card);
+    });
+  });
+</script>

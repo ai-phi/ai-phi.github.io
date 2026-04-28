@@ -6,7 +6,7 @@ title: >-
   PROXIMA — Launch of the European Biennale of AI & Augmentism
 slug: 2026-biennale-augmentism
 draft: false
-featured: true
+featured: false
 tags:
   - Creative AI
   - Augmentism

@@ -5,6 +5,7 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import PostVerticalCard from "@components/blog/PostVerticalCard.astro";
+import FeaturedSessionHeroCard from "@components/blog/FeaturedSessionHeroCard.astro";
 import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
@@ -27,6 +28,8 @@ const normalizeOgImage = (ogImage?: string | { src: string }) => {
 };
 const getCardOgImage = (ogImage?: string | { src: string }) =>
   normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
+const isLastOddCard = (index: number, total: number) =>
+  total % 2 === 1 && index === total - 1;
 const featuredNonSessionPosts = sortedPosts
   .filter(({ data }) => data.featured)
   .slice(0, 2);
@@ -208,16 +211,26 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             {
               featuredNonSessionPosts.length > 0 ? (
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
-                  {featuredNonSessionPosts.map(({ data, slug }) => (
-                    <PostVerticalCard
-                      title={data.title}
-                      date={data.pubDatetime}
-                      author={data.author}
-                      description={data.description}
-                      ogImage={getCardOgImage(data.ogImage)}
-                      href={`/posts/${slug}`}
-                    />
-                  ))}
+                  {featuredNonSessionPosts.map(({ data, slug }, index) => {
+                    const expanded = isLastOddCard(
+                      index,
+                      featuredNonSessionPosts.length
+                    );
+
+                    return (
+                      <div class:list={[expanded && "md:col-span-2"]}>
+                        <PostVerticalCard
+                          title={data.title}
+                          date={data.pubDatetime}
+                          author={data.author}
+                          description={data.description}
+                          ogImage={getCardOgImage(data.ogImage)}
+                          href={`/posts/${slug}`}
+                          expanded={expanded}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               ) : (
                 <p class="text-base text-skin-base opacity-80">
@@ -252,20 +265,61 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             {
               featuredSessionPosts.length > 0 ? (
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
-                  {featuredSessionPosts.map(({ data, slug, resolvedOg }) => (
-                    <PostVerticalCard
-                      title={data.titleShort ?? data.title}
-                      eyebrow={`Session ${
-                        data.sessionNumber
-                      } · ${getSessionKindLabel(data.kind)}`}
-                      date={data.pubDatetime}
-                      author={data.author}
-                      description={data.description}
-                      ogImage={resolvedOg}
-                      mediaMode="fixed"
-                      href={`/posts/${slug}`}
-                    />
-                  ))}
+                  {featuredSessionPosts.map(
+                    ({ data, slug, resolvedOg }, index) => {
+                      const expanded = isLastOddCard(
+                        index,
+                        featuredSessionPosts.length
+                      );
+
+                      return (
+                        <div class:list={[expanded && "md:col-span-2"]}>
+                          {expanded ? (
+                            <>
+                              <div class="md:hidden">
+                                <PostVerticalCard
+                                  title={data.titleShort ?? data.title}
+                                  eyebrow={`Session ${
+                                    data.sessionNumber
+                                  } · ${getSessionKindLabel(data.kind)}`}
+                                  date={data.pubDatetime}
+                                  author={data.author}
+                                  description={data.description}
+                                  ogImage={resolvedOg}
+                                  href={`/posts/${slug}`}
+                                />
+                              </div>
+                              <div class="hidden md:block">
+                                <FeaturedSessionHeroCard
+                                  title={data.titleShort ?? data.title}
+                                  eyebrow={`Session ${
+                                    data.sessionNumber
+                                  } · ${getSessionKindLabel(data.kind)}`}
+                                  date={data.pubDatetime}
+                                  author={data.author}
+                                  description={data.description}
+                                  ogImage={resolvedOg}
+                                  href={`/posts/${slug}`}
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <PostVerticalCard
+                              title={data.titleShort ?? data.title}
+                              eyebrow={`Session ${
+                                data.sessionNumber
+                              } · ${getSessionKindLabel(data.kind)}`}
+                              date={data.pubDatetime}
+                              author={data.author}
+                              description={data.description}
+                              ogImage={resolvedOg}
+                              href={`/posts/${slug}`}
+                            />
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
               ) : (
                 <p class="text-base text-skin-base opacity-80">

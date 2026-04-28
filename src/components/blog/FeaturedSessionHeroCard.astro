@@ -9,7 +9,6 @@ interface Props {
   description?: string;
   ogImage?: string;
   href: string;
-  expanded?: boolean;
 }
 
 const {
@@ -20,7 +19,6 @@ const {
   description,
   ogImage,
   href,
-  expanded = false,
 } = Astro.props as Props;
 
 const fallbackImage = "/og/ai-phi-default-og.webp";
@@ -44,40 +42,25 @@ const displayTime = dateValue
       timeZone: LOCALE.timeZone ?? "Europe/Paris",
     })
   : "";
-
 ---
 
 <article
-  class:list={[
-    "group relative h-full cursor-pointer rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-5 shadow-lg shadow-black/10 transition-shadow transition-transform hover:-translate-y-0.5 hover:shadow-xl",
-    expanded
-      ? "flex flex-col gap-5 md:grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-stretch"
-      : "flex flex-col",
-  ]}
+  class="group relative h-full cursor-pointer rounded-2xl border border-skin-line/40 bg-[rgb(var(--color-card-muted))] p-5 shadow-lg shadow-black/10 transition-shadow transition-transform hover:-translate-y-0.5 hover:shadow-xl"
   data-card-link={href}
   tabindex="0"
   role="link"
 >
-  <div class:list={["w-full bg-[rgb(var(--color-card-muted))]", expanded && "h-full"]}>
+  <div class="flex justify-start overflow-hidden rounded-lg bg-[rgb(var(--color-card-muted))]">
     <img
       src={resolvedImage}
       alt="Illustration"
-      class:list={[
-        "h-full w-full rounded-lg object-cover",
-        expanded ? "aspect-[16/9] md:aspect-auto md:min-h-full" : "",
-      ]}
+      class="block h-auto max-h-[24rem] w-auto max-w-full rounded-lg object-contain object-left"
       loading="lazy"
       decoding="async"
     />
   </div>
 
-
-  <div
-    class:list={[
-      "relative z-20 flex h-full select-text flex-col",
-      expanded ? "md:justify-center" : "mt-4",
-    ]}
-  >
+  <div class="relative z-20 mt-4 flex h-full select-text flex-col">
     {
       eyebrow && (
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
@@ -109,23 +92,16 @@ const displayTime = dateValue
 
     {
       description && (
-        <p
-          class:list={[
-            "mt-3 grow text-base leading-relaxed text-skin-base opacity-80 text-justify",
-            expanded && "md:max-w-[52ch]",
-          ]}
-        >
+        <p class="mt-3 grow text-base leading-relaxed text-skin-base opacity-80 text-justify">
           {description}
         </p>
       )
     }
 
-    <!-- Visual CTA -->
     <div class="mt-auto pt-4">
       <a
         href={href}
-        class="inline-flex items-center gap-1 font-medium transition-all duration-150
-             group-hover:font-bold text-skin-base cursor-pointer relative z-30 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
+        class="inline-flex items-center gap-1 font-medium transition-all duration-150 group-hover:font-bold text-skin-base cursor-pointer"
       >
         Check details
         <svg

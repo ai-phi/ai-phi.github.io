@@ -5,7 +5,7 @@ pubDatetime: 2025-11-11T11:00:00Z
 title: Creative Outbursts in the ai-phi Community
 slug: ai-phi-creative
 draft: false
-featured: true
+featured: false
 tags:
   - Community
   - Creativity
@@ -19,7 +19,7 @@ ogImage: assets/creative-outbursts.jpg
 
 It’s heartening to see how deeply our community is infused with **creative energy**!
 
-Earlier on, this year, I finally realised a long-held dream by launching my personal blog on the epistemological, ethical, and metaphysical implications of artificial minds: [Conscienc.AI](https://conscienc.ai/?utm_source=ai-phi&utm_medium=creative-outbursts-post&utm_campaign=outbound-profile-link).
+Earlier on, this year, I finally realised a long-held dream by launching my personal blog on the epistemological, ethical, and metaphysical implications of artificial minds: [Conscienc.AI](https://conscienc.ai/?utm_source=ai-phi-web&utm_medium=creative-outbursts-post&utm_campaign=ai-phi).
 
 Meanwhile, Michael Anslow led the first collective ai-phi post about [our Causerie on Reasoning](/posts/causerie-on-reasoning) and has since begun a sharp, ongoing series about how generative AI is reshaping humanity [on Medium](https://medium.com/@michael.anslow).
 

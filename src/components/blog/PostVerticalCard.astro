@@ -143,39 +143,42 @@ const displayTime = dateValue
 </article>
 
 <script is:inline>
-  const isInteractiveElement = (element, card) => {
-    if (!(element instanceof HTMLElement)) return false;
-    const interactiveAncestor = element.closest(
-      'a, button, input, textarea, select, summary, [role="button"], [role="link"]'
-    );
-    return !!interactiveAncestor && interactiveAncestor !== card;
-  };
+  (() => {
+    const isInteractiveElement = (element, card) => {
+      if (!(element instanceof Element)) return false;
+      const interactiveAncestor = element.closest(
+        'a, button, input, textarea, select, summary, [role="button"], [role="link"]'
+      );
+      return !!interactiveAncestor && interactiveAncestor !== card;
+    };
 
-  const hasSelectedText = () => {
-    const selection = window.getSelection();
-    return !!selection && selection.toString().trim().length > 0;
-  };
+    const hasSelectedText = () => {
+      const selection = window.getSelection();
+      return !!selection && selection.toString().trim().length > 0;
+    };
 
-  const activateCard = card => {
-    const href = card.dataset.cardLink;
-    if (href) window.location.assign(href);
-  };
+    const activateCard = card => {
+      const href = card.dataset.cardLink;
+      if (href) window.location.assign(href);
+    };
 
-  document.querySelectorAll("[data-card-link]").forEach(card => {
-    if (!(card instanceof HTMLElement) || card.dataset.cardBound === "true") return;
-    card.dataset.cardBound = "true";
+    document.querySelectorAll("[data-card-link]").forEach(card => {
+      if (!(card instanceof HTMLElement) || card.dataset.cardBound === "true")
+        return;
+      card.dataset.cardBound = "true";
 
-    card.addEventListener("click", event => {
-      if (hasSelectedText()) return;
-      if (isInteractiveElement(event.target, card)) return;
-      activateCard(card);
+      card.addEventListener("click", event => {
+        if (hasSelectedText()) return;
+        if (isInteractiveElement(event.target, card)) return;
+        activateCard(card);
+      });
+
+      card.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        if (isInteractiveElement(event.target, card)) return;
+        event.preventDefault();
+        activateCard(card);
+      });
     });
-
-    card.addEventListener("keydown", event => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      if (isInteractiveElement(event.target, card)) return;
-      event.preventDefault();
-      activateCard(card);
-    });
-  });
+  })();
 </script>

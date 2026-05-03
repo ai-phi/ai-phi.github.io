@@ -28,11 +28,30 @@ const normalizeOgImage = (ogImage?: string | { src: string }) => {
 };
 const getCardOgImage = (ogImage?: string | { src: string }) =>
   normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
-const isLastOddCard = (index: number, total: number) =>
-  total % 2 === 1 && index === total - 1;
+type HighlightableEntry = {
+  data: {
+    highlight?: boolean;
+  };
+};
+const getHighlightedOddCardIndex = <T extends HighlightableEntry>(
+  entries: T[]
+) => {
+  if (entries.length % 2 !== 1) return -1;
+
+  // Omitted highlight defaults to true; explicit true wins over implicit defaults.
+  const explicitHighlightIndex = entries.findIndex(
+    ({ data }) => data.highlight === true
+  );
+  if (explicitHighlightIndex >= 0) return explicitHighlightIndex;
+
+  return entries.findIndex(({ data }) => data.highlight !== false);
+};
 const featuredNonSessionPosts = sortedPosts
   .filter(({ data }) => data.featured)
   .slice(0, 2);
+const featuredNonSessionHighlightIndex = getHighlightedOddCardIndex(
+  featuredNonSessionPosts
+);
 const featuredSessionPostsRaw = getSortedByDateDesc(
   sortedSessions.filter(post => post.data.featured)
 );
@@ -45,6 +64,8 @@ const featuredSessionPosts = await Promise.all(
     return { ...post, resolvedOg };
   })
 );
+const featuredSessionHighlightIndex =
+  getHighlightedOddCardIndex(featuredSessionPosts);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 
@@ -145,8 +166,6 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                 changing world.</b
               >
             </p>
-            
-              
           </div>
           <!-- Keywords under description (randomly selected on each page load) -->
           <div class="keywords-under-description">
@@ -212,10 +231,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
               featuredNonSessionPosts.length > 0 ? (
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
                   {featuredNonSessionPosts.map(({ data, slug }, index) => {
-                    const expanded = isLastOddCard(
-                      index,
-                      featuredNonSessionPosts.length
-                    );
+                    const expanded = index === featuredNonSessionHighlightIndex;
 
                     return (
                       <div class:list={[expanded && "md:col-span-2"]}>
@@ -267,10 +283,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
                   {featuredSessionPosts.map(
                     ({ data, slug, resolvedOg }, index) => {
-                      const expanded = isLastOddCard(
-                        index,
-                        featuredSessionPosts.length
-                      );
+                      const expanded = index === featuredSessionHighlightIndex;
 
                       return (
                         <div class:list={[expanded && "md:col-span-2"]}>

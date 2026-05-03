@@ -10,7 +10,7 @@ speakers:
     affiliation: Sony CSL Paris
 baseIllustration: /images/base/sessions/session-33-van-trijp-phylo-epistemic.jpg
 draft: false
-featured: true
+featured: false
 tags:
   - Phylo-Epistemic Networks
   - History of AI

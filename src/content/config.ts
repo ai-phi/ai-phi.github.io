@@ -18,6 +18,7 @@ export const Frontmatter = z.object({
   description: z.string().optional(),
   draft: z.boolean().optional(),
   featured: z.boolean().optional(),
+  highlight: z.boolean().optional(),
   tags: z.array(z.string()).default(["others"]),
   canonicalURL: z.string().optional(),
 });

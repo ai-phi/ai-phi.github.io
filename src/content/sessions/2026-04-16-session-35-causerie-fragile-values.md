@@ -10,7 +10,7 @@ speakers:
     affiliation: ENS
 baseIllustration: /images/base/sessions/session-35-causerie-fragile-values.jpeg
 draft: false
-featured: true
+featured: false
 tags:
   - Value
   - Goals

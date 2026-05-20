@@ -35,5 +35,5 @@ pnpm-debug.log*
 .pnp.*
 *:Zone.Identifier*
 
-# Local AI agent instructions
-agent.md
+# Private local/tooling files
+private/

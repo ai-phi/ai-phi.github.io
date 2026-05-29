@@ -10,10 +10,12 @@ import { SITE } from "@config";
 import { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getSessionDate from "@utils/getSessionDate";
 
-const sessions = await getCollection("sessions");
+const sessions = await getCollection("sessions", ({ data }) => !data.draft);
 const causerieSessions = getSortedByDateDesc(sessions).filter(
   ({ data }) => data.kind === "causerie"
 );
+const getPublicSlug = (data: unknown, fallback: string) =>
+  String((data as { slug?: string }).slug ?? fallback);
 ---
 
 <Layout title={`Causeries | ${SITE.title}`}>
@@ -31,7 +33,7 @@ const causerieSessions = getSortedByDateDesc(sessions).filter(
             const { data, slug } = session;
             return (
               <SessionHorizontalCard
-                slug={data.slug ?? slug}
+                slug={getPublicSlug(data, slug)}
                 title={data.title}
                 titleShort={data.titleShort}
                 sessionNumber={data.sessionNumber}

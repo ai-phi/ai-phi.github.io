@@ -1,11 +1,59 @@
 {
   "meta": {
     "version": "1.0",
-    "generatedAt": "2026-04-24T17:40:27.231Z",
+    "generatedAt": "2026-05-29T15:15:04.595Z",
     "project": "AI-Phi",
     "siteBaseUrl": "https://ai-phi.github.io/"
   },
   "sessions": [
+    {
+      "slug": "session-39-end-of-year-party",
+      "sessionNumber": 39,
+      "kind": "other",
+      "title": "End-of-Year Party",
+      "date": "2026-06-04",
+      "time": "19:00",
+      "location": "Sony CSL, 6 rue Amyot, 75005 Paris",
+      "baseIllustration": "/images/base/sessions/session-39-end-of-year-party.png",
+      "speakers": [
+        {
+          "name": "AI-Phi",
+          "affiliation": null
+        }
+      ]
+    },
+    {
+      "slug": "session-38-poibeau-consciousness-ai-research",
+      "sessionNumber": 38,
+      "kind": "seminar",
+      "title": "Do We Really Need the Concept of Consciousness in AI Research?",
+      "date": "2026-05-21",
+      "time": "19:00",
+      "location": "Sony CSL, 6 rue Amyot, 75005 Paris",
+      "baseIllustration": "/images/base/sessions/session-38-poibeau-consciousness-ai-research.png",
+      "speakers": [
+        {
+          "name": "Thierry Poibeau",
+          "affiliation": "CNRS, ENS"
+        }
+      ]
+    },
+    {
+      "slug": "session-37-chaibi-substrate-abstraction",
+      "sessionNumber": 37,
+      "kind": "seminar",
+      "title": "Substrate & Abstraction: The Spiral of Co-Evolution",
+      "date": "2026-05-07",
+      "time": "19:00",
+      "location": null,
+      "baseIllustration": "/images/base/sessions/session-37-chaibi-substrate-abstraction.jpeg",
+      "speakers": [
+        {
+          "name": "Adel Chaibi",
+          "affiliation": "Intel, projet.y"
+        }
+      ]
+    },
     {
       "slug": "session-36-systemic-challenges",
       "sessionNumber": 36,
@@ -637,7 +685,7 @@
       "title": "Our Causerie on Reasoning",
       "kind": null,
       "subtitle": "An article written by Michael Anslow outlining the ai-phi community discussion during our causerie on 'reasoning'. It also contains contributions from various ai-phi members.",
-      "illustration": "assets/ai-phi-Causerie-Reasoning.png"
+      "illustration": "assets/AI-Phi-Causerie-Reasoning.png"
     },
     {
       "slug": "artificial-phenomenology-kleiner",

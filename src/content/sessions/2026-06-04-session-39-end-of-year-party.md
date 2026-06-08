@@ -8,8 +8,6 @@ titleShort: End-of-Year Party
 speakers: []
 baseIllustration: /images/base/sessions/session-39-end-of-year-party.png
 draft: false
-featured: true
-highlight: true
 tags:
   - Community Session
   - End of Year

@@ -14,7 +14,9 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.sample
+!.env.example
 
 # macOS-specific files
 .DS_Store
@@ -38,3 +40,10 @@ pnpm-debug.log*
 # Private local/tooling files
 private/
 figma-plugin/
+
+# Local runtime state
+.local/
+__pycache__/
+
+# Figma consumes local JSON, not a public data feed
+/public/manifest.json

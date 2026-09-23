@@ -13,8 +13,7 @@
     "format": "prettier --plugin-search-dir=. --write .",
     "cz": "cz",
     "prepare": "husky install",
-    "lint": "eslint .",
-    "manifest": "node scripts/generate-manifest.mjs"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",

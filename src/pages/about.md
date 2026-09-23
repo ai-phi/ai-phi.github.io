@@ -37,7 +37,7 @@ The ai-phi community involves researchers and professionals from diverse backgro
 - **Olga Kokshagina**, EDHEC business school, LPI France
 - **Olha Sobetska**, CLEA | VUB - Brussels, Belgium
 - [**Sylvy Anscombe**](https://sylvyanscombe.com/), Université Paris Cité, IMJ-PRG
-- [**Thomas Souverain**](https://www.mfo.ac.uk/people/thomas-souverain), Institut Jean Nicod, ENS-PSL, France Travail AI Department
+- [**Thomas Souverain**](https://thomsouverain.github.io/ThomasSouverain.github.io/), Institut Jean Nicod, ENS-PSL, France Travail AI Department
 
 ### Special Thanks
 

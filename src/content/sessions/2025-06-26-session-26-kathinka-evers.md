@@ -4,6 +4,8 @@ pubDatetime: 2025-06-26T09:00:00.000Z
 title: "Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?"
 slug: session-25-kathinka-evers
 sessionNumber: 25
+youtubeId: bTkoU-BZ_hs
+videoThumbnail: /images/videos/session-25-kathinka-evers.jpg
 titleShort: Consciousness Futures
 speakers:
   - name: Kathinka Evers
@@ -47,6 +49,6 @@ Kathinka Evers is Professor of philosophy, senior researcher at the Centre for R
 
 ## Details
 
-**Date and Time:** Wednesday, 26th of June 2025 - <u>**11 AM**</u>  
+**Date and Time:** Thursday, 26th of June 2025 - <u>**11 AM**</u><br />
 **Location:** Sony CSL, 6 rue Amyot, 75005 Paris  
 **Registration:** [here](https://lu.ma/v0eezp2a)

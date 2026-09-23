@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "The ai-phi team",
   desc: "Official page of the Paris-based ai-phi community.",
   title: "ai-phi",
-  ogImage: "aiphi-og-new.jpg",
+  ogImage: "/og/ai-phi-default.png",
   lightAndDarkMode: true,
   postPerPage: 10,
 };
@@ -81,7 +81,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@AI-Phi",
+    href: "https://www.youtube.com/@ai-phi/",
     linkTitle: `${SITE.title} on YouTube`,
     active: true,
   },
@@ -153,7 +153,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Mastodon",
-    href: "https://mastodon.social/@aiphi",
+    href: "https://mastodon.social/@ai_phi",
     linkTitle: `${SITE.title} on Mastodon`,
     active: true,
   },

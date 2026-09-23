@@ -2,7 +2,7 @@
 pubDatetime: 2023-12-06T20:13:00Z
 title: Philosophy
 featured: true
-draft: false
+draft: true
 tags:
   - general
 ---

@@ -25,4 +25,4 @@ kind: other
 In this session Michael Anslow will give an ambitious, whirlwind introduction to Artificial Intelligence before exploring the area of Artificial General Intelligence (AGI). AGI here is framed based on the article "Artificial General Intelligence: Concept, State of the Art, and Future Prospects" in the Journal of
 Artificial General Intelligence by Goertzel, Ben.
 
-<!-- PDF: ai-phi-3-Artificial General Intelligence.pdf | title: An introduction to AI and exploration of AGI by Michael Anslow | type: presentation -->
+<!-- PDF: AI-PHI-3-Artificial General Intelligence.pdf | title: An introduction to AI and exploration of AGI by Michael Anslow | type: presentation -->

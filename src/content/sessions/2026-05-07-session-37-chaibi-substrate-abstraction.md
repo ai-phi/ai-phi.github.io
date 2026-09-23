@@ -46,7 +46,7 @@ He co-organises the Symbolon seminar, which explores what it means to be human i
 
 He also co-leads the AI Hub for EMEA, fostering collaborations that connect academia and industry across the full stack, from algorithms to hardware.
 
-[LinkedIn](https://fr.linkedin.com/in/adel-cha%C3%AFbi-63885812) / [projet.y](https://leprojety.github.io/) / [Symbolon Seminar](https://leprojety.github.io/page/philo.html) / [Sorbonne University project note](https://www.sorbonne-universite.fr/actualites/soutien-dintel-dans-la-recherche-en-robotique-cognitive-au-sein-de-sorbonne-universite)
+[LinkedIn](https://fr.linkedin.com/in/adel-cha%C3%AFbi-63885812) / [projet.y](https://leprojety.github.io/page/about.html) / [Symbolon Seminar](https://leprojety.github.io/page/philo.html) / [Sorbonne University project note](https://www.sorbonne-universite.fr/actualites/soutien-dintel-dans-la-recherche-en-robotique-cognitive-au-sein-de-sorbonne-universite)
 
 ## Details
 

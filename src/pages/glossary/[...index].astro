@@ -1,11 +1,15 @@
 ---
-import Posts from "@layouts/Posts.astro";
 import { getSortedGlossaryTerms } from "@utils/getSortedPosts";
-import getPageNumbers from "@utils/getPageNumbers";
 
 import { getCollection } from "astro:content";
 import getPagination from "@utils/getPagination";
 import GlossaryTerms from "@layouts/GlossaryTerms.astro";
+
+// Do not publish an empty glossary while its entries are still drafts.
+export async function getStaticPaths() {
+  const entries = await getCollection("glossary", ({ data }) => !data.draft);
+  return entries.length ? [{ params: { index: undefined } }] : [];
+}
 
 const entries = await getCollection("glossary");
 

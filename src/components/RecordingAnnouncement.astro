@@ -1,0 +1,105 @@
+---
+import type { CollectionEntry } from "astro:content";
+import LinkButton from "@components/LinkButton.astro";
+
+interface Props {
+  session: CollectionEntry<"sessions">;
+}
+const { session } = Astro.props;
+const { title, youtubeId, videoThumbnail } = session.data;
+const videoUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
+---
+
+<section class="mt-10 clear-both" aria-labelledby="new-video-heading">
+  <h2
+    id="new-video-heading"
+    class="mb-4 text-3xl font-semibold uppercase tracking-tight text-skin-base"
+  >
+    New video
+  </h2>
+  <article class="recording-announcement variant-thumbnail">
+    <a
+      class="thumbnail"
+      href={videoUrl}
+      aria-label={`Watch ${title} on YouTube`}
+    >
+      <img
+        src={videoThumbnail ??
+          `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`}
+        alt=""
+        width="480"
+        height="270"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="thumbnail-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28"
+          ><path d="M8 5v14l11-7z"></path></svg
+        >
+      </span>
+    </a>
+  </article>
+  <div class="all-videos-link">
+    <LinkButton
+      href="/resources#videos"
+      className="min-h-[44px] px-6 py-3 underline underline-offset-[0.3em] md:px-8 md:py-4"
+    >
+      All videos
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+        ></path>
+      </svg>
+    </LinkButton>
+  </div>
+</section>
+
+<style>
+  a {
+    @apply text-skin-accent underline underline-offset-4 hover:no-underline;
+  }
+  a:focus-visible {
+    outline: 3px solid rgb(var(--color-accent));
+    outline-offset: 4px;
+  }
+  .thumbnail {
+    @apply relative block overflow-hidden rounded-2xl bg-black;
+    aspect-ratio: 16 / 9;
+  }
+  .thumbnail img {
+    @apply h-full w-full object-cover;
+  }
+  .all-videos-link {
+    @apply my-8 text-center text-xl md:text-2xl;
+  }
+  .thumbnail-play {
+    @apply absolute bottom-3 right-3 flex h-11 w-14 items-center justify-center rounded-xl shadow-md sm:bottom-5 sm:right-5 sm:h-12 sm:w-16;
+    background: #b91c1c;
+    transition:
+      background-color 150ms ease,
+      transform 150ms ease;
+  }
+  .thumbnail-play svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+  }
+  .variant-thumbnail .thumbnail:hover .thumbnail-play,
+  .variant-thumbnail .thumbnail:focus-visible .thumbnail-play {
+    background: #dc2626;
+    transform: scale(1.05);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .thumbnail-play {
+      transition: none;
+    }
+    .variant-thumbnail .thumbnail:hover .thumbnail-play,
+    .variant-thumbnail .thumbnail:focus-visible .thumbnail-play {
+      transform: none;
+    }
+  }
+</style>

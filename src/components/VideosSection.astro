@@ -1,0 +1,161 @@
+---
+import { getCollection } from "astro:content";
+import getSessionDate from "@utils/getSessionDate";
+import getSessionKindLabel from "@utils/getSessionKindLabel";
+import { LOCALE } from "@config";
+
+const recordings = (
+  await getCollection("sessions", ({ data }) => !data.draft && !!data.youtubeId)
+).sort(
+  (a, b) =>
+    new Date(getSessionDate(b)).getTime() -
+    new Date(getSessionDate(a)).getTime()
+);
+---
+
+<section id="videos" aria-labelledby="videos-title" class="mb-12 scroll-mt-8">
+  <h2 id="videos-title">Videos</h2>
+  <p class="introduction">
+    Recorded talks from ai-phi, to watch or revisit at your own pace. Causeries
+    are unrecorded.
+    <a href="https://www.youtube.com/@ai-phi/">Visit our YouTube channel</a>.
+  </p>
+  <div class="video-list">
+    {
+      recordings.map(session => {
+        const {
+          title,
+          speakers,
+          sessionNumber,
+          kind,
+          description,
+          youtubeId,
+          videoThumbnail,
+        } = session.data;
+        const date = new Date(getSessionDate(session));
+        return (
+          <article class="video-card">
+            <a
+              class="video-thumbnail"
+              href={`https://www.youtube.com/watch?v=${youtubeId}`}
+              aria-label={`Watch ${title} on YouTube`}
+            >
+              <img
+                src={
+                  videoThumbnail ??
+                  `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+                }
+                alt=""
+                width="480"
+                height="360"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="play-button" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="28"
+                  height="28"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+            </a>
+            <div class="video-meta">
+              Session {sessionNumber} · {getSessionKindLabel(kind)} ·{" "}
+              <time datetime={date.toISOString()}>
+                {date.toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  timeZone: LOCALE.timeZone,
+                })}
+              </time>
+            </div>
+            <h3>{title}</h3>
+            <p class="speakers">
+              {speakers
+                .map(speaker =>
+                  speaker.affiliation
+                    ? `${speaker.name} (${speaker.affiliation})`
+                    : speaker.name
+                )
+                .join(" · ")}
+            </p>
+            <p>{description}</p>
+            <div class="video-links">
+              <a
+                href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                aria-label={`Watch ${title} on YouTube`}
+              >
+                Watch on YouTube <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                href={`/posts/${session.slug}`}
+                aria-label={`Event details for ${title}`}
+              >
+                Event details
+              </a>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  h2 {
+    @apply mb-3 border-b-2 border-skin-line pb-1 text-2xl font-semibold text-skin-accent;
+  }
+  .introduction {
+    @apply mb-6 text-skin-base;
+  }
+  a {
+    @apply text-skin-accent underline underline-offset-4 hover:no-underline;
+  }
+  .video-list {
+    @apply space-y-4;
+  }
+  .video-card {
+    @apply rounded-xl border border-skin-line bg-skin-card p-5 sm:p-6;
+  }
+  .video-thumbnail {
+    @apply relative mb-5 block overflow-hidden rounded-lg bg-black;
+    aspect-ratio: 16 / 9;
+  }
+  .video-thumbnail img {
+    @apply h-full w-full object-cover;
+  }
+  .play-button {
+    @apply absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full text-white sm:h-12 sm:w-12;
+    background: rgb(0 0 0 / 70%);
+  }
+  .play-button svg {
+    fill: white;
+  }
+  .video-thumbnail:hover .play-button,
+  .video-thumbnail:focus-visible .play-button {
+    @apply bg-skin-accent;
+  }
+  .video-thumbnail:focus-visible {
+    outline: 3px solid rgb(var(--color-accent));
+    outline-offset: 4px;
+  }
+  .video-meta {
+    @apply mb-2 text-sm opacity-80;
+  }
+  h3 {
+    @apply font-serif text-xl font-semibold text-skin-accent;
+  }
+  p {
+    @apply mt-3;
+  }
+  .speakers {
+    @apply font-medium;
+  }
+  .video-links {
+    @apply mt-5 flex flex-wrap gap-x-6 gap-y-3 font-medium;
+  }
+</style>

@@ -7,6 +7,7 @@ import Layout from "../../layouts/Layout.astro";
 import PDFViewer from "../../components/PDFViewer.astro";
 import Pagination from "../../components/Pagination.astro";
 import { getCollection } from "astro:content";
+import VideosSection from "@components/VideosSection.astro";
 
 export async function getStaticPaths() {
   const [posts, sessions] = await Promise.all([
@@ -73,7 +74,7 @@ export async function getStaticPaths() {
 
 const pageTitle = "Resources";
 const pageDescription =
-  "These serve as a record of our sessions and a way to share outputs.";
+  "Videos and slides from ai-phi sessions, to revisit ideas and continue the conversation.";
 
 // Get filter type from URL parameters
 const url = Astro.url;
@@ -164,8 +165,13 @@ const paginatedPresentations = filteredPresentations.slice(
     <p>{pageDescription}</p>
 
     <div class="resources-content">
+      <nav aria-label="Resource sections" class="mb-6 flex gap-6">
+        <a href="#videos" class="text-skin-accent underline">Videos</a>
+        <a href="#slides" class="text-skin-accent underline">Slides</a>
+      </nav>
+      <VideosSection />
       <section class="mb-12">
-        <h2 class="section-title">Slides</h2>
+        <h2 id="slides" class="section-title">Slides</h2>
         <p class="section-description">
           Slides from our sessions. Various sessions were preceeded by a
           'preamble' which often included news and updates.

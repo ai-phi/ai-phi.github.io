@@ -48,6 +48,10 @@ const sessions = defineCollection({
     Frontmatter.extend({
       description: z.string(),
       sessionNumber: z.number(),
+      youtubeId: z
+        .string()
+        .regex(/^[A-Za-z0-9_-]{11}$/)
+        .optional(),
       titleShort: TitleShortSchema,
       speakers: z
         .array(
@@ -58,6 +62,7 @@ const sessions = defineCollection({
         )
         .default([]),
       baseIllustration: z.string().optional(),
+      videoThumbnail: z.string().min(1).optional(),
       ogImage: z.string().optional(),
       location: z.string().optional(),
       kind: z

@@ -6,6 +6,7 @@ title: >-
   Qualitative Nature of Consciousness
 slug: session-24-ryota-kanai
 sessionNumber: 24
+youtubeId: uhJDrYYSfxA
 titleShort: Qualia & Symmetry
 speakers:
   - name: Ryota Kanai

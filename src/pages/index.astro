@@ -6,15 +6,26 @@ import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import PostVerticalCard from "@components/blog/PostVerticalCard.astro";
 import FeaturedSessionHeroCard from "@components/blog/FeaturedSessionHeroCard.astro";
+import RecordingAnnouncement from "@components/RecordingAnnouncement.astro";
 import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
-import { SOCIALS } from "@config";
+import { SITE, SOCIALS } from "@config";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
-const DEFAULT_OG_IMAGE = "/og/ai-phi-default-og.webp";
+const DEFAULT_OG_IMAGE = SITE.ogImage ?? "/og.png";
 const posts = await getCollection("posts");
 const sessions = await getCollection("sessions");
+
+// Homepage editorial choices; the recording's facts stay in its session entry.
+const SHOW_FEATURED_POSTS = false;
+const HOMEPAGE_VIDEO_SLUG = "session-25-kathinka-evers";
+const homepageVideo = sessions.find(
+  session =>
+    session.slug === HOMEPAGE_VIDEO_SLUG &&
+    !session.data.draft &&
+    !!session.data.youtubeId
+);
 
 const sortedPosts = getSortedPosts(posts);
 const sortedSessions = getSortedPosts(sessions);
@@ -172,21 +183,21 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             <!-- General categories (always shown) -->
             <div class="subtitle-section general-categories">
               <!-- <p> <span style="font-weight: bold;">Events:</span>  -->
-              <a  href={`sessions/seminar-series`}
+              <a  href={`/sessions/seminar-series`}
                 class="glitch-container"
                 data-text={"Seminar Series"}
               >
                 <span>Seminar Series</span>
               </a><span class="dot">·</span>
               <a
-                href={`sessions/causerie`}
+                href={`/sessions/causerie`}
                 class="glitch-container"
                 data-text={"Causerie"}
               >
                 <span>Causerie</span>
               </a><span class="dot">·</span>
               <a
-                href={`sessions/other`}
+                href={`/sessions/other`}
                 class="glitch-container"
                 data-text={"Other Sessions"}
               >
@@ -219,6 +230,9 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
           </div>
         </div>
 
+        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
+
+        {SHOW_FEATURED_POSTS && <>
         <section class="mt-10" aria-labelledby="featured-posts-heading">
           <div class="space-y-4">
             <h2
@@ -269,6 +283,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             </LinkButton>
           </div>
         </section>
+
+        </>}
 
         <section class="mt-12" aria-labelledby="sessions-announcement-heading">
           <div class="space-y-4">
@@ -582,8 +598,12 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
         @media (min-width: 768px) {
           font-size: 1rem;
-          margin-top: -3rem; /* align with top of right image */
           margin-bottom: 1rem;
+        }
+
+        /* Align with the logo only once it floats beside the text. */
+        @media (min-width: 1024px) {
+          margin-top: -3rem;
         }
       }
 

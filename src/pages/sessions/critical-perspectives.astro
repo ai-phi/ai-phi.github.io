@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import SessionHorizontalCard from "@components/SessionHorizontalCard.astro";
+import SessionsNav from "@components/sessions/SessionsNav.astro";
+import { SITE } from "@config";
+import { getSortedByDateDesc } from "@utils/getSortedPosts";
+import getSessionDate from "@utils/getSessionDate";
+
+const sessions = await getCollection("sessions", ({ data }) => !data.draft);
+const criticalSessions = getSortedByDateDesc(sessions).filter(
+  ({ data }) => data.kind === "critical-perspectives"
+);
+const getPublicSlug = (data: unknown, fallback: string) =>
+  String((data as { slug?: string }).slug ?? fallback);
+---
+
+<Layout title={`Critical Perspectives | ${SITE.title}`}>
+  <Header activeNav="sessions" />
+  <Main
+    pageTitle="Critical Perspectives"
+    pageDesc="Critical perspectives on AI: better questions, alternative paths, and constructive approaches."
+  >
+    <SessionsNav active="critical-perspectives" />
+
+    {
+      criticalSessions.length ? (
+        <div class="space-y-6">
+          {criticalSessions.map(session => {
+            const { data, slug } = session;
+            return (
+              <SessionHorizontalCard
+                slug={getPublicSlug(data, slug)}
+                title={data.title}
+                titleShort={data.titleShort}
+                sessionNumber={data.sessionNumber}
+                speakers={data.speakers}
+                description={data.description}
+                date={getSessionDate(session)}
+                kind={data.kind}
+                ogImage={data.ogImage}
+                baseIllustration={data.baseIllustration}
+                href={`/posts/${slug}`}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <p class="text-base text-skin-base opacity-80">
+          No Critical Perspectives sessions are published yet.
+        </p>
+      )
+    }
+  </Main>
+
+  <Footer />
+</Layout>

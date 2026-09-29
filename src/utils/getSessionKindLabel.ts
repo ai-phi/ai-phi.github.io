@@ -1,4 +1,5 @@
 const KIND_LABELS: Record<string, string> = {
+  "critical-perspectives": "Critical Perspectives",
   seminar: "Seminar series",
   causerie: "Causerie",
   community: "Community",

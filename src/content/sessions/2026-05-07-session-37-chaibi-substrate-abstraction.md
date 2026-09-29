@@ -10,7 +10,7 @@ speakers:
     affiliation: Intel, projet.y
 baseIllustration: /images/base/sessions/session-37-chaibi-substrate-abstraction.jpeg
 draft: false
-featured: true
+featured: false
 tags:
   - Computation
   - Hardware

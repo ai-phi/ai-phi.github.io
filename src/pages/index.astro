@@ -197,6 +197,13 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                 <span>Causerie</span>
               </a><span class="dot">·</span>
               <a
+                href="/sessions/critical-perspectives"
+                class="glitch-container"
+                data-text="Critical Perspectives"
+              >
+                <span>Critical Perspectives</span>
+              </a><span class="dot">·</span>
+              <a
                 href={`/sessions/other`}
                 class="glitch-container"
                 data-text={"Other Sessions"}
@@ -230,7 +237,6 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
           </div>
         </div>
 
-        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
 
         {SHOW_FEATURED_POSTS && <>
         <section class="mt-10" aria-labelledby="featured-posts-heading">
@@ -372,6 +378,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             </LinkButton>
           </div>
         </section>
+
+        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
       </div>
 
     </section>

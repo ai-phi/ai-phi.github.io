@@ -1,6 +1,6 @@
 ---
 interface Props {
-  active: "all" | "seminar" | "causerie" | "other";
+  active: "all" | "seminar" | "causerie" | "critical-perspectives" | "other";
 }
 
 const { active } = Astro.props as Props;
@@ -9,6 +9,7 @@ const navItems = [
   { label: "All sessions", href: "/sessions", key: "all" },
   { label: "Seminar series", href: "/sessions/seminar-series", key: "seminar" },
   { label: "Causeries", href: "/sessions/causerie", key: "causerie" },
+  { label: "Critical Perspectives", href: "/sessions/critical-perspectives", key: "critical-perspectives" },
   { label: "Other sessions", href: "/sessions/other", key: "other" },
 ];
 ---

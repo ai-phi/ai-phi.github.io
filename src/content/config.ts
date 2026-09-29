@@ -66,9 +66,17 @@ const sessions = defineCollection({
       ogImage: z.string().optional(),
       location: z.string().optional(),
       kind: z
-        .enum(["seminar", "causerie", "community", "workshop", "other"])
+        .enum([
+          "seminar",
+          "causerie",
+          "community",
+          "workshop",
+          "critical-perspectives",
+          "other",
+        ])
         .default("other"),
       series: z.string().optional(),
+      formatLabel: z.string().min(1).optional(),
     }).passthrough(),
 });
 

@@ -67,7 +67,9 @@ const layoutProps = {
 const showTags = post.collection !== "glossary";
 const sessionNumber = isSession ? post.data.sessionNumber : undefined;
 const sessionSpeakers = isSession ? post.data.speakers : undefined;
-const sessionKind = isSession ? getSessionKindLabel(post.data.kind) : undefined;
+const sessionKind = isSession
+  ? [getSessionKindLabel(post.data.kind), post.data.formatLabel].filter(Boolean).join(" · ")
+  : undefined;
 
 const formatSingleSpeaker = (speaker?: {
   name?: string;

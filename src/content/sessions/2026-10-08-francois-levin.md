@@ -20,9 +20,10 @@ tags:
   - Anthropocentrism
   - Critical Perspectives on AI
 description: >-
-  François Levin joins David Colliaux, Adel Chaibi and Aïda Elamrani for the
-  opening session of ai-phi 4.0: a live podcast exploring intelligence beyond
-  anthropocentrism and the constructive possibilities of AI critique.
+  Philosopher François Levin joins us for the first Critical Perspectives on AI
+  live podcast, exploring how critiques of AI can open constructive alternatives:
+  from rethinking intelligence beyond the human model to imagining different ways
+  of developing AI.
 location: Sony CSL (Paris), 6 rue Amyot, 75005 Paris
 kind: critical-perspectives
 formatLabel: Live podcast

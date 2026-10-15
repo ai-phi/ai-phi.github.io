@@ -8,6 +8,10 @@ slug: session-24-ryota-kanai
 sessionNumber: 24
 youtubeId: uhJDrYYSfxA
 titleShort: Qualia & Symmetry
+videoTitle: |-
+  Qualia and Symmetry:
+  A Mathematical Framework
+  for Consciousness
 speakers:
   - name: Ryota Kanai
     affiliation: Araya Inc.

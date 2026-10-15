@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import SessionEdition from "@layouts/SessionEdition.astro";
+import {
+  getSessionEditions,
+  type SessionEdition as Edition,
+} from "@utils/sessionArchive";
+
+export async function getStaticPaths() {
+  const editions = getSessionEditions(await getCollection("sessions"));
+  return editions.slice(1).map(edition => ({
+    params: { edition: edition.path.split("/").filter(Boolean).at(-1) },
+    props: { edition, editions },
+  }));
+}
+
+interface Props {
+  edition: Edition;
+  editions: Edition[];
+}
+const { edition, editions } = Astro.props;
+---
+
+<SessionEdition edition={edition} editions={editions} />

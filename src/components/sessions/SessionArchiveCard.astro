@@ -1,0 +1,194 @@
+---
+import type { CollectionEntry } from "astro:content";
+import getSessionDate from "@utils/getSessionDate";
+import { getArchiveSessionFormat } from "@utils/sessionArchive";
+import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
+
+interface Props {
+  session: CollectionEntry<"sessions">;
+  featured?: boolean;
+}
+const { session, featured = false } = Astro.props;
+const { data, slug } = session;
+const image = await resolveSessionOgImage(slug, data.ogImage);
+const date = new Date(getSessionDate(session));
+const dateLabel = date.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "Europe/Paris",
+});
+const speakers = data.speakers.filter(
+  speaker => !/^ai-phi$/i.test(speaker.name.trim())
+);
+---
+
+<article
+  class:list={["archive-card", { featured }]}
+  data-session-number={data.sessionNumber}
+>
+  <a class="session-link" href={`/posts/${slug}/`}>
+    <img
+      src={image}
+      alt=""
+      width="1200"
+      height="630"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="session-copy">
+      <p class="session-meta">
+        <span>#{data.sessionNumber}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={date.toISOString()}>{dateLabel}</time>
+        <span aria-hidden="true">·</span>
+        <span>{getArchiveSessionFormat(session)}</span>
+      </p>
+      <h4>{data.title}</h4>
+      {
+        speakers.length > 0 && (
+          <p class="session-speakers">
+            {speakers.map(speaker => speaker.name).join(" · ")}
+          </p>
+        )
+      }
+      {featured && <p class="session-description">{data.description}</p>}
+      {
+        featured && (
+          <span class="session-action">
+            View session <span aria-hidden="true">↗</span>
+          </span>
+        )
+      }
+    </div>
+    {
+      !featured && (
+        <span class="row-arrow" aria-hidden="true">
+          ↗
+        </span>
+      )
+    }
+  </a>
+</article>
+
+<style>
+  .archive-card {
+    border-top: 1px solid rgba(var(--color-border), 0.65);
+  }
+  .session-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-radius: 0.35rem;
+    text-decoration: none;
+  }
+  .session-link:hover h4 {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .session-link:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 5px;
+  }
+  .session-link img {
+    width: 136px;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    background: rgb(var(--color-card-image-bg));
+  }
+  .session-copy {
+    min-width: 0;
+    flex: 1;
+  }
+  .session-meta,
+  .session-speakers,
+  .session-description,
+  .session-action {
+    font-family: "Work Sans", sans-serif;
+  }
+  .session-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: baseline;
+    margin: 0 0 0.45rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    opacity: 0.75;
+  }
+  h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+  .session-speakers {
+    margin: 0.45rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+  .row-arrow {
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.35rem;
+    color: rgb(var(--color-accent));
+  }
+  .featured {
+    border: 1px solid rgba(var(--color-border), 0.75);
+    border-radius: 1rem;
+    background: rgba(var(--color-card-muted), 0.2);
+  }
+  .featured .session-link {
+    align-items: flex-start;
+    padding: 1.4rem;
+    gap: 1.5rem;
+  }
+  .featured .session-link img {
+    width: 40%;
+    margin-top: 0.25rem;
+  }
+  .featured h4 {
+    font-size: 1.65rem;
+  }
+  .session-description {
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+  .session-action {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 639px) {
+    .session-link {
+      gap: 0.6rem;
+    }
+    .session-link img {
+      display: none;
+    }
+    h4 {
+      font-size: 1.25rem;
+    }
+    .featured .session-link {
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    .featured .session-link img {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+    .featured h4 {
+      font-size: 1.45rem;
+    }
+  }
+</style>

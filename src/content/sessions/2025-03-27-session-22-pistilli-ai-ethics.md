@@ -6,6 +6,10 @@ slug: session-22-pistilli-ai-ethics
 sessionNumber: 22
 youtubeId: dQ9VQfMQTf4
 titleShort: Beyond Consent
+videoTitle: |-
+  Beyond Consent:
+  The Limits of Data Agency
+  in Generative AI
 speakers:
   - name: Giada Pistilli
     affiliation: Hugging Face

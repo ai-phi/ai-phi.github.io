@@ -2,10 +2,11 @@
 import { getCollection } from "astro:content";
 import getSessionDate from "@utils/getSessionDate";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
+import getSessionRecording from "@utils/getSessionRecording";
 import { LOCALE } from "@config";
 
 const recordings = (
-  await getCollection("sessions", ({ data }) => !data.draft && !!data.youtubeId)
+  await getCollection("sessions", ({ data }) => !data.draft && !!getSessionRecording(data))
 ).sort(
   (a, b) =>
     new Date(getSessionDate(b)).getTime() -
@@ -24,30 +25,26 @@ const recordings = (
     {
       recordings.map(session => {
         const {
-          title,
           speakers,
           sessionNumber,
           kind,
           description,
-          youtubeId,
-          videoThumbnail,
         } = session.data;
+        const recording = getSessionRecording(session.data)!;
+        const { title, url: videoUrl, thumbnail } = recording;
         const date = new Date(getSessionDate(session));
         return (
           <article class="video-card">
             <a
               class="video-thumbnail"
-              href={`https://www.youtube.com/watch?v=${youtubeId}`}
+              href={videoUrl}
               aria-label={`Watch ${title} on YouTube`}
             >
               <img
-                src={
-                  videoThumbnail ??
-                  `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
-                }
+                src={thumbnail}
                 alt=""
-                width="480"
-                height="360"
+                width="1920"
+                height="1080"
                 loading="lazy"
                 decoding="async"
               />
@@ -86,7 +83,7 @@ const recordings = (
             <p>{description}</p>
             <div class="video-links">
               <a
-                href={`https://www.youtube.com/watch?v=${youtubeId}`}
+                href={videoUrl}
                 aria-label={`Watch ${title} on YouTube`}
               >
                 Watch on YouTube <span aria-hidden="true">↗</span>

@@ -1,10 +1,13 @@
 ---
 author: ai-phi
 pubDatetime: 2026-10-08T10:30:00+02:00
-title: "What If Human Intelligence Isn’t the Model?"
+title: Intelligence Beyond Anthropocentrism
 slug: session-41-levin-beyond-anthropocentrism
 sessionNumber: 41
 titleShort: Intelligence Beyond Anthropocentrism
+videoTitle: Intelligence Beyond Anthropocentrism
+videoThumbnail: /images/videos/session-41-levin-beyond-anthropocentrism.jpg
+youtubeId: OyhCEnq7q9A
 speakers:
   - name: François Levin
     affiliation: Grenoble Alpes University
@@ -15,10 +18,9 @@ draft: false
 featured: true
 highlight: true
 tags:
-  - Philosophy of AI
   - Intelligence
   - Anthropocentrism
-  - Critical Perspectives on AI
+  - Critical Perspectives
 description: >-
   Philosopher François Levin joins us for the first Critical Perspectives on AI
   live podcast, exploring how critiques of AI can open constructive alternatives:

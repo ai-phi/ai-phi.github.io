@@ -1,0 +1,417 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import SessionArchiveCard from "@components/sessions/SessionArchiveCard.astro";
+import SessionsNav from "@components/sessions/SessionsNav.astro";
+import type { SessionEdition } from "@utils/sessionArchive";
+import { SITE } from "@config";
+
+interface Props {
+  edition: SessionEdition;
+  editions: SessionEdition[];
+}
+const { edition, editions } = Astro.props;
+const current = edition.startYear === editions[0].startYear;
+const sessionCount = (count: number) =>
+  `${count} ${count === 1 ? "session" : "sessions"}`;
+const description =
+  "Explore ai-phi’s sessions by edition, from our first conversations in 2023 to the current programme.";
+---
+
+<Layout
+  title={`${current ? "Sessions" : `${edition.label} (${edition.years})`} | ${
+    SITE.title
+  }`}
+  description={description}
+>
+  <Header activeNav="sessions" />
+  <main id="main-content" class="sessions-page">
+    <nav class="archive-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      {
+        current ? (
+          <span aria-current="page">Sessions</span>
+        ) : (
+          <>
+            <>
+              <a href="/sessions/">Sessions</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{edition.label}</span>
+            </>
+          </>
+        )
+      }
+    </nav>
+
+    <header class="page-heading">
+      <p class="eyebrow">The ai-phi programme</p>
+      <h1>Sessions</h1>
+      <p class="page-introduction">{description}</p>
+    </header>
+
+    <nav aria-label="Choose an ai-phi edition" class="edition-nav">
+      {
+        editions.map((item, index) => (
+          <a
+            href={item.path}
+            class:list={[
+              "edition-link",
+              { selected: item.startYear === edition.startYear },
+            ]}
+            aria-current={
+              item.startYear === edition.startYear ? "page" : undefined
+            }
+          >
+            <span class="edition-link-top">
+              <>
+                <strong>{item.label}</strong>
+                <span aria-hidden="true">↗</span>
+              </>
+            </span>
+            <span class="edition-years">{item.years}</span>
+            <span class="edition-count">
+              {sessionCount(item.sessions.length)}
+              {index === 0 && <span class="current-label">Latest edition</span>}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <header class="edition-heading">
+      <p class="eyebrow">{current ? "Latest edition" : "From the archive"}</p>
+      <h2>{edition.label} <span>({edition.years})</span></h2>
+      <p class="edition-introduction">{edition.introduction}</p>
+      <p class="edition-summary">
+        {sessionCount(edition.sessions.length)}
+        <span aria-hidden="true">·</span>
+        {edition.groups.map(group => group.title).join(" · ")}
+      </p>
+    </header>
+
+    {
+      edition.groups.length > 1 && (
+        <nav class="group-nav" aria-label={`Groups in ${edition.label}`}>
+          {edition.groups.map(group => (
+            <a href={`#${group.id}`}>
+              {group.title}
+              <span>{group.sessions.length}</span>
+            </a>
+          ))}
+        </nav>
+      )
+    }
+
+    <div class="edition-groups">
+      {
+        edition.groups.map(group => (
+          <section
+            id={group.id}
+            class="archive-group"
+            aria-labelledby={`${group.id}-heading`}
+          >
+            <div class="group-heading">
+              <div>
+                <p class="eyebrow">
+                  {group.type === "cycle" ? "Cycle" : "Sessions"}
+                </p>
+                <h3 id={`${group.id}-heading`}>{group.title}</h3>
+              </div>
+              <span class="group-count">
+                {sessionCount(group.sessions.length)}
+              </span>
+            </div>
+            {group.description && (
+              <p class="group-introduction">{group.description}</p>
+            )}
+            <ol class="session-list">
+              {group.sessions.map(session => (
+                <li>
+                  <SessionArchiveCard
+                    session={session}
+                    featured={current && group.sessions.length === 1}
+                  />
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+
+    <aside class="cross-edition" aria-labelledby="cross-edition-heading">
+      <h2 id="cross-edition-heading">Browse across editions</h2>
+      <p>
+        Looking for a particular kind of conversation? Explore the existing
+        archives, or find a recording in Resources.
+      </p>
+      <SessionsNav active={current ? "all" : undefined} />
+      <a class="recordings-link" href="/resources/#videos"
+        >Browse recordings <span aria-hidden="true">↗</span></a
+      >
+    </aside>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .sessions-page {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+  .archive-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.8rem;
+  }
+  .archive-breadcrumb a,
+  .archive-breadcrumb > span {
+    opacity: 0.7;
+  }
+  .archive-breadcrumb a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .page-heading {
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow {
+    font-family: "Work Sans", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    color: rgb(var(--color-accent));
+  }
+  h1 {
+    font-size: clamp(2.75rem, 7vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1.05;
+    margin: 0 0 1rem;
+  }
+  .page-introduction,
+  .edition-introduction,
+  .group-introduction,
+  .cross-edition > p {
+    font-family: "Work Sans", sans-serif;
+    line-height: 1.65;
+    opacity: 0.85;
+    max-width: 68ch;
+  }
+  .page-introduction {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .edition-nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0 0 2.5rem;
+  }
+  .edition-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1rem;
+    border: 1px solid rgba(var(--color-border), 0.9);
+    border-radius: 0.65rem;
+    text-decoration: none;
+  }
+  .edition-link:hover {
+    border-color: rgb(var(--color-accent));
+    background: rgba(var(--color-card-muted), 0.15);
+  }
+  .edition-link.selected {
+    border-color: rgb(var(--color-accent));
+    background: rgba(var(--color-card-muted), 0.32);
+    box-shadow: inset 0 -3px rgb(var(--color-accent));
+  }
+  .edition-link:focus-visible,
+  .group-nav a:focus-visible,
+  .recordings-link:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 4px;
+  }
+  .edition-link-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem;
+    font-size: 1.3rem;
+  }
+  .edition-link-top > span {
+    color: rgb(var(--color-accent));
+    font-family: "Work Sans", sans-serif;
+    font-size: 1rem;
+  }
+  .edition-years,
+  .edition-count {
+    font-family: "Work Sans", sans-serif;
+  }
+  .edition-years {
+    font-size: 0.875rem;
+  }
+  .edition-count {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    margin-top: 0.35rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.7rem;
+  }
+  .current-label {
+    font-weight: 600;
+  }
+  .edition-heading {
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: clamp(1.9rem, 4vw, 2.65rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  h2 > span {
+    font-size: 0.7em;
+    font-weight: 400;
+    opacity: 0.65;
+    white-space: nowrap;
+  }
+  .edition-introduction {
+    margin: 0 0 0.8rem;
+    font-size: 1rem;
+  }
+  .edition-summary {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.75;
+    opacity: 0.65;
+    margin: 0;
+  }
+  .edition-summary > span {
+    margin: 0 0.4rem;
+  }
+  .group-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 2.5rem;
+  }
+  .group-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(var(--color-border), 0.8);
+    border-radius: 2rem;
+  }
+  .group-nav a:hover {
+    background: rgba(var(--color-card-muted), 0.2);
+  }
+  .group-nav span {
+    font-size: 0.7rem;
+    opacity: 0.65;
+  }
+  .edition-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .archive-group {
+    width: 100%;
+    max-width: none;
+    scroll-margin-top: 1.5rem;
+    margin: 0;
+  }
+  .group-heading {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .group-count {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.75rem;
+    opacity: 0.65;
+    flex-shrink: 0;
+  }
+  .group-introduction {
+    margin: 0.9rem 0 1.5rem;
+    font-size: 0.875rem;
+  }
+  .session-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cross-edition {
+    border-top: 1px solid rgba(var(--color-border), 0.85);
+    padding-top: 2rem;
+    margin-top: 3.5rem;
+  }
+  .cross-edition h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .cross-edition > p {
+    font-size: 0.875rem;
+    margin: 0 0 1.25rem;
+  }
+  .cross-edition :global(nav) {
+    margin-bottom: 1rem;
+    gap: 0.55rem;
+  }
+  .cross-edition :global(nav a) {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .recordings-link {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  @media (max-width: 639px) {
+    .sessions-page {
+      padding: 0 1rem 2rem;
+    }
+    .archive-breadcrumb {
+      margin-bottom: 1.75rem;
+    }
+    .edition-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-bottom: 2.5rem;
+    }
+    .edition-link {
+      padding: 0.8rem;
+    }
+    .edition-link-top {
+      font-size: 1.2rem;
+    }
+    .group-heading {
+      align-items: flex-start;
+    }
+    .group-count {
+      padding-top: 1.3rem;
+    }
+    .edition-groups {
+      gap: 2.5rem;
+    }
+  }
+</style>

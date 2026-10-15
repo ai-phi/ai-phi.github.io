@@ -62,6 +62,7 @@ const sessions = defineCollection({
         )
         .default([]),
       baseIllustration: z.string().optional(),
+      videoTitle: z.string().min(1).optional(),
       videoThumbnail: z.string().min(1).optional(),
       ogImage: z.string().optional(),
       location: z.string().optional(),

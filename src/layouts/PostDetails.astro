@@ -9,6 +9,7 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
+import getSessionRecording from "@utils/getSessionRecording";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
 type ContentCollection = "posts" | "sessions";
@@ -37,6 +38,9 @@ const { Content } = await post.render();
 
 const baseOgImage = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const isSession = post.collection === "sessions";
+const recording = post.collection === "sessions"
+  ? getSessionRecording(post.data)
+  : undefined;
 const sessionSlug =
   isSession && typeof post.data.slug === "string"
     ? post.data.slug
@@ -144,12 +148,13 @@ const formatSpeakers = (
     }
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
       {
-        isSession && post.data.youtubeId && (
+        recording && (
           <aside
             aria-label="Session recording"
             class="rounded-lg border border-skin-line bg-skin-card px-5 py-4"
           >
-            <a href={`https://www.youtube.com/watch?v=${post.data.youtubeId}`}>
+            <p class="mt-0 font-medium">{recording.title}</p>
+            <a href={recording.url}>
               Watch the recording on YouTube
             </a>
             <span aria-hidden="true"> · </span>

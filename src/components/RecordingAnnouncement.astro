@@ -1,13 +1,15 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import LinkButton from "@components/LinkButton.astro";
+import getSessionRecording from "@utils/getSessionRecording";
 
 interface Props {
   session: CollectionEntry<"sessions">;
 }
 const { session } = Astro.props;
-const { title, youtubeId, videoThumbnail } = session.data;
-const videoUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
+const recording = getSessionRecording(session.data);
+if (!recording) throw new Error("Recording announcement requires a video.");
+const { title, url: videoUrl, thumbnail } = recording;
 ---
 
 <section class="mt-10 clear-both" aria-labelledby="new-video-heading">
@@ -24,11 +26,10 @@ const videoUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
       aria-label={`Watch ${title} on YouTube`}
     >
       <img
-        src={videoThumbnail ??
-          `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`}
+        src={thumbnail}
         alt=""
-        width="480"
-        height="270"
+        width="1920"
+        height="1080"
         loading="lazy"
         decoding="async"
       />

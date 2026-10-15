@@ -10,6 +10,7 @@ import RecordingAnnouncement from "@components/RecordingAnnouncement.astro";
 import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
+import getSessionRecording from "@utils/getSessionRecording";
 import { SITE, SOCIALS } from "@config";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
@@ -19,12 +20,12 @@ const sessions = await getCollection("sessions");
 
 // Homepage editorial choices; the recording's facts stay in its session entry.
 const SHOW_FEATURED_POSTS = false;
-const HOMEPAGE_VIDEO_SLUG = "session-25-kathinka-evers";
+const HOMEPAGE_VIDEO_SLUG = "session-41-levin-beyond-anthropocentrism";
 const homepageVideo = sessions.find(
   session =>
     session.slug === HOMEPAGE_VIDEO_SLUG &&
     !session.data.draft &&
-    !!session.data.youtubeId
+    !!getSessionRecording(session.data)
 );
 
 const sortedPosts = getSortedPosts(posts);
@@ -292,6 +293,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
         </>}
 
+        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
+
         <section class="mt-12" aria-labelledby="sessions-announcement-heading">
           <div class="space-y-4">
             <h2
@@ -379,7 +382,6 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
           </div>
         </section>
 
-        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
       </div>
 
     </section>

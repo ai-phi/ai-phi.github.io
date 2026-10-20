@@ -1,0 +1,46 @@
+---
+import NativeRegistration from "./NativeRegistration.astro";
+import forms from "../../registration/forms.json";
+interface Props {
+  nativeEvent?: string;
+  formUrl?: string;
+}
+const { formUrl, nativeEvent } = Astro.props;
+const nativeReady = nativeEvent && ((forms.endpoint && forms.turnstileSiteKey) || import.meta.env.DEV);
+const embedUrl = formUrl ? new URL(formUrl) : undefined;
+const isAirtable = embedUrl?.hostname === "airtable.com";
+if (embedUrl?.hostname === "airtable.com") {
+  embedUrl.pathname = `/embed${embedUrl.pathname}`;
+} else {
+  embedUrl?.searchParams.set("embedded", "true");
+}
+---
+<div id="registration" aria-label="Session registration" class="registration">
+  {nativeReady ? (
+    <NativeRegistration eventId={nativeEvent!} fallbackUrl={formUrl} />
+  ) : formUrl ? (
+    <>
+      <p>Register below, or <a href={formUrl} target="_blank" rel="noopener noreferrer">open the registration form in a new tab</a>.</p>
+      <p class="registration-note">Your details will be used by ai-phi to organise this session and the gathering afterwards.</p>
+      <iframe
+        src={embedUrl?.href}
+        title="ai-phi session registration"
+        width="100%"
+        height={isAirtable ? "620" : "1050"}
+        loading="lazy"
+        class:list={["registration-frame", { "registration-frame-airtable": isAirtable }]}
+      >Loading registration form…</iframe>
+    </>
+  ) : (
+    <p>Registration will open shortly.</p>
+  )}
+</div>
+<style>
+  .registration { margin-block: 2.5rem; scroll-margin-top: 2rem; }
+  .registration-note { font-size: 0.9rem; }
+  .registration-frame { display: block; width: 100%; max-width: 100%; border: 0; border-radius: 0.75rem; background: white; }
+  @media (max-width: 480px) {
+    .registration-frame { height: 1200px; }
+    .registration-frame-airtable { height: 660px; }
+  }
+</style>

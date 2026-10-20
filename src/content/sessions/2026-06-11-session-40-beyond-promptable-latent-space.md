@@ -66,7 +66,9 @@ Image-as-reference conditioning also loosens the linguistic cage. A reference im
 
 The same logic is now becoming explicit in language models, where internal representation vectors can steer traits, personas, and stances without ordinary prompting. The broader lesson is that language is not the only interface to a model, and may not be the most expressive one.
 
-## About Primavera De Filippi
+<span id="about-primavera-de-filippi"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-40-beyond-promptable-latent-space.jpg"

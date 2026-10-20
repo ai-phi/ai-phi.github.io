@@ -31,7 +31,9 @@ From the democratization of dual-use biotechnology to the emergence of deceptive
 
 CeSIA (Centre pour la Sécurité de l'IA), which he co-founded and directs, sits at the intersection of technical AI safety research and international governance—serving as an official evaluator for the EU AI Act while leading the Global Call for AI Red Lines, an initiative endorsed by 12 Nobel laureates and presented at the UN Security Council. Segerie will discuss the technical challenges of aligning powerful models with human values and the policy frameworks necessary to address these risks.
 
-## About Charbel-Raphaël Segerie
+<span id="about-charbel-raphaël-segerie"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-32-segerie-losing-control.png"

@@ -9,7 +9,7 @@ import FeaturedSessionHeroCard from "@components/blog/FeaturedSessionHeroCard.as
 import RecordingAnnouncement from "@components/RecordingAnnouncement.astro";
 import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
 import getKeywordMap from "@utils/getKeywordMap";
-import getSessionKindLabel from "@utils/getSessionKindLabel";
+import getSessionIdentity from "@utils/getSessionIdentity";
 import getSessionRecording from "@utils/getSessionRecording";
 import { SITE, SOCIALS } from "@config";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
@@ -293,8 +293,6 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
 
         </>}
 
-        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
-
         <section class="mt-12" aria-labelledby="sessions-announcement-heading">
           <div class="space-y-4">
             <h2
@@ -307,7 +305,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
               featuredSessionPosts.length > 0 ? (
                 <div class="grid gap-6 items-stretch md:grid-cols-2">
                   {featuredSessionPosts.map(
-                    ({ data, slug, resolvedOg }, index) => {
+                    (post, index) => {
+                      const { data, slug, resolvedOg } = post;
                       const expanded = index === featuredSessionHighlightIndex;
 
                       return (
@@ -317,9 +316,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                               <div class="md:hidden">
                                 <PostVerticalCard
                                   title={data.titleShort ?? data.title}
-                                  eyebrow={`Session ${
-                                    data.sessionNumber
-                                  } · ${getSessionKindLabel(data.kind)}`}
+                                  sessionIdentity={getSessionIdentity(post)}
                                   date={data.pubDatetime}
                                   author={data.author}
                                   description={data.description}
@@ -330,9 +327,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                               <div class="hidden md:block">
                                 <FeaturedSessionHeroCard
                                   title={data.titleShort ?? data.title}
-                                  eyebrow={`Session ${
-                                    data.sessionNumber
-                                  } · ${getSessionKindLabel(data.kind)}`}
+                                  sessionIdentity={getSessionIdentity(post)}
                                   date={data.pubDatetime}
                                   author={data.author}
                                   description={data.description}
@@ -344,9 +339,7 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
                           ) : (
                             <PostVerticalCard
                               title={data.titleShort ?? data.title}
-                              eyebrow={`Session ${
-                                data.sessionNumber
-                              } · ${getSessionKindLabel(data.kind)}`}
+                              sessionIdentity={getSessionIdentity(post)}
                               date={data.pubDatetime}
                               author={data.author}
                               description={data.description}
@@ -381,6 +374,8 @@ const keywordMap = getKeywordMap([...posts, ...sessions]);
             </LinkButton>
           </div>
         </section>
+
+        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
 
       </div>
 

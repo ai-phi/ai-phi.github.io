@@ -1,0 +1,43 @@
+{
+  "endpoint": "https://ai-phi-registration.ai-phi.workers.dev/register",
+  "turnstileSiteKey": "0x4AAAAAAFb_mVu3NdTikwf3",
+  "events": {
+    "session-42": {
+      "session": "42 — Sylvy Anscombe — 29 October 2026",
+      "attendanceNote": "Registration is for in-person attendance only. There will be no remote attendance.",
+      "recordingNote": "A recording will be released on YouTube after the event.",
+      "updatesUrl": "mailto:ai-phi+subscribe@googlegroups.com",
+      "closesAt": "2026-10-29T18:30:00Z",
+      "thankYou": "Thank you — your registration for session 42 is confirmed. We look forward to seeing you on 29 October at 18:00, in Amphi Turing, Bâtiment Sophie Germain.",
+      "dinnerThankYou": "Your interest in joining dinner has been recorded. Restaurant space is subject to availability.",
+      "fields": [
+        {
+          "name": "fullName",
+          "label": "Full name",
+          "type": "text",
+          "required": true,
+          "visible": true,
+          "maxLength": 160,
+          "autocomplete": "name"
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "visible": true,
+          "maxLength": 254,
+          "autocomplete": "email"
+        },
+        {
+          "name": "dinner",
+          "label": "I’d like to join dinner or drinks afterwards",
+          "help": "Please indicate your plans by 27 October at 18:00 (Paris time). After this deadline, restaurant space cannot be guaranteed.",
+          "type": "checkbox",
+          "required": false,
+          "visible": true
+        }
+      ]
+    }
+  }
+}

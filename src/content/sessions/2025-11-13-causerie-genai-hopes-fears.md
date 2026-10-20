@@ -33,7 +33,9 @@ Generative AI is spreading rapidly worldwide, both in private use and in corpora
 
 This Causerie is about the social emotions projected onto AI, namely Hope, Fear, and Trust. We will frame the process by which generative AI now percolates from research into widespread use in society, and offer participants an opportunity to debate the arguments for boom and gloom, safety real and perceived, risks and safeguards.
 
-## About Edmund Ronald
+<span id="about-edmund-ronald"></span>
+
+## About the speaker
 
 ![Portrait of Edmund Ronald](/images/base/sessions/session-27-causerie-hope-fears.png)
 

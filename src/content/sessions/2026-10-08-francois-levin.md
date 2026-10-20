@@ -12,7 +12,6 @@ speakers:
   - name: François Levin
     affiliation: Grenoble Alpes University
 baseIllustration: /images/base/sessions/session-41-levin-beyond-anthropocentrism.jpg
-thumbnailPortraitAlign: center
 ogImage: /images/og/sessions/session-41-levin-beyond-anthropocentrism.png
 draft: false
 featured: true
@@ -27,6 +26,8 @@ description: >-
   from rethinking intelligence beyond the human model to imagining different ways
   of developing AI.
 location: Sony CSL (Paris), 6 rue Amyot, 75005 Paris
+formats:
+  - podcast
 kind: critical-perspectives
 formatLabel: Live podcast
 series: Critical Perspectives on AI
@@ -44,9 +45,11 @@ His doctoral thesis, _L’intelligence artificielle au défi de ses critiques ph
 
 Together with **David Colliaux, Adel Chaibi and Aïda Elamrani**, François will discuss what we mean by intelligence in the first place; the continuing debates around computation, functionalism, embodiment and meaning; non-human forms of cognition; the possibility of a genuinely non-anthropocentric AI; and the political question of who gets to define what AI should become.
 
-**This conversation will be held in French.** For our international community, we’re currently exploring the possibility of live English captions for the online stream. The recording will subsequently be released on YouTube with translated subtitles.
+**This conversation was held in French.** [Watch the recording on YouTube](https://www.youtube.com/watch?v=OyhCEnq7q9A).
 
-## Speaker bio
+<span id="speaker-bio"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-41-levin-beyond-anthropocentrism.jpg"

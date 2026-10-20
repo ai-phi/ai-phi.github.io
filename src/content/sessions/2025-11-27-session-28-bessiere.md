@@ -41,7 +41,9 @@ Pierre Bessiere will discuss four key points made in his latest book (released n
 
 **As the book is currently in French, the presentation will be in French with slides in English.**
 
-## About Pierre Bessière
+<span id="about-pierre-bessière"></span>
+
+## About the speaker
 
 ![Portrait of Pierre Bessière](/images/base/sessions/session-28-bessiere-wonderlands-of-reason.png)
 

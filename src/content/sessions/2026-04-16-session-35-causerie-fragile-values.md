@@ -29,7 +29,9 @@ This perspective helps explain how agents select relevant information, reshape i
 
 I will conclude with a brief presentation of one of my recent studies, focusing on how value representations support flexible learning and decision-making when goals shift.
 
-## About Ali Shiravand
+<span id="about-ali-shiravand"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-35-causerie-fragile-values.jpeg"

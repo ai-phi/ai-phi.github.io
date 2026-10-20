@@ -25,8 +25,6 @@ kind: seminar
 series: AI-Phi Seminar Series
 ---
 
-## Artificial Consciousness: Science Fiction, Utopia, or Pandora’s Box?
-
 The question whether a machine – a computer or a robot or any other form of artificial system – could be sentient is certainly entertaining, no end of science fiction deals with the question and sometimes very engagingly. But why is the question of artificial sentience (or “awareness”, or “consciousness”) raised in science receiving considerable public funding despite the lack of empirical evidence?
 
 I shall address this question from distinct perspectives: scientific, psychological and social. I suggest that the human urge to develop conscious artificial systems is partly driven by hype but also by narcissism and naivety; unrealistic hopes for benefits are coupled with ignorance of possible risks. A dangerous combination, as history amply illustrates.
@@ -39,7 +37,9 @@ Several interesting approaches have been articulated to identify benchmarks for 
 
 In view of how human nature has expressed itself throughout history, conscious AI created by humans would likely be monumentally dangerous. It could also be very different from human consciousness and thus (a) undetectable, (b) incomprehensible, and (c) incommunicable. This could increase the risks and cut both ways if the conscious AI has valenced experience.
 
-## About Kathinka Evers
+<span id="about-kathinka-evers"></span>
+
+## About the speaker
 
 <img src="/images/base/sessions/session-25-kathinka-evers.png" alt="A portrait of Kathinka Evers" />
 

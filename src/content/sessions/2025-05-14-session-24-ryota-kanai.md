@@ -32,13 +32,13 @@ kind: seminar
 series: AI-Phi Seminar Series
 ---
 
-# Qualia and Symmetry: A Mathematical Framework For Understanding the Qualitative Nature of Consciousness
-
 A fundamental question in consciousness science is how qualitative differences in experience—such as vision versus audition, or colours versus shapes— correspond to differences in underlying neural networks. It is important to recognise that the qualitative differences in conscious experiences such as between vision versus audition must be determined by the intrinsic properties of the underlying neural networks rather than the labels attached by extrinsic viewpoints. This principle of intrinsicality aligns with the spirit of Integrated Information Theory, which also emphasizes intrinsic causal structure as foundational to experience. In our previous work, we introduced the concept of a "meta-network," a neural network trained to encode intrinsic structural properties of other networks. Using this method, we demonstrated that networks trained on different sensory modalities (e.g., vision vs. audition) cluster distinctly, suggesting the presence of modality-specific intrinsic structures.
 
 Here, we advance the hypothesis that these intrinsic structural properties can be formally characterized using symmetry groups and equivariance. Specifically, we propose that each sensory modality corresponds to a distinct symmetry group, and the equivariance of neural representations with respect to these groups underpins qualitative types of experience. Within each qualitative domain, specific sensory qualities (like colours or pitches) emerge from partial breaking of these symmetries due to biological or experiential biases. Recent advances in mechanistic interpretability of artificial intelligence have led to methods that quantify symmetries and equivariances in neural networks, making our hypothesis empirically tractable. Such quantitative methods can be employed not only to analyze artificial neural networks but also, in principle, can be extended to experimental neuroscientific data. Furthermore, I will briefly discuss how the compositional nature of conscious experience can be mathematically understood through the compositional structure of symmetry groups. Taken together, this mathematical framework offers a potentially promising avenue toward grounding the qualitative aspect of consciousness in the intrinsic structure of neural networks.
 
-## About Ryota Kanai
+<span id="about-ryota-kanai"></span>
+
+## About the speaker
 
 <img src="/images/base/sessions/session-24-ryota-kanai.jpg" alt="A portrait of Ryota Kanai" />
 

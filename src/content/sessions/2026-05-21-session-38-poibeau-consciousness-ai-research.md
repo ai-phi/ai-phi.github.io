@@ -10,7 +10,7 @@ speakers:
     affiliation: CNRS, ENS
 baseIllustration: /images/base/sessions/session-38-poibeau-consciousness-ai-research.png
 draft: false
-featured: true
+featured: false
 highlight: true
 tags:
   - Consciousness
@@ -32,7 +32,9 @@ Debates about artificial consciousness have expanded considerably in recent year
 
 This talk will revisit notions such as consciousness, meaning, and understanding, whose definitions often remain vague or unstable in the context of artificial intelligence. Drawing on both the current capabilities and the limitations of large language models, especially their lack of perceptual grounding and their tendency to hallucinate, the aim will primarily be to open discussion and to question the way these concepts are currently mobilized in debates about AI, as well as the practical consequences this may have in terms of oversight and possible regulation.
 
-## About Thierry Poibeau
+<span id="about-thierry-poibeau"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-38-poibeau-consciousness-ai-research.png"

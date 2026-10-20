@@ -1,0 +1,312 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { LOCALE, SITE } from "@config";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  variant?: "lead" | "story" | "archive";
+}
+
+const { post, variant = "story" } = Astro.props;
+const { title, description, pubDatetime, tags, ogImage } = post.data;
+const date = new Date(pubDatetime);
+const displayDate = date.toLocaleDateString(LOCALE.langTag, {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: LOCALE.timeZone,
+});
+const rawImage = typeof ogImage === "string" ? ogImage : ogImage?.src;
+// Older posts mix root-relative paths with assets/ and ../og/ paths.
+const image = rawImage ? new URL(rawImage, SITE.website).href : undefined;
+const href = `/posts/${post.slug}/`;
+---
+
+<article class:list={["journal-card", variant]}>
+  {
+    variant !== "archive" && (
+      <div class:list={["artwork", !image && "artwork-mark"]}>
+        {image ? (
+          <img
+            src={
+              image.startsWith(SITE.website)
+                ? image.slice(SITE.website.length - 1)
+                : image
+            }
+            alt=""
+            width="1200"
+            height="630"
+            loading={variant === "lead" ? "eager" : "lazy"}
+            decoding="async"
+          />
+        ) : (
+          <>
+            <img
+              class="mark-light"
+              src="/images/AiPhi_Logo_Black_Variante.png"
+              alt=""
+              width="240"
+              height="240"
+              loading="lazy"
+            />
+            <img
+              class="mark-dark"
+              src="/images/AiPhi_Logo_White_Variante.png"
+              alt=""
+              width="240"
+              height="240"
+              loading="lazy"
+            />
+          </>
+        )}
+      </div>
+    )
+  }
+  <div class="story-copy">
+    <div class="post-meta">
+      {variant === "lead" && <span class="focus-label">Latest post</span>}
+      <time datetime={date.toISOString()}>{displayDate}</time>
+    </div>
+    {
+      variant === "archive" ? (
+        <h3>
+          <a href={href}>{title}</a>
+        </h3>
+      ) : (
+        <h2>
+          <a href={href}>{title}</a>
+        </h2>
+      )
+    }
+    <p class="description">{description}</p>
+    {
+      variant !== "archive" && (
+        <ul class="topics" aria-label="Topics">
+          {tags.slice(0, 3).map(tag => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+    <span class="read-link" aria-hidden="true">Read post <span>↗</span></span>
+  </div>
+</article>
+
+<style>
+  .journal-card {
+    position: relative;
+    min-width: 0;
+  }
+  .artwork {
+    overflow: hidden;
+    aspect-ratio: 1200 / 630;
+    background: rgb(var(--color-card));
+    border-radius: 0.65rem;
+  }
+  .artwork img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 350ms ease;
+  }
+  .journal-card:hover .artwork img {
+    transform: scale(1.025);
+  }
+  .artwork-mark {
+    display: grid;
+    place-items: center;
+    background: rgba(var(--color-card-muted), 0.3);
+  }
+  .artwork-mark img {
+    width: 36%;
+    height: 70%;
+    object-fit: contain;
+    opacity: 0.65;
+  }
+  .mark-dark {
+    display: none !important;
+  }
+  :global(html[data-theme="dark"]) .mark-light {
+    display: none;
+  }
+  :global(html[data-theme="dark"]) .mark-dark {
+    display: block !important;
+  }
+  .story-copy {
+    padding: 1.25rem 0 0;
+  }
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 1rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: rgba(var(--color-text-base), 0.65);
+  }
+  .focus-label {
+    color: rgb(var(--color-text-base));
+    font-size: 0.67rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  h2,
+  h3 {
+    margin: 0.65rem 0 0.8rem;
+    font-weight: 500;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+  h2 {
+    font-size: clamp(1.65rem, 2.3vw, 2rem);
+    line-height: 1.15;
+  }
+  h3 {
+    font-size: 1.55rem;
+    line-height: 1.2;
+  }
+  h2 a,
+  h3 a {
+    text-decoration: none;
+  }
+  h2 a::after,
+  h3 a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.65rem;
+  }
+  .journal-card:focus-within {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 7px;
+    border-radius: 0.65rem;
+  }
+  a:focus-visible {
+    outline: none;
+  }
+  .journal-card:hover h2 a,
+  .journal-card:hover h3 a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.17em;
+  }
+  .description {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba(var(--color-text-base), 0.78);
+  }
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.65rem;
+    line-height: 1.65;
+    color: rgba(var(--color-text-base), 0.65);
+  }
+  .read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.35rem;
+    font-size: 0.95rem;
+  }
+  .read-link span {
+    transition: transform 200ms ease;
+  }
+  .journal-card:hover .read-link span {
+    transform: translate(2px, -2px);
+  }
+  .lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.75rem;
+    background: rgba(var(--color-card-muted), 0.28);
+    border-radius: 1rem;
+  }
+  .lead .story-copy {
+    padding: 0.5rem 0;
+  }
+  .lead h2 {
+    font-size: clamp(1.9rem, 3vw, 2.65rem);
+    line-height: 1.12;
+  }
+  .lead .artwork {
+    border-radius: 0.5rem;
+  }
+  .archive {
+    border-top: 1px solid rgba(var(--color-text-base), 0.17);
+    padding: 1.5rem 0;
+  }
+  .archive .story-copy {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) 5rem;
+    column-gap: 1.5rem;
+    padding: 0;
+    align-items: baseline;
+  }
+  .archive .post-meta {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .archive h3 {
+    grid-column: 2;
+    margin: 0 0 0.5rem;
+  }
+  .archive .description {
+    grid-column: 2;
+    font-size: 0.95rem;
+  }
+  .archive .read-link {
+    grid-column: 3;
+    grid-row: 1;
+    margin: 0;
+    justify-self: end;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 767px) {
+    .lead {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+    .lead h2 {
+      font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+    }
+    .archive .story-copy {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .archive .post-meta {
+      grid-column: 1 / -1;
+      grid-row: auto;
+      margin-bottom: 0.4rem;
+    }
+    .archive h3,
+    .archive .description {
+      grid-column: 1 / -1;
+    }
+    .archive .read-link {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .artwork img,
+    .read-link span {
+      transition: none;
+    }
+    .journal-card:hover .artwork img,
+    .journal-card:hover .read-link span {
+      transform: none;
+    }
+  }
+</style>

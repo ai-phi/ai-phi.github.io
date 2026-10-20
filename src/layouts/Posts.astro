@@ -1,42 +1,280 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Main from "@layouts/Main.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Pagination from "@components/Pagination.astro";
-import PostCardNoImage from "@components/blog/PostCardNoImage.astro";
-import { SITE } from "@config";
+import PostJournalCard from "@components/blog/PostJournalCard.astro";
+import { LOCALE, SITE } from "@config";
 
 export interface Props {
   currentPage: number;
   totalPages: number;
+  totalPosts: number;
   paginatedEntries: CollectionEntry<"posts">[];
 }
 
-const { currentPage, totalPages, paginatedEntries } = Astro.props;
+const { currentPage, totalPages, totalPosts, paginatedEntries } = Astro.props;
+const lead = currentPage === 1 ? paginatedEntries[0] : undefined;
+const remaining = lead ? paginatedEntries.slice(1) : paginatedEntries;
+const stories = currentPage === 1 ? remaining.slice(0, 4) : [];
+const archive = currentPage === 1 ? remaining.slice(4) : remaining;
+const archiveYears = [
+  ...new Set(
+    archive.map(post =>
+      new Date(post.data.pubDatetime).toLocaleDateString("en", {
+        year: "numeric",
+        timeZone: LOCALE.timeZone,
+      })
+    )
+  ),
+];
+const description =
+  "Reflections, community news and shared discoveries at the intersection of AI and philosophy.";
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout
+  title={`Posts${currentPage > 1 ? ` · Page ${currentPage}` : ""} | ${
+    SITE.title
+  }`}
+  {description}
+>
   <Header activeNav="posts" />
-  <Main pageTitle="Posts" pageDesc="Browse our posts.">
-    <div class="space-y-6">
-      {
-        paginatedEntries.map(post => (
-          <PostCardNoImage post={post} href={`/posts/${post.slug}`} />
-        ))
-      }
-    </div>
-  </Main>
+  <main id="main-content" class="journal">
+    <header class="journal-heading">
+      <p class="eyebrow">From the community</p>
+      <div class="title-row">
+        <h1>Posts<span class="title-dot" aria-hidden="true">.</span></h1>
+        <p class="post-count">
+          {totalPosts} posts<span aria-hidden="true"> /</span>Since 2024
+        </p>
+      </div>
+      <div class="intro-row">
+        <p class="intro">{description}</p>
+        <a class="sessions-link" href="/sessions/"
+          >Explore our sessions <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
 
-  <Pagination
-    {currentPage}
-    {totalPages}
-    prevUrl={`/posts${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}`}
-    nextUrl={`/posts/${currentPage + 1}`}
-    firstUrl={totalPages > 4 ? `/posts` : undefined}
-    lastUrl={totalPages > 4 ? `/posts/${totalPages}` : undefined}
-  />
+    {lead && <PostJournalCard post={lead} variant="lead" />}
 
-  <Footer noMarginTop={totalPages > 1} />
+    {
+      stories.length > 0 && (
+        <section class="stories" aria-label="More posts">
+          {stories.map(post => (
+            <PostJournalCard {post} />
+          ))}
+        </section>
+      )
+    }
+
+    {
+      archive.length > 0 && (
+        <section class="archive-section" aria-labelledby="archive-heading">
+          <div class="section-heading">
+            <h2 id="archive-heading">Earlier posts</h2>
+            {totalPages > 1 && (
+              <p>
+                Page {currentPage} of {totalPages}
+              </p>
+            )}
+          </div>
+          {archiveYears.map(year => (
+            <div class="archive-year">
+              <p class="year-label">{year}</p>
+              <div>
+                {archive
+                  .filter(
+                    post =>
+                      new Date(post.data.pubDatetime).toLocaleDateString("en", {
+                        year: "numeric",
+                        timeZone: LOCALE.timeZone,
+                      }) === year
+                  )
+                  .map(post => (
+                    <PostJournalCard {post} variant="archive" />
+                  ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      )
+    }
+
+    {
+      paginatedEntries.length === 0 && (
+        <p class="empty-state">Posts from the community will appear here.</p>
+      )
+    }
+
+    <Pagination
+      {currentPage}
+      {totalPages}
+      prevUrl={`/posts${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}`}
+      nextUrl={`/posts/${currentPage + 1}`}
+      firstUrl={totalPages > 4 ? "/posts" : undefined}
+      lastUrl={totalPages > 4 ? `/posts/${totalPages}` : undefined}
+    />
+  </main>
+  <Footer />
 </Layout>
+
+<style>
+  .journal {
+    width: min(100% - 3rem, 72rem);
+    margin: 4rem auto 2rem;
+  }
+  .journal-heading {
+    margin-bottom: 2.75rem;
+  }
+  .eyebrow {
+    margin: 0 0 0.65rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(var(--color-text-base), 0.22);
+    padding-bottom: 1rem;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(4.5rem, 9vw, 7.5rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  .title-dot {
+    color: rgb(var(--color-accent));
+  }
+  .post-count {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.7rem;
+    color: rgba(var(--color-text-base), 0.65);
+    white-space: nowrap;
+  }
+  .post-count span {
+    margin: 0 0.65rem;
+  }
+  .intro-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 1.25rem;
+  }
+  .intro {
+    max-width: 36rem;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .sessions-link {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--color-text-base), 0.3);
+    text-underline-offset: 0.3em;
+  }
+  .sessions-link:hover {
+    text-decoration-color: currentColor;
+  }
+  .sessions-link:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 5px;
+  }
+  .stories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    gap: 3rem 2.5rem;
+    margin: 3rem 0 0;
+    padding: 0;
+  }
+  .archive-section {
+    max-width: none;
+    margin: 4rem 0 0;
+    padding: 0;
+  }
+  .section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-heading h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+  .section-heading p {
+    font-size: 0.85rem;
+    opacity: 0.65;
+  }
+  .archive-year {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    column-gap: 2rem;
+  }
+  .year-label {
+    margin: 0;
+    padding-top: 1.5rem;
+    font-size: 1.4rem;
+  }
+  .empty-state {
+    margin: 4rem 0;
+  }
+  @media (max-width: 767px) {
+    .journal {
+      width: calc(100% - 2rem);
+      margin-top: 2.5rem;
+    }
+    .journal-heading {
+      margin-bottom: 2rem;
+    }
+    .intro-row {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .intro {
+      font-size: 1.1rem;
+    }
+    .stories {
+      gap: 2.5rem 1.5rem;
+    }
+    .archive-year {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .year-label {
+      padding: 0 0 0.75rem;
+    }
+  }
+  @media (max-width: 539px) {
+    .stories {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .post-count {
+      max-width: 6rem;
+      white-space: normal;
+      text-align: right;
+      line-height: 1.8;
+    }
+    .post-count span {
+      margin: 0 0.25rem;
+    }
+  }
+</style>

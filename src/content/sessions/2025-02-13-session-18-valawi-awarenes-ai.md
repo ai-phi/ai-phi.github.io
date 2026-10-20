@@ -21,13 +21,15 @@ description: A talk on Value-Aware Artificial Intelligence by Giulio Prevedello.
 kind: other
 ---
 
-# ai-phi 2.0 Inaugural Session: Value-Aware AI
+## ai-phi 2.0 Inaugural Session: Value-Aware AI
 
 What does it mean for artificial intelligence systems to be aware of moral values? How can such systems be designed, and what are their potential benefits?
 
 In this talk, I will introduce the EU project VALAWAI, where we explore the theoretical foundations and practical applications of value-aware AI, particularly in the context of social media. I will discuss how integrating moral values into AI can help mitigate online polarisation and foster more constructive digital interactions. The talk will conclude with an open discussion on the concept of "awareness" in both natural and artificial systems, inviting reflections –and suggestions– on its implications for AI development.
 
-## About Giulio Prevedello
+<span id="about-giulio-prevedello"></span>
+
+## About the speaker
 
 <img src="/images/base/sessions/session-18-valawi-awarenes-ai.jpg" alt="A portrait of Giulio Prevedello" />
 

@@ -27,7 +27,9 @@ kind: causerie
 Large language models (LLMs) are now widely used in educational contexts, from pupils’ homework and revision to teachers’ lesson planning and classroom preparation. This talk examines how LLMs are reshaping the educational landscape and the novel ethical challenges this transformation entails.
 The discussion is grounded in an ongoing France 2030–funded research initiative, **OpenLLM**, in which a consortium bringing together CEA Paris-Saclay, École Polytechnique, LORIA, Linagora, Opsci, and TALKR is developing a frugal, open, and sovereign European LLM designed for French secondary schools. Within this programme, Thomas will present his current applied ethics work, focusing on (i) the identification of LLM-assisted cheating through watermarking techniques, and (ii) the robustness of educational LLMs against adversarial attacks specifically targeting learning and assessment settings.
 
-## About Thomas Souverain
+<span id="about-thomas-souverain"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-31-causerie-llm-education.jpeg"

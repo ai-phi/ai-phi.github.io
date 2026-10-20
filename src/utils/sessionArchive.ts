@@ -104,10 +104,15 @@ const INTRODUCTIONS: Record<number, string> = {
   2023: "Our first year built a shared language between AI and philosophy through introductions, invited talks and collective discussion.",
   2024: "Our second edition developed the seminar programme and introduced causeries, alongside informal AI news sessions.",
   2025: "Seminars, causeries and community gatherings explored AI’s concepts, research practices and wider effects.",
-  2026: "This edition opens with Critical Perspectives on AI, exploring how critique can inform different ways of thinking about and developing AI.",
+  2026: "This year, thematic cycles connect conversations across the programme. Each cycle can bring together podcasts, seminars, causeries and community events, with more cycles unfolding throughout the year.",
 };
 
 const CYCLES: Record<string, { id: string; description: string }> = {
+  "Science+AI: a new Wonderland?": {
+    id: "science-ai",
+    description:
+      "How is AI transforming science, scientific knowledge and research — from the questions we ask to what counts as evidence, explanation and understanding?",
+  },
   "Critical Perspectives on AI": {
     id: "critical-perspectives",
     description:
@@ -120,6 +125,10 @@ const GENERIC_SERIES = new Set([
   "ai-phi Community Session",
 ]);
 const FORMATS: Record<string, { title: string; description: string }> = {
+  podcast: {
+    title: "Podcasts",
+    description: "Conversations recorded with our guests.",
+  },
   seminar: {
     title: "Seminars",
     description:
@@ -155,8 +164,39 @@ export function getEditionStartYear(date: string | Date): number {
   return month >= 9 ? year : year - 1;
 }
 
+export const ARCHIVE_FORMAT_LABELS: Record<string, string> = {
+  podcast: "Podcast",
+  seminar: "Seminar",
+  causerie: "Causerie",
+  community: "Community event",
+  workshop: "Workshop",
+  other: "Other",
+};
+
+export function getArchiveSessionFormatKeys(session: Session): string[] {
+  if (session.data.formats?.length) return [...new Set(session.data.formats)];
+  if (session.data.format) return [session.data.format];
+  // Compatibility for existing records; new entries should set formats explicitly.
+  if (/podcast/i.test(session.data.formatLabel ?? "")) return ["podcast"];
+  return [
+    session.data.kind in ARCHIVE_FORMAT_LABELS ? session.data.kind : "other",
+  ];
+}
+
+export function getArchiveSessionCycle(session: Session): string | undefined {
+  const series = session.data.series?.trim();
+  return series && !GENERIC_SERIES.has(series) ? series : undefined;
+}
+
 export function getArchiveSessionFormat(session: Session): string {
+  if (session.data.formats?.length) {
+    const keys = getArchiveSessionFormatKeys(session);
+    if (keys.length === 1 && session.data.formatLabel)
+      return session.data.formatLabel;
+    return keys.map(key => ARCHIVE_FORMAT_LABELS[key]).join(" + ");
+  }
   if (session.data.formatLabel) return session.data.formatLabel;
+  if (session.data.format) return ARCHIVE_FORMAT_LABELS[session.data.format];
   const number = session.data.sessionNumber;
   if ([14, 15].includes(number)) return "Screening & discussion";
   if (number === 9) return "Forum";
@@ -194,13 +234,21 @@ function groupSessions(startYear: number, sessions: Session[]): ArchiveGroup[] {
   // New published cycles use series, independently of the session's format.
   // Unannounced cycles require no placeholder or public metadata here.
   for (const session of sessions.filter(entry => !assigned.has(entry.id))) {
-    const series = session.data.series?.trim();
-    const cycle = series && !GENERIC_SERIES.has(series) ? series : undefined;
-    const kind = session.data.kind;
-    const format = FORMATS[kind] ?? FORMATS.other;
+    const cycle = getArchiveSessionCycle(session);
+    const kind = getArchiveSessionFormatKeys(session)[0];
+    const formatKeys = getArchiveSessionFormatKeys(session);
+    const format =
+      formatKeys.length > 1
+        ? {
+            title: "Combined formats",
+            description: "Sessions bringing together more than one format.",
+          }
+        : FORMATS[kind] ?? FORMATS.other;
     const id = cycle
       ? CYCLES[cycle]?.id ?? `cycle-${encodeURIComponent(cycle)}`
-      : `format-${kind}`;
+      : formatKeys.length > 1
+        ? "format-combined"
+        : `format-${kind}`;
     let group = groups.find(item => item.id === id);
     if (!group) {
       group = {

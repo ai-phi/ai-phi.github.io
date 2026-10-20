@@ -25,11 +25,11 @@ kind: seminar
 series: AI-Phi Seminar Series
 ---
 
-## Steps to an Ethology of Insurrectionary Machines
-
 I will begin by discussing the significance of an exemplary contemporary humanoid robot, Sophia, created by Hanson Robotics in 2015, which is the first artifact to obtain citizenship, by attempting to answer the paradoxical question of what purpose such machines serve when they serve no purpose. I will then characterize such robots as “Insurrectionary Machines,” as I describe them in my 2021 book, Insurrectionary Machines: Towards a Postbiological Theory of Life (Fayard, 2021). Insurrectionary Machines are machines that occupy their position through their frictions with humans. They are less functional machines that do something than existential machines that live with. AI and “autonomous” robots are part of this category, but these machines belong to a broader category of artifacts, such as idols, dolls, and puppets, which have existed since at least the Paleolithic era and are found in all cultures, even though they have been largely neglected by philosophers and historians of technology. Finally, I will explain why it is necessary to develop an “ethological approach” to account for such machines.
 
-## About Dominique Lestel
+<span id="about-dominique-lestel"></span>
+
+## About the speaker
 
 ![Portrait of Dominique Lestel](/images/base/sessions/session-26-lestel-insurrectionary-machines.jpg)
 

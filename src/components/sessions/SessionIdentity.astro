@@ -1,0 +1,25 @@
+---
+import type { SessionIdentity } from "@utils/getSessionIdentity";
+interface Props { identity: SessionIdentity; }
+const { identity } = Astro.props;
+---
+
+<div class="session-identity">
+  <div class="identity-top">
+    <span class="identity-number">Session {identity.sessionNumber}</span>
+    <ul class="identity-formats" aria-label="Session formats">
+      {identity.formats.map(format => <li>{format}</li>)}
+    </ul>
+  </div>
+  {identity.cycle && <p class="identity-cycle"><span>Cycle</span> {identity.cycle}</p>}
+</div>
+
+<style>
+  .session-identity { margin-bottom: 0.85rem; font-family: "Work Sans", sans-serif; }
+  .identity-top { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem; }
+  .identity-number { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; }
+  .identity-formats { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0; padding: 0; min-width: 0; }
+  .identity-formats li { font-size: 0.7rem; line-height: 1.5; padding: 0.15rem 0.55rem; border: 1px solid rgba(var(--color-border), 0.65); border-radius: 1rem; overflow-wrap: anywhere; }
+  .identity-cycle { margin: 0.6rem 0 0; font-size: 0.8rem; line-height: 1.6; overflow-wrap: anywhere; }
+  .identity-cycle > span { display: inline-block; margin-right: 0.4rem; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.65; }
+</style>

@@ -1,0 +1,38 @@
+---
+import SessionRegistration from "@components/sessions/SessionRegistration.astro";
+
+interface Props {
+  registration?: { formUrl?: string; nativeEvent?: string };
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { registration, headings } = Astro.props;
+// Render the existing Markdown once, retaining Astro's markup and heading IDs.
+// Insert registration directly after the combined heading in the HTML order,
+// so keyboard and screen-reader users encounter it before the practical details.
+const content = registration ? await Astro.slots.render("default") : "";
+const heading = headings.find(
+  heading =>
+    heading.depth === 2 && heading.text === "Registration & Practical details"
+);
+const escapedId = heading?.slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const headingMatch = escapedId
+  ? new RegExp(
+      `<h2\\b[^>]*\\bid=["']${escapedId}["'][^>]*>[\\s\\S]*?</h2>`
+    ).exec(content)
+  : null;
+const insertionPoint = headingMatch
+  ? headingMatch.index + headingMatch[0].length
+  : content.length;
+---
+
+{
+  registration ? (
+    <>
+      <Fragment set:html={content.slice(0, insertionPoint)} />
+      <SessionRegistration formUrl={registration.formUrl} nativeEvent={registration.nativeEvent} />
+      <Fragment set:html={content.slice(insertionPoint)} />
+    </>
+  ) : (
+    <slot />
+  )
+}

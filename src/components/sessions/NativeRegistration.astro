@@ -1,0 +1,181 @@
+---
+import forms from '../../registration/forms.json';
+interface Props { eventId: string; fallbackUrl?: string; }
+const { eventId, fallbackUrl } = Astro.props;
+const event = forms.events[eventId as keyof typeof forms.events];
+if (!event) throw new Error(`Unknown registration event: ${eventId}`);
+const ready = Boolean(forms.endpoint && forms.turnstileSiteKey);
+const fields = event.fields.filter(field => field.visible !== false);
+---
+<ai-phi-registration data-event={eventId} data-endpoint={forms.endpoint} data-sitekey={forms.turnstileSiteKey}>
+  <form class="native-registration" aria-label="Session registration" novalidate>
+    {"attendanceNote" in event && <p class="attendance-note"><strong>{event.attendanceNote}</strong></p>}
+    {"recordingNote" in event && "updatesUrl" in event && <p class="recording-note">{event.recordingNote} <a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>}
+    <p class="privacy-note">Your details will be used by ai-phi to organise this session and the gathering afterwards. Fields marked * are required.</p>
+    <div class="registration-fields">
+      {fields.map(field => (
+        <div class:list={['registration-field', { 'checkbox-field': field.type === 'checkbox' }]}>
+          <label for={`registration-${field.name}`}>
+            {field.type === 'checkbox' && <input id={`registration-${field.name}`} name={field.name} type="checkbox" required={field.required} aria-describedby={`${"help" in field ? `registration-${field.name}-help ` : ""}registration-${field.name}-error`} />}
+            <span>{field.label}{field.required && <span aria-hidden="true"> *</span>}</span>
+          </label>
+          {field.type !== 'checkbox' && <input id={`registration-${field.name}`} name={field.name} type={field.type as 'text' | 'email'} required={field.required} maxlength={field.maxLength} autocomplete={field.autocomplete} aria-describedby={`${"help" in field ? `registration-${field.name}-help ` : ""}registration-${field.name}-error`} />}
+          {"help" in field && <p class="field-help" id={`registration-${field.name}-help`}>{field.help}</p>}
+          <span class="field-error" id={`registration-${field.name}-error`} data-error-for={field.name}></span>
+        </div>
+      ))}
+    </div>
+    <div class="registration-trap" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+    <div data-challenge></div>
+    <p data-status role="status" aria-live="polite"></p>
+    <button type="submit" disabled>{ready ? 'Register' : 'Registration opens shortly'}</button>
+    <noscript><p>Please enable JavaScript to use this form.</p></noscript>
+  </form>
+  <div class="registration-success" data-success hidden tabindex="-1" role="status">
+    <p data-success-message></p><p data-dinner-message></p>
+  </div>
+  {fallbackUrl && <p class="form-fallback">Having trouble? <a href={fallbackUrl} target="_blank" rel="noopener noreferrer">Open the alternative registration form</a>.</p>}
+</ai-phi-registration>
+<script>
+  type Turnstile = {
+    render: (element: HTMLElement, options: Record<string, unknown>) => string;
+    reset: (widgetId: string) => void;
+  };
+  const api = () => (window as unknown as { turnstile?: Turnstile }).turnstile;
+  let loading: Promise<Turnstile> | undefined;
+  function loadTurnstile(): Promise<Turnstile> {
+    if (api()) return Promise.resolve(api()!);
+    if (loading) return loading;
+    loading = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = () => api() ? resolve(api()!) : reject(new Error('Challenge unavailable'));
+      script.onerror = () => reject(new Error('Challenge unavailable'));
+      document.head.append(script);
+    });
+    return loading;
+  }
+  class Registration extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.initialized) return;
+      this.dataset.initialized = 'true';
+      const form = this.querySelector('form')!;
+      const button = form.querySelector('button')!;
+      const status = this.querySelector<HTMLElement>('[data-status]')!;
+      const inputs = [...form.querySelectorAll<HTMLInputElement>('input')];
+      let token = '', widget = '', sending = false, finished = false;
+      // Keep the same random ID across retries/reloads; never store personal answers.
+      const storageKey = `ai-phi-registration:${this.dataset.event}`;
+      let submissionId = crypto.randomUUID();
+      try {
+        const previous = sessionStorage.getItem(storageKey);
+        if (previous && /^[0-9a-f-]{36}$/i.test(previous)) submissionId = previous as `${string}-${string}-${string}-${string}-${string}`;
+        else sessionStorage.setItem(storageKey, submissionId);
+      } catch { /* Session storage may be unavailable in private browsing. */ }
+      const clearErrors = () => {
+        for (const input of inputs) { input.removeAttribute('aria-invalid'); input.setCustomValidity(''); }
+        this.querySelectorAll('[data-error-for]').forEach(node => node.textContent = '');
+      };
+      inputs.forEach(input => input.addEventListener('input', () => {
+        input.removeAttribute('aria-invalid'); input.setCustomValidity('');
+        const error = this.querySelector(`[data-error-for="${input.name}"]`);
+        if (error) error.textContent = '';
+      }));
+      if (this.dataset.endpoint && this.dataset.sitekey) {
+        loadTurnstile().then(turnstile => {
+          widget = turnstile.render(this.querySelector<HTMLElement>('[data-challenge]')!, {
+            sitekey: this.dataset.sitekey, action: 'registration', theme: 'auto', size: 'flexible',
+            callback: (value: string) => { token = value; if (!sending && !finished) button.disabled = false; },
+            'expired-callback': () => { token = ''; button.disabled = true; status.textContent = 'Please complete the security check again.'; turnstile.reset(widget); },
+            'error-callback': () => { token = ''; button.disabled = true; status.textContent = 'The security check could not load. Please reload the page or use the alternative form.'; },
+          });
+        }).catch(() => { status.textContent = 'The security check could not load. Please reload the page or use the alternative form.'; });
+      }
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (sending || finished) return;
+        clearErrors();
+        if (!form.reportValidity()) return;
+        if (!token || !this.dataset.endpoint) { status.textContent = 'Please complete the security check.'; return; }
+        sending = true; button.disabled = true; button.textContent = 'Registering…'; status.textContent = '';
+        form.setAttribute('aria-busy', 'true');
+        const fields: Record<string, string | boolean> = {};
+        for (const input of inputs.filter(input => input.name !== 'website')) fields[input.name] = input.type === 'checkbox' ? input.checked : input.value.trim();
+        try {
+          const response = await fetch(this.dataset.endpoint, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(30000),
+            body: JSON.stringify({ event: this.dataset.event, submissionId, fields, website: form.querySelector<HTMLInputElement>('[name="website"]')!.value, turnstileToken: token }),
+          });
+          const result = await response.json();
+          if (!response.ok || result.ok !== true) {
+            if (result.fields) for (const input of inputs) {
+              const message = result.fields[input.name];
+              if (typeof message === 'string') {
+                input.setAttribute('aria-invalid', 'true');
+                const error = this.querySelector(`[data-error-for="${input.name}"]`);
+                if (error) error.textContent = message;
+              }
+            }
+            status.textContent = typeof result.error === 'string' ? result.error : 'We could not confirm your registration. Please try again.';
+            form.querySelector<HTMLInputElement>('[aria-invalid="true"]')?.focus();
+            return;
+          }
+          finished = true; form.hidden = true;
+          const success = this.querySelector<HTMLElement>('[data-success]')!;
+          success.querySelector('[data-success-message]')!.textContent = result.message;
+          success.querySelector('[data-dinner-message]')!.textContent = result.dinnerMessage;
+          success.hidden = false; success.focus();
+          try { sessionStorage.removeItem(storageKey); } catch { /* No stored PII. */ }
+        } catch {
+          status.textContent = 'We could not confirm your registration because the connection was interrupted. Please try again.';
+        } finally {
+          sending = false; form.removeAttribute('aria-busy');
+          if (!finished) { token = ''; button.textContent = 'Register'; api()?.reset(widget); }
+        }
+      });
+    }
+  }
+  if (!customElements.get('ai-phi-registration')) customElements.define('ai-phi-registration', Registration);
+</script>
+<style>
+  ai-phi-registration { display: block; }
+  .native-registration {
+    position: relative;
+    margin-block: 1.5rem;
+    padding: clamp(1.1rem, 3vw, 2rem);
+    border: 1px solid var(--study-rule, #c99c59);
+    border-radius: 0.75rem;
+    color: rgb(var(--color-text-base));
+    background: var(--study-panel, #f4e9d2);
+  }
+  :global(html[data-theme="dark"]) .native-registration {
+    background: var(--study-panel, #2b251b);
+    border-color: var(--study-rule, #a88149);
+  }
+  .native-registration .attendance-note { margin-top: 0; }
+  .native-registration .recording-note { font-size: 0.95rem; line-height: 1.6; }
+  .registration-field label { color: inherit; }
+  .native-registration .field-help { margin: 0.5rem 0 0 1.8rem; font-size: 0.85rem; line-height: 1.6; }
+  .privacy-note, .form-fallback { font-size: 0.875rem; line-height: 1.6; }
+  .registration-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; margin-block: 1.25rem; }
+  .registration-field label { display: block; font-weight: 600; font-size: 0.95rem; }
+  input:not([type="checkbox"]) { display: block; box-sizing: border-box; width: 100%; min-height: 2.8rem; margin-top: 0.4rem; padding: 0.55rem 0.75rem; border: 1px solid rgba(var(--color-text-base), 0.55); border-radius: 0.4rem; color: inherit; background: rgb(var(--color-fill)); font: inherit; }
+  .checkbox-field { grid-column: 1 / -1; }
+  .checkbox-field label { display: flex; align-items: flex-start; gap: 0.65rem; font-weight: 400; }
+  input[type="checkbox"] { flex: 0 0 auto; width: 1.15rem; height: 1.15rem; margin-top: 0.2rem; accent-color: #52786d; }
+  input:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  [aria-invalid="true"] { border-color: #b74134 !important; }
+  :global(html[data-theme="dark"]) .field-error { color: #ffada3; }
+  .field-error { display: block; color: #b74134; font-size: 0.85rem; margin-top: 0.25rem; }
+  [data-status]:empty, [data-dinner-message]:empty { display: none; }
+  [data-status] { font-size: 0.9rem; }
+  .native-registration button { margin-top: 1rem; border: 1px solid currentColor; border-radius: 0.4rem; padding: 0.65rem 1.5rem; font: inherit; font-weight: 600; color: var(--study-button-text, #fff); background: var(--study-accent, #895022); border-color: var(--study-accent, #895022); cursor: pointer; }
+  .native-registration button:hover:not(:disabled) { filter: brightness(1.12); }
+  :global(html[data-theme="dark"]) button { color: var(--study-button-text, #211a12); background: var(--study-accent, #e9bd80); border-color: var(--study-accent, #e9bd80); }
+  .native-registration button:disabled { opacity: 0.65; cursor: default; }
+  .registration-success { padding: 1rem 1.25rem; border-left: 3px solid #52786d; background: rgb(82 120 109 / 10%); }
+  .registration-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  [hidden] { display: none !important; }
+  @media (max-width: 540px) { .registration-fields { grid-template-columns: minmax(0, 1fr); } }
+</style>

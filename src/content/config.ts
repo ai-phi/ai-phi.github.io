@@ -6,8 +6,8 @@ const TitleShortSchema = z
   .string()
   .min(1)
   .refine(
-    value => value.trim().split(/\s+/).filter(Boolean).length <= 5,
-    "titleShort must be at most 5 words"
+    value => value.trim().split(/\s+/).filter(Boolean).length <= 6,
+    "titleShort must be at most 6 words"
   );
 
 export const Frontmatter = z.object({
@@ -42,12 +42,50 @@ const posts = defineCollection({
     }).passthrough(),
 });
 
+const SessionFormatSchema = z.enum([
+  "podcast",
+  "seminar",
+  "causerie",
+  "community",
+  "workshop",
+  "other",
+]);
+
 const sessions = defineCollection({
   type: "content",
   schema: () =>
     Frontmatter.extend({
       description: z.string(),
       sessionNumber: z.number(),
+      registration: z
+        .object({
+          nativeEvent: z
+            .string()
+            .regex(/^session-[0-9]+$/)
+            .optional(),
+          formUrl: z
+            .string()
+            .url()
+            .refine(value => {
+              const url = new URL(value);
+              const googleForm =
+                url.hostname === "docs.google.com" &&
+                /^\/forms\/d\/(?:e\/)?[A-Za-z0-9_-]+\/viewform$/.test(
+                  url.pathname
+                );
+              const airtableForm =
+                url.hostname === "airtable.com" &&
+                (/^\/app[A-Za-z0-9]{14}\/pag[A-Za-z0-9]{14}\/form$/.test(
+                  url.pathname
+                ) ||
+                  /^\/(?:app[A-Za-z0-9]{14}\/)?shr[A-Za-z0-9]{14}$/.test(
+                    url.pathname
+                  ));
+              return url.protocol === "https:" && (googleForm || airtableForm);
+            }, "Use a Google Forms or Airtable responder URL")
+            .optional(),
+        })
+        .optional(),
       youtubeId: z
         .string()
         .regex(/^[A-Za-z0-9_-]{11}$/)
@@ -62,8 +100,10 @@ const sessions = defineCollection({
         )
         .default([]),
       baseIllustration: z.string().optional(),
+
       videoTitle: z.string().min(1).optional(),
       videoThumbnail: z.string().min(1).optional(),
+
       ogImage: z.string().optional(),
       location: z.string().optional(),
       kind: z
@@ -76,6 +116,10 @@ const sessions = defineCollection({
           "other",
         ])
         .default("other"),
+      // A theme (series) and an event format are independent dimensions.
+      formats: z.array(SessionFormatSchema).min(1).optional(),
+      // Compatibility with entries using the original single-format field.
+      format: SessionFormatSchema.optional(),
       series: z.string().optional(),
       formatLabel: z.string().min(1).optional(),
     }).passthrough(),

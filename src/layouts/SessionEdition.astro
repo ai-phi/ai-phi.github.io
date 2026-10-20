@@ -4,7 +4,7 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import SessionArchiveCard from "@components/sessions/SessionArchiveCard.astro";
 import SessionsNav from "@components/sessions/SessionsNav.astro";
-import type { SessionEdition } from "@utils/sessionArchive";
+import { ARCHIVE_FORMAT_LABELS, getArchiveSessionFormatKeys, type SessionEdition } from "@utils/sessionArchive";
 import { SITE } from "@config";
 
 interface Props {
@@ -13,6 +13,11 @@ interface Props {
 }
 const { edition, editions } = Astro.props;
 const current = edition.startYear === editions[0].startYear;
+const hasCycles = edition.startYear >= 2026;
+const cycles = edition.groups.filter(group => group.type === "cycle");
+const formats = Object.entries(ARCHIVE_FORMAT_LABELS).filter(([key]) =>
+  edition.sessions.some(session => getArchiveSessionFormatKeys(session).includes(key))
+);
 const sessionCount = (count: number) =>
   `${count} ${count === 1 ? "session" : "sessions"}`;
 const description =
@@ -26,7 +31,7 @@ const description =
   description={description}
 >
   <Header activeNav="sessions" />
-  <main id="main-content" class="sessions-page">
+  <main id="main-content" class="sessions-page" data-cycle-browser={hasCycles ? "true" : undefined}>
     <nav class="archive-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a><span aria-hidden="true">/</span>
       {
@@ -90,18 +95,36 @@ const description =
       </p>
     </header>
 
-    {
-      edition.groups.length > 1 && (
-        <nav class="group-nav" aria-label={`Groups in ${edition.label}`}>
-          {edition.groups.map(group => (
-            <a href={`#${group.id}`}>
-              {group.title}
-              <span>{group.sessions.length}</span>
-            </a>
-          ))}
-        </nav>
-      )
-    }
+    {hasCycles ? (
+      <div class="programme-browser">
+        <div class="programme-filters" hidden>
+          <label>
+            <span>Thematic cycle</span>
+            <select data-cycle-filter>
+              <option value="all">All cycles</option>
+              {cycles.map(group => <option value={group.id}>{group.title}</option>)}
+              {edition.groups.some(group => group.type !== "cycle") && <option value="independent">Outside a cycle</option>}
+            </select>
+          </label>
+          <label>
+            <span>Format</span>
+            <select data-format-filter>
+              <option value="all">All formats</option>
+              {formats.map(([key, label]) => <option value={key}>{label}</option>)}
+            </select>
+          </label>
+          <button type="button" data-reset-filters hidden>Clear filters</button>
+        </div>
+        <p class="filter-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+        <p class="filter-empty" hidden>No sessions match this cycle and format yet. Try another combination or clear the filters.</p>
+      </div>
+    ) : edition.groups.length > 1 && (
+      <nav class="group-nav" aria-label={`Groups in ${edition.label}`}>
+        {edition.groups.map(group => (
+          <a href={`#${group.id}`}>{group.title}<span>{group.sessions.length}</span></a>
+        ))}
+      </nav>
+    )}
 
     <div class="edition-groups">
       {
@@ -109,6 +132,7 @@ const description =
           <section
             id={group.id}
             class="archive-group"
+            data-cycle={group.type === "cycle" ? group.id : "independent"}
             aria-labelledby={`${group.id}-heading`}
           >
             <div class="group-heading">
@@ -127,7 +151,7 @@ const description =
             )}
             <ol class="session-list">
               {group.sessions.map(session => (
-                <li>
+                <li data-session-formats={getArchiveSessionFormatKeys(session).join(" ")}>
                   <SessionArchiveCard
                     session={session}
                     featured={current && group.sessions.length === 1}
@@ -143,10 +167,9 @@ const description =
     <aside class="cross-edition" aria-labelledby="cross-edition-heading">
       <h2 id="cross-edition-heading">Browse across editions</h2>
       <p>
-        Looking for a particular kind of conversation? Explore the existing
-        archives, or find a recording in Resources.
+        Revisit earlier editions using the links above, or find a recording in Resources.
       </p>
-      <SessionsNav active={current ? "all" : undefined} />
+      {!hasCycles && <SessionsNav active={current ? "all" : undefined} />}
       <a class="recordings-link" href="/resources/#videos"
         >Browse recordings <span aria-hidden="true">↗</span></a
       >
@@ -155,7 +178,78 @@ const description =
   <Footer />
 </Layout>
 
+<script>
+  function setupProgrammeBrowser() {
+    document.querySelectorAll<HTMLElement>('[data-cycle-browser="true"]').forEach(root => {
+      if (root.dataset.browserReady) return;
+      root.dataset.browserReady = "true";
+      const cycle = root.querySelector<HTMLSelectElement>("[data-cycle-filter]")!;
+      const format = root.querySelector<HTMLSelectElement>("[data-format-filter]")!;
+      const reset = root.querySelector<HTMLButtonElement>("[data-reset-filters]")!;
+      const status = root.querySelector<HTMLElement>(".filter-status")!;
+      const empty = root.querySelector<HTMLElement>(".filter-empty")!;
+      const groups = root.querySelectorAll<HTMLElement>(".archive-group");
+      const update = () => {
+        let count = 0;
+        groups.forEach(group => {
+          let visible = 0;
+          group.querySelectorAll<HTMLElement>("[data-session-formats]").forEach(row => {
+            row.hidden = (cycle.value !== "all" && cycle.value !== group.dataset.cycle)
+              || (format.value !== "all" && !row.dataset.sessionFormats?.split(" ").includes(format.value));
+            if (!row.hidden) visible++;
+          });
+          group.hidden = visible === 0;
+          group.querySelector<HTMLElement>(".group-count")!.textContent = `${visible} ${visible === 1 ? "session" : "sessions"}`;
+          count += visible;
+        });
+        status.textContent = `${count} ${count === 1 ? "session" : "sessions"} shown`;
+        status.hidden = false;
+        empty.hidden = count !== 0;
+        reset.hidden = cycle.value === "all" && format.value === "all";
+      };
+      cycle.addEventListener("change", update);
+      format.addEventListener("change", update);
+      reset.addEventListener("click", () => {
+        cycle.value = "all";
+        format.value = "all";
+        update();
+        cycle.focus();
+      });
+      root.querySelector<HTMLElement>(".programme-filters")!.hidden = false;
+      update();
+    });
+  }
+  setupProgrammeBrowser();
+  document.addEventListener("astro:page-load", setupProgrammeBrowser);
+</script>
+
 <style>
+  [hidden] { display: none !important; }
+  .programme-browser { margin-bottom: 2rem; }
+  .programme-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 1rem;
+    font-family: "Work Sans", sans-serif;
+  }
+  .programme-filters label { display: flex; flex-direction: column; gap: 0.5rem; flex: 1 1 220px; min-width: 0; }
+  .programme-filters label > span { font-size: 0.75rem; font-weight: 600; }
+  .programme-filters select {
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem;
+    border: 1px solid rgba(var(--color-border), 0.85);
+    border-radius: 0.5rem;
+    background: rgb(var(--color-fill));
+    color: rgb(var(--color-text-base));
+    font-size: 0.875rem;
+  }
+  .programme-filters select:focus-visible, .programme-filters button:focus-visible {
+    outline: 2px solid rgb(var(--color-accent)); outline-offset: 3px;
+  }
+  .programme-filters button { padding: 0.7rem 0; font-size: 0.8rem; text-decoration: underline; text-underline-offset: 0.2em; }
+  .filter-status, .filter-empty { font-family: "Work Sans", sans-serif; font-size: 0.8rem; line-height: 1.6; margin: 1rem 0 0; opacity: 0.8; }
   .sessions-page {
     width: 100%;
     max-width: 960px;

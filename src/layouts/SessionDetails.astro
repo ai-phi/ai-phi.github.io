@@ -1,0 +1,566 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ContentWithRegistration from "@components/sessions/ContentWithRegistration.astro";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import ShareLinks from "@components/ShareLinks.astro";
+import Tag from "@components/Tag.astro";
+import { LOCALE, SITE } from "@config";
+import { slugifyStr } from "@utils/slugify";
+import getSessionIdentity from "@utils/getSessionIdentity";
+import getSessionRecording from "@utils/getSessionRecording";
+import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
+
+interface Props {
+  post: CollectionEntry<"sessions">;
+}
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+const {
+  title,
+  description,
+  sessionNumber,
+  pubDatetime,
+  location,
+  speakers,
+  tags,
+} = post.data;
+const identity = getSessionIdentity(post);
+const recording = getSessionRecording(post.data);
+const image = await resolveSessionOgImage(post.slug, post.data.ogImage);
+const date = pubDatetime.toLocaleDateString(LOCALE.langTag, {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: LOCALE.timeZone,
+});
+const time = pubDatetime.toLocaleTimeString(LOCALE.langTag, {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+  timeZone: LOCALE.timeZone,
+});
+const original = `/posts/${post.slug}/`;
+const jumpLinks = headings.filter(heading => heading.depth === 2);
+const details = jumpLinks.find(
+  heading =>
+    heading.slug === "details" ||
+    heading.text === "Registration & Practical details"
+);
+const hasRecording = recording;
+---
+
+<Layout
+  title={`${title} | ${SITE.title}`}
+  author={post.data.author}
+  pubDatetime={pubDatetime}
+  modDatetime={post.data.modDatetime ?? undefined}
+  {description}
+  ogImage={image}
+  canonicalURL={post.data.canonicalURL ?? new URL(original, SITE.website).href}
+>
+  <Header activeNav="sessions" />
+
+  <main id="main-content" class="session-study editorial">
+    <div class="trail">
+      <a href="/sessions/">← All sessions</a>
+      <span
+        >Session {sessionNumber}<span aria-hidden="true"> /</span>{
+          identity.formats.join(" + ")
+        }</span
+      >
+    </div>
+
+    <div class="opening">
+      <figure class="session-poster">
+        <img
+          src={image}
+          width="1200"
+          height="630"
+          loading="eager"
+          decoding="async"
+          alt={`Illustrated announcement for session ${sessionNumber}: ${
+            post.data.titleShort
+          }${
+            speakers.length
+              ? `, with ${speakers.map(speaker => speaker.name).join(" and ")}`
+              : ""
+          }.`}
+        />
+      </figure>
+
+      <aside class="event-docket" aria-label="Session information">
+            {identity.cycle && (
+              <div class="docket-cycle">
+                <span class="eyebrow">Thematic cycle</span>
+                <p>{identity.cycle}</p>
+              </div>
+            )}
+            <p class="docket-title">{post.data.titleShort}</p>
+            {speakers.length > 0 && (
+              <p class="docket-speakers">
+                {speakers.map(speaker => speaker.name).join(" · ")}
+              </p>
+            )}
+            <dl>
+              <div>
+                <>
+                  <dt>When</dt>
+                  <dd>
+                    <>
+                      <time datetime={pubDatetime.toISOString()}>{date}</time>
+                      <span class="start-time">{time} · Paris time</span>
+                    </>
+                  </dd>
+                </>
+              </div>
+              {location && (
+                <div>
+                  <dt>Where</dt>
+                  <dd>{location}</dd>
+                </div>
+              )}
+            </dl>
+            <div class="docket-actions">
+              {hasRecording && (
+                <a class="primary-action" href={recording.url}>
+                  Watch the recording <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {(post.data.registration || details) && (
+                <a
+                  class:list={[hasRecording ? "text-link" : "primary-action"]}
+                  href={details ? `#${details.slug}` : "#registration"}
+                >
+                  {post.data.registration
+                    ? "Register"
+                    : "Venue & practical details"}{" "}
+                  <span aria-hidden="true">↓</span>
+                </a>
+              )}
+            </div>
+      </aside>
+    </div>
+
+    <div class="reading-layout">
+      <div class="reading-column">
+        <header class="reading-heading">
+          <p class="eyebrow">About this session</p>
+          <h1 id={headings.some(heading => heading.slug === slugifyStr(title)) ? undefined : slugifyStr(title)}>{title}</h1>
+        </header>
+        <article id="article" class="prose session-prose">
+          <ContentWithRegistration
+            {headings}
+            registration={post.data.registration}
+          >
+            <Content />
+          </ContentWithRegistration>
+        </article>
+        {
+          tags.length > 0 && (
+            <ul class="session-tags" aria-label="Topics">
+              {tags.map(tag => (
+                <Tag tag={slugifyStr(tag)} />
+              ))}
+            </ul>
+          )
+        }
+        <div class="session-sharing"><ShareLinks /></div>
+        <div class="reading-footer">
+          <a href="/sessions/">← Explore all sessions</a><a id="back-to-top" href="#main-content"
+            >Back to top ↑</a
+          >
+        </div>
+      </div>
+      {
+        jumpLinks.length > 0 && (
+          <nav class="reading-nav" aria-label="On this page">
+            <p class="eyebrow">On this page</p>
+            <ul>
+              {jumpLinks.map(heading => (
+                <li>
+                  <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+              ))}
+            </ul>
+            {hasRecording && (
+              <a class="recording-index" href="/resources#videos">
+                All recordings ↗
+              </a>
+            )}
+          </nav>
+        )
+      }
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  a:focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 5px;
+  }
+  .session-study {
+    width: min(100% - 3rem, 75rem);
+    margin: 2.5rem auto 4rem;
+  }
+  .trail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+  }
+  .trail > span {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .trail > span > span {
+    margin: 0 0.5rem;
+    opacity: 0.4;
+  }
+  .session-poster {
+    margin: 0;
+    align-self: start;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(var(--color-text-base), 0.12);
+    background: #fafafa;
+  }
+  .session-poster img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .cycle-name {
+    margin: 0 0 0.35rem;
+    font-size: 1.25rem;
+  }
+  .caption-date {
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: rgba(var(--color-text-base), 0.7);
+  }
+  .caption-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .primary-action {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid rgba(var(--color-text-base), 0.25);
+    border-radius: 0.35rem;
+    background: rgb(var(--color-text-base));
+    color: rgb(var(--color-fill));
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  .primary-action:hover {
+    background: rgb(var(--color-accent));
+    color: rgb(var(--color-fill));
+  }
+  .text-link {
+    font-size: 0.9rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .reading-layout {
+    margin: 3.5rem auto 0;
+  }
+  .reading-column {
+    min-width: 0;
+  }
+  .reading-heading {
+    margin-bottom: 2rem;
+  }
+  .eyebrow {
+    display: block;
+    margin: 0 0 0.75rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(var(--color-text-base), 0.65);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.25;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+  .session-prose {
+    max-width: none;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  .session-prose :global(h2) {
+    scroll-margin-top: 2rem;
+  }
+  .session-prose :global(.speaker-portrait) {
+    border-radius: 0.75rem;
+  }
+  .session-tags {
+    margin: 2.5rem 0 1.5rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid rgba(var(--color-text-base), 0.18);
+  }
+  .session-sharing {
+    margin-top: 2rem;
+  }
+  .event-docket dl {
+    margin-top: 1.25rem;
+  }
+  .session-prose :global(.blog-pdf-card) {
+    min-width: 0;
+  }
+  .session-prose :global(.blog-pdf-footer) {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .session-prose :global(.blog-pdf-info) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .reading-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+  }
+  .editorial .opening,
+  .editorial .reading-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  .event-docket {
+    align-self: center;
+    padding-left: 1.75rem;
+    border-left: 1px solid rgba(var(--color-text-base), 0.2);
+  }
+  .docket-cycle p {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+  dl {
+    margin: 0;
+  }
+  dl > div {
+    margin-bottom: 1.25rem;
+  }
+  dt {
+    margin-bottom: 0.35rem;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(var(--color-text-base), 0.65);
+  }
+  dd {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .start-time {
+    display: block;
+  }
+  .docket-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .reading-nav {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    padding-left: 1.75rem;
+    border-left: 1px solid rgba(var(--color-text-base), 0.2);
+  }
+  .reading-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .reading-nav li {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .reading-nav a:hover,
+  .reading-footer a:hover,
+  .trail a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+  .recording-index {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+  }
+  @media (max-width: 900px) {
+    .editorial .opening,
+    .editorial .reading-layout {
+      gap: 1.5rem;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    }
+    .event-docket {
+      padding-left: 1rem;
+    }
+    .docket-cycle p {
+      font-size: 1.25rem;
+    }
+  }
+  @media (max-width: 700px) {
+    .session-study {
+      width: calc(100% - 2rem);
+    }
+    .session-study {
+      margin-top: 2rem;
+    }
+    .trail {
+      font-size: 0.8rem;
+    }
+    .trail > span {
+      font-size: 0.6rem;
+    }
+    .editorial .opening,
+    .editorial .reading-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .event-docket {
+      padding: 1.25rem;
+      border: none;
+      border-radius: 0.6rem;
+      background: rgba(var(--color-card-muted), 0.25);
+    }
+    .reading-nav {
+      grid-row: 1;
+      position: static;
+      padding: 0 0 1.25rem;
+      border: none;
+      border-bottom: 1px solid rgba(var(--color-text-base), 0.18);
+    }
+    .reading-nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+    }
+    .reading-nav li {
+      margin: 0;
+    }
+    .recording-index {
+      display: none;
+    }
+    .reading-layout {
+      margin-top: 2.5rem;
+    }
+    .session-prose {
+      font-size: 1rem;
+    }
+    .session-poster {
+      border-radius: 0.5rem;
+    }
+    }
+
+  /* A warm ochre panel and sage accents extend the site's earthy palette. */
+  .editorial {
+    --study-accent: #895022;
+    --study-panel: #f4e9d2;
+    --study-rule: #c99c59;
+    --study-secondary: #416351;
+    --study-button-text: #ffffff;
+  }
+  :global(html[data-theme="dark"]) .editorial {
+    --study-accent: #e9bd80;
+    --study-panel: #2b251b;
+    --study-rule: #a88149;
+    --study-secondary: #afcbb6;
+    --study-button-text: #211a12;
+  }
+  .editorial .event-docket {
+    align-self: start;
+    padding: 1.4rem;
+    border: 1px solid var(--study-rule);
+    border-top: 4px solid var(--study-rule);
+    border-radius: 0.65rem;
+    background: var(--study-panel);
+  }
+  .editorial .docket-cycle .eyebrow {
+    margin-bottom: 0.4rem;
+  }
+  .editorial .docket-cycle p {
+    margin-bottom: 0.9rem;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+  .editorial .docket-title {
+    margin: 0 0 0.5rem;
+    color: var(--study-accent);
+    font-size: clamp(1.5rem, 2vw, 1.9rem);
+    line-height: 1.15;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+    user-select: text;
+  }
+  .editorial .docket-speakers {
+    margin: 0 0 1.25rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid var(--study-rule);
+    font-size: 1.1rem;
+    line-height: 1.4;
+    user-select: text;
+  }
+  .editorial .eyebrow,
+  .editorial dt {
+    color: var(--study-secondary);
+  }
+  .editorial .primary-action {
+    background: var(--study-accent);
+    border-color: var(--study-accent);
+    color: var(--study-button-text);
+  }
+  .editorial .primary-action:hover {
+    filter: brightness(0.9);
+  }
+  .editorial .trail > span,
+  .editorial .trail a,
+  .editorial .text-link,
+  .editorial .reading-footer a {
+    color: var(--study-accent);
+  }
+  .editorial .reading-nav {
+    border-color: var(--study-secondary);
+  }
+  .editorial .reading-nav a {
+    color: var(--study-secondary);
+  }
+  .editorial .session-prose :global(h2) {
+    color: var(--study-secondary);
+  }
+  .editorial .session-prose :global(a) {
+    color: var(--study-accent);
+  }
+  .editorial .session-tags {
+    border-color: var(--study-rule);
+  }
+</style>

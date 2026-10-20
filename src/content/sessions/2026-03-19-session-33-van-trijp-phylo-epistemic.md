@@ -31,7 +31,9 @@ In this talk, I will present a case study of such a phylo-epistemic network that
 
 By understanding the history of the science of AI as a living epistemic ecosystem, case studies such as these also direct our attention to the future. As today's dominant paradigms crowd out alternatives, the field's epistemic diversity grows fragile. Phylo-epistemic analysis makes this fragility concrete: it can identify which research lineages went extinct; often not because of failure but because of institutional starvation and lack of resources. This talk therefore makes a plea to look at our field's history not as a closed book, but as a living resource to help us think differently about what AI is and what it can become.
 
-## About Remi van Trijp
+<span id="about-remi-van-trijp"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-33-van-trijp-phylo-epistemic.jpg"

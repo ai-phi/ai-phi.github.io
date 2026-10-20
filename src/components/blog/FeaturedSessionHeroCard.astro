@@ -1,9 +1,12 @@
 ---
 import { SITE, LOCALE } from "@config";
+import SessionIdentity from "@components/sessions/SessionIdentity.astro";
+import type { SessionIdentity as SessionIdentityData } from "@utils/getSessionIdentity";
 
 interface Props {
   title: string;
   eyebrow?: string;
+  sessionIdentity?: SessionIdentityData;
   date?: string | Date;
   author?: string;
   description?: string;
@@ -14,6 +17,7 @@ interface Props {
 const {
   title,
   eyebrow,
+  sessionIdentity,
   date,
   author = SITE.author ?? "ai-phi",
   description,
@@ -62,7 +66,7 @@ const displayTime = dateValue
 
   <div class="relative z-20 mt-4 flex h-full select-text flex-col">
     {
-      eyebrow && (
+      sessionIdentity ? <SessionIdentity identity={sessionIdentity} /> : eyebrow && (
         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-skin-base opacity-80">
           {eyebrow}
         </p>

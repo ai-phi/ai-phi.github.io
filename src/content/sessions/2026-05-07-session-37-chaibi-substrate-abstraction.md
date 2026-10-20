@@ -32,7 +32,9 @@ This presentation examines that pattern. It explores what it means for a substra
 
 It also asks whether this dynamic is as modern as it appears.
 
-## About Adel Chaibi
+<span id="about-adel-chaibi"></span>
+
+## About the speaker
 
 <img
   src="/images/base/sessions/session-37-chaibi-substrate-abstraction.jpeg"

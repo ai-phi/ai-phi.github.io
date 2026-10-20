@@ -62,7 +62,7 @@ const { activeNav } = Astro.props;
           class="hamburger-menu focus-outline"
           aria-label="Open Menu"
           aria-expanded="false"
-          aria-controls="menu-items"
+          aria-controls="main-nav-items"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -125,21 +125,21 @@ const { activeNav } = Astro.props;
           <li class="nav-separator"></li>
           <li>
             <a
-              href="/posts"
-              class={activeNav === "posts" ? "active" : ""}
-              data-text="Posts"
-            >
-              Posts
-            </a>
-          </li>
-          <li class="nav-separator"></li>
-          <li>
-            <a
               href="/sessions"
               class={activeNav === "sessions" ? "active" : ""}
               data-text="Sessions"
             >
               Sessions
+            </a>
+          </li>
+          <li class="nav-separator"></li>
+          <li>
+            <a
+              href="/posts"
+              class={activeNav === "posts" ? "active" : ""}
+              data-text="Posts"
+            >
+              Posts
             </a>
           </li>
           <li class="nav-separator"></li>
@@ -354,11 +354,11 @@ const { activeNav } = Astro.props;
   }
 
   /* Dark mode logo switching */
-  html[data-theme="dark"] .nav-light-logo {
+  :global(html[data-theme="dark"]) .nav-light-logo {
     @apply hidden;
   }
 
-  html[data-theme="dark"] .nav-dark-logo {
+  :global(html[data-theme="dark"]) .nav-dark-logo {
     @apply block;
   }
 
@@ -422,11 +422,11 @@ const { activeNav } = Astro.props;
     display: none;
   }
 
-  html[data-theme="dark"] .nav-light-ghost {
+  :global(html[data-theme="dark"]) .nav-light-ghost {
     display: none;
   }
 
-  html[data-theme="dark"] .nav-dark-ghost {
+  :global(html[data-theme="dark"]) .nav-dark-ghost {
     display: block;
   }
 
@@ -686,12 +686,12 @@ const { activeNav } = Astro.props;
 
   /* Theme icon switching */
   #sun-svg,
-  html[data-theme="dark"] #moon-svg {
+  :global(html[data-theme="dark"]) #moon-svg {
     display: none !important; /* Use !important to override any other display rules */
   }
 
   #moon-svg,
-  html[data-theme="dark"] #sun-svg {
+  :global(html[data-theme="dark"]) #sun-svg {
     display: block !important; /* Use !important to ensure visibility */
     margin: auto; /* Ensure centered alignment for visible icon */
   }

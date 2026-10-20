@@ -17,8 +17,6 @@ description: News and community updates session.
 kind: other
 ---
 
-# AI-Phi News
-
 Our traditional AI news and community update session.
 
 Feel free to bring drinks or snacks to share!

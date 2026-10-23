@@ -1,0 +1,31 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import SubscriptionJourneyBlock from '@components/subscription/SubscriptionJourneyBlock.astro';
+import subscription from '../../subscription/config.json';
+export function getStaticPaths() {
+  return (import.meta.env.DEV || (subscription.enabled && subscription.endpoint && subscription.turnstileSiteKey)) ? [{ params: { index: undefined } }] : [];
+}
+---
+<Layout title="Get updates | ai-phi" description="Announcements of ai-phi seminars and causeries, plus occasional news, publications and recordings.">
+  <Header />
+  <main id="main-content" class="subscribe-page">
+    <SubscriptionJourneyBlock placement="page" />
+    <div class="subscription-details">
+      <div><h2>What to expect</h2><p>Upcoming seminars and causeries, new publications and recordings, and occasional news from ai-phi. Only when we have something to share.</p></div>
+      <div><h2>Follow from anywhere</h2><p>This is a subscription to our announcements. It doesn’t enrol you as a community member or register you for an event. Each event page has its own attendance details.</p></div>
+    </div>
+    <a class="explore" href="/sessions/">Explore the sessions <span aria-hidden="true">↗</span></a>
+  </main>
+  <Footer />
+</Layout>
+<style>
+  .subscribe-page { width: calc(100% - 2rem); max-width: 58rem; margin: 2.5rem auto 1rem; font-family: 'Work Sans', sans-serif; }
+  .subscription-details { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid rgb(var(--color-border)); }
+  .subscription-details h2 { font: 500 1.7rem 'Velvelyne', serif; margin-bottom: .65rem; }
+  .subscription-details p { font-size: .9rem; line-height: 1.8; }
+  .explore { display: inline-flex; align-items: center; gap: .65rem; min-height: 44px; margin-top: 1.5rem; font-size: .9rem; text-decoration: underline; text-underline-offset: 4px; }
+  .explore:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  @media (max-width: 800px) { .subscription-details { grid-template-columns: 1fr; gap: 1.5rem; } }
+</style>

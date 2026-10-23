@@ -1,0 +1,43 @@
+---
+import SubscriptionJourneyBlock from './SubscriptionJourneyBlock.astro';
+import { getContactRevision } from '@utils/contactRevision';
+import Socials from '../Socials.astro';
+const revision = getContactRevision(Astro.url, Astro.locals);
+---
+<footer class="journey-footer">
+  <div class="footer-inner">
+    <SubscriptionJourneyBlock placement="footer" />
+    <div class:list={["footer-bottom", { "with-brand": Boolean(revision) }]}>
+      <div class="socials"><span>Elsewhere</span><Socials /></div>
+      {revision && <>
+      <a class="footer-brand" href="/" aria-label="ai-phi home">
+        <img class="brand-light" src="/images/AiPhi_Logo_Black.png" width="2447" height="598" alt="" loading="lazy" />
+        <img class="brand-dark" src="/images/AiPhi_Logo_White.png" width="2448" height="598" alt="" loading="lazy" />
+      </a>
+      </>}
+      {!revision && <a href="/subscribe/">About these updates <span aria-hidden="true">↗</span></a>}
+      <span class="copyright">© 2023–2026 ai-phi</span>
+    </div>
+  </div>
+</footer>
+<style>
+  .journey-footer { width: 100%; margin: 3rem 0 0; padding: 2.5rem 1rem 1.25rem; background: #f0f1e9; border-top: 1px solid #c1c9b5; color: #28332c; font-family: 'Work Sans', sans-serif; }
+  .footer-inner { max-width: 58rem; margin: auto; }
+  .footer-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; margin-top: 2rem; padding-top: 1.2rem; border-top: 1px solid #c1c9b5; font-size: .8rem; }
+  .socials { display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; }
+  .socials :global(.social-icons) { flex-wrap: nowrap; }
+  a { text-decoration: underline; text-underline-offset: 4px; }
+  a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  .footer-bottom.with-brand { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); }
+  .with-brand .copyright { justify-self: end; }
+  .footer-brand { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: .25rem; text-decoration: none; }
+  .footer-brand img { display: block; width: 164px; height: auto; }
+  .footer-brand .brand-dark { display: none; }
+  :global(html[data-theme='dark']) .footer-brand .brand-light { display: none; }
+  :global(html[data-theme='dark']) .footer-brand .brand-dark { display: block; }
+  @media (max-width: 800px) { .footer-bottom.with-brand { display: flex; flex-direction: column; align-items: center; } }
+  .copyright { opacity: .75; }
+  :global(html[data-theme='dark']) .journey-footer { background: #20271e; color: #edf0df; border-color: #526047; }
+  :global(html[data-theme='dark']) .footer-bottom { border-color: #526047; }
+  @media (max-width: 600px) { .footer-bottom { flex-direction: column; align-items: flex-start; } }
+</style>

@@ -1,7 +1,7 @@
 ---
 author: ai-phi
 pubDatetime: 2026-10-29T18:00:00+01:00
-title: '"Begin at the beginning… then stop": mathematics in the age of AI, the end of the beginning or the beginning of the end?'
+title: "\"Begin at the beginning… then stop\": mathematics in the age of AI, the end of the beginning or the beginning of the end?"
 slug: session-42-anscombe-mathematics-age-of-ai
 sessionNumber: 42
 registration:
@@ -28,12 +28,12 @@ location: Amphithéâtre Turing, Bâtiment Sophie Germain, 8 place Aurélie Nemo
 formats:
   - seminar
 kind: seminar
-series: "Science+AI: a new Wonderland?"
+series: 'Science+AI: a new Wonderland?'
 ---
 
 How is AI changing the way we do science and produce knowledge? **Science+AI: a new Wonderland?** explores how AI is transforming research across disciplines, from the questions we ask and the methods we use to what counts as evidence, explanation and understanding. Together, we will examine the possibilities these tools open up and the choices they pose for scientific practice.
 
-We begin with mathematics: for the first session of this new cycle, we welcome **Sylvy Anscombe**, mathematician at IMJ-PRG, Université Paris Cité, to discuss what AI means for mathematical practice and understanding. Her talk will be followed by a panel discussion, with guests to be confirmed.
+We begin with mathematics: for the first session of this new cycle, we welcome **Sylvy Anscombe**, mathematician at IMJ-PRG, Université Paris Cité, to discuss what AI means for mathematical practice and understanding. Her talk will be followed by a panel discussion with **Najib Idrissi** (Université Paris Cité, Institut Universitaire de France) and **Silvain Rideau-Kikuchi** (CNRS, Département de mathématiques et applications, École normale supérieure – PSL).
 
 ## Abstract
 
@@ -48,6 +48,7 @@ I will speak as a working mathematician who is torn. I am wary of revolutions an
 Above all, the heart of mathematics, thinking and explaining together, is ours to keep unless we give it up.
 
 ## About the speaker
+<div class="speaker-bio">
 
 <img
   src="/images/base/sessions/sylvy-anscombe.jpeg"
@@ -57,6 +58,8 @@ Above all, the heart of mathematics, thinking and explaining together, is ours t
   decoding="async"
 />
 
+<div class="speaker-bio-copy">
+
 Sylvy Anscombe is a mathematician specializing in logic and model theory, and in their interactions with algebra and number theory. Heir to the very questions Gödel raised in the 1930s, model theory studies what axioms say — and leave unsaid — about the objects they describe: numbers, fields, groups.
 
 After a childhood in the English countryside, she settled in Oxford, where she studied from her first degree through to her doctorate. After positions at the University of Leeds and the University of Central Lancashire, she has been an associate professor (maîtresse de conférences) at the IMJ-PRG, Université Paris Cité, since 2020, where she teaches and pursues her research. There she co-directs the Master 2 in Mathematical Logic and Foundations of Computer Science (LMFI).
@@ -64,6 +67,34 @@ After a childhood in the English countryside, she settled in Oxford, where she s
 Away from the blackboard, she has a deep love of music, and can often be caught humming in a wide variety of styles.
 
 [Sylvy Anscombe’s website](https://www.sylvyanscombe.com/)
+
+</div>
+</div>
+
+## Panellists
+
+### Najib Idrissi
+
+<div class="speaker-bio">
+
+<img
+  src="/images/base/sessions/najib-idrissi.jpg"
+  alt="Portrait of Najib Idrissi"
+  class="speaker-portrait"
+  loading="lazy"
+  decoding="async"
+/>
+
+<div class="speaker-bio-copy">
+
+Najib Idrissi is an associate professor (maître de conférences) of mathematics at Université Paris Cité and a junior member of the Institut Universitaire de France, with a PhD from Lille (2017) and an HDR from Paris Cité (2025). His research draws on algebraic topology and higher algebra to explore configuration spaces, that is, the many different ways points can move around without bumping into each other. He also enjoys building software for mathematical research and experimenting with AI tools but keeps a critical eye on what these technologies might mean for mathematics and society.
+
+</div>
+</div>
+
+### Silvain Rideau-Kikuchi
+
+CNRS, Département de mathématiques et applications, École normale supérieure – PSL.
 
 ## Registration & Practical details
 
@@ -73,11 +104,11 @@ Away from the blackboard, she has a deep love of music, and can often be caught 
 🎙️ **Session 42 · Seminar · Science+AI: a new Wonderland? #1**\
 🇬🇧 Talk in English · In-person only (no remote attendance).
 
-A recording will be released on YouTube after the event. [Subscribe to our mailing list](mailto:ai-phi+subscribe@googlegroups.com) for updates on its release and future sessions. [Follow us on YouTube](https://www.youtube.com/@ai-phi/) to find our recordings.
+A recording will be released on YouTube after the event. [Subscribe to our mailing list](/subscribe/) for updates on its release and future sessions. [Follow us on YouTube](https://www.youtube.com/@ai-phi/) to find our recordings.
 
 Public entrance from the south-eastern end of avenue de France, by rue Alice Domon et Léonie Duquet. Nearby: Bibliothèque François Mitterrand (Métro 14, RER C) and Avenue de France (tram T3a).
 
-[Venue access information](https://www.math.u-paris.fr/ufr/acces) · [University campus map](https://u-paris.fr/wp-content/uploads/2024/06/PlanB5_PRG_0624.pdf)
+[Venue access information and campus map](https://master.math.u-paris.fr/informations/acces/)
 
 ### Dinner & drinks afterwards
 

@@ -1,0 +1,48 @@
+/* Custom Posts index: the existing Sessions archive's sand surfaces and quiet rules. */
+html[data-refinement='custom'] .journal {
+  --journal-rule: rgba(var(--color-border), .65);
+  --journal-meta: rgba(var(--color-text-base), .75);
+}
+html[data-refinement='custom'] .journal :is(.eyebrow,.focus-label,.year-label,.sessions-link,.read-link) {
+  color: rgb(var(--color-accent));
+}
+html[data-refinement='custom'] .journal .title-row {
+  border-color: var(--journal-rule);
+}
+html[data-refinement='custom'] .journal .sessions-link {
+  text-decoration-color: currentColor;
+}
+html[data-refinement='custom'] .journal .journal-card.lead {
+  background: rgba(var(--color-card-muted), .2);
+  border: 1px solid rgba(var(--color-border), .75);
+  border-radius: 1rem;
+}
+html[data-refinement='custom'] .journal .journal-card.story {
+  border-top: 1px solid var(--journal-rule);
+  padding-top: 1.25rem;
+}
+html[data-refinement='custom'] .journal .journal-card.archive {
+  border-color: var(--journal-rule);
+}
+html[data-refinement='custom'] .journal .artwork {
+  border-radius: .5rem;
+  background: rgba(var(--color-card-muted), .2);
+}
+html[data-refinement='custom'] .journal .artwork-mark {
+  background: rgba(var(--color-card-muted), .2);
+}
+html[data-refinement='custom'] .journal :is(.post-meta,.post-count,.topics) {
+  color: var(--journal-meta);
+}
+html[data-refinement='custom'] .journal .description {
+  color: rgba(var(--color-text-base), .85);
+}
+html[data-refinement='custom'] .journal .read-link {
+  font-family: 'Work Sans', sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+}
+/* Match the archive's text-led hover treatment: artwork stays still. */
+html[data-refinement='custom'] .journal .journal-card:hover :is(.artwork img,.read-link span) {
+  transform: none;
+}

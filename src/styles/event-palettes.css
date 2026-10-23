@@ -1,0 +1,21 @@
+/* Selected Quiet stone palette: Custom session pages, existing layout retained. */
+html[data-refinement="custom"] .session-study.editorial {
+  --study-panel: var(--quiet-surface);
+  --study-accent: var(--quiet-accent);
+  --study-secondary: var(--quiet-muted);
+  --study-rule: var(--quiet-rule);
+  --study-button-text: #fff;
+}
+html[data-refinement="custom"][data-theme="dark"] .session-study.editorial {
+  --study-button-text: #211a12;
+}
+html[data-refinement="custom"] .session-study .native-registration input[type="checkbox"] {
+  accent-color: var(--study-accent);
+}
+html[data-refinement="custom"] .session-study .registration-success {
+  border-color: var(--study-accent);
+  background: color-mix(in srgb, var(--study-accent) 10%, transparent);
+}
+html[data-refinement="custom"] .session-study .native-registration input:not([type="checkbox"]) {
+  border-color: var(--study-accent);
+}

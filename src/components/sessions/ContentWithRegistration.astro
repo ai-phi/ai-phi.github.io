@@ -1,4 +1,5 @@
 ---
+import { getContactRevision } from '@utils/contactRevision';
 import SessionRegistration from "@components/sessions/SessionRegistration.astro";
 
 interface Props {
@@ -9,7 +10,11 @@ const { registration, headings } = Astro.props;
 // Render the existing Markdown once, retaining Astro's markup and heading IDs.
 // Insert registration directly after the combined heading in the HTML order,
 // so keyboard and screen-reader users encounter it before the practical details.
-const content = registration ? await Astro.slots.render("default") : "";
+let content = registration ? await Astro.slots.render("default") : "";
+// The revised panel carries this attendance/recording note once, beneath Register.
+if (registration?.nativeEvent && getContactRevision(Astro.url, Astro.locals)) {
+  content = content.replace(/<p>A recording will be released on YouTube after the event\.[\s\S]*?<\/p>/, '');
+}
 const heading = headings.find(
   heading =>
     heading.depth === 2 && heading.text === "Registration & Practical details"

@@ -1,0 +1,7 @@
+---
+interface Props { text: string }
+const { text } = Astro.props;
+const parts = text.split('Unsubscribe');
+---
+{parts[0]}{parts.length > 1 && <><a href="/unsubscribe/">Unsubscribe</a>{parts.slice(1).join('Unsubscribe')}</>}
+<style>a { text-decoration: underline; text-underline-offset: 3px; } a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }</style>

@@ -3,6 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import ContentWithRegistration from "@components/sessions/ContentWithRegistration.astro";
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
+import { isSubscriptionJourney } from '@utils/subscriptionJourney';
+import SubscriptionJourneyBlock from '@components/subscription/SubscriptionJourneyBlock.astro';
 import Footer from "@components/Footer.astro";
 import ShareLinks from "@components/ShareLinks.astro";
 import Tag from "@components/Tag.astro";
@@ -16,6 +18,7 @@ interface Props {
   post: CollectionEntry<"sessions">;
 }
 const { post } = Astro.props;
+const design = "editorial";
 const { Content, headings } = await post.render();
 const {
   title,
@@ -49,7 +52,7 @@ const details = jumpLinks.find(
     heading.slug === "details" ||
     heading.text === "Registration & Practical details"
 );
-const hasRecording = recording;
+const hasRecording = Boolean(recording);
 ---
 
 <Layout
@@ -63,7 +66,7 @@ const hasRecording = recording;
 >
   <Header activeNav="sessions" />
 
-  <main id="main-content" class="session-study editorial">
+  <main id="main-content" class:list={["session-study", design]}>
     <div class="trail">
       <a href="/sessions/">← All sessions</a>
       <span
@@ -91,7 +94,9 @@ const hasRecording = recording;
         />
       </figure>
 
-      <aside class="event-docket" aria-label="Session information">
+      {
+        (
+          <aside class="event-docket" aria-label="Session information">
             {identity.cycle && (
               <div class="docket-cycle">
                 <span class="eyebrow">Thematic cycle</span>
@@ -125,13 +130,14 @@ const hasRecording = recording;
             </dl>
             <div class="docket-actions">
               {hasRecording && (
-                <a class="primary-action" href={recording.url}>
+                <a class="primary-action" href={recording?.url}>
                   Watch the recording <span aria-hidden="true">↗</span>
                 </a>
               )}
               {(post.data.registration || details) && (
                 <a
                   class:list={[hasRecording ? "text-link" : "primary-action"]}
+                  data-registration-action={post.data.registration ? "true" : undefined}
                   href={details ? `#${details.slug}` : "#registration"}
                 >
                   {post.data.registration
@@ -141,7 +147,9 @@ const hasRecording = recording;
                 </a>
               )}
             </div>
-      </aside>
+          </aside>
+        )
+      }
     </div>
 
     <div class="reading-layout">
@@ -158,6 +166,7 @@ const hasRecording = recording;
             <Content />
           </ContentWithRegistration>
         </article>
+    {isSubscriptionJourney(Astro.url, Astro.locals) && <div id="future-announcements"><SubscriptionJourneyBlock placement="context" /></div>}
         {
           tags.length > 0 && (
             <ul class="session-tags" aria-label="Topics">
@@ -167,7 +176,13 @@ const hasRecording = recording;
             </ul>
           )
         }
-        <div class="session-sharing"><ShareLinks /></div>
+        {
+          true && (
+            <div class="session-sharing">
+              <ShareLinks />
+            </div>
+          )
+        }
         <div class="reading-footer">
           <a href="/sessions/">← Explore all sessions</a><a id="back-to-top" href="#main-content"
             >Back to top ↑</a
@@ -314,6 +329,39 @@ const hasRecording = recording;
   }
   .session-prose :global(.speaker-portrait) {
     border-radius: 0.75rem;
+  }
+  /* Keep biography portraits in the editorial rail when both columns fit. */
+  @media (min-width: 1024px) {
+    .editorial .session-prose :global(.speaker-bio) {
+      display: grid;
+      grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      width: calc(100% + 100% / 1.9 + 2.5rem);
+      align-items: start;
+    }
+    .editorial .session-prose :global(.speaker-bio-copy) {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+    }
+    .editorial .session-prose :global(.speaker-bio-copy > :first-child) {
+      margin-top: 0;
+    }
+    .editorial .session-prose :global(.speaker-bio > p:has(.speaker-portrait)) {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+    }
+    .editorial .session-prose :global(.speaker-bio .speaker-portrait) {
+      width: 100%;
+      max-width: 20rem;
+      height: auto;
+      margin: 0;
+      margin-top: 0 !important; /* Override the shared prose image spacing. */
+    }
+    .editorial .reading-layout:has(:global(.speaker-bio)) .reading-nav {
+      position: static;
+    }
   }
   .session-tags {
     margin: 2.5rem 0 1.5rem;

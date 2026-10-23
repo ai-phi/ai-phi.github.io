@@ -1,0 +1,64 @@
+---
+import { getContactRevision, subscriptionHref } from '@utils/contactRevision';
+import SubscriptionReassurance from './SubscriptionReassurance.astro';
+import SubscriptionForm from './SubscriptionForm.astro';
+import { getSignupLayout, getRefinement } from '@utils/refinements';
+interface Props { placement?: 'home' | 'page' | 'footer' | 'context' }
+const { placement = 'home' } = Astro.props;
+const signupLayout = placement === 'home' ? getSignupLayout(Astro.url, Astro.locals) : undefined;
+const customControls = ['home', 'footer'].includes(placement) && getRefinement(Astro.url, Astro.locals) === 'custom';
+const revision = getContactRevision(Astro.url, Astro.locals);
+const forwardToFooter = revision === 'bridge' && placement === 'home';
+const compactFooter = Boolean(revision) && placement === 'footer';
+const id = placement === 'home' ? 'email-updates' : `updates-${placement}`;
+const Heading = placement === 'page' ? 'h1' : 'h2';
+---
+<section id={id} class:list={['journey-block', placement]} aria-labelledby={`${id}-heading`}>
+  <div class="invitation">
+    <p class="eyebrow">{placement === 'context' ? 'Continue exploring' : 'ai-phi · Get updates'}</p>
+    <Heading id={`${id}-heading`}>{placement === 'context' ? 'Interested in conversations like this?' : 'Stay in the conversation.'}</Heading>
+    {signupLayout === 'horizontal' && <p class="invitation-reassurance"><SubscriptionReassurance text="Be notified of upcoming sessions. Unsubscribe anytime." /></p>}
+    {!signupLayout && <p class="description">{placement === 'context'
+      ? 'Subscribe to receive announcements of future ai-phi sessions, plus occasional publications and recordings.'
+      : placement === 'footer'
+      ? 'Receive your invitation to upcoming events and ai-phi news by email.'
+      : 'Receive announcements of upcoming ai-phi seminars and causeries, plus occasional news, publications and recordings.'}</p>}
+    {compactFooter && <>
+      <p class="invitation-reassurance"><SubscriptionReassurance text="Only when we have something to share. Unsubscribe at any time." /></p>
+
+    </>}
+    {placement === 'page' && <p class="wherever">Follow the ideas from wherever you are. You’re welcome to subscribe whether you’re in Paris or further afield.</p>}
+  </div>
+  {placement === 'context' ? <a class="context-link" href={subscriptionHref(Astro.url, Astro.locals)}>Get updates <span aria-hidden="true">↗</span></a> : (
+    <div class="form-wrap">
+      {placement === 'page' && <p class="form-heading">A few details, and you’re in touch.</p>}
+      <SubscriptionForm {forwardToFooter} hideEmailLabel={customControls && (!revision || forwardToFooter)} emailPlaceholder={customControls ? "your@email.com" : "you@example.com"} id={`journey-${placement}`} compact={placement !== 'page'} nameField={placement === 'page'} nameLabel="First name" reassurance={compactFooter || signupLayout === 'horizontal' ? "" : signupLayout ? "Be notified of upcoming sessions. Unsubscribe anytime." : "Only when we have something to share. Unsubscribe at any time."} />
+
+    </div>
+  )}
+</section>
+<style>
+  .invitation-reassurance { color: var(--signup-muted); font-size: .76rem; line-height: 1.6; }
+  .journey-block { --signup-ink: #28332c; --signup-muted: #596457; --signup-input: #fffef9; --signup-border: #aab4a0; --signup-button: #334431; --signup-button-text: #fffef8; max-width: none; color: var(--signup-ink); font-family: 'Work Sans', sans-serif; }
+  .home { clear: both; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 2rem; margin: 2.2rem 0 3rem; padding: 1.65rem 1.8rem; background: #edf0e4; border-left: 4px solid #b99b5d; border-radius: 0 .8rem .8rem 0; }
+  .eyebrow { margin-bottom: .65rem; color: var(--signup-muted); font-size: .69rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+  h1, h2 { margin: 0 0 .65rem; font-family: 'Velvelyne', serif; font-weight: 500; line-height: 1.1; }
+  h2 { font-size: 2rem; }
+  h1 { font-size: clamp(2.8rem, 5vw, 4rem); max-width: 10ch; }
+  .description, .wherever { font-size: .9rem; line-height: 1.7; }
+  .wherever { margin-top: 1.4rem; color: var(--signup-muted); }
+  .page { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 3.5rem; margin: 0; }
+  .page .description { font-size: 1rem; }
+  .page .form-wrap { background: #edf0e4; border: 1px solid #c0c9b7; border-radius: 1rem; padding: 1.8rem; }
+  .form-heading { font-weight: 600; margin-bottom: 1.5rem; font-size: .95rem; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin: 0; }
+  .footer h2 { font-size: 1.9rem; }
+  .context { margin: 2.5rem 0; padding: 1.5rem 0 1.5rem 1.4rem; border-left: 3px solid #b99b5d; }
+  .context h2 { font-size: 1.8rem; }
+  .context-link { display: inline-flex; gap: .8rem; align-items: center; margin-top: 1rem; text-decoration: underline; text-underline-offset: 5px; font-size: .9rem; font-weight: 600; min-height: 44px; }
+  .context-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  :global(html[data-theme='dark']) .journey-block { --signup-ink: #edf0df; --signup-muted: #bec7b3; --signup-input: #172019; --signup-border: #68765d; --signup-button: #d9c28b; --signup-button-text: #222c20; }
+  :global(html[data-theme='dark']) .home, :global(html[data-theme='dark']) .page .form-wrap { background: #263024; border-color: #647254; }
+  @media (max-width: 800px) { .home, .footer, .page { grid-template-columns: 1fr; gap: 1.5rem; } h1 { max-width: 16ch; } }
+  @media (max-width: 420px) { .home { padding: 1.3rem 1.1rem; } .page .form-wrap { padding: 1.25rem; } }
+</style>

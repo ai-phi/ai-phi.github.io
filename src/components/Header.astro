@@ -1,7 +1,10 @@
 ---
+import { subscriptionHref } from '@utils/contactRevision';
+import { getRefinement } from '@utils/refinements';
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import { isSubscriptionJourney } from '@utils/subscriptionJourney';
 import StyledTitle from "@components/StyledTitle";
 
 export interface Props {
@@ -17,6 +20,8 @@ export interface Props {
 }
 
 const { activeNav } = Astro.props;
+const refinement = getRefinement(Astro.url, Astro.locals);
+const subscriptionJourney = isSubscriptionJourney(Astro.url, Astro.locals);
 ---
 
 <header>
@@ -162,6 +167,9 @@ const { activeNav } = Astro.props;
               About
             </a>
           </li>
+          {subscriptionJourney && refinement === 'custom' && <li>
+            <a class="custom-subscribe" href={subscriptionHref(Astro.url, Astro.locals)} aria-current={Astro.url.pathname.replace(/\/$/, '') === '/subscribe' ? 'page' : undefined}>Subscribe</a>
+          </li>}
         </ul>
 
         <!-- Search and theme toggle -->
@@ -222,8 +230,13 @@ const { activeNav } = Astro.props;
 </header>
 
 <style>
+
   #skip-to-content {
-    @apply absolute -top-full left-16 z-50 bg-skin-accent px-3 py-2 text-skin-inverted transition-all focus:top-4;
+    @apply fixed top-0 left-4 z-50 bg-skin-accent px-3 py-2 text-skin-inverted;
+    transform: translateY(-120%);
+  }
+  #skip-to-content:focus {
+    transform: translateY(0);
   }
 
   .nav-container {
@@ -723,6 +736,14 @@ const { activeNav } = Astro.props;
     const menuBtn = document.querySelector(".hamburger-menu");
     const menuIcon = document.querySelector(".menu-icon");
     const mainNavItems = document.querySelector("#main-nav-items");
+
+    mainNavItems?.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+      if (menuBtn?.getAttribute('aria-expanded') !== 'true') return;
+      menuIcon?.classList.remove('is-active');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Open Menu');
+      mainNavItems.classList.add('hidden');
+    }));
 
     menuBtn?.addEventListener("click", () => {
       const menuExpanded = menuBtn.getAttribute("aria-expanded") === "true";

@@ -1,0 +1,5 @@
+{
+  "enabled": true,
+  "endpoint": "https://ai-phi-subscription.ai-phi.workers.dev/subscribe",
+  "turnstileSiteKey": "0x4AAAAAAFb_mVu3NdTikwf3"
+}

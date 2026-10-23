@@ -1,10 +1,22 @@
 ---
+import { getRefinement, getSignupLayout, getHomePalette } from '@utils/refinements';
+import '@styles/custom-refinement.css';
+import '@styles/event-palettes.css';
+import '@styles/home-palettes.css';
+import '@styles/card-motion.css';
+import '@styles/context-palettes.css';
+import '@styles/posts-refinement.css';
+import '@styles/quiet-stone.css';
+import '@styles/contact-revision.css';
+import '@styles/announcement-actions.css';
+import { getContactRevision } from '@utils/contactRevision';
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
 
 /* Removed Literata variable font import */
 
+const refinement = getRefinement(Astro.url, Astro.locals);
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export interface Props {
@@ -37,6 +49,10 @@ const socialImageURL = new URL(
 
 <!doctype html>
 <html
+  data-refinement={refinement}
+  data-contact-revision={getContactRevision(Astro.url, Astro.locals)}
+  data-home-palette={getHomePalette(Astro.url, Astro.locals)?.id}
+  data-signup-layout={getSignupLayout(Astro.url, Astro.locals)}
   lang=`${LOCALE.lang ?? "en"}`
   class={`${scrollSmooth && "scroll-smooth"}`}
 >

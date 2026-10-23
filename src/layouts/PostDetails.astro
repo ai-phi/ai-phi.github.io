@@ -1,7 +1,10 @@
 ---
+import ContentWithRegistration from "@components/sessions/ContentWithRegistration.astro";
 import Layout from "@layouts/Layout.astro";
 import { SITE } from "@config";
 import Header from "@components/Header.astro";
+import { isSubscriptionJourney } from '@utils/subscriptionJourney';
+import SubscriptionJourneyBlock from '@components/subscription/SubscriptionJourneyBlock.astro';
 import Footer from "@components/Footer.astro";
 import Tag from "@components/Tag.astro";
 import Datetime from "@components/Datetime";
@@ -34,7 +37,7 @@ const {
 const publishedAt = (pubDatetime ?? new Date()) as Date;
 const updatedAt = modDatetime ?? undefined;
 
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 
 const baseOgImage = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const isSession = post.collection === "sessions";
@@ -150,6 +153,7 @@ const formatSpeakers = (
       {
         recording && (
           <aside
+
             aria-label="Session recording"
             class="rounded-lg border border-skin-line bg-skin-card px-5 py-4"
           >
@@ -162,8 +166,11 @@ const formatSpeakers = (
           </aside>
         )
       }
-      <Content />
+      <ContentWithRegistration {headings} registration={post.collection === "sessions" ? post.data.registration : undefined}>
+        <Content />
+      </ContentWithRegistration>
     </article>
+    {isSubscriptionJourney(Astro.url, Astro.locals) && <div id="future-announcements"><SubscriptionJourneyBlock placement="context" /></div>}
 
     {
       showTags && (

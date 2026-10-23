@@ -1,0 +1,120 @@
+/* Shared selected Quiet stone colours for editorial and index cards. */
+html[data-refinement='custom'] {
+  --quiet-surface: #eee9e0;
+  --quiet-accent: #69513e;
+  --quiet-muted: #706354;
+  --quiet-rule: #b6a48b;
+}
+html[data-refinement='custom'][data-theme='dark'] {
+  --quiet-surface: #2d2924;
+  --quiet-accent: #d3bea2;
+  --quiet-muted: #c8bba7;
+  --quiet-rule: #94816b;
+}
+html[data-refinement='custom'][data-theme] :is(.sessions-page .archive-card,.journal .journal-card) {
+  background: var(--quiet-surface);
+  border: 1px solid var(--quiet-rule);
+  border-image: none;
+  border-radius: .65rem;
+}
+html[data-refinement='custom'][data-theme] .journal .journal-card.lead { border-radius: 1rem; }
+html[data-refinement='custom'][data-theme] .journal :is(.journal-card.story,.journal-card.archive) { padding: 1.25rem; }
+html[data-refinement='custom'][data-theme] .sessions-page .archive-card:not(.featured) .session-link { padding: 1.25rem; }
+html[data-refinement='custom'][data-theme] .sessions-page .session-list { display: grid; gap: 1rem; }
+html[data-refinement='custom'][data-theme] .journal .archive-year .journal-card + .journal-card { margin-top: 1rem; }
+html[data-refinement='custom'][data-theme] :is(.sessions-page .archive-card,.journal .journal-card) :is(h2,h3,h4,.session-action,.row-arrow,.read-link,.focus-label) {
+  color: var(--quiet-accent);
+}
+html[data-refinement='custom'][data-theme] :is(.sessions-page .archive-card,.journal .journal-card) :is(.session-meta,.session-speakers,.post-meta,.topics) {
+  color: var(--quiet-muted);
+  opacity: 1;
+}
+html[data-refinement='custom'][data-theme] .journal .journal-card .artwork { background: var(--quiet-surface); }
+html[data-refinement='custom'][data-theme] :is(.sessions-page .session-link,.journal .journal-card):focus-visible,
+html[data-refinement='custom'][data-theme] .journal .journal-card:focus-within { outline-color: var(--quiet-accent); }
+
+/* Resources: video and slide cards share the same selected palette. */
+html[data-refinement='custom'][data-theme] .resources-content :is(.video-card,.presentation-card) {
+  --color-accent: 105, 81, 62;
+  background: var(--quiet-surface);
+  border: 1px solid var(--quiet-rule);
+  border-radius: .65rem;
+}
+html[data-refinement='custom'][data-theme='dark'] .resources-content :is(.video-card,.presentation-card) {
+  --color-accent: 211, 190, 162;
+}
+html[data-refinement='custom'][data-theme] .resources-content :is(.video-card,.presentation-card) :is(h3,a:not(.video-thumbnail)) {
+  color: var(--quiet-accent);
+}
+html[data-refinement='custom'][data-theme] .resources-content :is(.video-meta,.speakers,.presentation-footer) {
+  color: var(--quiet-muted);
+  opacity: 1;
+}
+html[data-refinement='custom'][data-theme] .resources-content .download-btn:hover {
+  background-color: var(--quiet-accent) !important;
+  color: #fff !important;
+}
+html[data-refinement='custom'][data-theme='dark'] .resources-content .download-btn:hover {
+  color: #211a12 !important;
+}
+html[data-refinement='custom'][data-theme] .resources-content :is(.video-card,.presentation-card) a:focus-visible {
+  outline-color: var(--quiet-accent);
+}
+
+/* Dedicated Subscribe page: Quiet stone form and earth-toned invitation. */
+html[data-refinement='custom'][data-theme] .subscribe-page {
+  color: #352d25;
+}
+html[data-refinement='custom'][data-theme='dark'] .subscribe-page {
+  color: #eee7dc;
+}
+html[data-refinement='custom'][data-theme] .subscribe-page .journey-block.page {
+  --signup-ink: #352d25;
+  --signup-muted: var(--quiet-muted);
+  --signup-input: rgb(var(--color-fill));
+  --signup-border: var(--quiet-rule);
+  --signup-button: var(--quiet-accent);
+  --signup-button-text: #fff;
+}
+html[data-refinement='custom'][data-theme='dark'] .subscribe-page .journey-block.page {
+  --signup-ink: #eee7dc;
+  --signup-button-text: #211a12;
+}
+html[data-refinement='custom'][data-theme] .subscribe-page .page .form-wrap {
+  background: var(--quiet-surface);
+  border-color: var(--quiet-rule);
+}
+html[data-refinement='custom'][data-theme] .subscribe-page :is(h1,h2,.eyebrow,.form-heading,.explore) {
+  color: var(--quiet-accent);
+}
+html[data-refinement='custom'][data-theme] .subscribe-page .subscription-details {
+  border-color: var(--quiet-rule);
+}
+html[data-refinement='custom'][data-theme] .subscribe-page .page input:not([name='website']) {
+  border: 2px solid color-mix(in srgb, var(--quiet-accent) 80%, transparent);
+}
+html[data-refinement='custom'][data-theme] .subscribe-page .page input:focus {
+  outline: none;
+  box-shadow: none;
+}
+html[data-refinement='custom'][data-theme] .subscribe-page :is(button,a):focus-visible {
+  outline-color: var(--quiet-accent);
+}
+@media (forced-colors: active) {
+  html[data-refinement='custom'][data-theme] .subscribe-page .page input:focus {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}
+
+/* The dedicated page and its footer use the same button and input colours. */
+html[data-refinement='custom'][data-theme] .subscribe-page ~ .journey-footer .journey-block.footer {
+  --signup-button: var(--quiet-accent);
+  --signup-button-text: #fff;
+}
+html[data-refinement='custom'][data-theme='dark'] .subscribe-page ~ .journey-footer .journey-block.footer {
+  --signup-button-text: #211a12;
+}
+html[data-refinement='custom'][data-theme] .subscribe-page ~ .journey-footer input[type='email'] {
+  border-color: color-mix(in srgb, var(--quiet-accent) 80%, transparent);
+}

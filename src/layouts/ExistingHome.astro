@@ -1,0 +1,2234 @@
+---
+import { getCollection } from "astro:content";
+import { getRefinement } from "@utils/refinements";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import { isSubscriptionJourney } from '@utils/subscriptionJourney';
+import SubscriptionJourneyBlock from '@components/subscription/SubscriptionJourneyBlock.astro';
+import LinkButton from "@components/LinkButton.astro";
+import PostVerticalCard from "@components/blog/PostVerticalCard.astro";
+import FeaturedSessionHeroCard from "@components/blog/FeaturedSessionHeroCard.astro";
+import RecordingAnnouncement from "@components/RecordingAnnouncement.astro";
+import getSortedPosts, { getSortedByDateDesc } from "@utils/getSortedPosts";
+import getKeywordMap from "@utils/getKeywordMap";
+import getSessionIdentity from "@utils/getSessionIdentity";
+import getSessionRecording from "@utils/getSessionRecording";
+import { SITE, SOCIALS } from "@config";
+import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
+
+const announcementLinkLabel = getRefinement(Astro.url, Astro.locals) === "custom" ? "Details and registration" : "Check details";
+const DEFAULT_OG_IMAGE = SITE.ogImage ?? "/og.png";
+const posts = await getCollection("posts");
+const sessions = await getCollection("sessions");
+
+// Homepage editorial choices; the recording's facts stay in its session entry.
+const SHOW_FEATURED_POSTS = false;
+const HOMEPAGE_VIDEO_SLUG = "session-41-levin-beyond-anthropocentrism";
+const homepageVideo = sessions.find(
+  session =>
+    session.slug === HOMEPAGE_VIDEO_SLUG &&
+    !session.data.draft &&
+    !!getSessionRecording(session.data)
+);
+
+const sortedPosts = getSortedPosts(posts);
+const sortedSessions = getSortedPosts(sessions);
+const normalizeOgImage = (ogImage?: string | { src: string }) => {
+  if (!ogImage) return undefined;
+  if (typeof ogImage === "string") {
+    if (ogImage.startsWith("http") || ogImage.startsWith("/")) return ogImage;
+    return `/${ogImage}`;
+  }
+  return ogImage.src;
+};
+const getCardOgImage = (ogImage?: string | { src: string }) =>
+  normalizeOgImage(ogImage) ?? DEFAULT_OG_IMAGE;
+type HighlightableEntry = {
+  data: {
+    highlight?: boolean;
+  };
+};
+const getHighlightedOddCardIndex = <T extends HighlightableEntry>(
+  entries: T[]
+) => {
+  if (entries.length % 2 !== 1) return -1;
+
+  // Omitted highlight defaults to true; explicit true wins over implicit defaults.
+  const explicitHighlightIndex = entries.findIndex(
+    ({ data }) => data.highlight === true
+  );
+  if (explicitHighlightIndex >= 0) return explicitHighlightIndex;
+
+  return entries.findIndex(({ data }) => data.highlight !== false);
+};
+const featuredNonSessionPosts = sortedPosts
+  .filter(({ data }) => data.featured)
+  .slice(0, 2);
+const featuredNonSessionHighlightIndex = getHighlightedOddCardIndex(
+  featuredNonSessionPosts
+);
+const featuredSessionPostsRaw = getSortedByDateDesc(
+  sortedSessions.filter(post => post.data.featured)
+);
+const featuredSessionPosts = await Promise.all(
+  featuredSessionPostsRaw.map(async post => {
+    const sessionSlug =
+      typeof post.data.slug === "string" ? post.data.slug : post.slug;
+    const override = normalizeOgImage(post.data.ogImage);
+    const resolvedOg = await resolveSessionOgImage(sessionSlug, override);
+    return { ...post, resolvedOg };
+  })
+);
+const featuredSessionHighlightIndex =
+  getHighlightedOddCardIndex(featuredSessionPosts);
+
+const socialCount = SOCIALS.filter(social => social.active).length;
+
+// Get dynamic keywords from blog posts
+const keywordMap = getKeywordMap([...posts, ...sessions]);
+---
+
+<Layout>
+  <Header activeNav="home">
+  </Header>
+  <main class="font-serif" id="main-content">
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <!-- Logo positioned to float and allow text wrapping -->
+        <div class="logo-container hero-logo-container">
+          <!-- Ring logos for background rotation -->
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-1"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-2"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-3"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-4"
+          />
+          <img
+            src="/images/AiPhi_Logo_Black_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo light-ring ring ring-5"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-1"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-2"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-3"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-4"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante_Ring.png"
+            alt=""
+            class="hero-ring-logo dark-ring ring ring-5"
+          />
+          <span class="hero-logo-hit-area" aria-hidden="true"></span>
+          <img
+            src="/images/AiPhi_Logo_Black_Variante.png"
+            alt=""
+            class="hero-ghost-logo hero-light-ghost"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante.png"
+            alt=""
+            class="hero-ghost-logo hero-dark-ghost"
+          />
+
+          <img
+            src="/images/AiPhi_Logo_Black_Variante.png"
+            alt="ai-phi Logo"
+            class="hero-logo light-logo"
+          />
+          <img
+            src="/images/AiPhi_Logo_White_Variante.png"
+            alt="ai-phi Logo"
+            class="hero-logo dark-logo"
+          />
+        </div>
+
+        <div class="hero-text">
+          <div class="hero-tagline">
+            <p class="!text-2xl">
+              The Paris-based community of researchers and professionals united
+              by a shared interest in the intersection of AI & Philosophy.
+              <br />
+              <b
+                >Together, we track the big ideas that are shaping a rapidly
+                changing world.</b
+              >
+            </p>
+          </div>
+          <!-- Keywords under description (randomly selected on each page load) -->
+          <div class="keywords-under-description">
+            <!-- General categories (always shown) -->
+            <div class="subtitle-section general-categories">
+              <!-- <p> <span style="font-weight: bold;">Events:</span>  -->
+              <a  href={`/sessions/seminar-series`}
+                class="glitch-container"
+                data-text={"Seminar Series"}
+              >
+                <span>Seminar Series</span>
+              </a><span class="dot">·</span>
+              <a
+                href={`/sessions/causerie`}
+                class="glitch-container"
+                data-text={"Causerie"}
+              >
+                <span>Causerie</span>
+              </a><span class="dot">·</span>
+              <a
+                href="/sessions/critical-perspectives"
+                class="glitch-container"
+                data-text="Critical Perspectives"
+              >
+                <span>Critical Perspectives</span>
+              </a><span class="dot">·</span>
+              <a
+                href={`/sessions/other`}
+                class="glitch-container"
+                data-text={"Other Sessions"}
+              >
+                <span>Other Sessions</span>
+              </a>
+            <!-- </p> -->
+            </div>
+
+            <!-- Random themes -->
+            <div class="subtitle-section random-themes">
+              <!-- <p> <span style="font-weight: bold;">Random Themes:</span>  -->
+              {
+                keywordMap.randomThemes.map((keyword, index) => (
+                  <>
+                    <a
+                      href={`/tags/${keyword.tag}`}
+                      class="glitch-container"
+                      data-text={keyword.tagName}
+                    >
+                      <span>{keyword.tagName}</span>
+                    </a>
+                    {index < keywordMap.randomThemes.length - 1 && (
+                      <span class="dot">·</span>
+                    )}
+                  </>
+                ))
+              }
+              <!-- </p> -->
+            </div>
+          </div>
+        </div>
+
+
+        <SubscriptionJourneyBlock placement="home" />
+        {SHOW_FEATURED_POSTS && <>
+        <section class="mt-10" aria-labelledby="featured-posts-heading">
+          <div class="space-y-4">
+            <h2
+              id="featured-posts-heading"
+              class="text-3xl font-semibold uppercase tracking-tight text-skin-base"
+            >
+              Featured Posts
+            </h2>
+            {
+              featuredNonSessionPosts.length > 0 ? (
+                <div class="grid gap-6 items-stretch md:grid-cols-2">
+                  {featuredNonSessionPosts.map(({ data, slug }, index) => {
+                    const expanded = index === featuredNonSessionHighlightIndex;
+
+                    return (
+                      <div class:list={[expanded && "md:col-span-2"]}>
+                        <PostVerticalCard
+                          title={data.title}
+                          date={data.pubDatetime}
+                          author={data.author}
+                          description={data.description}
+                          ogImage={getCardOgImage(data.ogImage)}
+                          href={`/posts/${slug}`}
+                          expanded={expanded}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p class="text-base text-skin-base opacity-80">
+                  Stay tuned for selected highlights from the community.
+                </p>
+              )
+            }
+          </div>
+        </section>
+
+        <section id="all-posts" class="hero-section">
+          <div class="all-posts-btn-wrapper">
+            <LinkButton href="/posts" className="all-posts-button">
+              Browse all posts
+              <svg xmlns="http://www.w3.org/2000/svg"
+                ><path
+                  d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+                ></path>
+              </svg>
+            </LinkButton>
+          </div>
+        </section>
+
+        </>}
+
+        <section class="mt-12" aria-labelledby="sessions-announcement-heading">
+          <div class="space-y-4">
+            <h2
+              id="sessions-announcement-heading"
+              class="text-3xl font-semibold uppercase tracking-tight text-skin-base"
+            >
+              Session announcements
+            </h2>
+            {
+              featuredSessionPosts.length > 0 ? (
+                <div class="grid gap-6 items-stretch md:grid-cols-2">
+                  {featuredSessionPosts.map(
+                    (post, index) => {
+                      const { data, slug, resolvedOg } = post;
+                      const expanded = index === featuredSessionHighlightIndex;
+
+                      return (
+                        <div class:list={[expanded && "md:col-span-2"]} data-featured-announcement={expanded ? "true" : undefined}>
+                          {expanded ? (
+                            <>
+                              <div class="md:hidden">
+                                <PostVerticalCard
+                                  title={data.titleShort ?? data.title}
+                                  sessionIdentity={getSessionIdentity(post)}
+                                  linkLabel={announcementLinkLabel}
+                                  sessionLogistics={getRefinement(Astro.url, Astro.locals) === "custom"}
+                                  location={data.location}
+                                  date={data.pubDatetime}
+                                  author={data.author}
+                                  description={data.description}
+                                  ogImage={resolvedOg}
+                                  href={`/posts/${slug}`}
+                                />
+                              </div>
+                              <div class="hidden md:block">
+                                <FeaturedSessionHeroCard
+                                  title={data.titleShort ?? data.title}
+                                  sessionIdentity={getSessionIdentity(post)}
+                                  linkLabel={announcementLinkLabel}
+                                  sessionLogistics={getRefinement(Astro.url, Astro.locals) === "custom"}
+                                  location={data.location}
+                                  date={data.pubDatetime}
+                                  author={data.author}
+                                  description={data.description}
+                                  ogImage={resolvedOg}
+                                  href={`/posts/${slug}`}
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <PostVerticalCard
+                              title={data.titleShort ?? data.title}
+                              sessionIdentity={getSessionIdentity(post)}
+                                  linkLabel={announcementLinkLabel}
+                                  sessionLogistics={getRefinement(Astro.url, Astro.locals) === "custom"}
+                                  location={data.location}
+                              date={data.pubDatetime}
+                              author={data.author}
+                              description={data.description}
+                              ogImage={resolvedOg}
+                              href={`/posts/${slug}`}
+                            />
+                          )}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              ) : (
+                <p class="text-base text-skin-base opacity-80">
+                  No sessions announcements at the moment — check back soon.
+                </p>
+              )
+            }
+          </div>
+        </section>
+
+        <!-- Browse all sessions -->
+        <section id="all-posts" class="hero-section">
+          <div class="all-posts-btn-wrapper">
+            <LinkButton href="/sessions" className="all-posts-button">
+              Browse all sessions
+              <svg xmlns="http://www.w3.org/2000/svg"
+                ><path
+                  d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+                ></path>
+              </svg>
+            </LinkButton>
+          </div>
+        </section>
+
+        {homepageVideo && <RecordingAnnouncement session={homepageVideo} />}
+
+      </div>
+
+    </section>
+
+    <style>
+      /* ===== Hero Section ===== */
+      .hero-section {
+        @apply pb-8 pt-8; /* Add padding on mobile */
+        max-width: 58rem;
+
+        @media (min-width: 480px) {
+        }
+
+        /* Touch-friendly on mobile with slightly larger touch area */
+        @media (min-width: 640px) {
+        }
+
+        @media (max-width: 768px) {
+          @apply pb-0 pt-0; /* Remove padding on desktop */
+          min-height: auto; /* Auto height on desktop */
+        }
+
+        @media (min-width: 1024px) {
+        }
+      }
+
+      .next-sessions-container {
+        margin-top: 3rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      .next-session-panel .featured-post-media {
+        aspect-ratio: 1 / 1;
+      }
+
+      .next-session-panel .featured-post-media a {
+        display: block;
+        height: 100%;
+      }
+
+      .next-session-panel .featured-post-placeholder {
+        height: 100%;
+      }
+
+      .next-session-button {
+        margin-top: 0.5rem;
+      }
+
+      .next-sessions-more {
+        margin-top: 2.5rem;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(var(--color-border), 0.35);
+        background: rgba(var(--color-card), 0.25);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.06);
+      }
+
+      .next-sessions-more-heading {
+        margin: 0 0 1rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(var(--color-text-base), 0.8);
+      }
+
+      .next-sessions-more-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        @apply grid gap-4;
+      }
+
+      .next-sessions-card {
+        @apply bg-skin-card/20;
+      }
+
+      @media (min-width: 768px) {
+        .next-sessions-container {
+          gap: 2.5rem;
+        }
+      }
+
+      .hero-content {
+        @apply relative p-4;
+        max-width: 100%;
+        margin: 0;
+
+        @media (min-width: 768px) {
+          max-width: 58rem;
+          margin-right: 35px;
+          margin-left: 35px;
+          @apply px-0;
+        }
+      }
+
+      .hero-content::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .hero-text {
+        @apply text-lg;
+        font-size: 25px;
+        font-weight: 400;
+        clear: both; /* Ensure text clears floated logo on mobile */
+
+        @media (min-width: 1024px) {
+          clear: none; /* Allow text to flow around logo on desktop */
+        }
+        line-height: 1.5rem;
+      }
+
+      .subtitle-section {
+        @apply block;
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+        clear: both; /* Ensure subtitles clear the logo on mobile */
+        text-align: center; /* Center alignment for keywords */
+
+        @media (max-width: 375px) {
+          /* Slightly larger gap on tablet */
+          text-align: center; /* Center alignment on mobile */
+          padding: 2rem;
+          line-height: 0; /* Even tighter line height */
+        }
+
+        @media (max-width: 480px) {
+          justify-content: center;
+
+          padding-bottom: 0rem;
+        }
+
+        @media (max-width: 640px) {
+          justify-content: center;
+
+          padding-bottom: 0rem;
+        }
+
+        @media (min-width: 1024px) {
+          justify-content: center;
+          padding-left: 0;
+          padding-bottom: 0rem;
+          clear: none; /* Allow text to flow around logo on desktop */
+        }
+      }
+
+      .subtitle-section.general-categories {
+        color: rgb(164 162 162); /* Slightly greyish text */
+        margin-top: 1.5rem; /* Reduced from 2.5rem */
+        margin-bottom: 0.75rem;
+      }
+
+      .subtitle-section.random-themes {
+        color: rgb(115, 115, 115); /* Darker text for random themes */
+        margin-top: 1rem; /* Reduced from 2rem */
+        margin-bottom: 0.75rem;
+        margin-left: 0rem;
+
+        @media (max-width: 375px) {
+          margin-left: 0rem;
+        }
+
+        @media (max-width: 480px) {
+          margin-left: 0rem;
+          padding-bottom: 0rem;
+        }
+
+        @media (max-width: 640px) {
+          margin-left: 0rem;
+          padding-bottom: 0rem;
+        }
+
+        @media (min-width: 768px) {
+          margin-left: 2rem;
+          padding-bottom: 0rem;
+        }
+      }
+
+      .hero-title {
+        @apply mb-2 font-bold leading-tight;
+        font-size: 3rem; /* 24px on very small mobile */
+        line-height: 1.2;
+
+        @media (min-width: 375px) {
+          font-size: 3rem;
+          text-align: center;
+        }
+
+        @media (min-width: 480px) {
+          font-size: 3rem; /* 32px on larger mobile */
+          text-align: center;
+        }
+
+        @media (min-width: 640px) {
+          font-size: 3rem; /* 36px on small tablet */
+          text-align: left;
+        }
+
+        @media (min-width: 768px) {
+          font-size: 3rem; /* 44px on tablet */
+          text-align: left;
+        }
+
+        @media (min-width: 1024px) {
+          font-size: 3rem; /* 48px on desktop */
+          text-align: left;
+        }
+      }
+
+      .hero-tagline {
+        @apply mt-2;
+
+        font-size: 2rem;
+        margin-bottom: 0rem; /* Increased bottom margin on mobile */
+        margin-top: 0rem;
+        /* max-width: 40rem; */
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        position: relative;
+
+        @media (min-width: 768px) {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        /* Align with the logo only once it floats beside the text. */
+        @media (min-width: 1024px) {
+          margin-top: -3rem;
+        }
+      }
+
+      .hero-tagline::before {
+        content: "";
+        position: absolute;
+        /* top: -20px; */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 45%;
+        margin-top: -1rem;
+
+        /* Wavy line CSS variables */
+        --s: 6px; /* size of the wave */
+        --b: 3px; /* thickness of the line */
+        --m: 1; /* curvature of the wave [0 2] */
+
+        /* Calculate dimensions */
+        --R: calc(var(--s) * sqrt(var(--m) * var(--m) + 1) + var(--b) / 2);
+        height: calc(2 * var(--R));
+
+        /* Gradient background */
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.5) 5%,
+          rgb(131, 130, 130) 50%,
+          rgba(255, 255, 255, 0.5) 95%
+        );
+
+        /* Wavy mask */
+        --_g: #0000 calc(99% - var(--b)), #000 calc(101% - var(--b)) 99%,
+          #0000 101%;
+        mask:
+          radial-gradient(
+              var(--R) at left 50% bottom calc(-1 * var(--m) * var(--s)),
+              var(--_g)
+            )
+            calc(50% - 2 * var(--s)) calc(50% - var(--s) / 2 - var(--b) / 2) /
+            calc(4 * var(--s)) calc(var(--s) + var(--b)) repeat-x,
+          radial-gradient(
+              var(--R) at left 50% top calc(-1 * var(--m) * var(--s)),
+              var(--_g)
+            )
+            50% calc(50% + var(--s) / 2 + var(--b) / 2) / calc(4 * var(--s))
+            calc(var(--s) + var(--b)) repeat-x;
+      }
+
+      html[data-theme="light"] .hero-tagline::before {
+        background: linear-gradient(
+          to right,
+          rgba(80, 80, 80, 0) 5%,
+          rgb(143, 142, 142) 50%,
+          rgba(80, 80, 80, 0) 95%
+        );
+      }
+
+      html[data-theme="dark"] .hero-tagline::before {
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 5%,
+          rgba(255, 255, 255, 1) 50%,
+          rgba(255, 255, 255, 0) 95%
+        );
+      }
+
+      .hero-tagline p {
+        @apply text-skin-base;
+        line-height: 1.3;
+        font-weight: 200;
+        margin-top: 0rem;
+        /* font-style: italic; */
+        opacity: 0.85;
+        letter-spacing: 0.02em;
+        font-size: 1.8rem;
+
+        @media (max-width: 480px) {
+          @apply p-4;
+          font-size: 1.5rem; /* 32px on larger mobile */
+        }
+
+        @media (max-width: 640px) {
+          @apply p-4;
+          font-size: 1.5rem; /* 36px on small tablet */
+        }
+
+        @media (max-width: 768px) {
+          @apply p-4;
+          font-size: 1.8rem; /* 44px on tablet */
+        }
+
+        @media (min-width: 1024px) {
+          font-size: 1.8rem; /* 48px on desktop */
+          padding: 2rem;
+        }
+      }
+
+      html[data-theme="light"] .hero-tagline p {
+        color: rgb(75, 75, 75);
+      }
+
+      html[data-theme="dark"] .hero-tagline p {
+        color: rgb(199, 199, 199);
+      }
+
+      .tagline-highlight {
+        font-style: normal;
+        color: rgb(var(--color-text-base));
+        font-weight: 700;
+      }
+
+      html[data-theme="light"] .tagline-highlight {
+        color: rgb(var(--color-text-base));
+      }
+
+      html[data-theme="dark"] .tagline-highlight {
+        color: rgb(var(--color-text-base));
+      }
+
+      /* Ensure plain <b> in tagline matches requested emphasis */
+      .hero-tagline b {
+        font-weight: 700;
+        font-style: normal;
+        color: rgb(var(--color-text-base));
+      }
+
+      .hero-text span {
+        @apply whitespace-nowrap;
+      }
+      /*
+  # cursor got inspiration from https://muffinman.io/blog/css-image-glitch/
+  # thank you muffinman! */
+
+      .glitch-container {
+        @apply relative inline-flex items-center justify-center;
+        /* overflow: hidden; */
+        /* Ultra-minimal padding for maximum compactness */
+        font-weight: normal; /* Remove bold styling */
+
+        line-height: 0.9; /* Extra tight line height */
+        vertical-align: middle; /* Align with dots */
+        margin: 0; /* Remove any default margins */
+        height: 1.2em;
+
+        @media (min-width: 480px) {
+          font-size: 1.1rem; /* 32px on larger mobile */
+        }
+
+        /* Touch-friendly on mobile with slightly larger touch area */
+        @media (min-width: 640px) {
+          font-size: 1.4rem;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 1.4rem;
+        }
+
+        @media (min-width: 1024px) {
+          font-size: 1.4rem;
+        }
+      }
+
+      .glitch-container > span {
+        transition: opacity 100ms ease-in-out;
+      }
+
+      .glitch-container.glitch-active > span {
+        opacity: 0.75; /* Keep base text visible while giving strips more presence */
+      }
+
+      /* Bold only during active glitch for painterly emphasis */
+      .glitch-container.glitch-active {
+        font-weight: 700;
+      }
+
+      .glitch-strip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeSpeed;
+        font-smooth: never;
+        outline: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        mix-blend-mode: multiply;
+        transition: opacity 800ms ease-in-out;
+      }
+
+      .glitch-strip.fade-out {
+        opacity: 0;
+      }
+
+      /* Painterly/Logo-style soft flow */
+      @keyframes logo-like-flow {
+        0% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+          filter: blur(0.25px) saturate(1.04);
+          opacity: 0.42;
+        }
+        25% {
+          transform: translateX(var(--glitch-x-1)) translateY(0) rotate(0.6deg);
+          filter: blur(0.35px) saturate(1.06);
+          opacity: 0.44;
+        }
+        50% {
+          transform: translateX(
+              calc((var(--glitch-x-1) + var(--glitch-x-2)) / 2)
+            )
+            translateY(0) rotate(1deg);
+          filter: blur(0.45px) saturate(1.08);
+          opacity: 0.46;
+        }
+        75% {
+          transform: translateX(var(--glitch-x-2)) translateY(0) rotate(0.6deg);
+          filter: blur(0.35px) saturate(1.06);
+          opacity: 0.44;
+        }
+        100% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+          filter: blur(0.25px) saturate(1.04);
+          opacity: 0.42;
+        }
+      }
+
+      /* Generate multiple glitch animations with stronger chromatic aberration */
+      @keyframes glitch-text-strip {
+        0% {
+          transform: none;
+          color: var(--glitch-text-color);
+          opacity: 35%; /* slightly stronger base to avoid vanishing */
+        }
+        50% {
+          transform: translateX(var(--glitch-x-1)) translateY(0);
+          color: var(--glitch-text-color);
+          opacity: 28%;
+        }
+        100% {
+          transform: translateX(var(--glitch-x-2)) translateY(0);
+          color: var(--glitch-text-color);
+          opacity: 35%;
+        }
+      }
+
+      @keyframes glitch-red-blue {
+        0% {
+          transform: translateX(0) translateY(0);
+          color: var(--glitch-text-color);
+        }
+        35% {
+          transform: translateX(var(--glitch-x-1)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-warm-1), 0.45),
+            -1px 0px 2px rgba(var(--glitch-warm-2), 0.35),
+            0px 0px 6px rgba(var(--glitch-warm-1), 0.2);
+          filter: blur(0.4px) saturate(1.05) contrast(1.05);
+          color: var(--glitch-text-color);
+        }
+        75%,
+        85% {
+          transform: translateX(var(--glitch-x-2)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-warm-1), 0.45),
+            -1px 0px 2px rgba(var(--glitch-warm-2), 0.35),
+            0px 0px 6px rgba(var(--glitch-warm-2), 0.18);
+          filter: blur(0.4px) saturate(1.05) contrast(1.05);
+          color: var(--glitch-text-color);
+        }
+        100% {
+          transform: translateX(var(--glitch-x-2)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-warm-1), 0.12),
+            -1px 0px 2px rgba(var(--glitch-warm-2), 0.1),
+            0px 0px 4px rgba(var(--glitch-warm-1), 0.1);
+          filter: blur(0.25px) saturate(1.02) contrast(1.02);
+          color: var(--glitch-text-color);
+        }
+      }
+
+      @keyframes glitch-pink-yellow {
+        0% {
+          transform: translateX(0) translateY(0);
+          filter: hue-rotate(0);
+          color: var(--glitch-text-color);
+        }
+        35% {
+          transform: translateX(var(--glitch-x-1)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-cool-1), 0.45),
+            -1px 0px 2px rgba(var(--glitch-cool-2), 0.35),
+            0px 0px 6px rgba(var(--glitch-cool-1), 0.2);
+          filter: blur(0.4px) saturate(1.05) contrast(1.05);
+          color: var(--glitch-text-color);
+        }
+        90% {
+          transform: translateX(var(--glitch-x-2)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-cool-1), 0.45),
+            -1px 0px 2px rgba(var(--glitch-cool-2), 0.35),
+            0px 0px 6px rgba(var(--glitch-cool-2), 0.18);
+          filter: blur(0.4px) saturate(1.05) contrast(1.05);
+          color: var(--glitch-text-color);
+        }
+        100% {
+          transform: translateX(var(--glitch-x-2)) translateY(0);
+          text-shadow:
+            1px 0px 2px rgba(var(--glitch-cool-1), 0),
+            -1px 0px 2px rgba(var(--glitch-cool-2), 0),
+            0px 0px 4px rgba(var(--glitch-cool-1), 0);
+          filter: blur(0.25px) saturate(1.02) contrast(1.02);
+          color: var(--glitch-text-color);
+        }
+      }
+
+      @keyframes glitch-text-hole {
+        0% {
+          transform: none;
+          color: var(--glitch-text-color);
+          opacity: 0%;
+        }
+        25% {
+          color: var(--glitch-text-color);
+          opacity: 0%;
+        }
+        75% {
+          color: var(--glitch-text-color);
+          opacity: 0%;
+        }
+        100% {
+          color: var(--glitch-text-color);
+          opacity: 0%;
+        }
+      }
+
+      .dot {
+        @apply text-skin-accent;
+        font-size: 1.8em !important; /* Even smaller to match glitch containers */
+        font-weight: normal; /* Remove bold styling */
+        vertical-align: middle;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* No padding */
+        margin: 0; /* No margin */
+        /* height: 1.2em; */
+        /* Desktop layout */
+        @media (min-width: 768px) {
+          font-size: 1.8em;
+        }
+
+        @media (min-width: 1024px) {
+          font-size: 2em;
+        }
+      }
+
+      .hero-graphic {
+        @apply flex justify-center lg:flex-shrink-0;
+      }
+
+      .logo-container {
+        @apply relative;
+        position: relative;
+        --hero-logo-h: clamp(7.75rem, 19vw, 15rem);
+        isolation: isolate;
+        z-index: 0;
+        /* Mobile-first: center the logo */
+        float: none;
+        margin: 0 auto 2rem auto;
+        text-align: center;
+        width: fit-content; /* Ensure container fits logo */
+        padding: 0 1rem; /* Add padding on mobile to prevent cutoff */
+
+        /* Desktop layout */
+        @media (min-width: 1024px) {
+          float: right;
+          margin-left: 4rem;
+          margin-bottom: 1rem;
+          margin-top: -3rem;
+          text-align: left;
+          margin-right: 0; /* Remove auto margin on desktop */
+          padding: 0; /* Remove padding on desktop */
+        }
+        /* defines circular wrap around the logo which is also circular */
+        shape-outside: circle(50% at 50% 45%);
+      }
+
+      /* Hero ring logo styling */
+      /* Ring: a bit larger than the logo, slightly elliptical, slightly offset */
+      .hero-ring-logo {
+        @apply absolute w-auto transition-opacity duration-200;
+        top: 50%;
+        left: 50%;
+        opacity: var(--ring-opacity, 0.18);
+        filter: var(--ring-filter, none);
+        pointer-events: none;
+        z-index: -1;
+        padding: 0.2rem;
+        -webkit-clip-path: ellipse(50% 50% at 50% 50%);
+        clip-path: ellipse(50% 50% at 50% 50%);
+
+        /* Keep a stable ratio with the foreground logo across breakpoints */
+        height: calc(var(--hero-logo-h) * var(--ring-scale, 1.28));
+
+        /* Keep the same animation */
+        animation: slowRotate var(--ring-speed, 150s) linear infinite;
+
+        /* Helps the ellipse feel “orbit-like” */
+        transform-origin: center;
+      }
+
+      .ring-1 {
+        --ring-scale: 1.20;
+        --ring-speed: 210s;
+        --ring-dir: 1;
+        --ring-opacity: 0.26;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(86%) sepia(74%) saturate(997%)
+          hue-rotate(344deg) brightness(101%) contrast(103%);
+      }
+
+      .ring-2 {
+        --ring-scale: 1.05;
+        --ring-speed: 140s;
+        --ring-dir: -1;
+        --ring-opacity: 0.2;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(63%) sepia(92%) saturate(2175%)
+          hue-rotate(358deg) brightness(101%) contrast(105%);
+      }
+
+      .ring-3 {
+        --ring-scale: 1.12;
+        --ring-speed: 178s;
+        --ring-dir: 1;
+        --ring-opacity: 0.17;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(36%) sepia(89%) saturate(2707%)
+          hue-rotate(347deg) brightness(94%) contrast(106%);
+      }
+
+      .ring-4 {
+        --ring-scale: 1.18;
+        --ring-speed: 232s;
+        --ring-dir: -1;
+        --ring-opacity: 0.14;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(28%) sepia(49%) saturate(922%)
+          hue-rotate(352deg) brightness(94%) contrast(89%);
+      }
+
+      .ring-5 {
+        --ring-scale: 1.14;
+        --ring-speed: 260s;
+        --ring-dir: 1;
+        --ring-opacity: 0.12;
+        --ring-filter:
+          brightness(0) saturate(100%) invert(44%) sepia(17%) saturate(617%)
+          hue-rotate(354deg) brightness(88%) contrast(86%);
+      }
+
+      html[data-theme="dark"] .ring-1 {
+        --ring-opacity: 0.28;
+      }
+
+      html[data-theme="dark"] .ring-2 {
+        --ring-opacity: 0.22;
+      }
+
+      html[data-theme="dark"] .ring-3 {
+        --ring-opacity: 0.19;
+      }
+
+      html[data-theme="dark"] .ring-4 {
+        --ring-opacity: 0.16;
+      }
+
+      html[data-theme="dark"] .ring-5 {
+        --ring-opacity: 0.14;
+      }
+
+      /* IMPORTANT: bake translate into keyframes so animation doesn't override centering */
+      @keyframes slowRotate {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(calc(360deg * var(--ring-dir, 1)));
+        }
+      }
+
+      .hero-ring-logo.light-ring {
+        display: block;
+      }
+
+      .hero-ring-logo.dark-ring {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-ring-logo.light-ring {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-ring-logo.dark-ring {
+        display: block;
+      }
+
+      #hero {
+        margin-top: 1rem; /* Smaller top margin on mobile */
+        margin-bottom: 0rem; /* Ensure bottom spacing on mobile */
+        margin-left: auto;
+        margin-right: auto;
+
+        @media (max-width: 768px) {
+          margin-top: 0px; /* Original margins on desktop */
+          margin-bottom: 0px;
+          padding-bottom: 0px;
+          padding-top: 0px;
+        }
+        @media (min-width: 1080px) {
+          margin-top: 2rem; /* Original margins on desktop */
+          margin-bottom: 0px;
+          padding-bottom: 0px;
+          padding-top: 0px;
+        }
+      }
+
+      .hero-logo {
+        @apply w-auto transition-opacity duration-200;
+        height: var(--hero-logo-h); /* Responsive height */
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-logo-hit-area {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: calc(var(--hero-logo-h) * 1.9);
+        height: calc(var(--hero-logo-h) * 1.9);
+        transform: translate(-50%, -50%);
+        border-radius: 9999px;
+        background: transparent;
+        z-index: 3;
+      }
+
+      .hero-ghost-logo {
+        @apply absolute w-auto transition-opacity duration-200;
+        top: 50%;
+        left: 50%;
+        height: var(--hero-logo-h);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-ghost-logo.ghost-effect {
+        animation: heroSubtleGhost 3s ease-in-out;
+      }
+
+      .hero-ghost-logo.ghost-effect-2 {
+        animation: heroSubtleGhost2 3s ease-in-out;
+      }
+
+      .hero-light-ghost {
+        display: block;
+      }
+
+      .hero-dark-ghost {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-light-ghost {
+        display: none;
+      }
+
+      html[data-theme="dark"] .hero-dark-ghost {
+        display: block;
+      }
+
+      @keyframes heroSubtleGhost {
+        0% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.5deg)
+            scale(1.012);
+          opacity: 0.6;
+        }
+        10% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(1.03);
+          opacity: 0.4;
+        }
+        20% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px)) rotate(-0.4deg)
+            scale(0.95);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px)) rotate(-0.1deg)
+            scale(0.92);
+          opacity: 0.6;
+        }
+        40% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.2deg)
+            scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.4deg)
+            scale(0.99);
+          opacity: 0.5;
+        }
+        60% {
+          transform: translate(calc(-50% - 2px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(1.04);
+          opacity: 0.55;
+        }
+        70% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 2px))
+            rotate(-0.2deg) scale(0.98);
+          opacity: 0.35;
+        }
+        80% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(1.01);
+          opacity: 0.5;
+        }
+        90% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px)) rotate(-0.4deg)
+            scale(0.97);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.2deg)
+            scale(1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes heroSubtleGhost2 {
+        0% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px))
+            rotate(-0.5deg) scale(0.988);
+          opacity: 0.6;
+        }
+        10% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(0.97);
+          opacity: 0.4;
+        }
+        20% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.4deg)
+            scale(1.05);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 3px)) rotate(0.1deg)
+            scale(1.08);
+          opacity: 0.6;
+        }
+        40% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.2deg) scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: translate(calc(-50% - 4px), calc(-50% + 3px))
+            rotate(-0.4deg) scale(1.01);
+          opacity: 0.5;
+        }
+        60% {
+          transform: translate(calc(-50% + 2px), calc(-50% - 4px)) rotate(0.3deg)
+            scale(0.96);
+          opacity: 0.55;
+        }
+        70% {
+          transform: translate(calc(-50% + 4px), calc(-50% - 2px)) rotate(0.2deg)
+            scale(1.02);
+          opacity: 0.35;
+        }
+        80% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.3deg) scale(0.99);
+          opacity: 0.5;
+        }
+        90% {
+          transform: translate(calc(-50% + 3px), calc(-50% - 4px)) rotate(0.4deg)
+            scale(1.03);
+          opacity: 0.4;
+        }
+        100% {
+          transform: translate(calc(-50% - 3px), calc(-50% + 4px))
+            rotate(-0.2deg) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .light-logo {
+        @apply block;
+      }
+
+      .dark-logo {
+        @apply hidden;
+      }
+
+      /* Dark mode logo switching */
+      html[data-theme="dark"] .light-logo {
+        @apply hidden;
+      }
+
+      html[data-theme="dark"] .dark-logo {
+        @apply block;
+      }
+
+      /* ===== Featured & Recent Posts Sections ===== */
+      #featured,
+      #recent-posts {
+        @apply pb-0;
+        max-width: 58rem;
+        margin-top: 2rem; /* Positive margin on mobile */
+
+        @media (min-width: 768px) {
+          margin-top: -40px; /* Negative margin only on desktop */
+        }
+      }
+
+      #featured h2,
+      #recent-posts h2 {
+        @apply font-serif text-4xl font-semibold tracking-wide;
+      }
+      .all-posts-btn-wrapper {
+        @apply text-center;
+        margin-top: 3rem; /* Increased top margin on mobile */
+        margin-bottom: 2rem; /* Better bottom margin on mobile */
+        max-width: 58rem;
+        font-size: 1.3rem;
+
+        @media (min-width: 768px) {
+          @apply my-8; /* Original margins on desktop */
+          margin-top: 0px;
+          margin-bottom: 0px;
+          font-size: 1.5rem;
+        }
+      }
+
+      .all-posts-button {
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+        /* Touch-friendly button sizing */
+        @apply px-6 py-3;
+        min-height: 44px;
+
+        @media (min-width: 768px) {
+          @apply px-8 py-4;
+        }
+      }
+
+      #all-posts {
+        padding-bottom: 2rem; /* Better padding on mobile */
+        margin-top: 2rem; /* Positive margin on mobile */
+
+        @media (min-width: 768px) {
+          padding-bottom: 20px; /* Original padding on desktop */
+          margin-top: -20px; /* Original negative margin on desktop */
+        }
+      }
+
+      /* Follow us section */
+
+      /* Section header line */
+      .section-header-line {
+        @apply h-px bg-skin-inverted;
+        width: 52%;
+        float: left;
+        height: 3px;
+        margin: 10px auto 20px auto;
+      }
+
+      /* Footer text will inherit Velvelyne from global styles */
+
+      /* Remove wavy line above the description */
+      .hero-tagline::before {
+        display: none;
+        content: none;
+      }
+
+      /* Keywords under description */
+      .keywords-under-description {
+        @apply relative;
+        margin-top: 1.5rem;
+        clear: both; /* Ensure keywords clear the floated logo */
+      }
+
+      .keywords-under-description .subtitle-section {
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
+        justify-content: center;
+        font-weight: 300 !important; /* Use light weight */
+      }
+
+      .keywords-under-description .glitch-container {
+        font-weight: 300 !important; /* Use light weight by default */
+      }
+
+      .keywords-under-description .glitch-container span {
+        font-weight: 300 !important; /* Use light weight by default */
+      }
+
+      .keywords-under-description .dot {
+        font-weight: 300 !important; /* Use light weight */
+      }
+
+      /* Clickable keyword styling */
+      .keywords-under-description .glitch-container {
+        text-decoration: none;
+        color: inherit;
+        will-change: transform, filter;
+      }
+
+      .keywords-under-description .glitch-container:hover {
+        color: inherit;
+        transform: translateY(-0.5px);
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+
+      /* Subtle neon glow on hover for readability */
+      .keywords-under-description .glitch-container:hover span {
+        text-shadow:
+          0 0 8px rgba(var(--color-accent), 0.55),
+          0 0 14px rgba(var(--color-accent), 0.4),
+          1px 0 2px rgba(var(--glitch-warm-1), 0.35);
+      }
+
+      .keywords-under-description .glitch-container:focus {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+
+      /* Featured post block */
+      .featured-post {
+        margin-top: 2.5rem;
+        display: grid;
+        gap: 1.5rem;
+        padding: clamp(1.5rem, 3vw, 2rem);
+        border-radius: 1rem;
+        border: 1px solid rgba(var(--color-accent), 0.35);
+        background: linear-gradient(
+          135deg,
+          rgba(var(--color-card), 0.65),
+          rgba(var(--color-card), 0.2)
+        );
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.08);
+      }
+
+      @media (min-width: 768px) {
+        .featured-post {
+          grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+          align-items: center;
+        }
+      }
+
+      .featured-post-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.875rem;
+        aspect-ratio: 16 / 9;
+        background: rgba(var(--color-card), 0.45);
+        border: 1px solid rgba(var(--color-border), 0.6);
+      }
+
+      .featured-post-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .featured-post:hover .featured-post-media img,
+      .featured-post:focus-within .featured-post-media img {
+        transform: scale(1.05);
+      }
+
+      .featured-post-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(var(--color-text-base), 0.6);
+      }
+
+      .featured-post-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .featured-post-label {
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        font-size: 0.65rem;
+        color: rgba(var(--color-accent), 0.85);
+        font-weight: 600;
+      }
+
+      .featured-post-title {
+        font-size: clamp(1.6rem, 4vw, 2.2rem);
+        line-height: 1.2;
+        color: rgb(var(--color-text-base));
+      }
+
+      .featured-post-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(var(--color-text-base), 0.85);
+        max-width: 58ch;
+      }
+
+      .featured-post-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .featured-post-button svg {
+        height: 1.25rem;
+        width: 1.25rem;
+        transition: transform 250ms ease;
+      }
+
+      .featured-post-button:hover svg,
+      .featured-post-button:focus-visible svg {
+        transform: translateX(4px);
+      }
+      /* Bottom keywords centering */
+      #keywords-bottom .keywords-bottom-wrapper {
+        @apply mx-auto;
+        max-width: 58rem;
+        text-align: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      #keywords-bottom .subtitle-section {
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
+        justify-content: center;
+      }
+    </style>
+
+    <script>
+      // CSS-only glitch effect implementation based on muffinman.io
+      function random(min: number, max: number): number {
+        return Math.random() * (max - min) + min;
+      }
+
+      function generateGlitchStrips(container: HTMLElement) {
+        const text = container.getAttribute("data-text");
+        const textElement = container.querySelector("span");
+
+        if (!textElement) return [];
+
+        // Get computed styles to determine height
+        const computedStyle = window.getComputedStyle(textElement);
+        const fontSize = parseFloat(computedStyle.fontSize);
+        // Use the container's actual height instead of computed lineHeight for better alignment
+        const containerHeight = container.offsetHeight;
+        const textColor = computedStyle.color;
+
+        // Generate movement values based on position (top half vs bottom half)
+        const generateGlitchValues = (
+          glitchType: string,
+          isTopHalf: boolean
+        ) => {
+          if (
+            glitchType == "glitch-text-strip" ||
+            glitchType == "glitch-text-hole"
+          ) {
+            var x = Math.random() * (2 - 0) + 0;
+            return { x1: x, x2: 0 };
+          } else if (glitchType == "glitch-red-blue") {
+            var x = Math.random() * (6 - 4) + 4;
+            if (isTopHalf) {
+              return { x1: x, x2: x };
+            } else {
+              return { x1: -x, x2: -x };
+            }
+          } else if (glitchType == "glitch-pink-yellow") {
+            var x = Math.random() * (6 - 4) + 4;
+            if (isTopHalf) {
+              return { x1: -x, x2: -x };
+            } else {
+              return { x1: x, x2: x };
+            }
+          }
+          return { x1: 0, x2: 0 };
+        };
+
+        // Create strips
+        const strips = [];
+        let currentTop = 0;
+
+        // Choose color scheme for this container (prevent mixing pink-yellow and red-blue)
+        const colorSchemeChoice = Math.random();
+        let allowedGlitchTypes: string[];
+        if (colorSchemeChoice < 0.5) {
+          // Red-blue scheme
+          allowedGlitchTypes = [
+            "glitch-text-strip",
+            "glitch-red-blue",
+            // remove text-hole to keep visibility
+          ];
+        } else {
+          // Pink-yellow scheme
+          allowedGlitchTypes = [
+            "glitch-text-strip",
+            "glitch-pink-yellow",
+            // remove text-hole to keep visibility
+          ];
+        }
+
+        const stripCount = 1; // single soft layer like the logo's gentle motion
+
+        // Calculate how many strips should be colored (40-80% of total)
+        const minColoredStrips = 3;
+        const maxColoredStrips = 6;
+
+        // Create array of strip configurations first
+        const stripConfigs: Array<{ height: number; glitchType: string }> = [];
+
+        // Calculate strip heights with more variation
+        let remainingHeight = containerHeight;
+
+        // Generate random height multipliers for each strip (except the last one)
+        const heightMultipliers = [];
+        for (let i = 0; i < stripCount - 1; i++) {
+          // Random multiplier between 0.3 and 2.5 for varied strip sizes
+          heightMultipliers.push(0.3 + Math.random() * 2.2);
+        }
+
+        // Calculate the sum of multipliers to normalize
+        const totalMultiplier = heightMultipliers.reduce(
+          (sum, mult) => sum + mult,
+          0
+        );
+        const baseHeight = containerHeight / stripCount;
+
+        for (let i = 0; i < stripCount; i++) {
+          let actualHeight;
+          if (i === stripCount - 1) {
+            // Last strip takes remaining height
+            actualHeight = Math.max(1, remainingHeight); // Ensure minimum 1px height
+          } else {
+            // Calculate height based on normalized multiplier
+            const normalizedMultiplier =
+              heightMultipliers[i] / (totalMultiplier / (stripCount - 1));
+            actualHeight = baseHeight * normalizedMultiplier;
+            remainingHeight -= actualHeight;
+          }
+          stripConfigs.push({ height: actualHeight, glitchType: "" });
+        }
+
+        // Randomly assign glitch types - ensure 40-80% colored strips with single color scheme
+        const coloredTypes = allowedGlitchTypes.filter(
+          type => type === "glitch-red-blue" || type === "glitch-pink-yellow"
+        );
+        const nonColoredTypes = allowedGlitchTypes.filter(
+          type => type === "glitch-text-strip"
+        );
+
+        const coloredStripCount =
+          Math.floor(
+            Math.random() * (maxColoredStrips - minColoredStrips + 1)
+          ) + minColoredStrips;
+
+        // Choose single color scheme for this animation (red-blue OR pink-yellow)
+        const chosenColorType =
+          coloredTypes[Math.floor(Math.random() * coloredTypes.length)];
+
+        // Randomly select which strips will be colored
+        const stripIndices = Array.from({ length: stripCount }, (_, i) => i);
+        const shuffledIndices = stripIndices.sort(() => Math.random() - 0.5);
+        const coloredIndices = shuffledIndices.slice(0, coloredStripCount);
+
+        // Assign glitch types
+        for (let i = 0; i < stripCount; i++) {
+          if (coloredIndices.includes(i)) {
+            // This strip gets the chosen color animation
+            stripConfigs[i].glitchType = chosenColorType;
+          } else {
+            // This strip gets a non-colored animation
+            stripConfigs[i].glitchType =
+              nonColoredTypes[
+                Math.floor(Math.random() * nonColoredTypes.length)
+              ];
+          }
+        }
+
+        // Now create the actual strips based on the configurations
+        for (let i = 0; i < stripCount; i++) {
+          const config = stripConfigs[i];
+
+          // Get theme background color for initial strip color
+          const isDarkMode =
+            document.documentElement.getAttribute("data-theme") === "dark";
+          const backgroundColor = isDarkMode ? "#0f0f0f" : "#ffffff";
+
+          const strip = document.createElement("div");
+          strip.className = "glitch-strip";
+
+          // Determine if this strip is in the top half or bottom half
+          const stripCenterY = currentTop + config.height / 2;
+          const isTopHalf = stripCenterY < containerHeight / 2;
+
+          // Generate position-based values for this glitch type
+          const glitchValues = generateGlitchValues(
+            config.glitchType,
+            isTopHalf
+          );
+          const glitch_x_1 =
+            Math.sign(glitchValues.x1) * Math.min(Math.abs(glitchValues.x1), 4);
+          const glitch_x_2 =
+            Math.sign(glitchValues.x2) * Math.min(Math.abs(glitchValues.x2), 4);
+          const timing_function = "ease-in-out"; // Smoother painterly motion
+
+          const animationDuration = 1800; // ms, longer for logo-like flow
+
+          strip.style.cssText = `
+          position: absolute;
+          top: ${currentTop}px;
+          left: 0;
+          right: 0;
+          height: ${config.height}px;
+          background: inherit;
+          color: inherit;
+          font-size: inherit;
+          font-family: inherit;
+          font-weight: inherit;
+          overflow: hidden;
+          outline: none;
+          border: none;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeSpeed;
+          --glitch-x-1: ${glitch_x_1}px;
+          --glitch-x-2: ${glitch_x_2}px;
+          --glitch-text-color: ${textColor};
+          --glitch-hue-1: ${random(10, 20)}deg;
+          animation-name: logo-like-flow;
+          animation-duration: ${animationDuration}ms;
+          animation-iteration-count: 1;
+          animation-play-state: paused;
+          animation-timing-function: ${timing_function};
+          animation-fill-mode: forwards;
+        `;
+
+          // Store animation duration on the strip for later use
+          strip.dataset.animationDuration = animationDuration.toString();
+
+          // Create a span with the text and position it to show only the relevant slice
+          const textSpan = document.createElement("span");
+
+          // Occasionally apply letter replacements to glitch strips (20% chance)
+          const shouldReplaceLetters = Math.random() < 0.2;
+          const displayText =
+            shouldReplaceLetters && text ? replaceLetters(text) : text;
+
+          textSpan.textContent = displayText;
+          // Calculate vertical centering offset to match the container's flexbox centering
+          const verticalOffset = -currentTop;
+          textSpan.style.cssText = `
+       position: absolute;
+       top: ${verticalOffset}px;
+       left: 0;
+       line-height: 0.9;
+       font-size: inherit;
+       font-family: inherit;
+       font-weight: inherit;
+       letter-spacing: inherit;
+       word-spacing: inherit;
+       text-transform: inherit;
+       -webkit-font-smoothing: inherit;
+       -moz-osx-font-smoothing: inherit;
+       text-rendering: inherit;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       height: ${containerHeight}px;
+     `;
+          strip.appendChild(textSpan);
+          strips.push(strip);
+          currentTop += config.height;
+        }
+
+        return strips;
+      }
+
+      // Letter replacement animation function
+      function replaceLetters(text: string): string {
+        const replacements: { [key: string]: string } = {
+          A: "^",
+          o: "*",
+          i: "!",
+          I: "!",
+          e: "*",
+        };
+
+        // Painterly style: keep original letters to avoid breaking
+        return text;
+      }
+
+      function triggerLetterAnimation() {
+        // This function will be integrated into the glitch effect
+        // The letter animation will only happen on the glitch strips, not the main text
+      }
+
+      const heroGhostColors = [
+        "invert(61%) sepia(12%) saturate(586%) hue-rotate(349deg) brightness(89%) contrast(88%)",
+        "invert(33%) sepia(18%) saturate(714%) hue-rotate(348deg) brightness(95%) contrast(93%)",
+        "invert(52%) sepia(9%) saturate(475%) hue-rotate(344deg) brightness(95%) contrast(88%)",
+      ];
+
+      let heroGhostTimeout: ReturnType<typeof setTimeout> | null = null;
+
+      function triggerHeroGhostEffect() {
+        const lightGhost = document.querySelector(
+          ".hero-light-ghost"
+        ) as HTMLImageElement | null;
+        const darkGhost = document.querySelector(
+          ".hero-dark-ghost"
+        ) as HTMLImageElement | null;
+
+        if (!lightGhost || !darkGhost) return;
+
+        let color1 =
+          heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+        let color2 =
+          heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+
+        while (color1 === color2) {
+          color2 =
+            heroGhostColors[Math.floor(Math.random() * heroGhostColors.length)];
+        }
+
+        const ghost1Light = lightGhost.cloneNode(true) as HTMLImageElement;
+        const ghost1Dark = darkGhost.cloneNode(true) as HTMLImageElement;
+        const ghost2Light = lightGhost.cloneNode(true) as HTMLImageElement;
+        const ghost2Dark = darkGhost.cloneNode(true) as HTMLImageElement;
+
+        ghost1Light.style.filter = color1;
+        ghost1Dark.style.filter = "brightness(0) saturate(100%) " + color1;
+        ghost2Light.style.filter = color2;
+        ghost2Dark.style.filter = "brightness(0) saturate(100%) " + color2;
+        ghost1Light.style.zIndex = "1";
+        ghost1Dark.style.zIndex = "1";
+        ghost2Light.style.zIndex = "0";
+        ghost2Dark.style.zIndex = "0";
+
+        const parent = lightGhost.parentElement;
+        if (!parent) return;
+
+        parent.appendChild(ghost1Light);
+        parent.appendChild(ghost1Dark);
+        parent.appendChild(ghost2Light);
+        parent.appendChild(ghost2Dark);
+
+        ghost1Light.classList.add("ghost-effect");
+        ghost1Dark.classList.add("ghost-effect");
+        ghost2Light.classList.add("ghost-effect-2");
+        ghost2Dark.classList.add("ghost-effect-2");
+
+        setTimeout(() => {
+          [ghost1Light, ghost1Dark, ghost2Light, ghost2Dark].forEach(el => {
+            if (el.parentElement) el.parentElement.removeChild(el);
+          });
+        }, 3000);
+      }
+
+      function scheduleHeroGhostEffect() {
+        if (heroGhostTimeout) {
+          clearTimeout(heroGhostTimeout);
+        }
+
+        const delay = Math.random() * (65000 - 55000) + 55000;
+        heroGhostTimeout = setTimeout(() => {
+          triggerHeroGhostEffect();
+          scheduleHeroGhostEffect();
+        }, delay);
+      }
+
+      function setupHeroGhostTriggers() {
+        const heroLogoContainer = document.querySelector(
+          ".hero-logo-container"
+        ) as HTMLElement | null;
+        if (!heroLogoContainer || heroLogoContainer.dataset.ghostBound === "1")
+          return;
+
+        heroLogoContainer.dataset.ghostBound = "1";
+        let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+        const triggerOnHover = () => {
+          if (hoverTimeout) return;
+          triggerHeroGhostEffect();
+          hoverTimeout = setTimeout(() => {
+            hoverTimeout = null;
+          }, 2500);
+        };
+
+        const heroHitArea = heroLogoContainer.querySelector(
+          ".hero-logo-hit-area"
+        );
+        const heroTagline = document.querySelector(".hero-tagline");
+        const triggerTargets: EventTarget[] = [
+          heroLogoContainer,
+          ...(heroHitArea ? [heroHitArea] : []),
+          ...(heroTagline ? [heroTagline] : []),
+          ...Array.from(heroLogoContainer.querySelectorAll(".hero-logo")),
+        ];
+
+        triggerTargets.forEach(target => {
+          target.addEventListener("mouseenter", triggerOnHover);
+          target.addEventListener("focusin", triggerOnHover);
+          target.addEventListener("touchstart", triggerOnHover, {
+            passive: true,
+          });
+          target.addEventListener("click", triggerHeroGhostEffect);
+        });
+      }
+
+      function triggerGlitchEffect() {
+        const containers = document.querySelectorAll(".glitch-container");
+
+        if (containers.length > 0) {
+          // Set animation in progress flag
+          isAnimationInProgress = true;
+          // Randomly select 1-3 containers
+          const numContainers = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
+          const selectedContainers = [];
+
+          // Create a copy of containers array and shuffle it
+          const availableContainers = Array.from(containers);
+          for (let i = availableContainers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [availableContainers[i], availableContainers[j]] = [
+              availableContainers[j],
+              availableContainers[i],
+            ];
+          }
+
+          // Select the first numContainers
+          for (
+            let i = 0;
+            i < numContainers && i < availableContainers.length;
+            i++
+          ) {
+            selectedContainers.push(availableContainers[i]);
+          }
+
+          // Calculate the total duration for all animations to complete
+          // Account for the new longer stagger delays (max possible delay)
+          const maxStaggerDelay =
+            selectedContainers.length > 0
+              ? (selectedContainers.length - 1) * 3500 + 800
+              : 0;
+          const totalAnimationDuration =
+            maxStaggerDelay +
+            2000 +
+            GLITCH_STRIPS_FADE_DURATION * 0.25 +
+            STATIC_TEXT_FADE_DURATION +
+            TIMING_BUFFER; // stagger + animation + fade delays + cleanup
+
+          // Clear the animation flag after all animations are complete
+          setTimeout(() => {
+            isAnimationInProgress = false;
+          }, totalAnimationDuration);
+
+          // Apply glitch effect to each selected container with staggered delays
+          selectedContainers.forEach((container, index) => {
+            // Calculate staggered delay with more separation between glitches
+            // Base delay increases significantly for each container
+            const baseDelay = index * (1000 + Math.random() * 1000); // 2-3.5s between each glitch
+            const randomOffset = Math.random() * 800; // Add some randomness
+            const delay = baseDelay + randomOffset;
+
+            setTimeout(() => {
+              // Clear existing strips
+              container
+                .querySelectorAll(".glitch-strip")
+                .forEach(strip => strip.remove());
+
+              // Generate new strips
+              const strips = generateGlitchStrips(container as HTMLElement);
+
+              // Add strips to container
+              strips.forEach(strip => {
+                container.appendChild(strip);
+              });
+
+              // Set container movement variable
+              // const containerMovementx1 = random(-20, 30);
+              // const containerMovementx2 = random(-50, -20);
+              // const containerMovementy1 = random(-2, 2);
+              // const containerMovementy2 = random(-2, 2);
+              // container.style.setProperty('--glitch-container-x-1', `${containerMovementx1}px`);
+              // container.style.setProperty('--glitch-container-x-2', `${containerMovementx2}px`);
+              // container.style.setProperty('--glitch-container-y-1', `${containerMovementy1}px`);
+              // container.style.setProperty('--glitch-container-y-2', `${containerMovementy2}px`);
+
+              // Start strip animations immediately
+              strips.forEach(strip => {
+                strip.style.animationPlayState = "running";
+              });
+
+              // Start fading out the background text immediately for smooth transition
+              setTimeout(() => {
+                container.classList.add("glitch-active");
+              }, 0);
+
+              // Calculate cleanup timeout based on actual animation duration
+              const maxAnimationDuration = Math.max(
+                ...strips.map(strip =>
+                  parseInt(strip.dataset.animationDuration || "2000")
+                )
+              );
+              const glitchAnimationEnd = maxAnimationDuration + TIMING_BUFFER;
+
+              // First phase: Fade out glitch strips when animation completes
+              setTimeout(() => {
+                strips.forEach(strip => {
+                  strip.style.animationPlayState = "paused";
+                  strip.classList.add("fade-out");
+                });
+              }, glitchAnimationEnd);
+
+              // Second phase: Start background text fade-in when strips are mostly faded out
+              const stripsFadeOutDelay = Math.floor(
+                GLITCH_STRIPS_FADE_DURATION * 0.25
+              ); // Start when strips are 25% faded
+              setTimeout(() => {
+                // Fade the background text back in
+                container.classList.remove("glitch-active");
+
+                // Remove strips after their fade transition completes
+                setTimeout(() => {
+                  strips.forEach(strip => {
+                    strip.remove();
+                  });
+                }, GLITCH_STRIPS_FADE_DURATION + TIMING_BUFFER);
+              }, glitchAnimationEnd + stripsFadeOutDelay);
+            }, delay);
+          });
+        }
+      }
+
+      // Trigger glitch for a specific container (used for hover/focus)
+      function triggerGlitchForContainer(container: HTMLElement) {
+        if (!container || container.dataset.animating === "1") return;
+        container.dataset.animating = "1";
+
+        // Clear existing strips
+        container
+          .querySelectorAll(".glitch-strip")
+          .forEach(strip => strip.remove());
+
+        // Generate new strips
+        const strips = generateGlitchStrips(container as HTMLElement);
+
+        // Add strips to container
+        strips.forEach(strip => {
+          container.appendChild(strip);
+        });
+
+        // Start strip animations immediately
+        strips.forEach(strip => {
+          strip.style.animationPlayState = "running";
+        });
+
+        // Fade the background text out
+        setTimeout(() => {
+          container.classList.add("glitch-active");
+        }, 0);
+
+        // Calculate cleanup timeout based on actual animation duration
+        const maxAnimationDuration = Math.max(
+          ...strips.map(strip =>
+            parseInt(strip.dataset.animationDuration || "2000")
+          )
+        );
+        const glitchAnimationEnd = maxAnimationDuration + TIMING_BUFFER;
+
+        // First phase: Fade out glitch strips when animation completes
+        setTimeout(() => {
+          strips.forEach(strip => {
+            strip.style.animationPlayState = "paused";
+            strip.classList.add("fade-out");
+          });
+        }, glitchAnimationEnd);
+
+        // Second phase: Start background text fade-in when strips are mostly faded out
+        const stripsFadeOutDelay = Math.floor(
+          GLITCH_STRIPS_FADE_DURATION * 0.25
+        );
+        setTimeout(() => {
+          container.classList.remove("glitch-active");
+          // Remove strips after their fade transition completes
+          setTimeout(() => {
+            strips.forEach(strip => {
+              strip.remove();
+            });
+            delete container.dataset.animating;
+          }, GLITCH_STRIPS_FADE_DURATION + TIMING_BUFFER);
+        }, glitchAnimationEnd + stripsFadeOutDelay);
+      }
+
+      // Define fade duration constants (should match CSS transition duration)
+      const STATIC_TEXT_FADE_DURATION = 100; // ms - matches CSS transition: opacity 100ms ease-in-out
+      const GLITCH_STRIPS_FADE_DURATION = 800; // ms - glitch strips still use 800ms for smoother fade-out
+      const TIMING_BUFFER = 100; // ms - small buffer for timing reliability
+
+      let glitchTimeout: ReturnType<typeof setTimeout> | null = null;
+      let isAnimationInProgress = false;
+
+      function scheduleGlitchEffect() {
+        // Clear any existing timeout to prevent multiple loops
+        if (glitchTimeout) {
+          clearTimeout(glitchTimeout);
+        }
+
+        const minDelay = 5000; // 1 second
+        const maxDelay = 10000; // 2 seconds
+        const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+
+        glitchTimeout = setTimeout(() => {
+          // Only trigger if no animation is currently in progress
+          if (!isAnimationInProgress) {
+            triggerGlitchEffect();
+          }
+          scheduleGlitchEffect();
+        }, delay);
+      }
+
+      // Initialize glitch effect (letter animation is now integrated)
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(scheduleGlitchEffect, 0);
+        setTimeout(scheduleHeroGhostEffect, 60000);
+        setupHeroGhostTriggers();
+        // Hover/focus-triggered glitch on specific keyword
+        const wireHoverGlitch = () => {
+          document.querySelectorAll(".glitch-container").forEach(el => {
+            const container = el as HTMLElement;
+            container.addEventListener("mouseenter", () =>
+              triggerGlitchForContainer(container)
+            );
+            container.addEventListener("focusin", () =>
+              triggerGlitchForContainer(container)
+            );
+            // Optional: light tap support
+            container.addEventListener(
+              "touchstart",
+              () => triggerGlitchForContainer(container),
+              { passive: true }
+            );
+          });
+        };
+        wireHoverGlitch();
+      });
+
+      // Re-setup on view transitions
+      document.addEventListener("astro:after-swap", () => {
+        scheduleGlitchEffect();
+        scheduleHeroGhostEffect();
+        setupHeroGhostTriggers();
+        // Re-bind listeners for newly swapped content
+        document.querySelectorAll(".glitch-container").forEach(el => {
+          const container = el as HTMLElement;
+          container.addEventListener("mouseenter", () =>
+            triggerGlitchForContainer(container)
+          );
+          container.addEventListener("focusin", () =>
+            triggerGlitchForContainer(container)
+          );
+          container.addEventListener(
+            "touchstart",
+            () => triggerGlitchForContainer(container),
+            { passive: true }
+          );
+        });
+      });
+    </script>
+  </main>
+  <style>
+    .subscription-nav { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgb(var(--color-border)); background: rgb(var(--color-card-muted)); border-radius: 100px; padding: .65rem .85rem; font: 600 .8rem 'Work Sans', sans-serif; white-space: nowrap; }
+    .subscription-nav:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  </style>
+  <Footer />
+</Layout>

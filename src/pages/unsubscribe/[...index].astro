@@ -1,0 +1,28 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import SubscriptionForm from '@components/subscription/SubscriptionForm.astro';
+export function getStaticPaths() { return [{params:{index:undefined}}]; }
+---
+<Layout title="Unsubscribe | ai-phi">
+ <Header />
+ <main id="main-content" class="subscribe-page unsubscribe-page">
+  <section class="journey-block page">
+   <h1>Unsubscribe.</h1>
+   <p>Enter the email address you use for ai-phi updates.</p>
+   <div class="form-wrap"><SubscriptionForm id="unsubscribe" unsubscribe nameField={false} reassurance="" emailPlaceholder="your@email.com" /></div>
+   <p class="email-alternative">You can also use the unsubscribe link in any ai-phi newsletter.</p>
+  </section>
+ </main>
+ <Footer />
+</Layout>
+<style>
+ .unsubscribe-page { width: calc(100% - 2rem); max-width: 32rem; margin: 3rem auto; font-family: 'Work Sans',sans-serif; }
+ .unsubscribe-page .page { display: block; }
+ h1 { font: 500 3rem/1.15 'Velvelyne',serif; margin-bottom: 1rem; }
+ p { line-height: 1.7; }
+ .form-wrap { margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--quiet-rule); border-radius: .8rem; }
+ .email-alternative { margin-top: 1rem; font-size: .8rem; color: var(--quiet-muted); }
+ :global(.unsubscribe-page .fields) { grid-template-columns: 1fr; }
+</style>

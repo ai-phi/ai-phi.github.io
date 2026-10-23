@@ -1,0 +1,251 @@
+/* Shared pigment progression: sand, earth, orange flame, gold, yellow tip. */
+html[data-refinement='custom'] {
+  --custom-pigment-stops: rgb(var(--color-card-muted)) 0%,
+    rgb(var(--color-accent)) 45%,
+    rgb(var(--glitch-warm-1)) 72%,
+    #ffbd24 90%,
+    #ffe45c 100%;
+}
+
+/* Custom: a shared sand/brown treatment for the homepage signup and footer. */
+html[data-refinement='custom'][data-theme] :is(.journey-block.home,.journey-block.footer) {
+  --signup-ink: rgb(var(--color-text-base));
+  --signup-muted: #6d5a49;
+  --signup-input: rgb(var(--color-fill));
+  --signup-border: rgb(var(--color-card-muted));
+  --signup-button: rgb(var(--color-accent));
+  --signup-button-text: rgb(var(--color-fill));
+}
+html[data-refinement='custom'][data-theme='dark'] :is(.journey-block.home,.journey-block.footer) {
+  --signup-muted: #c6b59e;
+}
+/* The exact wash used by the lead card on Posts. */
+html[data-refinement='custom'][data-theme] :is(.journey-block.home,.journey-footer) {
+  background: rgba(var(--color-card-muted), .28);
+}
+html[data-refinement='custom'][data-theme] .journey-block.home {
+  box-shadow: 0 3px 10px -3px rgb(86 57 34 / 12%), 0 1px 3px rgb(86 57 34 / 5%);
+  border-left: 4px solid rgb(var(--color-card-muted));
+  border-image: linear-gradient(180deg,
+    var(--custom-pigment-stops)) 1;
+}
+html[data-refinement='custom'][data-theme] .journey-footer {
+  color: rgb(var(--color-text-base));
+  border-top: 2px solid rgb(var(--color-card-muted));
+  border-image: linear-gradient(90deg,
+    var(--custom-pigment-stops)) 1;
+}
+html[data-refinement='custom'][data-theme] .journey-footer .footer-bottom {
+  color: rgb(var(--color-accent));
+  border-color: rgb(var(--color-card-muted));
+}
+html[data-refinement='custom'] :is(.journey-block.home,.journey-block.footer) :is(h2,.eyebrow) {
+  color: rgb(var(--color-accent));
+}
+html[data-refinement='custom'] :is(.journey-block.home,.journey-footer) :is(input,button,a):focus-visible {
+  outline-color: rgb(var(--color-accent));
+}
+
+/* A quiet lift in dark mode, without adding a glow or hover movement. */
+html[data-refinement='custom'][data-theme='dark'] .journey-block.home {
+  box-shadow: 0 3px 10px -3px rgb(0 0 0 / 28%), 0 1px 3px rgb(0 0 0 / 16%);
+}
+
+/* Subscribe belongs to the existing navigation, with a quiet accent. */
+html[data-refinement='custom'] #main-nav-items a.custom-subscribe {
+  color: rgb(var(--color-accent));
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--color-accent), .45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .25em;
+}
+html[data-refinement='custom'] #main-nav-items a.custom-subscribe:is(:hover,[aria-current='page']) {
+  text-decoration-color: currentColor;
+}
+html[data-refinement='custom'] #main-nav-items a.custom-subscribe:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 5px;
+}
+
+/* Announcement cards retain their sand fill and echo the signup pigment edge. */
+html[data-refinement='custom'][data-theme] #hero section[aria-labelledby='sessions-announcement-heading'] [data-card-link] {
+  background: rgb(var(--color-card-muted));
+  border: 0;
+  border-left: 4px solid rgb(var(--color-card-muted));
+  border-image: linear-gradient(180deg,
+    var(--custom-pigment-stops)) 1;
+  border-radius: 0 .8rem .8rem 0;
+}
+html[data-refinement='custom'] #hero section[aria-labelledby='sessions-announcement-heading'] [data-card-link] > div:first-child {
+  background: transparent;
+}
+
+
+/* Selected solid earth capsule. */
+html[data-refinement='custom'] #hero section[aria-labelledby='sessions-announcement-heading'] .identity-formats li {
+ color: rgb(var(--color-fill)); font-weight: 500; padding: .2rem .65rem;
+ border: 1px solid rgb(var(--color-accent)); border-radius: .35rem;
+ background: rgb(var(--color-accent));
+}
+
+/* Selected compact signup: same centred 48rem width as announcements. */
+html[data-refinement='custom'][data-signup-layout] #hero .journey-block.home {
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: 1.25rem;
+  gap: 1.25rem;
+}
+html[data-refinement='custom'][data-signup-layout] #hero .journey-block.home :is(.invitation,.form-wrap) {
+  min-width: 0;
+}
+html[data-refinement='custom'][data-signup-layout='horizontal'] #hero .journey-block.home {
+  grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr);
+  gap: 1.25rem;
+}
+html[data-refinement='custom'][data-signup-layout='horizontal'] #hero .journey-block.home .eyebrow { display: none; }
+html[data-refinement='custom'][data-signup-layout='horizontal'] #hero .journey-block.home h2 { font-size: 1.75rem; margin-bottom: .35rem; }
+@media (max-width: 800px) {
+  html[data-refinement='custom'][data-signup-layout] #hero .journey-block.home { grid-template-columns: minmax(0,1fr); }
+}
+
+/* Compact columns: match control heights so both top and bottom edges align. */
+html[data-refinement='custom'] .journey-block:is(.home,.footer) :is(input[type='email'],button[type='submit']) {
+  box-sizing: border-box;
+  height: 3.25rem;
+  min-height: 3.25rem;
+}
+
+/* Give the input edge comparable visual weight to the solid button. */
+html[data-refinement='custom'] .journey-block:is(.home,.footer) input[type='email'] {
+  border: 2px solid rgba(var(--color-accent), .8);
+}
+
+
+/* Selected diagonal light, anchored in the original sand. */
+html[data-refinement='custom'] {
+  --sand: rgb(var(--color-card-muted));
+  --sand-light: color-mix(in srgb, var(--sand), white 22%);
+  --sand-deep: color-mix(in srgb, var(--sand), black 12%);
+}
+html[data-refinement='custom'][data-theme='dark'] {
+  --sand-light: color-mix(in srgb, var(--sand), white 8%);
+  --sand-deep: color-mix(in srgb, var(--sand), black 22%);
+}
+html[data-refinement='custom'][data-theme] #hero section[aria-labelledby='sessions-announcement-heading'] [data-card-link] {
+  background-color: rgb(var(--color-card-muted));
+  background-image: linear-gradient(135deg, var(--sand) 0%, var(--sand-light) 35%, var(--sand) 65%, var(--sand-deep) 100%);
+}
+html[data-refinement='custom'] #hero section[aria-labelledby='sessions-announcement-heading'] [data-card-link] a svg {
+  fill: currentColor;
+}
+
+/* One treatment for the homepage's collection links. */
+html[data-refinement='custom'] #hero :is(.all-posts-button,.all-videos-link > a) {
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  color: rgb(var(--color-accent));
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+}
+html[data-refinement='custom'] #hero :is(.all-posts-button,.all-videos-link > a):hover {
+  text-decoration-thickness: 2px;
+}
+html[data-refinement='custom'] #hero :is(.all-posts-button,.all-videos-link > a):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+html[data-refinement='custom'] #hero :is(.all-posts-button,.all-videos-link > a) svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+@media (min-width: 768px) {
+  html[data-refinement='custom'] #hero :is(.all-posts-button,.all-videos-link > a) { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-refinement='custom'] #hero section[aria-labelledby='sessions-announcement-heading'] .identity-formats li {
+    animation: none;
+  }
+}
+
+/* Subscribe ignition trial: the button warms up without moving its label. */
+html[data-refinement='custom'] .journey-block:is(.home,.footer,.page) button[type='submit'] {
+  transition: box-shadow .25s ease, color .2s ease;
+}
+html[data-refinement='custom'] .journey-block:is(.home,.footer,.page) button[type='submit']:not(:disabled):is(:hover,:focus-visible),
+html[data-refinement='custom'] .journey-block:is(.page,.footer) form:not([aria-busy='true']) button[type='submit']:is(:hover,:focus-visible) {
+  background: linear-gradient(115deg, #ff790f 0%, #ffb52d 28%, #ffe477 50%, #ffb52d 72%, #ff790f 100%);
+  background-size: 220% 100%;
+  color: #321b0d;
+  filter: none;
+  box-shadow: 0 0 0 1px #d96b18, 0 2px 10px rgb(243 124 13 / 35%), 0 0 22px rgb(255 181 45 / 28%);
+  animation: subscribe-embers 2.8s ease-in-out infinite alternate;
+}
+@keyframes subscribe-embers {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refinement='custom'] .journey-block:is(.home,.footer,.page) button[type='submit'] {
+    transition: none;
+  }
+  html[data-refinement='custom'] .journey-block:is(.home,.footer,.page) button[type='submit']:not(:disabled):is(:hover,:focus-visible),
+html[data-refinement='custom'] .journey-block:is(.page,.footer) form:not([aria-busy='true']) button[type='submit']:is(:hover,:focus-visible) {
+    animation: none;
+  }
+}
+
+/* Keep the normal email border on focus, without an extra ring or added weight. */
+html[data-refinement='custom'] .journey-block:is(.home,.footer) input[type='email']:focus {
+  outline: none;
+  box-shadow: none;
+}
+@media (forced-colors: active) {
+  html[data-refinement='custom'] .journey-block:is(.home,.footer) input[type='email']:focus {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}
+
+/* Moving pigment confined to the footer's existing two-pixel top edge. */
+html[data-refinement='custom'][data-theme] .journey-footer {
+  position: relative;
+  border-top-color: transparent;
+  border-image: none;
+}
+html[data-refinement='custom'][data-theme] .journey-footer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgb(var(--color-card-muted)) 0%, rgb(var(--color-accent)) 20%,
+    #f37c0d 38%, #ffbd24 48%, #ffe45c 55%,
+    #f37c0d 68%, rgb(var(--color-accent)) 83%, rgb(var(--color-card-muted)) 100%);
+  background-size: 300% 100%;
+  animation: footer-pigment-slide 12s ease-in-out infinite alternate;
+}
+@keyframes footer-pigment-slide {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refinement='custom'][data-theme] .journey-footer::before {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
+/* Page and footer buttons show hover colour while security verification loads. */
+html[data-refinement='custom'] .journey-block:is(.page,.footer) form:not([aria-busy='true']) button[type='submit']:is(:hover,:focus-visible) {
+  opacity: 1;
+}

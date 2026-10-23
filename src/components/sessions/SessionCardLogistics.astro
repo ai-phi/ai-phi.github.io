@@ -1,0 +1,26 @@
+---
+import { LOCALE } from "@config";
+interface Props { date: Date; location?: string }
+const { date, location } = Astro.props;
+const displayDate = date.toLocaleDateString(LOCALE.langTag, { day: 'numeric', month: 'short', year: 'numeric', timeZone: LOCALE.timeZone ?? 'Europe/Paris' });
+const displayTime = date.toLocaleTimeString(LOCALE.langTag, { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: LOCALE.timeZone ?? 'Europe/Paris' });
+---
+<div class="session-logistics">
+  <p>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V3a1 1 0 0 1 1-1ZM4 9v11h16V9H4Zm3 3h3v3H7v-3Zm7 0h3v3h-3v-3ZM7 16h3v2H7v-2Z"/></svg>
+    <time datetime={date.toISOString()}>{displayDate} · {displayTime} <span class="timezone">(Paris time)</span></time>
+  </p>
+  {location && <p>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg>
+    <span>{location}</span>
+  </p>}
+</div>
+<style>
+ .session-logistics { margin-top: .65rem; color: rgb(var(--color-text-base)); font: 400 .8rem/1.6 'Work Sans', sans-serif; }
+ p { display: flex; align-items: flex-start; gap: .5rem; margin: 0; }
+ p + p { margin-top: .25rem; }
+ .session-logistics svg { fill: currentColor; stroke: none; width: 1.2rem; height: 1.2rem; flex: 0 0 1.2rem; margin-top: .05rem; color: #503c2c; }
+ :global(html[data-theme="dark"]) .session-logistics svg { color: #ead8bf; }
+ time, p > span { min-width: 0; }
+ .timezone { white-space: nowrap; }
+</style>

@@ -1,0 +1,30 @@
+/* Selected featured announcement: moving pigment on the original left edge only. */
+html[data-refinement="custom"][data-home-palette][data-theme] #hero [data-featured-announcement] [data-card-link] {
+  position: relative;
+  border-image: none;
+  border-left-color: transparent;
+}
+html[data-refinement="custom"][data-home-palette][data-theme] #hero [data-featured-announcement] [data-card-link]::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 -4px;
+  width: 4px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(180deg,
+    rgb(var(--color-card-muted)) 0%, rgb(var(--color-accent)) 20%,
+    #f37c0d 38%, #ffbd24 48%, #ffe45c 55%, #f37c0d 68%,
+    rgb(var(--color-accent)) 83%, rgb(var(--color-card-muted)) 100%);
+  background-size: 100% 300%;
+  animation: featured-edge-slide 8s ease-in-out infinite alternate;
+}
+@keyframes featured-edge-slide {
+  from { background-position: 0% 0%; }
+  to { background-position: 0% 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-refinement="custom"][data-home-palette][data-theme] #hero [data-featured-announcement] [data-card-link]::before {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}

@@ -1,0 +1,37 @@
+/* Selected Earth layers for the local Custom homepage. */
+html[data-refinement="custom"][data-home-palette="strata"][data-theme="light"] {
+  --color-card-muted: 206,194,177;
+  --color-accent: 105,81,62;
+  --color-fill: 255,255,255;
+  --color-text-base: 0,0,0;
+  --home-panel: #eee9e0;
+  --home-footer: var(--home-panel);
+}
+html[data-refinement="custom"][data-home-palette="strata"][data-theme="dark"] {
+  --color-card-muted: 76,65,52;
+  --color-accent: 222,199,168;
+  --color-fill: 5,5,5;
+  --color-text-base: 255,255,255;
+  --home-panel: #2d2924;
+  --home-footer: var(--home-panel);
+}
+html[data-refinement="custom"][data-home-palette][data-theme] .journey-block.home {
+  background: var(--home-panel);
+}
+html[data-refinement="custom"][data-home-palette][data-theme] .journey-footer {
+  background: var(--home-footer);
+}
+html[data-refinement="custom"][data-home-palette][data-theme] .journey-block:is(.home,.footer) {
+  --signup-muted: #584b3d;
+  --signup-button-text: #fff;
+}
+html[data-refinement="custom"][data-home-palette][data-theme="dark"] .journey-block:is(.home,.footer) {
+  --signup-muted: #c8bba7;
+  --signup-button-text: #211a12;
+}
+html[data-refinement="custom"][data-home-palette][data-theme] #hero section[aria-labelledby="sessions-announcement-heading"] .identity-formats li {
+  --pill-surface: #f7f4ef;
+}
+html[data-refinement="custom"][data-home-palette][data-theme="dark"] #hero section[aria-labelledby="sessions-announcement-heading"] .identity-formats li {
+  --pill-surface: #2d2924;
+}

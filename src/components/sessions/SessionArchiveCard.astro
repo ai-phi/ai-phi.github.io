@@ -42,7 +42,7 @@ const speakers = data.speakers.filter(
         <span aria-hidden="true">·</span>
         <time datetime={date.toISOString()}>{dateLabel}</time>
         <span aria-hidden="true">·</span>
-        <span>{getArchiveSessionFormat(session)}</span>
+        <span class="archive-format">{getArchiveSessionFormat(session)}</span>
       </p>
       <h4>{data.title}</h4>
       {

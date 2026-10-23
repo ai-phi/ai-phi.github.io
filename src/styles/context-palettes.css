@@ -1,0 +1,23 @@
+/* Selected Pale wash for the Custom session subscription invitation. */
+html[data-refinement="custom"][data-theme="light"] .session-study .journey-block.context {
+  --context-surface: #f6f3ee;
+  --context-title: #69513e;
+  --signup-ink: #352d25;
+  --signup-muted: #706354;
+  --context-edge: #c2b39e;
+}
+html[data-refinement="custom"][data-theme="dark"] .session-study .journey-block.context {
+  --context-surface: #211e1a;
+  --context-title: #d3bea2;
+  --signup-ink: #eee7dc;
+  --signup-muted: #c8bba7;
+  --context-edge: #94816b;
+}
+html[data-refinement="custom"][data-theme] .session-study .journey-block.context {
+  color: var(--signup-ink);
+  background: var(--context-surface);
+  border-color: var(--context-edge);
+}
+html[data-refinement="custom"][data-theme] .session-study .journey-block.context :is(h2,.context-link) { color: var(--context-title); }
+html[data-refinement="custom"][data-theme] .session-study .journey-block.context .eyebrow { color: var(--signup-muted); }
+html[data-refinement="custom"][data-theme] .session-study .journey-block.context .description { color: var(--signup-ink); }

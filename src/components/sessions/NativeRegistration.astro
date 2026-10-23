@@ -1,20 +1,24 @@
 ---
+import { getContactRevision, subscriptionHref } from '@utils/contactRevision';
 import forms from '../../registration/forms.json';
 interface Props { eventId: string; fallbackUrl?: string; }
 const { eventId, fallbackUrl } = Astro.props;
 const event = forms.events[eventId as keyof typeof forms.events];
 if (!event) throw new Error(`Unknown registration event: ${eventId}`);
 const ready = Boolean(forms.endpoint && forms.turnstileSiteKey);
+const revision = getContactRevision(Astro.url, Astro.locals);
 const fields = event.fields.filter(field => field.visible !== false);
 ---
 <ai-phi-registration data-event={eventId} data-endpoint={forms.endpoint} data-sitekey={forms.turnstileSiteKey}>
   <form class="native-registration" aria-label="Session registration" novalidate>
-    {"attendanceNote" in event && <p class="attendance-note"><strong>{event.attendanceNote}</strong></p>}
-    {"recordingNote" in event && "updatesUrl" in event && <p class="recording-note">{event.recordingNote} <a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>}
-    <p class="privacy-note">Your details will be used by ai-phi to organise this session and the gathering afterwards. Fields marked * are required.</p>
+    {revision ? <h3 class="registration-title">Registration <span>(in-person only)</span></h3> : <>
+      {"attendanceNote" in event && <p class="attendance-note"><strong>{event.attendanceNote}</strong></p>}
+      <p class="recording-note">{event.recordingNote} <a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>
+      <p class="privacy-note">Your details will be used by ai-phi to organise this session and the gathering afterwards. Fields marked * are required.</p>
+    </>}
     <div class="registration-fields">
       {fields.map(field => (
-        <div class:list={['registration-field', { 'checkbox-field': field.type === 'checkbox' }]}>
+        <div class:list={['registration-field', { 'checkbox-field': field.type === 'checkbox', 'email-field': field.name === 'email' }]}>
           <label for={`registration-${field.name}`}>
             {field.type === 'checkbox' && <input id={`registration-${field.name}`} name={field.name} type="checkbox" required={field.required} aria-describedby={`${"help" in field ? `registration-${field.name}-help ` : ""}registration-${field.name}-error`} />}
             <span>{field.label}{field.required && <span aria-hidden="true"> *</span>}</span>
@@ -29,33 +33,15 @@ const fields = event.fields.filter(field => field.visible !== false);
     <div data-challenge></div>
     <p data-status role="status" aria-live="polite"></p>
     <button type="submit" disabled>{ready ? 'Register' : 'Registration opens shortly'}</button>
+    {revision && <p class="attendance-summary">Please note that this is an in-person event only (no remote attendance). A recording will be released on YouTube after the event. <a href={subscriptionHref(Astro.url, Astro.locals)}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>}
     <noscript><p>Please enable JavaScript to use this form.</p></noscript>
   </form>
   <div class="registration-success" data-success hidden tabindex="-1" role="status">
-    <p data-success-message></p><p data-dinner-message></p>
+    <p data-success-message></p><p data-dinner-message></p><p data-newsletter-message></p>
   </div>
-  {fallbackUrl && <p class="form-fallback">Having trouble? <a href={fallbackUrl} target="_blank" rel="noopener noreferrer">Open the alternative registration form</a>.</p>}
 </ai-phi-registration>
 <script>
-  type Turnstile = {
-    render: (element: HTMLElement, options: Record<string, unknown>) => string;
-    reset: (widgetId: string) => void;
-  };
-  const api = () => (window as unknown as { turnstile?: Turnstile }).turnstile;
-  let loading: Promise<Turnstile> | undefined;
-  function loadTurnstile(): Promise<Turnstile> {
-    if (api()) return Promise.resolve(api()!);
-    if (loading) return loading;
-    loading = new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-      script.async = true;
-      script.onload = () => api() ? resolve(api()!) : reject(new Error('Challenge unavailable'));
-      script.onerror = () => reject(new Error('Challenge unavailable'));
-      document.head.append(script);
-    });
-    return loading;
-  }
+  import { loadTurnstile, turnstileApi as api } from '../../utils/turnstile';
   class Registration extends HTMLElement {
     connectedCallback() {
       if (this.dataset.initialized) return;
@@ -85,12 +71,12 @@ const fields = event.fields.filter(field => field.visible !== false);
       if (this.dataset.endpoint && this.dataset.sitekey) {
         loadTurnstile().then(turnstile => {
           widget = turnstile.render(this.querySelector<HTMLElement>('[data-challenge]')!, {
-            sitekey: this.dataset.sitekey, action: 'registration', theme: 'auto', size: 'flexible',
+            sitekey: this.dataset.sitekey, action: 'registration', theme: 'auto', size: 'flexible', appearance: 'interaction-only',
             callback: (value: string) => { token = value; if (!sending && !finished) button.disabled = false; },
             'expired-callback': () => { token = ''; button.disabled = true; status.textContent = 'Please complete the security check again.'; turnstile.reset(widget); },
-            'error-callback': () => { token = ''; button.disabled = true; status.textContent = 'The security check could not load. Please reload the page or use the alternative form.'; },
+            'error-callback': () => { token = ''; button.disabled = true; status.textContent = 'The security check could not load. Please reload the page or contact ai.phi.club@gmail.com.'; },
           });
-        }).catch(() => { status.textContent = 'The security check could not load. Please reload the page or use the alternative form.'; });
+        }).catch(() => { status.textContent = 'The security check could not load. Please reload the page or contact ai.phi.club@gmail.com.'; });
       }
       form.addEventListener('submit', async event => {
         event.preventDefault();
@@ -104,7 +90,7 @@ const fields = event.fields.filter(field => field.visible !== false);
         for (const input of inputs.filter(input => input.name !== 'website')) fields[input.name] = input.type === 'checkbox' ? input.checked : input.value.trim();
         try {
           const response = await fetch(this.dataset.endpoint, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(30000),
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: AbortSignal.timeout(90000),
             body: JSON.stringify({ event: this.dataset.event, submissionId, fields, website: form.querySelector<HTMLInputElement>('[name="website"]')!.value, turnstileToken: token }),
           });
           const result = await response.json();
@@ -125,6 +111,7 @@ const fields = event.fields.filter(field => field.visible !== false);
           const success = this.querySelector<HTMLElement>('[data-success]')!;
           success.querySelector('[data-success-message]')!.textContent = result.message;
           success.querySelector('[data-dinner-message]')!.textContent = result.dinnerMessage;
+          success.querySelector('[data-newsletter-message]')!.textContent = result.newsletterMessage ?? '';
           success.hidden = false; success.focus();
           try { sessionStorage.removeItem(storageKey); } catch { /* No stored PII. */ }
         } catch {

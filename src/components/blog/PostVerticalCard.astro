@@ -1,4 +1,5 @@
 ---
+import SessionCardLogistics from "@components/sessions/SessionCardLogistics.astro";
 import { SITE, LOCALE } from "@config";
 import SessionIdentity from "@components/sessions/SessionIdentity.astro";
 import type { SessionIdentity as SessionIdentityData } from "@utils/getSessionIdentity";
@@ -9,9 +10,12 @@ interface Props {
   sessionIdentity?: SessionIdentityData;
   date?: string | Date;
   author?: string;
+  sessionLogistics?: boolean;
+  location?: string;
   description?: string;
   ogImage?: string;
   href: string;
+  linkLabel?: string;
   expanded?: boolean;
 }
 
@@ -20,10 +24,13 @@ const {
   eyebrow,
   sessionIdentity,
   date,
+  sessionLogistics = false,
+  location,
   author = SITE.author ?? "ai-phi",
   description,
   ogImage,
   href,
+  linkLabel = "Check details",
   expanded = false,
 } = Astro.props as Props;
 
@@ -101,14 +108,14 @@ const displayTime = dateValue
     </h3>
 
     {
-      dateValue && (
+      dateValue && (sessionLogistics ? <SessionCardLogistics date={dateValue} location={location} /> : (
         <p class="mt-2 text-base font-medium text-skin-base opacity-80">
           <time datetime={dateValue.toISOString()}>{displayDate}</time>
           <span aria-hidden="true"> · </span>
           <span class="text-nowrap">{displayTime}</span>
           <span aria-hidden="true"> · </span>by {author}
         </p>
-      )
+      ))
     }
 
     {
@@ -128,10 +135,11 @@ const displayTime = dateValue
     <div class="mt-auto pt-4">
       <a
         href={href}
+        data-announcement-cta
         class="inline-flex items-center gap-1 font-medium transition-all duration-150
              group-hover:font-bold text-skin-base cursor-pointer relative z-30 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-skin-accent"
       >
-        Check details
+        {linkLabel}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"

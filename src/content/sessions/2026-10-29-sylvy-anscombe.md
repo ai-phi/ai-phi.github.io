@@ -35,6 +35,8 @@ How is AI changing the way we do science and produce knowledge? **Science+AI: a 
 
 We begin with mathematics: for the first session of this new cycle, we welcome **Sylvy Anscombe**, mathematician at IMJ-PRG, Université Paris Cité, to discuss what AI means for mathematical practice and understanding. Her talk will be followed by a panel discussion with **Najib Idrissi** (Université Paris Cité, Institut Universitaire de France) and **Silvain Rideau-Kikuchi** (CNRS, Département de mathématiques et applications, École normale supérieure – PSL).
 
+_Discussion moderated by Aïda Elamrani._
+
 ## Abstract
 
 _"Begin at the beginning,"_ the King tells the White Rabbit, _"and go on till you come to the end: then stop."_
@@ -47,7 +49,9 @@ I will speak as a working mathematician who is torn. I am wary of revolutions an
 
 Above all, the heart of mathematics, thinking and explaining together, is ours to keep unless we give it up.
 
-## About the speaker
+## About the speakers
+
+### Sylvy Anscombe
 <div class="speaker-bio">
 
 <img
@@ -71,8 +75,6 @@ Away from the blackboard, she has a deep love of music, and can often be caught 
 </div>
 </div>
 
-## Panellists
-
 ### Najib Idrissi
 
 <div class="speaker-bio">
@@ -94,7 +96,23 @@ Najib Idrissi is an associate professor (maître de conférences) of mathematics
 
 ### Silvain Rideau-Kikuchi
 
-CNRS, Département de mathématiques et applications, École normale supérieure – PSL.
+<div class="speaker-bio">
+
+<img
+  src="/images/base/sessions/silvain-rideau-kikuchi.jpg"
+  alt="Portrait of Silvain Rideau-Kikuchi"
+  title="Photo © Steve Murez, 2022"
+  class="speaker-portrait"
+  loading="lazy"
+  decoding="async"
+/>
+
+<div class="speaker-bio-copy">
+
+Silvain Rideau-Kikuchi is a CNRS researcher at the Department of Mathematics and Applications of the École normale supérieure in Paris. His research focuses on the model theory of fields, particularly in connection with algebraic geometry. He is a member of the [Association for Human Math](https://www.ahmath.org/).
+
+</div>
+</div>
 
 ## Registration & Practical details
 

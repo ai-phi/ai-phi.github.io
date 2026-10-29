@@ -76,6 +76,15 @@ const hasRecording = Boolean(recording);
       >
     </div>
 
+    {sessionNumber === 42 && (
+      <aside class="access-notice" aria-labelledby="access-notice-title">
+        <h2 id="access-notice-title">Important access information · 29 October</h2>
+        <p><strong>The main entrance will be closed. Please use the back entrance on rue Einstein.</strong></p>
+        <p>Meet us between <strong>17:45 and 18:00</strong> at the <a href="https://www.google.com/maps?q=48.82698291398525,2.381590810146784">exact meeting point on Google Maps ↗</a>.</p>
+        <p>Someone will welcome you and guide you inside, with signs to help you find your way. If nobody is there when you arrive, please wait at the entrance: our guide may be escorting another group and will return.</p>
+      </aside>
+    )}
+
     <div class="opening">
       <figure class="session-poster">
         <img
@@ -611,4 +620,27 @@ const hasRecording = Boolean(recording);
   .editorial .session-tags {
     border-color: var(--study-rule);
   }
+</style>
+
+<style>
+  .access-notice {
+    margin: 0 0 2rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 2px solid #b42318;
+    border-left-width: 6px;
+    border-radius: 12px;
+    background: #fff1ed;
+    color: #63251f;
+    line-height: 1.6;
+  }
+  .access-notice h2 {
+    margin: 0 0 0.65rem;
+    color: #a31912;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 800;
+  }
+  .access-notice p { margin: 0.6rem 0 0; }
+  .access-notice strong { color: inherit; font-weight: 750; }
+  .access-notice a { color: #a31912; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+  .access-notice a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 </style>

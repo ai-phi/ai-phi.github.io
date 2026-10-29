@@ -124,7 +124,9 @@ Silvain Rideau-Kikuchi is a CNRS researcher at the Department of Mathematics and
 
 A recording will be released on YouTube after the event. [Subscribe to our mailing list](/subscribe/) for updates on its release and future sessions. [Follow us on YouTube](https://www.youtube.com/@ai-phi/) to find our recordings.
 
-Public entrance from the south-eastern end of avenue de France, by rue Alice Domon et Léonie Duquet. Nearby: Bibliothèque François Mitterrand (Métro 14, RER C) and Avenue de France (tram T3a).
+**Important access information: the main entrance will be closed. Please meet us between 17:45 and 18:00 at the back entrance on rue Einstein.** [Exact meeting point on Google Maps](https://www.google.com/maps?q=48.82698291398525,2.381590810146784). Someone will guide you inside. If nobody is there when you arrive, please wait at the entrance until our guide returns.
+
+Nearby: Bibliothèque François Mitterrand (Métro 14, RER C) and Avenue de France (tram T3a).
 
 [Venue access information and campus map](https://master.math.u-paris.fr/informations/acces/)
 

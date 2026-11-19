@@ -11,7 +11,7 @@ speakers:
 baseIllustration: /images/base/sessions/session-40-beyond-promptable-latent-space.jpg
 ogImage: /images/og/sessions/session-40-beyond-promptable-latent-space.png
 draft: false
-featured: true
+featured: false
 highlight: true
 tags:
   - Generative AI

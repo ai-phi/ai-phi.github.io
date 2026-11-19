@@ -7,13 +7,14 @@ const event = forms.events[eventId as keyof typeof forms.events];
 if (!event) throw new Error(`Unknown registration event: ${eventId}`);
 const ready = Boolean(forms.endpoint && forms.turnstileSiteKey);
 const revision = getContactRevision(Astro.url, Astro.locals);
+const unrecorded = "unrecorded" in event && event.unrecorded;
 const fields = event.fields.filter(field => field.visible !== false);
 ---
 <ai-phi-registration data-event={eventId} data-endpoint={forms.endpoint} data-sitekey={forms.turnstileSiteKey}>
   <form class="native-registration" aria-label="Session registration" novalidate>
     {revision ? <h3 class="registration-title">Registration <span>(in-person only)</span></h3> : <>
       {"attendanceNote" in event && <p class="attendance-note"><strong>{event.attendanceNote}</strong></p>}
-      <p class="recording-note">{event.recordingNote} <a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>
+      <p class="recording-note">{event.recordingNote} {!unrecorded && <><a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</>}</p>
       <p class="privacy-note">Your details will be used by ai-phi to organise this session and the gathering afterwards. Fields marked * are required.</p>
     </>}
     <div class="registration-fields">
@@ -33,7 +34,7 @@ const fields = event.fields.filter(field => field.visible !== false);
     <div data-challenge></div>
     <p data-status role="status" aria-live="polite"></p>
     <button type="submit" disabled>{ready ? 'Register' : 'Registration opens shortly'}</button>
-    {revision && <p class="attendance-summary">Please note that this is an in-person event only (no remote attendance). A recording will be released on YouTube after the event. <a href={subscriptionHref(Astro.url, Astro.locals)}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>}
+    {revision && (unrecorded ? <p class="attendance-summary">{event.attendanceNote} {event.recordingNote}</p> : <p class="attendance-summary">Please note that this is an in-person event only (no remote attendance). A recording will be released on YouTube after the event. <a href={subscriptionHref(Astro.url, Astro.locals)}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</p>)}
     <noscript><p>Please enable JavaScript to use this form.</p></noscript>
   </form>
   <div class="registration-success" data-success hidden tabindex="-1" role="status">

@@ -55,6 +55,61 @@
           "visible": true
         }
       ]
+    },
+    "session-43": {
+      "session": "43 — Louis Laborelli — 26 November 2026",
+      "attendanceNote": "Registration is for in-person attendance only. There will be no remote attendance.",
+      "recordingNote": "This Causerie is unrecorded.",
+      "updatesUrl": "/subscribe/",
+      "closesAt": "2026-11-26T18:30:00Z",
+      "thankYou": "Thank you — your registration for session 43 is confirmed. We look forward to seeing you on 26 November at 18:00 at Sony CSL Paris.",
+      "dinnerThankYou": "Your interest in joining dinner has been recorded. Restaurant space is subject to availability.",
+      "fields": [
+        {
+          "name": "firstName",
+          "label": "First name",
+          "type": "text",
+          "required": true,
+          "visible": true,
+          "maxLength": 100,
+          "autocomplete": "given-name"
+        },
+        {
+          "name": "lastName",
+          "label": "Last name",
+          "type": "text",
+          "required": true,
+          "visible": true,
+          "maxLength": 100,
+          "autocomplete": "family-name"
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true,
+          "visible": true,
+          "maxLength": 254,
+          "autocomplete": "email"
+        },
+        {
+          "name": "dinner",
+          "label": "Count me in for the after apéro-dinner!",
+          "help": "We will book a seat for you at a nearby bar-restaurant, to share lively discussions and meet in a more informal setting. (Please note that everyone pays for their own orders.)",
+          "type": "checkbox",
+          "required": false,
+          "visible": true
+        },
+        {
+          "name": "newsletter",
+          "label": "Keep me notified by email of upcoming sessions.",
+          "help": "Receive ai-phi session announcements by email.",
+          "type": "checkbox",
+          "required": false,
+          "visible": true
+        }
+      ],
+      "unrecorded": true
     }
   }
 }

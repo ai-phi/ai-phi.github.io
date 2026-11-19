@@ -12,6 +12,7 @@ import '@styles/announcement-actions.css';
 import { getContactRevision } from '@utils/contactRevision';
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
+import sessionRegistrationLink from "../scripts/session-registration-link.js?raw";
 import { ViewTransitions } from "astro:transitions";
 
 /* Removed Literata variable font import */
@@ -58,6 +59,7 @@ const socialImageURL = new URL(
 >
   <head>
     <meta charset="UTF-8" />
+    {Astro.url.pathname.replace(/\/$/, "") === "/posts/session-43-laborelli-is-ai-already-improving-itself" && <script is:inline set:html={sessionRegistrationLink} />}
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalURL} />

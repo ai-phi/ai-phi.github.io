@@ -4,6 +4,9 @@ pubDatetime: 2026-10-29T18:00:00+01:00
 title: "\"Begin at the beginning… then stop\": mathematics in the age of AI, the end of the beginning or the beginning of the end?"
 slug: session-42-anscombe-mathematics-age-of-ai
 sessionNumber: 42
+youtubeId: P9QjAT1fbzs
+videoThumbnail: /images/videos/session-42-anscombe-mathematics-age-of-ai.jpg
+videoTitle: "Mathematics in the Age of AI: The Beginning of the End?"
 registration:
   nativeEvent: session-42
   formUrl: https://airtable.com/app4oW9541YE4PRPR/shrkS6m3ZqcAb55mW
@@ -132,6 +135,4 @@ Nearby: Bibliothèque François Mitterrand (Métro 14, RER C) and Avenue de Fran
 
 ### Dinner & drinks afterwards
 
-We’ll continue the conversation over dinner or drinks at a nearby restaurant. To help us reserve enough space, please **[register](#registration) at least 48 hours before the session (by 27 October at 18:00, Paris time)** and indicate whether you plan to join us afterwards.
-
-If you decide later, you’re still very welcome to join, but we cannot guarantee space at the restaurant.
+Dinner and drinks were planned at a nearby restaurant after the session.

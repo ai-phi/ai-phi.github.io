@@ -1,11 +1,14 @@
 ---
 import NativeRegistration from "./NativeRegistration.astro";
 import forms from "../../registration/forms.json";
+import { registrationDayHasPassed } from "@utils/registrationDay";
 interface Props {
   nativeEvent?: string;
   formUrl?: string;
+  eventDay: string;
 }
-const { formUrl, nativeEvent } = Astro.props;
+const { formUrl, nativeEvent, eventDay } = Astro.props;
+const closed = registrationDayHasPassed(eventDay);
 const nativeReady = nativeEvent && ((forms.endpoint && forms.turnstileSiteKey) || import.meta.env.DEV);
 const embedUrl = formUrl ? new URL(formUrl) : undefined;
 const isAirtable = embedUrl?.hostname === "airtable.com";
@@ -15,28 +18,82 @@ if (embedUrl?.hostname === "airtable.com") {
   embedUrl?.searchParams.set("embedded", "true");
 }
 ---
-<div id="registration" aria-label="Session registration" class="registration">
-  {nativeReady ? (
-    <NativeRegistration eventId={nativeEvent!} fallbackUrl={formUrl} />
-  ) : formUrl ? (
-    <>
-      <p>Register below, or <a href={formUrl} target="_blank" rel="noopener noreferrer">open the registration form in a new tab</a>.</p>
-      <p class="registration-note">Your details will be used by ai-phi to organise this session and the gathering afterwards.</p>
-      <iframe
-        src={embedUrl?.href}
-        title="ai-phi session registration"
-        width="100%"
-        height={isAirtable ? "620" : "1050"}
-        loading="lazy"
-        class:list={["registration-frame", { "registration-frame-airtable": isAirtable }]}
-      >Loading registration form…</iframe>
-    </>
-  ) : (
-    <p>Registration will open shortly.</p>
+<div id="registration" aria-label="Session registration" class="registration"
+     data-registration-day={closed ? undefined : eventDay}>
+  {!closed && (
+    <div data-registration-open>
+      {nativeReady ? (
+        <NativeRegistration eventId={nativeEvent!} fallbackUrl={formUrl} />
+      ) : formUrl ? (
+        <>
+          <p>Register below, or <a href={formUrl} target="_blank" rel="noopener noreferrer">open the registration form in a new tab</a>.</p>
+          <p class="registration-note">Your details will be used by ai-phi to organise this session and the gathering afterwards.</p>
+          <iframe
+            src={embedUrl?.href}
+            title="ai-phi session registration"
+            width="100%"
+            height={isAirtable ? "620" : "1050"}
+            loading="lazy"
+            class:list={["registration-frame", { "registration-frame-airtable": isAirtable }]}
+          >Loading registration form…</iframe>
+        </>
+      ) : (
+        <p>Registration will open shortly.</p>
+      )}
+    </div>
   )}
+  <aside class="registration-closed registration-panel" data-registration-closed hidden={!closed} tabindex="-1">
+    <p><strong>This event has passed.</strong> Registrations are closed.</p>
+  </aside>
 </div>
+
+<script>
+  import { registrationDayHasPassed } from "@utils/registrationDay";
+
+  let timer: number | undefined;
+  function refreshRegistration() {
+    window.clearTimeout(timer);
+    const panel = document.querySelector<HTMLElement>("[data-registration-day]");
+    const day = panel?.dataset.registrationDay;
+    if (!panel || !day) return;
+    if (!registrationDayHasPassed(day)) {
+      timer = window.setTimeout(refreshRegistration, 60_000 - Date.now() % 60_000);
+      return;
+    }
+
+    const form = panel.querySelector("[data-registration-open]");
+    const hadFocus = form?.contains(document.activeElement);
+    form?.remove();
+    const notice = panel.querySelector<HTMLElement>("[data-registration-closed]")!;
+    notice.hidden = false;
+    if (hadFocus) notice.focus();
+
+    const action = document.querySelector<HTMLElement>("[data-registration-action]");
+    const label = action?.querySelector("[data-registration-action-label]");
+    if (label) label.textContent = "Registration closed";
+    action?.setAttribute("href", "#registration");
+    action?.removeAttribute("data-registration-action");
+    delete panel.dataset.registrationDay;
+  }
+
+  document.addEventListener("astro:page-load", refreshRegistration);
+  document.addEventListener("visibilitychange", refreshRegistration);
+  window.addEventListener("pageshow", refreshRegistration);
+  refreshRegistration();
+</script>
 <style>
   .registration { margin-block: 2.5rem; scroll-margin-top: 2rem; }
+  .registration :global(.registration-panel) {
+    border: 1px solid var(--study-rule, #c99c59);
+    color: rgb(var(--color-text-base));
+    background: var(--study-panel, #f4e9d2);
+  }
+  :global(html[data-theme="dark"]) .registration :global(.registration-panel) {
+    background: var(--study-panel, #2b251b);
+    border-color: var(--study-rule, #a88149);
+  }
+  .registration-closed { @apply rounded-lg px-5 py-4; }
+  .registration-closed p { margin: 0; }
   .registration-note { font-size: 0.9rem; }
   .registration-frame { display: block; width: 100%; max-width: 100%; border: 0; border-radius: 0.75rem; background: white; }
   @media (max-width: 480px) {

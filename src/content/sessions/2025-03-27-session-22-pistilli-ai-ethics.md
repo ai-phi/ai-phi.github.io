@@ -5,6 +5,7 @@ title: "Beyond Consent, The Limits of Data Agency in Generative AI Systems"
 slug: session-22-pistilli-ai-ethics
 sessionNumber: 22
 youtubeId: dQ9VQfMQTf4
+videoThumbnail: /images/videos/session-22-pistilli-ai-ethics.jpg
 titleShort: Beyond Consent
 videoTitle: |-
   Beyond Consent:

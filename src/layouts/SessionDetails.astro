@@ -11,6 +11,8 @@ import Tag from "@components/Tag.astro";
 import { LOCALE, SITE } from "@config";
 import { slugifyStr } from "@utils/slugify";
 import getSessionIdentity from "@utils/getSessionIdentity";
+import getSessionDate from "@utils/getSessionDate";
+import { registrationDay, registrationDayHasPassed } from "@utils/registrationDay";
 import getSessionRecording from "@utils/getSessionRecording";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
@@ -53,6 +55,10 @@ const details = jumpLinks.find(
     heading.text === "Registration & Practical details"
 );
 const hasRecording = Boolean(recording);
+const registration = post.data.registration
+  ? { ...post.data.registration, eventDay: registrationDay(getSessionDate(post)) }
+  : undefined;
+const registrationClosed = registration && registrationDayHasPassed(registration.eventDay);
 ---
 
 <Layout
@@ -75,15 +81,6 @@ const hasRecording = Boolean(recording);
         }</span
       >
     </div>
-
-    {sessionNumber === 42 && (
-      <aside class="access-notice" aria-labelledby="access-notice-title">
-        <h2 id="access-notice-title">Important access information · 29 October</h2>
-        <p><strong>The main entrance will be closed. Please use the back entrance on rue Einstein.</strong></p>
-        <p>Meet us between <strong>17:45 and 18:00</strong> at the <a href="https://www.google.com/maps?q=48.82698291398525,2.381590810146784">exact meeting point on Google Maps ↗</a>.</p>
-        <p>Someone will welcome you and guide you inside, with signs to help you find your way. If nobody is there when you arrive, please wait at the entrance: our guide may be escorting another group and will return.</p>
-      </aside>
-    )}
 
     <div class="opening">
       <figure class="session-poster">
@@ -143,15 +140,17 @@ const hasRecording = Boolean(recording);
                   Watch the recording <span aria-hidden="true">↗</span>
                 </a>
               )}
-              {(post.data.registration || details) && (
+              {(registration || details) && (
                 <a
                   class:list={[hasRecording ? "text-link" : "primary-action"]}
-                  data-registration-action={post.data.registration ? "true" : undefined}
-                  href={details ? `#${details.slug}` : "#registration"}
+                  data-registration-action={registration && !registrationClosed ? "true" : undefined}
+                  href={registrationClosed || !details ? "#registration" : `#${details.slug}`}
                 >
-                  {post.data.registration
-                    ? "Register"
-                    : "Venue & practical details"}{" "}
+                  <span data-registration-action-label>
+                    {registration
+                      ? (registrationClosed ? "Registration closed" : "Register")
+                      : "Venue & practical details"}
+                  </span>{" "}
                   <span aria-hidden="true">↓</span>
                 </a>
               )}
@@ -170,7 +169,7 @@ const hasRecording = Boolean(recording);
         <article id="article" class="prose session-prose">
           <ContentWithRegistration
             {headings}
-            registration={post.data.registration}
+            {registration}
           >
             <Content />
           </ContentWithRegistration>
@@ -620,27 +619,4 @@ const hasRecording = Boolean(recording);
   .editorial .session-tags {
     border-color: var(--study-rule);
   }
-</style>
-
-<style>
-  .access-notice {
-    margin: 0 0 2rem;
-    padding: clamp(1rem, 3vw, 1.5rem);
-    border: 2px solid #b42318;
-    border-left-width: 6px;
-    border-radius: 12px;
-    background: #fff1ed;
-    color: #63251f;
-    line-height: 1.6;
-  }
-  .access-notice h2 {
-    margin: 0 0 0.65rem;
-    color: #a31912;
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
-    font-weight: 800;
-  }
-  .access-notice p { margin: 0.6rem 0 0; }
-  .access-notice strong { color: inherit; font-weight: 750; }
-  .access-notice a { color: #a31912; font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
-  .access-notice a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 </style>

@@ -11,7 +11,7 @@ const unrecorded = "unrecorded" in event && event.unrecorded;
 const fields = event.fields.filter(field => field.visible !== false);
 ---
 <ai-phi-registration data-event={eventId} data-endpoint={forms.endpoint} data-sitekey={forms.turnstileSiteKey}>
-  <form class="native-registration" aria-label="Session registration" novalidate>
+  <form class="native-registration registration-panel" aria-label="Session registration" novalidate>
     {revision ? <h3 class="registration-title">Registration <span>(in-person only)</span></h3> : <>
       {"attendanceNote" in event && <p class="attendance-note"><strong>{event.attendanceNote}</strong></p>}
       <p class="recording-note">{event.recordingNote} {!unrecorded && <><a href={event.updatesUrl}>Subscribe to our mailing list</a> for updates on its release and future sessions. <a href="https://www.youtube.com/@ai-phi/">Follow us on YouTube</a> to find our recordings.</>}</p>
@@ -132,14 +132,7 @@ const fields = event.fields.filter(field => field.visible !== false);
     position: relative;
     margin-block: 1.5rem;
     padding: clamp(1.1rem, 3vw, 2rem);
-    border: 1px solid var(--study-rule, #c99c59);
     border-radius: 0.75rem;
-    color: rgb(var(--color-text-base));
-    background: var(--study-panel, #f4e9d2);
-  }
-  :global(html[data-theme="dark"]) .native-registration {
-    background: var(--study-panel, #2b251b);
-    border-color: var(--study-rule, #a88149);
   }
   .native-registration .attendance-note { margin-top: 0; }
   .native-registration .recording-note { font-size: 0.95rem; line-height: 1.6; }

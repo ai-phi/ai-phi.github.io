@@ -3,7 +3,7 @@ import { getContactRevision } from '@utils/contactRevision';
 import SessionRegistration from "@components/sessions/SessionRegistration.astro";
 
 interface Props {
-  registration?: { formUrl?: string; nativeEvent?: string };
+  registration?: { formUrl?: string; nativeEvent?: string; eventDay: string };
   headings: { depth: number; slug: string; text: string }[];
 }
 const { registration, headings } = Astro.props;
@@ -34,7 +34,7 @@ const insertionPoint = headingMatch
   registration ? (
     <>
       <Fragment set:html={content.slice(0, insertionPoint)} />
-      <SessionRegistration formUrl={registration.formUrl} nativeEvent={registration.nativeEvent} />
+      <SessionRegistration {...registration} />
       <Fragment set:html={content.slice(insertionPoint)} />
     </>
   ) : (

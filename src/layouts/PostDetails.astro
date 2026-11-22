@@ -13,6 +13,8 @@ import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import getSessionKindLabel from "@utils/getSessionKindLabel";
 import getSessionRecording from "@utils/getSessionRecording";
+import getSessionDate from "@utils/getSessionDate";
+import { registrationDay } from "@utils/registrationDay";
 import { resolveSessionOgImage } from "@utils/resolveSessionOgImage";
 
 type ContentCollection = "posts" | "sessions";
@@ -43,6 +45,9 @@ const baseOgImage = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const isSession = post.collection === "sessions";
 const recording = post.collection === "sessions"
   ? getSessionRecording(post.data)
+  : undefined;
+const registration = post.collection === "sessions" && post.data.registration
+  ? { ...post.data.registration, eventDay: registrationDay(getSessionDate(post)) }
   : undefined;
 const sessionSlug =
   isSession && typeof post.data.slug === "string"
@@ -166,7 +171,7 @@ const formatSpeakers = (
           </aside>
         )
       }
-      <ContentWithRegistration {headings} registration={post.collection === "sessions" ? post.data.registration : undefined}>
+      <ContentWithRegistration {headings} {registration}>
         <Content />
       </ContentWithRegistration>
     </article>

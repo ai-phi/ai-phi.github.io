@@ -7,6 +7,7 @@ title: >-
 slug: session-24-ryota-kanai
 sessionNumber: 24
 youtubeId: uhJDrYYSfxA
+videoThumbnail: /images/videos/session-24-ryota-kanai.jpg
 titleShort: Qualia & Symmetry
 videoTitle: |-
   Qualia and Symmetry:
